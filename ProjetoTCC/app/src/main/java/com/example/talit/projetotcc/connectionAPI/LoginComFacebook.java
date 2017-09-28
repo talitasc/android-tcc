@@ -32,8 +32,18 @@ public class LoginComFacebook extends AsyncTask<String, String, String> {
     private String nome;
     private String sobrenome;
     private DbConn dbconn;
-    private AutenticaLogin.Listener listener;
+    private Listener listener;
     public String status = "nao";
+
+    public interface Listener {
+
+        public void onLoaded(String string);
+    }
+
+    public LoginComFacebook(Listener listener) {
+       this.listener = listener;
+
+    }
 
     @Override
     protected String doInBackground(String... n) {
@@ -60,7 +70,6 @@ public class LoginComFacebook extends AsyncTask<String, String, String> {
             jsonObject.accumulate("origin", origin);
             jsonObject.accumulate("nome", nome);
             jsonObject.accumulate("sobrenome", sobrenome);
-            //jsonObject.accumulate("token", token);
             String json = jsonObject.toString();
             OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
@@ -81,9 +90,6 @@ public class LoginComFacebook extends AsyncTask<String, String, String> {
                 response += temp;
                 Log.i("teste_api_login", response);
                 JSONObject resp = new JSONObject(response);
-                //JSONObject object = new JSONObject(resp.getString("objeto"));
-                //Log.i("nome", object.getString("usuario_id"));
-                //Log.i("email", object.getString("tipo_usuario_id"));
             }
             return response;
 
@@ -112,19 +118,19 @@ public class LoginComFacebook extends AsyncTask<String, String, String> {
                 String dados = status.getString("objeto");
                 JSONObject dados_result = new JSONObject(dados);
 
-                //MantemConsumidor mac = new MantemConsumidor(dados_result.getInt("usuario_id"), dados_result.getString("usuario_login"),
-                        //dados_result.getString("usuario_senha"), dados_result.getInt("status_id"), dados_result.getInt("tipo_usuario_id"));
+                MantemConsumidor mac = new MantemConsumidor(dados_result.getInt("usuario_id"), dados_result.getString("usuario_login"),
+                        dados_result.getString("usuario_senha"), dados_result.getInt("status_id"), dados_result.getInt("tipo_usuario_id"));
 
                 if (descricao.equals("Login com facebook realizado com sucesso!")) {
-                    //dbconn.insertConsumidor(mac.getIdCons(), mac.getUsuario(), mac.getSenha(), mac.getStatus(), mac.getTpAcesso());
+                    dbconn.insertConsumidor(mac.getIdCons(), mac.getUsuario(), mac.getSenha(), mac.getStatus(), mac.getTpAcesso());
                     if (listener != null) {
                         listener.onLoaded("true");
                     }
                 } else {
                     LoginCliente.pb.setVisibility(View.INVISIBLE);
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
-                    builder.setTitle("Ative sua conta");
-                    builder.setMessage("É necessário ativar sua conta com o link enviado em seu e-mail");
+                    builder.setTitle("Erro");
+                    builder.setMessage("Erro ao tentar logar com os dados do facebook.");
                     builder.setPositiveButton("Fechar", null);
                     builder.setCancelable(false);
                     builder.show();
@@ -132,33 +138,11 @@ public class LoginComFacebook extends AsyncTask<String, String, String> {
                         listener.onLoaded("false");
                     }
                 }
-            } else if(descricao.equals("Senha inválida!")) {
+            } else {
                 LoginCliente.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
-                builder.setTitle("");
-                builder.setMessage("Senha incorreta");
-                builder.setPositiveButton("Fechar", null);
-                builder.setCancelable(false);
-                builder.show();
-                if (listener != null) {
-                    listener.onLoaded("false");
-                }
-            }else if(descricao.equals("Usuario não encontrato!")){
-                LoginCliente.pb.setVisibility(View.INVISIBLE);
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
-                builder.setTitle("");
-                builder.setMessage("E-mail não cadastrado");
-                builder.setPositiveButton("Fechar", null);
-                builder.setCancelable(false);
-                builder.show();
-                if (listener != null) {
-                    listener.onLoaded("false");
-                }
-            }else if(descricao.equals("Requisição invalida!")){
-                LoginCliente.pb.setVisibility(View.INVISIBLE);
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
-                builder.setTitle("");
-                builder.setMessage("Dados não cadastrados!");
+                builder.setTitle("Erro");
+                builder.setMessage("Erro ao tentar autenticar os facebook.");
                 builder.setPositiveButton("Fechar", null);
                 builder.setCancelable(false);
                 builder.show();

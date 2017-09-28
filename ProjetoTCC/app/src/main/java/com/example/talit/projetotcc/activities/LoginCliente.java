@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.Validacoes.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.AutenticaLogin;
+import com.example.talit.projetotcc.connectionAPI.LoginComFacebook;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.example.talit.projetotcc.sqlight.MantemConsumidor;
 import com.facebook.AccessToken;
@@ -43,7 +44,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Listener {
+public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Listener, LoginComFacebook.Listener {
     private EditText email;
     private EditText senha;
     private String emailStr;
@@ -65,16 +66,16 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login_cliente);
         context = this;
-        email = (EditText)findViewById(R.id.ed_email_cliente);
-        senha = (EditText)findViewById(R.id.ed_senha_cliente);
-        entrar = (Button)findViewById(R.id.btn_entrar);
-        cadastrar = (Button)findViewById(R.id.btn_cadastrar);
-        btnEsqueceuSenha = (Button)findViewById(R.id.btn_exqueceu_senha);
+        email = (EditText) findViewById(R.id.ed_email_cliente);
+        senha = (EditText) findViewById(R.id.ed_senha_cliente);
+        entrar = (Button) findViewById(R.id.btn_entrar);
+        cadastrar = (Button) findViewById(R.id.btn_cadastrar);
+        btnEsqueceuSenha = (Button) findViewById(R.id.btn_exqueceu_senha);
         lb = (LoginButton) findViewById(R.id.login_button);
-        pb = (ProgressBar)findViewById(R.id.ps_login);
+        pb = (ProgressBar) findViewById(R.id.ps_login);
         pb.setVisibility(View.INVISIBLE);
 
-        cadastrar.setOnClickListener(new View.OnClickListener(){
+        cadastrar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -83,7 +84,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
             }
         });
 
-        entrar.setOnClickListener(new View.OnClickListener(){
+        entrar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -92,39 +93,43 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         });
 
         lb = (LoginButton) findViewById(R.id.login_button);
-
         callbackManager = CallbackManager.Factory.create();
-
         lb.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends", "user_birthday"));
-        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
-        // Callback registration
         lb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                // App code
-                Log.d("onSuccess", "--------" + loginResult.getAccessToken());
-                Log.d("Token", "--------" + loginResult.getAccessToken().getToken());
-                Log.d("Permision", "--------" + loginResult.getRecentlyGrantedPermissions());
-                Profile profile = Profile.getCurrentProfile();
-                Log.d("ProfileDataNameF", "--" + profile.getFirstName());
-                Log.d("ProfileDataNameL", "--" + profile.getLastName());
 
-                Log.d("Image URI", "--" + profile.getLinkUri());
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
 
-                Log.d("OnGraph", "------------------------");
-                GraphRequest request = GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(
-                                    JSONObject object,
-                                    GraphResponse response) {
-                                // Application code
-                                Log.e("GraphResponse", "-------------" + response.toString());
-                            }
-                        });
+                        try{
+
+                            pb.setVisibility(View.VISIBLE);
+                            Log.d("Objeto",object.toString());
+                            LoginComFacebook conn = new LoginComFacebook(LoginCliente.this);
+                            conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
+                            //Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_LONG).show();
+
+
+                        }catch (Exception e){
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
+                            builder.setTitle("Erro ao tentar conexão com facebook!!");
+                            builder.setMessage("Verifique as permissões dos dados do seu perfil e tente novamente.");
+                            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.setCancelable(false);
+                            builder.show();
+                        }
+
+                    }
+                });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,link,gender,birthday,email");
+                parameters.putString("fields", "id,email,first_name,last_name");
                 request.setParameters(parameters);
                 request.executeAsync();
 
@@ -137,29 +142,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
             @Override
             public void onError(FacebookException exception) {
-                // App code
-            }
-        });
-
-        /*lb.setReadPermissions(Arrays.asList("user_birthday, public_profile, user_friends, email"));
-        lb.setReadPermissions("user_friends,email");
-        lb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                //goMainScreen();
-                graphRequest(loginResult);
-                Log.i("error", loginResult.toString());
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.i("erro ai", error.toString());
-                if(!Validacoes.verifyConnection(LoginCliente.this)) {
+                if (!Validacoes.verifyConnection(LoginCliente.this)) {
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("Erro ao tentar conexão!!");
                     builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
@@ -174,49 +157,14 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                 }
             }
         });
-        /*LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-
-                graphRequest(loginResult);
-                dbconn = new DbConn(LoginCliente.this);
-                dbconn.insertConsumidor(1,"logFacebook","notPassword",2,8);
-                startActivity(new Intent(LoginCliente.this, PaginalnicialConsumidor.class));
-                finish();
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-                if(!Validacoes.verifyConnection(LoginCliente.this)) {
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
-                    builder.setTitle("Erro ao tentar conexão!!");
-                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setCancelable(false);
-                    builder.show();
-                }
-            }
-        });*/
         btnEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(Validacoes.verifyConnection(LoginCliente.this)) {
+                if (Validacoes.verifyConnection(LoginCliente.this)) {
                     alertaDialogoEsqueceuSenha();
 
-                }else{
+                } else {
 
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("Erro ao tentar conexão!!");
@@ -234,7 +182,8 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         });
 
     }
-    public void verificaEntradas(){
+
+    public void verificaEntradas() {
         // o progress bar vai ser tratado depois nas classes de sincronização com a api
 
         email.setError(null);
@@ -247,7 +196,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         haSenha = false;
         haErro = false;
 
-        if(TextUtils.isEmpty(emailStr)){
+        if (TextUtils.isEmpty(emailStr)) {
             email.setError("O e-mail é necessário");
             Validacoes.requestFocus(email);
             email.setText("");
@@ -258,26 +207,26 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
             email.setText("");
             haEmail = true;
         }
-        if(TextUtils.isEmpty(senhaStr)){
+        if (TextUtils.isEmpty(senhaStr)) {
             senha.setError("A senha é necessária");
             Validacoes.requestFocus(senha);
 
             senha.setText("");
             haSenha = true;
 
-        }else if (!Validacoes.validaSenha(senhaStr)){
+        } else if (!Validacoes.validaSenha(senhaStr)) {
             senha.setError("Senha muito pequena");
             Validacoes.requestFocus(senha);
             senha.setText("");
             haSenha = true;
         }
 
-        if(haEmail!=true && haSenha!=true) {
+        if (haEmail != true && haSenha != true) {
 
             pb.setVisibility(View.VISIBLE);
             AutenticaLogin conn = new AutenticaLogin(this);
             //conn.execute("murilo.lfs@gmail.com", "Salerno111");
-            conn.execute(email.getText().toString().trim(), senha.getText().toString(),"Sw280717");
+            conn.execute(email.getText().toString().trim(), senha.getText().toString(), "Sw280717");
         }
 
     }
@@ -346,67 +295,18 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         AlertDialog dialog = alerta.create();
         dialog.show();
     }*/
-    public void graphRequest(LoginResult token) {
-
-
-        ArrayList<String> array = new ArrayList<>();
-        if(token != null && token.getAccessToken().getPermissions() != null){
-            for (String value: token.getAccessToken().getPermissions()) {
-                array.add(value);
-            }
-        }
-        Log.i("array",array.toString());
-
-       /* new GraphRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/me?fields=id,name,email",
-                null,
-                HttpMethod.GET,
-                new GraphRequest.Callback() {
-                    public void onCompleted(GraphResponse response) {
-
-                    }
-                }
-        ).executeAsync();*/
-
-        GraphRequest request = GraphRequest.newMeRequest(token.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-
-            @Override
-            public void onCompleted(JSONObject object, GraphResponse response) {
-                try {
-                    Log.i("email face",object.get("email").toString());
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-                Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_LONG).show();
-                dbconn = new DbConn(LoginCliente.this);
-                dbconn.insertConsumidor(1,"logFacebook","notPassword",2,8);
-                startActivity(new Intent(LoginCliente.this, PaginalnicialConsumidor.class));
-                finish();
-            }
-        });
-
-
-        Bundle b = new Bundle();
-        b.putString("fields", "id,email,first_name,last_name,picture.type(large)");
-        request.setParameters(b);
-        request.executeAsync();
-
-
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
-    public void alertaDialogoEsqueceuSenha(){
+
+    public void alertaDialogoEsqueceuSenha() {
         LayoutInflater inflater = getLayoutInflater();
         final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_relembrar_senha, null);
-        Button btnEnviar  =(Button)alertLayout.findViewById(R.id.btn_enviar);
-        Button btnCancelar  =(Button)alertLayout.findViewById(R.id.btn_cancelar);
+        Button btnEnviar = (Button) alertLayout.findViewById(R.id.btn_enviar);
+        Button btnCancelar = (Button) alertLayout.findViewById(R.id.btn_cancelar);
         final EditText edtEmail = (EditText) alertLayout.findViewById(R.id.ed_email);
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setView(alertLayout);
@@ -421,7 +321,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                 strEmail = edtEmail.getText().toString();
                 edtEmail.setError(null);
 
-                if(TextUtils.isEmpty(strEmail)){
+                if (TextUtils.isEmpty(strEmail)) {
                     edtEmail.setError("O e-mail é necessário");
                     Validacoes.requestFocus(edtEmail);
                     edtEmail.setText("");
@@ -429,7 +329,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                     edtEmail.setError("E-mail digitado incorretamente");
                     Validacoes.requestFocus(edtEmail);
                     edtEmail.setText("");
-                }else{
+                } else {
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("E-mail enviado!");
                     builder.setMessage("Sua nova senha foi enviada via e-mail.Verifique sua caixa de entrada.");
@@ -473,8 +373,9 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         });
 
     }
+
     public void onLoaded(String string) {
-        if (string.equalsIgnoreCase("true") ){
+        if (string.equalsIgnoreCase("true")) {
             pb.setVisibility(View.VISIBLE);
             WelcomeScreen.act.finish();
             startActivity(new Intent(this, PaginalnicialConsumidor.class));
@@ -483,19 +384,22 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
             pb.setVisibility(View.INVISIBLE);
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(LoginCliente.this, WelcomeScreen.class));
         finish();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            default:break;
+            default:
+                break;
         }
         return true;
     }
