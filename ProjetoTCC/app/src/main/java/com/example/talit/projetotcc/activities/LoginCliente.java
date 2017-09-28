@@ -31,11 +31,13 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -80,6 +82,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                 finish();
             }
         });
+
         entrar.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -89,8 +92,56 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         });
 
         lb = (LoginButton) findViewById(R.id.login_button);
+
         callbackManager = CallbackManager.Factory.create();
-        //lb.setReadPermissions(Arrays.asList("user_birthday, public_profile, user_friends, email"));
+
+        lb.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends", "user_birthday"));
+        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
+        // Callback registration
+        lb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                Log.d("onSuccess", "--------" + loginResult.getAccessToken());
+                Log.d("Token", "--------" + loginResult.getAccessToken().getToken());
+                Log.d("Permision", "--------" + loginResult.getRecentlyGrantedPermissions());
+                Profile profile = Profile.getCurrentProfile();
+                Log.d("ProfileDataNameF", "--" + profile.getFirstName());
+                Log.d("ProfileDataNameL", "--" + profile.getLastName());
+
+                Log.d("Image URI", "--" + profile.getLinkUri());
+
+                Log.d("OnGraph", "------------------------");
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                // Application code
+                                Log.e("GraphResponse", "-------------" + response.toString());
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,link,gender,birthday,email");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
+
+        /*lb.setReadPermissions(Arrays.asList("user_birthday, public_profile, user_friends, email"));
         lb.setReadPermissions("user_friends,email");
         lb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -306,7 +357,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         }
         Log.i("array",array.toString());
 
-        new GraphRequest(
+       /* new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
                 "/me?fields=id,name,email",
                 null,
@@ -316,9 +367,9 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
                     }
                 }
-        ).executeAsync();
+        ).executeAsync();*/
 
-        /*GraphRequest request = GraphRequest.newMeRequest(token.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+        GraphRequest request = GraphRequest.newMeRequest(token.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
 
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
@@ -340,7 +391,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         Bundle b = new Bundle();
         b.putString("fields", "id,email,first_name,last_name,picture.type(large)");
         request.setParameters(b);
-        request.executeAsync();*/
+        request.executeAsync();
 
 
     }
