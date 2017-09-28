@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/encontre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffff"
+            android:gravity="center_horizontal"
+            android:text="@string/txt_encontre"
+            android:textSize="18sp"
+            tools:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="290dp"
+            android:layout_height="202dp"
+            android:src="@drawable/mapinha"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="230dp"
+            android:layout_height="131dp"
+            android:src="@drawable/smarketphone"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+    <!--<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:text="@string/bem_vindo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_informacoes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="#7b1fa2"
+            tools:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="59dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/txt_informacoes"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <ImageView
+                android:id="@+id/iv_nome"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:src="@drawable/smarket_nome_dois"
+                android:paddingTop="50dp"
+                android:layout_weight="0.10"
+                tools:ignore="ContentDescription,InefficientWeight" />
+
+            <ImageView
+                android:id="@+id/iv_ogo"
+                android:layout_width="225dp"
+                android:layout_height="80dp"
+                android:src="@drawable/smarket_carrinho"
+                android:contentDescription=""
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_pross"
+            android:layout_width="225dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_progress"
+            android:tint="#7b1fa2"
+            android:contentDescription=""
+            tools:ignore="ContentDescription"
+            android:layout_marginStart="43dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/txt_informacoes" />
+
+    </RelativeLayout>-->
+
+   <!-- <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="@dimen/desc_padding"
+            android:paddingRight="@dimen/desc_padding"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_desc" />
+
+    </LinearLayout>-->
+
+
+
+</RelativeLayout>

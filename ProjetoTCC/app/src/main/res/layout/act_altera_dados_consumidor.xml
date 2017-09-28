@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/act_altera_dados_consumidor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.talit.projetotcc.activities.AlteraDadosConsumidor"
+    android:orientation="horizontal">
+
+    <ScrollView
+        android:id="@+id/alterar_dados"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="03dp"
+        android:id="@+id/email_login_form"
+        tools:ignore="UselessParent">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/ed_nome_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="03dp"
+                android:drawableRight="@mipmap/ic_cliente_ussuario"
+                android:hint="@string/txt_nome"
+                android:inputType="textPersonName"
+                tools:ignore="RtlHardcoded" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/ed_sobrenome_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableRight="@mipmap/ic_cliente_ussuario"
+                android:ems="10"
+                android:hint="@string/edt_sobrenome"
+                android:inputType="textPersonName"
+                tools:ignore="RtlHardcoded" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/id_emailcons_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableRight="@mipmap/ic_email_client"
+                android:ems="10"
+                android:hint="@string/ed_email_consu"
+                android:inputType="textPersonName"
+                tools:ignore="RtlHardcoded,TextFields" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/id_usuario_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableRight="@mipmap/ic_cliente_ussuario"
+                android:ems="10"
+                android:hint="@string/id_usuario_alt"
+                android:inputType="textPersonName"
+                tools:ignore="RtlHardcoded,TextFields" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/id_nv_senha_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/id_nv_senha_alt"
+                android:inputType="textPassword"
+                tools:ignore="RtlHardcoded,TextFields" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/nv_confisenha_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/nv_confisenha_alt"
+                android:inputType="textPassword"
+                tools:ignore="RtlHardcoded,TextFields" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="0.01dp"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/sp_tp_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_weight="1"
+                tools:ignore="InefficientWeight" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/ed_telefones"
+                    android:layout_width="182dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableRight="@mipmap/ic_telefone"
+                    android:ems="10"
+                    android:hint="@string/edt_telefones"
+                    android:inputType="text"
+                    tools:ignore="RtlHardcoded,TextFields" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_alt_cadastro"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:background="@color/botoesPrimarios"
+            android:text="@string/btn_alt_cadastro"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

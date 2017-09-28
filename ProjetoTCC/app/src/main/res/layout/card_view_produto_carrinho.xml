@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="05dp"
+    android:paddingLeft="05dp"
+    android:paddingRight="05dp"
+    android:paddingTop="01dp">
+
+
+    <LinearLayout
+        android:id="@+id/dados_estabelecimento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:ignore="ScrollViewSize,UselessParent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:layout_marginBottom="01dp"
+            app:cardBackgroundColor="#FFF"
+            app:cardCornerRadius="03dp"
+            app:cardElevation="01dp"
+            app:contentPaddingBottom="01dp">
+
+            <RelativeLayout
+                android:id="@+id/relative_itens"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/im_logo_produto"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="05dp"
+                    app:srcCompat="@drawable/logo_super"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/txtNomeProduto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txt_marca_prod"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_toEndOf="@+id/im_logo_produto"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+                    tools:text="@string/txt_nome_produto" />
+
+                <TextView
+                    android:id="@+id/txt_marca_prod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/txtNomeProduto"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginStart="01dp"
+                    android:textAllCaps="false"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+                    tools:text="@string/txt_cidade" />
+
+                <Button
+                    android:id="@+id/btnExcluir"
+                    android:layout_width="36dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_more_vert_black_24dp"
+                    android:backgroundTint="@color/coresProvisoriasum"
+                    tools:ignore="ContentDescription,UnusedAttribute"
+                    android:layout_alignBottom="@+id/txtNomeProduto"
+                    android:layout_alignEnd="@+id/txt_preco" />
+
+                <TextView
+                    android:id="@+id/txt_preco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:textAllCaps="false"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+                    tools:text="@string/txt_preco"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_cod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="120dp"
+                    android:textAllCaps="false"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+                    tools:text="@string/txt_cidade" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

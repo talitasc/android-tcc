@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#083b7b</color>
+    <color name="colorPrimaryDark">#cccccc</color>
+    <color name="colorAccent">#ffba00</color>
+
+    <color name="botoesPrimarios">#7002243b</color>
+    <color name="botoesSecundários">#90cccccc</color>
+    <color name="botoesTres">#90ffba00</color>
+    <color name="botoesAuxiliares">#801a7089</color>
+
+    <color name="coresProvisoriasum">#02243b</color>
+    <color name="coresProvisoriasdois">#cccccc</color>
+    <color name="coresProvisoriastres">#f9a61a</color>
+    <color name="corQuatro">#878787</color>
+
+    <!-- cores da tela de intro -->
+    <color name="bg_screen1">#02243b</color>
+    <color name="bg_screen2">#1a7089</color>
+    <color name="bg_screen3">#444444</color>
+    <color name="dot_active">#ffba00</color>
+    <color name="dot_inactive">#cccccc</color>
+
+</resources>

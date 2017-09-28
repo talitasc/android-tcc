@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/act_carrinho"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:padding="3dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.talit.projetotcc.activities.Carrinho">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:id="@+id/lv_carrinho"
+        android:layout_above="@+id/cardView" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        app:cardBackgroundColor="#eff0eb"
+        app:cardCornerRadius="03dp"
+        app:cardElevation="01dp"
+        app:contentPaddingBottom="02dp"
+        app:cardMaxElevation="02dp"
+        android:id="@+id/cardView"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/itens"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtValorTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/valor_total"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtTotalItens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtValorTotal"
+            android:paddingTop="10dp"
+            android:text="@string/qtd_itens"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtValorTotalDouble"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignRight="@+id/txtValorTotal"
+                android:text="@string/valor_total"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/txtQtd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignRight="@+id/txtTotalItens"
+                android:layout_marginTop="30dp"
+                android:text="@string/valor_total"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btn_adiconar_carrinho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/coresProvisoriasum"
+        android:text="@string/comprar_fase_um"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_nolist"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_nolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Não há nada no carrinho :("
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="#ACACAC"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

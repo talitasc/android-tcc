@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEFF0">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:id="@+id/lv_supermercado" />
+
+    <RelativeLayout
+        android:id="@+id/rl_nolist"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_nolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Não ha avaliações aqui..."
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="#ACACAC"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_noCdastrado"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:background="#EDEFF0"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_cadastrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/valida_cadastro"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:textColor="#ACACAC"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/bordas_grid_buttons"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:text="@string/btn_cadastro"
+            tools:text="@string/btn_cadastro"
+            android:layout_below="@+id/tv_cadastrado"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

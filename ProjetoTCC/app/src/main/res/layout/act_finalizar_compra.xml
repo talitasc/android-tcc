@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="05dp"
+    android:paddingRight="05dp"
+    android:paddingTop="05dp"
+    tools:context="com.example.talit.projetotcc.activities.FinalizarCompra">
+
+    <ScrollView
+        android:id="@+id/dado_est"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/dados_estabelecimento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="ScrollViewSize,UselessParent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="#FFF"
+                app:cardCornerRadius="03dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="3dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt_smarketPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:padding="12dp"
+                        android:text="@string/txt_smarketpoint"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/txt_smarketPoint"
+                        android:layout_margin="4dp"
+                        android:background="#ACACAC" />
+
+                    <EditText
+                        android:id="@+id/ed_smarketpoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/divider"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ed_smarkepoint"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_marginTop="01dp"
+                app:cardBackgroundColor="#FFF"
+                app:cardCornerRadius="03dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="3dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt_cartao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:padding="12dp"
+                        android:text="@string/txt_cartao"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <View
+                        android:id="@+id/divider_dois"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/txt_cartao"
+                        android:layout_margin="4dp"
+                        android:background="#ACACAC" />
+
+                    <EditText
+                        android:id="@+id/ed_numero_cartao"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/divider_dois"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/edt_numero_cartao"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <EditText
+                        android:id="@+id/ed_impresso"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/ed_numero_cartao"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/edt_numero_impresso"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <TextView
+                        android:id="@+id/txt_validade_cartao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ed_impresso"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        tools:ignore="SmallSp"
+                        android:text="@string/edt_validade_cartao" />
+
+                    <RelativeLayout
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_validade_cartao"
+                        android:id="@+id/rl_spn_mes"
+                        android:layout_marginLeft="05dp"
+                        android:layout_margin="05dp"
+                        android:background="@drawable/bordas_editext_cinza">
+
+                        <Spinner
+                            android:id="@+id/spinMes"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_validade_cartao"
+                        android:layout_toEndOf="@+id/rl_spn_mes"
+                        android:layout_marginEnd="05dp"
+                        android:layout_margin="05dp"
+                        android:id="@+id/rl_spn_ano"
+                        android:background="@drawable/bordas_editext_cinza">
+
+                        <Spinner
+                            android:id="@+id/spinAno"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp" />
+
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/ed_cod_seg"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/rl_spn_ano"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/edt_cod_verif"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

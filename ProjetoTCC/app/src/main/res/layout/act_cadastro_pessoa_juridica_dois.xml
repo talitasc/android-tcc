@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/act_cadastro_pessoa_juridica_dois"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.talit.projetotcc.activities.CadastroPessoaJuridicaDois">
+
+    <ScrollView
+        android:id="@+id/alterar_dados"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="40dp"
+        android:scrollbars="none"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="01dp"
+            tools:ignore="ScrollViewSize,UselessParent">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/ed_rua"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableRight="@mipmap/ic_endereco"
+                    android:ems="10"
+                    android:hint="@string/ed_rua"
+                    android:inputType="textPersonName"
+                    tools:ignore="RtlHardcoded,TextFields"
+                    tools:text="@string/ed_rua" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="0.01dp"
+                tools:ignore="UselessParent">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="170dp"
+                    android:layout_height="70dp">
+
+                    <EditText
+                        android:id="@+id/ed_numero"
+                        android:layout_width="160dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableRight="@mipmap/ic_endereco"
+                        android:ems="10"
+                        android:hint="@string/ed_numero"
+                        android:inputType="text"
+                        tools:ignore="RtlHardcoded,TextFields"
+                        tools:text="@string/ed_numero" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="170dp"
+                    android:layout_height="70dp">
+
+                    <EditText
+                        android:id="@+id/ed_complemento"
+                        android:layout_width="160dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableRight="@mipmap/ic_endereco"
+                        android:ems="10"
+                        android:hint="@string/ed_complemento"
+                        android:inputType="text"
+                        tools:ignore="RtlHardcoded,TextFields"
+                        tools:text="@string/ed_complemento" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/ed_bairro"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableRight="@mipmap/ic_endereco"
+                    android:ems="10"
+                    android:hint="@string/ed_bairro"
+                    android:inputType="text"
+                    tools:ignore="RtlHardcoded,TextFields"
+                    tools:text="@string/ed_bairro" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/ed_cidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableRight="@mipmap/ic_endereco"
+                    android:ems="10"
+                    android:hint="@string/ed_cidade"
+                    android:inputType="text"
+                    tools:ignore="DuplicateIds,RtlHardcoded,TextFields"
+                    tools:text="@string/ed_cidade" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/ed_estado"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableRight="@mipmap/ic_endereco"
+                    android:ems="10"
+                    android:hint="@string/ed_estado"
+                    android:inputType="text"
+                    tools:ignore="RtlHardcoded,TextFields"
+                    tools:text="@string/ed_estado" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="0.01dp"
+                tools:ignore="UselessParent">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="170dp"
+                    android:layout_height="70dp">
+
+                    <EditText
+                        android:id="@+id/ed_cep"
+                        android:layout_width="160dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableRight="@mipmap/ic_endereco"
+                        android:ems="10"
+                        android:hint="@string/ed_cep"
+                        android:inputType="text"
+                        tools:ignore="RtlHardcoded,TextFields"
+                        tools:text="@string/ed_cep" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Spinner
+                    android:id="@+id/sp_tp_ufs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_weight="1"
+                    tools:ignore="InefficientWeight" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_proximo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="530dp"
+        android:background="@drawable/bordas_grid_buttons"
+        android:text="@string/btn_proximo"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        tools:ignore="RtlHardcoded"
+        tools:text="@string/btn_proximo" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:max="2"
+        android:progress="1"/>
+
+    <ImageView
+        android:id="@+id/iv_fase1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_concluida_fase"
+        android:layout_marginTop="01dp"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/iv_fase2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="01dp"
+        android:layout_marginStart="135dp"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/iv_fase3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="01dp"
+        android:layout_marginStart="275dp"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

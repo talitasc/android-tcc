@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen3">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="UselessParent"
+        android:weightSum="1"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/comece"
+            android:layout_width="346dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            android:text="@string/txt_comece"
+            android:textColor="#ffff"
+            android:textSize="18sp"
+            tools:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="230dp"
+            android:layout_height="262dp"
+            android:layout_alignTop="@+id/comece"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="71dp"
+            android:src="@drawable/smarketphone"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

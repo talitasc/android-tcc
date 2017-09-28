@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/txt_termos_consumidor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/coresProvisoriasum"
+            android:padding="10dp"
+            android:text="@string/txt_termos_consumidor"
+            android:textColor="#ffff"
+            tools:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/txt_termos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/norma_cadastro"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <CheckBox
+                android:id="@+id/check_aceito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="05dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/check_aceito"
+                tools:ignore="RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_continuar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bordas_grid_buttons"
+                android:text="@string/btn_proximo"
+                android:textColor="#FFF"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                tools:ignore="HardcodedText,UnknownIdInLayout" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+</RelativeLayout>

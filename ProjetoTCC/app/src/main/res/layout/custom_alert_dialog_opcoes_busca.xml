@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/im_logo_supermercado"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:background="@color/coresProvisoriasum"
+            app:srcCompat="@drawable/ver"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/msg_localizacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/msg_opcoes"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/msg_localizacao"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <Button
+                android:id="@+id/minha_loca"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:layout_marginLeft="16dp"
+                android:text="@string/rb_minha_localizacao"
+                android:textColor="#777"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <View
+                android:id="@+id/divider_dois"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/minha_loca"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <Button
+                android:id="@+id/por_estado"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider_dois"
+                android:layout_marginLeft="16dp"
+                android:text="@string/rb_meus_estados"
+                android:textColor="#777"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <View
+                android:id="@+id/divider_TRES"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/por_estado"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded"/>
+
+</RelativeLayout>

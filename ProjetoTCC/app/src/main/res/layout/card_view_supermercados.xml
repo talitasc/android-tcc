@@ -1,0 +1,99 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="114dp"
+    android:layout_marginBottom="01dp"
+    android:layout_marginTop="01dp"
+    android:orientation="vertical"
+    android:paddingBottom="05dp"
+    android:paddingLeft="05dp"
+    android:paddingRight="05dp"
+    android:paddingTop="05dp"
+    app:cardBackgroundColor="#FFF"
+    app:cardCornerRadius="03dp"
+    app:cardElevation="02dp"
+    app:cardMaxElevation="03dp"
+    app:contentPaddingBottom="01dp">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/im_logo_supermercado"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="22dp"
+            app:srcCompat="@drawable/logo_super"
+            tools:ignore="ContentDescription,RtlHardcoded,UnknownIdInLayout"
+            android:layout_alignTop="@+id/txt_avaliacao"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/txt_cidade_estab" />
+
+        <TextView
+            android:id="@+id/txt_nome_super"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="35dp"
+            android:textStyle="bold"
+            android:textColor="#330066"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+            tools:text="@string/txt_nome_super"
+            tools:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/txt_cidade_estab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="60dp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/botoesPrimarios"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+            tools:text="@string/txt_cidade"
+            tools:textSize="10sp"/>
+
+        <TextView
+            android:id="@+id/txt_avaliacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="17dp"
+            android:text="4,6"
+            android:textColor="#FFCC66"
+            android:textStyle="bold"
+            tools:textSize="13sp"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/im_avaliacao"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:paddingBottom="20dp"
+            app:srcCompat="@mipmap/ic_ava"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/btn_frete"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:layout_marginTop="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:tint="@color/corQuatro"
+            app:srcCompat="@drawable/ic_local_shipping_black_24dp"
+            android:background="@drawable/bt_botoes_aux"
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

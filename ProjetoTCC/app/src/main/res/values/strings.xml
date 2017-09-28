@@ -1,0 +1,233 @@
+<resources>
+    <!--chave de identificação  do app cadastrado na pagina do facebook-->
+    <string name="facebook_app_id">460634367628229</string>
+    <string name="fb_login_protocol_scheme">fb460634367628229</string>
+
+    <!-- Strings nome do app -->
+    <string name="app_name">ProjetoTCC</string>
+
+    <!-- Strings edittext -->
+    <string name="email_cliente">E-mail</string>
+    <string name="senha_cliente">Senha</string>
+    <string name="edt_sobrenome"> Sobrenome</string>
+    <string name="ed_email_consu">E-mail</string>
+    <string name="ed_dpf">CPF</string>
+    <string name="edt_telefones">Contato</string>
+    <string name="ed_nova_senha">Nova senha</string>
+    <string name="ed_confirm_senha">Confirmar senha</string>
+    <string name="ed_usuario_pj">Usuário</string>
+    <string name="ed_senha_pj">Senha</string>
+    <string name="edt_nome_fantasia">Nome fantasia</string>
+    <string name="ed_razao_social">Razão social</string>
+    <string name="ed_incricao_estadual">Inscrição estadual</string>
+    <string name="ed_cnpj">CNPJ</string>
+    <string name="ed_incricao_municipal">Inscrição municipal</string>
+    <string name="ed_rua">Rua</string>
+    <string name="ed_complemento">Comple.</string>
+    <string name="ed_numero">Numero</string>
+    <string name="ed_bairro">Bairro</string>
+    <string name="ed_cidade">Cidade</string>
+    <string name="ed_estado">Estado</string>
+    <string name="ed_cep">CEP</string>
+    <string name="ed_smarkepoint">Código do SmarketPoint</string>
+    <string name="edt_numero_cartao">Numero do cartão</string>
+    <string name="edt_numero_impresso">Nome impresso no cartão</string>
+    <string name="edt_validade_cartao">Validade do cartão:</string>
+    <string name="edt_cod_verif">Código de segurança</string>
+
+
+    <!-- Strings check button -->
+    <string name="check_aceito">Li e aceito os termos</string>
+
+    <!-- Strings radio buttons -->
+    <string name="rb_minha_localizacao">Utilizar minhalocalização</string>
+    <string name="rb_meus_estados">Buscar supermercado por estados</string>
+    <string name="bt_buscar_locais">Buscar</string>
+
+    <!-- Strings das tabs -->
+    <string name="tab_destaque_estabelecimento">Destaques</string>
+    <string name="tab_categorias_estabelcimento">Categorias</string>
+    <string name="tab_descricao_estabelcimento">Informações</string>
+    <string name="tab_avaliacao_estabelecimento">Avaliações</string>
+    <string name="select_estado">Selecione um Estado</string>
+    <string name="select_cidade">Selecione uma Cidade</string>
+    <string name="tab_carrinho">Carrinho</string>
+    <string name="smp_desc_telefone">Telefone</string>
+    <string name="smp_desc_celular">Celular</string>
+    <string name="tab_lojas">Lojas</string>
+    <string name="tab_inicio">Inicio</string>
+
+    <!-- Strings dos menus -->
+    <string name="menu_excluir">Excluir todos os itens</string>
+    <string name="menu_minhas_ava">Avaliações Pendentes</string>
+    <string name="menu_ajuda">Duvidas Frequentes</string>
+    <string name="menu_outros">Sobre o App</string>
+    <string name="menu_item_sobre">Sobre</string>
+    <string name="menu_configuracao">Configuração</string>
+    <string name="menu_suporte">Suporte chat</string>
+    <string name="menu_historico">Minhas compras</string>
+    <string name="menu_favoritos">Produtos favoritos</string>
+    <string name="menu_idiomas">Idiomas</string>
+    <string name="menu_item_um">Filtros</string>
+    <string name="menu_item_dois">Alterar dados</string>
+    <string name="menu_item_tres">Sair</string>
+    <string name="menu_item_search">Buscar por supermercados</string>
+
+    <!-- Strings dos botões -->
+    <string name="btn_entrar">Entrar</string>
+    <string name="btn_esqueceu_senha">Esqueceu sua  senha?</string>
+    <string name="btn_face">Entrar com Facebook</string>
+    <string name="btn_login">Entrar</string>
+    <string name="btn_cadastrar">Não possui um cadastro? Comece agora!</string>
+    <string name="btn_cadastro">Cadastrar</string>
+    <string name="bt_alterar_senha">Alterar</string>
+    <string name="btn_alt_cadastro">Alterar</string>
+    <string name="bt_pessoa_fisica">Sou pessoa Fisica</string>
+    <string name="btn_começar">Começar Agora</string>
+    <string name="bt_supermercado">Supermercado</string>
+    <string name="btn_restaurante">Restaurante</string>
+    <string name="bt_ong">ONG</string>
+    <string name="bt_fornecedor">Fornecedor</string>
+    <string name="btn_esqueceu_pj">Esqueceu sua senha?</string>
+    <string name="btn_entrar_pj">Entrar</string>
+    <string name="btn_cadastrar_pj">Não possui um cadastro? Comece agora!</string>
+    <string name="btn_proximo"> Continuar</string>
+    <string name="btn_troca">Trocar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_Enviar">Enviar</string>
+    <string name="comprar_fase_um">Finalizar Compra</string>
+    <string name="dialog_excluir">Excluir item </string>
+    <string name="dialog_editar">Editar quantidade</string>
+    <string name="bt_pessoa_juridica">Sou pessoa Juridica</string>
+
+    <!-- Strings dos textviews -->
+    <string name="titulo_app">titulo do App</string>
+    <string name="container" />
+    <string name="bem_vindo">Bem vindo</string>
+    <string name="informacoes">Aqui você encontra os melhores produtos com os menores preços!</string>
+    <string name="txt_nome"> Nome</string>
+    <string name="txt_alterar_senha">Alterar senha</string>
+    <string name="id_usuario_alt">Usuario</string>
+    <string name="id_nv_senha_alt">Nova senha</string>
+    <string name="nv_confisenha_alt">Confirmar senha</string>
+    <string name="ou">Ou</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="txt_nome_super">Supermercado</string>
+    <string name="rodape">Sem Localização no momento</string>
+    <string name="config_sobre_ns">Nosso Site</string>
+    <string name="config_sobre_nf">Nosso Facebook</string>
+    <string name="config_sobre_tc">Termose condições</string>
+    <string name="config_sobre_pv">Politicas de privacidade</string>
+    <string name="config_sobre_sg">Sugestões</string>
+    <string name="config_sobre_vs">Versões</string>
+    <string name="config_idioma">Idiomas</string>
+    <string name="menu_md">Meus Dados</string>
+    <string name="menu_notificacoes">Notificações</string>
+    <string name="config_rede">Utilização de Rede</string>
+    <string name="msg_titulo_localizacao">Localização</string>
+    <string name="msg_localizacao">Ao selecionar esta opção é necessário ativar seu GPS para encontrarmos os estabelecimentos mais próximos de você.Deseja ativar a localização agora?</string>
+    <string name="msg_nao">Não</string>
+    <string name="msg_titulo_escolha">Selecione um estado e cidade</string>
+    <string name="msg_opcoes">Selecione uma das opções abaixo para encontrarmos os estabelecimentos mais próximos de você:</string>
+    <string name="msg_localize">Localize estabelecimentos:</string>
+    <string name="msg_erro">Não foi possivel obter o endereço. Tente mais tarde.</string>
+    <string name="txt_cidade">Cidade</string>
+    <string name="tab_regras_estab">Regulamentos</string>
+    <string name="txt_estabelecimento">Estabelecimento</string>
+    <string name="txt_endereco">Endereço</string>
+    <string name="txt_contatos">Contato</string>
+    <string name="txt_funcionamento">Horários de funcionamento</string>
+    <string name="txt_semana">De segunda á sexta das 08:00 hrs á 20:00 hrs</string>
+    <string name="txt_fds">Aos fins de semanas das 08:00 á 21:00 hrs</string>
+    <string name="txt_feriado">Feriados das 08:00 á 22:00 hrs</string>
+    <string name="txt_nome_avaliador">Dean winchester</string>
+    <string name="txt_data_avaliacao">15 Abril de 2017</string>
+    <string name="txt_comentario_avaliador">Produtos ótimos! Sistema de delivery excelente :)</string>
+    <string name="txt_nomeCateoria">Categorias</string>
+    <string name="txt_nome_produto">Produto</string>
+    <string name="txt_marca">Marca</string>
+    <string name="txt_preco">Preco</string>
+    <string name="txt_add_car">Adicionar ao carrinho</string>
+    <string name="txt_info">Informações</string>
+    <string name="txt_validade">Prazo de validade</string>
+    <string name="norma_cadastro">Ao aceitar os termos,você concorda que estará utilizando um aplicativo
+    que comercializa produtos que estão próximos de sua data de vencimento, porém não
+    descumprindo o Artigo 18 da Lei nº 8.078 de 11 de Setembro de 1990 do Código de defesa do consumidor.</string>
+    <string name="txt_trocar_senha">Insira seu endereço de e-mail:</string>
+    <string name="txt_termos_consumidor">Termos de uso:</string>
+    <string name="next">Avançar</string>
+    <string name="skip">Pular</string>
+    <string name="start">Ir</string>
+    <string name="text_search_estab">Busque por estabelecimentos</string>
+    <string name="title_slide1">Connect the charger</string>
+    <string name="desc_slide1">It will start automatically when charger is connected</string>
+    <string name="title_slide2">Battery status update</string>
+    <string name="desc_slide2">It will  keep you updated on battery charging status through notification and home screen widget</string>
+    <string name="title_slide3">Alert on 100%</string>
+    <string name="desc_slide3">It will alert you when battery reaches 100%</string>
+    <string name="txt_encontre">Encontre as lojas mais próximas de você !</string>
+    <string name="txt_comece">Então comece agora a desfrutar todos os recursos que preparamos para você!</string>
+    <string name="qtd_itens">Total de itens:</string>
+    <string name="valor_total">Valor Total:</string>
+    <string name="marca_produto">Marca</string>
+    <string name="adicionados_recentemente">Mais comprados</string>
+    <string name="titulo_activity">Detalhes do produto</string>
+    <string name="title_activity_teste">SMarket</string>
+    <string name="valida_cadastro">Ops!Para ver as avaliações deste estabelecimento é necessário estar cadastrado. Comece agora!</string>
+    <string name="valida_produtos">Ops!Para realizar suas compras é necessário estar cadastrado. Comece agora!</string>
+    <string name="txt_smarketpoint">Possui SmarketPoints?</string>
+    <string name="txt_cartao">Dados do cartão de crédito</string>
+    <string name="txt_escolha">Escolha um dos perfis e inicie uma experiência com o Smarket!</string>
+    <string name="title_activity_navigation_bottom">Teste</string>
+    <string name="txt_faq">Dúvidas frequentes</string>
+    <string name="txt_contato_suporte" formatted="true">Dados do Suporte Smarket:
+                                        Telefone: 0800-08080
+                                        E-mail: contato@smarketapp.com</string>
+
+    <string name="txt_notificacoes_smarket">Notificações Smarket</string>
+    <string name="txt_notificacoes_smarket_desc">Ligar ou desligar todas as notificações do aplicativo</string>
+    <string name="txt_notificacoes">Notificações</string>
+    <string name="txt_notificacoes_status">Status do Pedido</string>
+    <string name="txt_notificacoes_status_desc">Notificar quando houver alteração no status dos seus pedidos.</string>
+    <string name="txt_notificacoes_favoritos">Produtos favoritados</string>
+    <string name="txt_notificacoes_favorito_desc">Notificar quando um produto favorito estiver disponivel pelos estabelecimentos.</string>
+    <string name="txt_notificacoes_promoções">Promoções e ofertas</string>
+    <string name="txt_notificacoes_pomoções_desc">Recebere-mails e notificações de promoções dos estabelecimentos próximos.</string>
+    <string name="txt_configurar_notificacoes">Configurar Notificações</string>
+
+    <!-- Strings de dúvidas frequentes -->
+
+    <string name="txt_duvida_um">Como posso alterar meus dados?</string>
+    <string name="txt_duvida_um_solucao">Para atualizar seus dados cadastrados, basta selecionar a opção "'Configurações'" no menu lateral e escolher "'Meus dados'".</string>
+    <string name="txt_duvida_dois">Como posso alterar e-mail de contato?</string>
+    <string name="txt_duvida_dois_solucao">Seu e-mail é um dos principais meios de comunicação entre você e o Smarket, por isso é importante que sempre o mantenha atualizado.
+        Para atualizar seu e-mail, vá em "'Configurações'" no menu lateral e em "'Meus dados'" e escolha a opção de alterar meus dados e altere o campo e-mail.</string>
+    <string name="txt_duvida_tres">Quais são as formas de pagamentos aceitas?</string>
+    <string name="txt_duvida_tres_solucao">As formas de pagamento para pessoa Fisica são cartão de crédito ou boleto bancário. Para pessoas juridicas o pagamento das compras depende dos dados legais preenhidos mediante contrato.</string>
+    <string name="txt_duvida_quatro">O que é a forma "'Retire na loja'"?</string>
+    <string name="txt_duvida_quatro_solucao">Retirar na loja é uma forma de comprar online e buscar na loja fisica escolhida no momento da compra, se tornando uma forma mais rápida e livre dos custos de frete.</string>
+    <string name="txt_duvida_cinco">Como escolho a opção "'Retire na loja'"?</string>
+    <string name="txt_duvida_cinco_solucao">Após inserir os produtos no carrinho e finalizar a compra, basta selecionar a opção "'retirar na loja'" e após pagamento poderá acompanhar o status de sua compra.</string>
+    <string name="txt_duvida_seis">Posso agendar minha entrega ?</string>
+    <string name="txt_duvida_seis_solucao">No momento não é possivel agendar um horário para retirar seu pedido. Ao final da compra será apresentado os horários e datas de disponibilidade de cada estabelecimento.</string>
+    <string name="txt_duvida_sete">O que preciso para retirar meu pedido ?</string>
+    <string name="txt_duvida_sete_solucao">Assim que seu pedido for processado no estabelecimento,você receberá uma notificação para retirada do seu produto na loja. Para retirar seu produto leve seu RG ou um documento com foto e o numero do pedido.</string>
+    <string name="txt_duvida_oito">Quem pode retirar meu pedido ?</string>
+    <string name="txt_duvida_oito_solucao">Você poderá optar para que outra pessoa retire o produto no estabelecimento, levando um documento com foto e o numero do pedido.</string>
+    <string name="txt_duvida_nove">E se eu não retirar meu pedido ?</string>
+    <string name="txt_duvida_nove_solucao">O prazo para tirar seu pedido no estabelecimento é de até 6 dias. Após esse prazo se o pedido não for retirado,
+                entre em contato com o estabelecimento através dos dados fornecidos, ou entre em contato com nosso suporte.</string>
+    <string name="txt_duvida_dez">E a opção frete ?</string>
+    <string name="txt_duvida_dez_solucao">Caso o estebelcimento ofereça esta opção, será sinalizado na pagina do estabeleciemnto e ao finalizar a compra haverá a opção de "'Frete'". O custo varia de estabelecimento para estabelecimento.</string>
+    <string name="txt_duvida_onze">Posso alterar meu endereço de entrega ?</string>
+    <string name="txt_duvida_onze_solucao">Sim. Após realizar seu cadastro no aplicativo, haverá a opção de cadastrar seu  endereço na opção "'Meus dados'" que será opcional.</string>
+    <string name="txt_duvida_doze">Como cancelo um pedido de compra ?</string>
+    <string name="txt_duvida_doze_solucao">Para cancelar um pedido é necessário entrar em contato com o estabelecimento no prazo de até 3 dias após a confirmação do pedido para que o valor seja devolvido. Caso não haja retorno por parte do estabelecimento entre em contato com nosso suporte para que seja resolvido.</string>
+    <string name="txt_duvida_treze">Como posso realizar a devolução de um produto?</string>
+    <string name="txt_duvida_treze_solucao">Os produtos só podem ser devolvidos se houver violação ou se já estiver fora do prazo de validade. Caso seu produto se encontre nesse estado você deverá entrar em contato com o estabelecimento (dados estarão contidos no pedido ou na pagina da loja), podendo trocar o produto ou pedir o seu valor de volta.</string>
+    <string name="txt_duvida_quatorze">Quantos itens do mesmo produto posso comprar?</string>
+    <string name="txt_duvida_quatorze_solucao">A quantidade de itens que podem ser comprados depende da quantidade de itens disponibilizados pela loja.</string>
+    <string name="txt_duvida_quinze">Não recebi confirmação do pedido pelo estabelecimento, como prossigo?</string>
+    <string name="txt_duvida_quinze_solução">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
+</resources>

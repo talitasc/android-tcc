@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="02dp"
+    android:layout_marginEnd="02dp"
+    android:layout_marginStart="02dp"
+    android:layout_marginBottom="02dp"
+    tools:context="com.example.talit.projetotcc.activities.DuvidasFrequentes">
+
+    <ExpandableListView
+        android:id="@+id/expandListview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transcriptMode="alwaysScroll"
+        android:background="@drawable/bordas_editext_cinza"/>
+
+</RelativeLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.talit.projetotcc"
+    android:installLocation="preferExternal">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <supports-screens
+            android:anyDensity="true"
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:resizeable="true"
+            android:screenOrientation="portrait"
+            android:smallScreens="true"
+            android:xlargeScreens="true" />
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".activities.SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        <service
+            android:name=".service.LocationIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.WelcomeScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.LoginCliente"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CadastroConsumidor"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.LoginPessoaJuridica"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.RedirecionaPessoaJuridica"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CadastroPessoaJuridica"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CadastroPessoaJuridicaDois"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CadastroPessoaJuridicaTres"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <!--
+        <activity
+            android:name=".activities.PaginalnicialConsumidor"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.AlteraDadosConsumidor" />
+
+        <activity android:name=".Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.SplashScreen" />
+        <activity android:name=".activities.WelcomeScreen"></activity>
+        -->
+
+        <activity android:name=".activities.ConfiguarcoesApp" />
+        <activity android:name=".activities.ListarEstados" />
+        <activity android:name=".activities.ListarCidades" />
+        <activity android:name=".activities.PaginaInicialEstabelecimentos" />
+        <activity android:name=".activities.ProdutosEstabelecimento" />
+        <activity android:name=".activities.Carrinho" />
+        <activity android:name=".activities.Avaliacoes" />
+        <activity
+            android:name=".activities.DetalhesProdutos"
+            android:label="@string/titulo_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PaginalnicialConsumidor"
+            android:label="@string/title_activity_teste"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.FinalizarCompra" />
+        <activity android:name=".activities.DuvidasFrequentes" />
+        <activity android:name=".activities.Notificacoes"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.talit.projetotcc.activities.PaginalnicialConsumidor"
+    android:background="#EDEFF0">
+
+    <!--<android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">-->
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:divider="@null"
+        android:id="@+id/lv_supermercado"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/rl_nolist"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:background="#EDEFF0"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_nolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nenhum estabelecimento encontrado :("
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="#ACACAC"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
