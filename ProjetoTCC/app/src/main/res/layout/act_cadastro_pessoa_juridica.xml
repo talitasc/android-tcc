@@ -1,107 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/act_cadastro_pessoa_juridica"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/coresProvisoriasum"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/coresProvisoriasum"
     tools:context="com.example.talit.projetotcc.activities.CadastroPessoaJuridica">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="70dp"
+        android:paddingTop="15dp"
         tools:ignore="ScrollViewSize,UselessParent">
 
-        <android.support.design.widget.TextInputLayout
+
+        <EditText
+            android:id="@+id/edt_nome_fantasia"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="60dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/borda_edittext"
+            android:drawableLeft="@mipmap/ic_cliente_ussuario"
+            android:hint="@string/edt_nome_fantasia"
+            android:inputType="textPersonName"
+            android:textColor="@color/coresProvisoriasdois"
+            android:textColorHint="@color/coresProvisoriasdois"
+            tools:ignore="RtlHardcoded"
+            tools:text="@string/edt_nome_fantasia" />
 
-            <EditText
-                android:id="@+id/edt_nome_fantasia"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="80dp"
-                android:drawableRight="@mipmap/ic_cliente_ussuario"
-                android:hint="@string/edt_nome_fantasia"
-                android:inputType="textPersonName"
-                tools:ignore="RtlHardcoded"
-                tools:text="@string/edt_nome_fantasia" />
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/ed_razao_social"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/borda_edittext"
+            android:drawableLeft="@mipmap/ic_cliente_ussuario"
+            android:ems="10"
+            android:hint="@string/ed_razao_social"
+            android:inputType="textPersonName"
+            android:textColor="@color/coresProvisoriasdois"
+            android:textColorHint="@color/coresProvisoriasdois"
+            tools:ignore="RtlHardcoded"
+            tools:text="@string/ed_razao_social" />
 
-            <EditText
-                android:id="@+id/ed_razao_social"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:drawableRight="@mipmap/ic_cliente_ussuario"
-                android:ems="10"
-                android:hint="@string/ed_razao_social"
-                android:inputType="textPersonName"
-                tools:ignore="RtlHardcoded"
-                tools:text="@string/ed_razao_social" />
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/ed_incricao_estadual"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/borda_edittext"
+            android:drawableLeft="@mipmap/ic_client_cpf"
+            android:ems="10"
+            android:hint="@string/ed_incricao_estadual"
+            android:inputType="text"
+            android:textColor="@color/coresProvisoriasdois"
+            android:textColorHint="@color/coresProvisoriasdois"
+            tools:ignore="RtlHardcoded,TextFields"
+            tools:text="@string/ed_incricao_estadual" />
 
-            <EditText
-                android:id="@+id/ed_incricao_estadual"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:drawableRight="@mipmap/ic_client_cpf"
-                android:ems="10"
-                android:hint="@string/ed_incricao_estadual"
-                android:inputType="text"
-                tools:ignore="RtlHardcoded,TextFields"
-                tools:text="@string/ed_incricao_estadual" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/ed_incricao_municipal"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/borda_edittext"
+            android:drawableLeft="@mipmap/ic_client_cpf"
+            android:ems="10"
+            android:hint="@string/ed_incricao_municipal"
+            android:inputType="text"
+            android:textColor="@color/coresProvisoriasdois"
+            android:textColorHint="@color/coresProvisoriasdois"
+            tools:ignore="RtlHardcoded,TextFields"
+            tools:text="@string/ed_incricao_municipal" />
 
-            <EditText
-                android:id="@+id/ed_incricao_municipal"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:drawableRight="@mipmap/ic_client_cpf"
-                android:ems="10"
-                android:hint="@string/ed_incricao_municipal"
-                android:inputType="text"
-                tools:ignore="RtlHardcoded,TextFields"
-                tools:text="@string/ed_incricao_municipal" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/ed_cnpj"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
-
-            <EditText
-                android:id="@+id/ed_cnpj"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:drawableRight="@mipmap/ic_client_cpf"
-                android:ems="10"
-                android:hint="@string/ed_cnpj"
-                android:inputType="text"
-                tools:ignore="RtlHardcoded,TextFields"
-                tools:text="@string/ed_cnpj" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/borda_edittext"
+            android:drawableLeft="@mipmap/ic_client_cpf"
+            android:ems="10"
+            android:hint="@string/ed_cnpj"
+            android:inputType="text"
+            android:textColor="@color/coresProvisoriasdois"
+            android:textColorHint="@color/coresProvisoriasdois"
+            tools:ignore="RtlHardcoded,TextFields"
+            tools:text="@string/ed_cnpj" />
 
     </LinearLayout>
 
@@ -124,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:max="2"
-        android:progress="0"/>
+        android:progress="0" />
 
     <ImageView
         android:id="@+id/iv_fase1"
@@ -138,16 +131,17 @@
         android:id="@+id/iv_fase2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="01dp"
         android:layout_marginStart="135dp"
+        android:layout_marginTop="01dp"
         android:contentDescription=""
         tools:ignore="ContentDescription" />
+
     <ImageView
         android:id="@+id/iv_fase3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="01dp"
         android:layout_marginStart="275dp"
+        android:layout_marginTop="01dp"
         tools:ignore="ContentDescription" />
 
 </RelativeLayout>
