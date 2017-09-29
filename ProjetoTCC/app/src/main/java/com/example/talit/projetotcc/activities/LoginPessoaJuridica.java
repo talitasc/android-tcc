@@ -41,6 +41,7 @@ public class LoginPessoaJuridica extends AppCompatActivity {
     private String tpUsuario;
     private ProgressBar progressBar;
 
+
     //public static ProgressBar pb;
 
     @Override
@@ -53,9 +54,17 @@ public class LoginPessoaJuridica extends AppCompatActivity {
         edtUsuario = (EditText)findViewById(R.id.ed_user_pj);
         edtSenha = (EditText)findViewById(R.id.ed_senha_pj);
         btnEntrar = (Button)findViewById(R.id.btn_entrar);
+        btnCadastrar = (Button)findViewById(R.id.btn_cadastrar);
 
         progressBar.setVisibility(View.INVISIBLE);
 
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginPessoaJuridica.this, CadastroPessoaJuridica.class));
+                finish();
+            }
+        });
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

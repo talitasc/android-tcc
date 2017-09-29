@@ -72,6 +72,7 @@
     <string name="menu_item_dois">Alterar dados</string>
     <string name="menu_item_tres">Sair</string>
     <string name="menu_item_search">Buscar por supermercados</string>
+    <string name="et_nome_funcionario">Nome do Funcionário</string>
 
     <!-- Strings dos botões -->
     <string name="btn_entrar">Entrar</string>
