@@ -44,8 +44,8 @@
         <EditText
             android:id="@+id/edt_nome_fantasia"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp"
             android:background="@drawable/borda_edittext"
             android:drawableLeft="@mipmap/ic_pessoa_pj"
             android:drawableTint="@color/coresProvisoriastres"
@@ -60,7 +60,7 @@
         <EditText
             android:id="@+id/ed_razao_social"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/borda_edittext"
             android:drawableLeft="@mipmap/ic_pessoa_pj"
@@ -91,7 +91,7 @@
         <EditText
             android:id="@+id/ed_cnpj"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/borda_edittext"
             android:drawableLeft="@mipmap/ic_client_cpf"

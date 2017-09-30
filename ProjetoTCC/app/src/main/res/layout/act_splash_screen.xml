@@ -18,20 +18,12 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="290dp"
-            android:layout_height="202dp"
+            android:id="@+id/imLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/smarket"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="134dp"
-        android:layout_height="71dp"
-        android:src="@drawable/smarket_nome_dois"
-        tools:ignore="ContentDescription"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -23,6 +23,13 @@
         android:scrollbarAlwaysDrawVerticalTrack="true"
         tools:ignore="UselessParent">
 
+        <ImageView
+            android:id="@+id/imLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo_tipo"
+            tools:ignore="ContentDescription" />
+
 
         <EditText
             android:id="@+id/ed_email_cliente"

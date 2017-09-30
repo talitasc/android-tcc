@@ -159,6 +159,11 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                     edtCnpj.setError("Campo Obrigatório");
                     Validacoes.requestFocus(edtCnpj);
                     haCnpj = true;
+
+                }else if(s.length() <= 18){
+                    edtCnpj.setError("Tamanho inválido");
+                    Validacoes.requestFocus(edtCnpj);
+                    haCnpj = true;
                 }
                 habilitaBotao();
             }
