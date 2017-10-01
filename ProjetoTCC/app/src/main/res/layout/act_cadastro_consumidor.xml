@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_cadastro_consumidor"
@@ -18,184 +17,182 @@
         android:id="@+id/alterar_dados"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="UselessParent"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        tools:ignore="UselessParent">
 
-    <LinearLayout
-        android:id="@+id/ln_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:scrollbarAlwaysDrawVerticalTrack="true">
-
-        <EditText
-            android:id="@+id/ed_nome"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/borda_edittext"
-            android:drawableLeft="@mipmap/ic_cliente_ussuario"
-            android:drawableTint="@color/coresProvisoriastres"
-            android:hint="@string/txt_nome"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPersonName"
-            android:textColor="@color/coresProvisoriasdois"
-            android:textColorHint="@color/coresProvisoriasdois"
-            tools:ignore="RtlHardcoded"
-            tools:targetApi="m" />
-
-
-        <EditText
-            android:id="@+id/ed_sobrenome"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/borda_edittext"
-            android:drawableLeft="@mipmap/ic_cliente_ussuario"
-            android:drawableTint="@color/coresProvisoriastres"
-            android:ems="10"
-            android:hint="@string/edt_sobrenome"
-            android:inputType="textPersonName"
-            android:textColor="@color/coresProvisoriasdois"
-            android:textColorHint="@color/coresProvisoriasdois"
-            tools:ignore="RtlHardcoded,UnusedAttribute" />
-
-
-        <EditText
-            android:id="@+id/ed_email_consumidor"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/borda_edittext"
-            android:drawableLeft="@mipmap/ic_email_client"
-            android:drawableTint="@color/coresProvisoriastres"
-            android:ems="10"
-            android:hint="@string/ed_email_consu"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/coresProvisoriasdois"
-            android:textColorHint="@color/coresProvisoriasdois"
-            tools:ignore="RtlHardcoded,TextFields,UnusedAttribute" />
-
-        <!--<android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <EditText
+        <LinearLayout
+            android:id="@+id/ln_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:layout_marginTop="16dp"
-            android:drawableRight="@mipmap/ic_client_cpf"
-            android:ems="10"
-            android:hint="@string/ed_dpf"
-            android:id="@+id/ed_cpf"
-            tools:ignore="RtlHardcoded,TextFields"/>
-        </android.support.design.widget.TextInputLayout>-->
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true">
+
+            <EditText
+                android:id="@+id/ed_nome"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/borda_edittext"
+                android:drawableLeft="@mipmap/ic_cliente_ussuario"
+                android:drawableTint="@color/coresProvisoriastres"
+                android:hint="@string/txt_nome"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPersonName"
+                android:textColor="@color/coresProvisoriasdois"
+                android:textColorHint="@color/coresProvisoriasdois"
+                tools:ignore="RtlHardcoded"
+                tools:targetApi="m" />
 
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/borda_edittext"
-            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/ed_sobrenome"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:drawableLeft="@mipmap/ic_cliente_ussuario"
+                android:drawableTint="@color/coresProvisoriastres"
+                android:ems="10"
+                android:hint="@string/edt_sobrenome"
+                android:inputType="textPersonName"
+                android:textColor="@color/coresProvisoriasdois"
+                android:textColorHint="@color/coresProvisoriasdois"
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:tint="@color/coresProvisoriastres"
-                app:srcCompat="@mipmap/ic_telefone"
-                tools:ignore="ContentDescription" />
 
-            <Spinner
-                android:id="@+id/sp_tp_tel"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
+            <EditText
+                android:id="@+id/ed_email_consumidor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:drawableLeft="@mipmap/ic_email_client"
+                android:drawableTint="@color/coresProvisoriastres"
+                android:ems="10"
+                android:hint="@string/ed_email_consu"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/coresProvisoriasdois"
+                android:textColorHint="@color/coresProvisoriasdois"
+                tools:ignore="RtlHardcoded,TextFields,UnusedAttribute" />
+
+            <!--<android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                tools:backgroundTint="@color/coresProvisoriastres"
-                android:background="@android:color/transparent"
-                android:spinnerMode="dropdown"
-                tools:ignore="InefficientWeight,ObsoleteLayoutParam,RtlHardcoded"
-                tools:targetApi="lollipop"
-                android:layout_toEndOf="@+id/imageView4" />
+                android:inputType="text"
+                android:layout_marginTop="16dp"
+                android:drawableRight="@mipmap/ic_client_cpf"
+                android:ems="10"
+                android:hint="@string/ed_dpf"
+                android:id="@+id/ed_cpf"
+                tools:ignore="RtlHardcoded,TextFields"/>
+            </android.support.design.widget.TextInputLayout>-->
 
-        </RelativeLayout>
 
-        <EditText
-            android:id="@+id/ed_telefones"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/borda_edittext"
-            android:drawableLeft="@mipmap/ic_telefone"
-            android:drawableTint="@color/coresProvisoriastres"
-            android:ems="10"
-            android:hint="@string/edt_telefones"
-            android:inputType="number"
-            android:textColor="@color/coresProvisoriasdois"
-            android:textColorHint="@color/coresProvisoriasdois"
-            tools:ignore="RtlHardcoded,TextFields,UnusedAttribute" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/ed_senha_cadastrar"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/borda_edittext"
-            android:drawableLeft="@mipmap/ic_visualizar"
-            android:drawableTint="@color/coresProvisoriastres"
-            android:ems="2"
-            android:hint="@string/senha_cliente"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColor="@color/coresProvisoriasdois"
-            android:textColorHint="@color/coresProvisoriasdois"
-            tools:ignore="HardcodedText,RtlHardcoded,UnusedAttribute" />
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/coresProvisoriastres"
+                    app:srcCompat="@mipmap/ic_telefone"
+                    tools:ignore="ContentDescription" />
 
-        <EditText
-            android:id="@+id/ed_senha_confimar_cadastrar"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/borda_edittext"
-            android:drawableLeft="@mipmap/ic_visualizar"
-            android:drawableTint="@color/coresProvisoriastres"
-            android:ems="2"
-            android:hint="@string/ed_confirm_senha"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColor="@color/coresProvisoriasdois"
-            android:textColorHint="@color/coresProvisoriasdois"
-            tools:ignore="HardcodedText,RtlHardcoded,UnusedAttribute" />
+                <Spinner
+                    android:id="@+id/sp_tp_tel"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_toEndOf="@+id/imageView4"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown"
+                    tools:backgroundTint="@color/coresProvisoriastres"
+                    tools:ignore="InefficientWeight,ObsoleteLayoutParam,RtlHardcoded"
+                    tools:targetApi="lollipop" />
 
-        <Button
-            android:id="@+id/btn_cadastro"
-            android:layout_width="fill_parent"
-            android:layout_marginTop="20dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bordas_grid_buttons"
-            android:text="@string/btn_cadastro"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            tools:text="@string/btn_cadastro" />
+            </RelativeLayout>
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/ed_telefones"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:drawableLeft="@mipmap/ic_telefone"
+                android:drawableTint="@color/coresProvisoriastres"
+                android:ems="10"
+                android:hint="@string/edt_telefones"
+                android:inputType="number"
+                android:textColor="@color/coresProvisoriasdois"
+                android:textColorHint="@color/coresProvisoriasdois"
+                tools:ignore="RtlHardcoded,TextFields,UnusedAttribute" />
+
+            <EditText
+                android:id="@+id/ed_senha_cadastrar"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:drawableLeft="@mipmap/ic_visualizar"
+                android:drawableTint="@color/coresProvisoriastres"
+                android:ems="2"
+                android:hint="@string/senha_cliente"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/coresProvisoriasdois"
+                android:textColorHint="@color/coresProvisoriasdois"
+                tools:ignore="HardcodedText,RtlHardcoded,UnusedAttribute" />
+
+            <EditText
+                android:id="@+id/ed_senha_confimar_cadastrar"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda_edittext"
+                android:drawableLeft="@mipmap/ic_visualizar"
+                android:drawableTint="@color/coresProvisoriastres"
+                android:ems="2"
+                android:hint="@string/ed_confirm_senha"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/coresProvisoriasdois"
+                android:textColorHint="@color/coresProvisoriasdois"
+                tools:ignore="HardcodedText,RtlHardcoded,UnusedAttribute" />
+
+            <Button
+                android:id="@+id/btn_cadastro"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bordas_grid_buttons"
+                android:text="@string/btn_cadastro"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                tools:text="@string/btn_cadastro" />
+
+        </LinearLayout>
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/or"
+    <ProgressBar
+        android:id="@+id/pb_cadastro"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text=""
-        android:textSize="20sp" />
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

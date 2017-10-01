@@ -1,5 +1,7 @@
 package com.example.talit.projetotcc.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -211,10 +213,30 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, RedirecionaPessoaJuridica.class));
-        finishActivity(0);
+        //super.onBackPressed();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridica.this);
+        builder.setTitle("");
+        builder.setMessage("Você tem Certeza que deseja cancelar esta operação? Ao confirmar seus dados serão perdidos.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+                startActivity(new Intent(CadastroPessoaJuridica.this, RedirecionaPessoaJuridica.class));
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+            }
+        });
+        builder.show();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

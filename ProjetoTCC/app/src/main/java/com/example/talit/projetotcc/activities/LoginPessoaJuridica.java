@@ -38,7 +38,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
     private boolean haLogin;
     private String senhaConfirmadaStr;
     private boolean haConfirmSenha;
-    public static  ProgressBar pb;
+    public static ProgressBar pb;
     public static Context context;
 
     @Override
@@ -46,12 +46,12 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login_pessoa_juridica);
         context = this;
-        pb = (ProgressBar)findViewById(R.id.ps_login);
-        btnEsqueceuSenha = (Button)findViewById(R.id.btn_esqueceu_senha);
-        edtUsuario = (EditText)findViewById(R.id.ed_user_pj);
-        edtSenha = (EditText)findViewById(R.id.ed_senha_pj);
-        btnEntrar = (Button)findViewById(R.id.btn_entrar);
-        btnCadastrar = (Button)findViewById(R.id.btn_cadastrar);
+        pb = (ProgressBar) findViewById(R.id.ps_login);
+        btnEsqueceuSenha = (Button) findViewById(R.id.btn_esqueceu_senha);
+        edtUsuario = (EditText) findViewById(R.id.ed_user_pj);
+        edtSenha = (EditText) findViewById(R.id.ed_senha_pj);
+        btnEntrar = (Button) findViewById(R.id.btn_entrar);
+        btnCadastrar = (Button) findViewById(R.id.btn_cadastrar);
         pb.setVisibility(View.INVISIBLE);
 
         haSenha = false;
@@ -83,7 +83,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                     Validacoes.requestFocus(edtSenha);
                     haSenha = true;
 
-                }else{
+                } else {
                     haSenha = false;
                 }
             }
@@ -111,7 +111,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                     edtUsuario.setError("E-mail digitado incorretamente");
                     Validacoes.requestFocus(edtUsuario);
                     haLogin = true;
-                }else{
+                } else {
                     haLogin = false;
                 }
             }
@@ -124,15 +124,33 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("email",haLogin +"");
-                Log.i("senha",haSenha +"");
-                if (!haSenha && !haLogin){
-                    if (!TextUtils.isEmpty(edtSenha.getText().toString()) && !TextUtils.isEmpty(edtUsuario.getText().toString())){
-                        pb.setVisibility(View.VISIBLE);
-                        AutenticaPj conn = new AutenticaPj(LoginPessoaJuridica.this);
-                        //conn.execute("murilo.lfs@gmail.com", "Salerno111");
-                        conn.execute(edtUsuario.getText().toString().trim(), edtSenha.getText().toString());
+                Log.i("email", haLogin + "");
+                Log.i("senha", haSenha + "");
+                if (!haSenha && !haLogin) {
+                    if (!TextUtils.isEmpty(edtSenha.getText().toString()) && !TextUtils.isEmpty(edtUsuario.getText().toString())) {
+
+                        if (Validacoes.verifyConnection(LoginPessoaJuridica.this)) {
+                            pb.setVisibility(View.VISIBLE);
+                            AutenticaPj conn = new AutenticaPj(LoginPessoaJuridica.this);
+                            //conn.execute("murilo.lfs@gmail.com", "Salerno111");
+                            conn.execute(edtUsuario.getText().toString().trim(), edtSenha.getText().toString());
+
+                        } else {
+
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
+                            builder.setTitle("Erro ao tentar conexão!!");
+                            builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
+                            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.setCancelable(false);
+                            builder.show();
+                        }
                     }
+
                 }
             }
         });
@@ -140,10 +158,10 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
 
             @Override
             public void onClick(View view) {
-                if(Validacoes.verifyConnection(LoginPessoaJuridica.this)) {
+                if (Validacoes.verifyConnection(LoginPessoaJuridica.this)) {
                     alertaDialogoEsqueceuSenha();
 
-                }else{
+                } else {
 
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("Erro ao tentar conexão!!");
@@ -161,11 +179,11 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
         });
     }
 
-    public void alertaDialogoEsqueceuSenha(){
+    public void alertaDialogoEsqueceuSenha() {
         LayoutInflater inflater = getLayoutInflater();
         final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_relembrar_senha, null);
-        Button btnEnviar  =(Button)alertLayout.findViewById(R.id.btn_enviar);
-        Button btnCancelar  =(Button)alertLayout.findViewById(R.id.btn_cancelar);
+        Button btnEnviar = (Button) alertLayout.findViewById(R.id.btn_enviar);
+        Button btnCancelar = (Button) alertLayout.findViewById(R.id.btn_cancelar);
         final EditText edtEmail = (EditText) alertLayout.findViewById(R.id.ed_email);
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setView(alertLayout);
@@ -180,7 +198,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                 strEmail = edtEmail.getText().toString();
                 edtEmail.setError(null);
 
-                if(TextUtils.isEmpty(strEmail)){
+                if (TextUtils.isEmpty(strEmail)) {
                     edtEmail.setError("O e-mail é necessário");
                     Validacoes.requestFocus(edtEmail);
                     edtEmail.setText("");
@@ -188,7 +206,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                     edtEmail.setError("E-mail digitado incorretamente");
                     Validacoes.requestFocus(edtEmail);
                     edtEmail.setText("");
-                }else{
+                } else {
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("E-mail enviado!");
                     builder.setMessage("Sua nova senha foi enviada via e-mail.Verifique sua caixa de entrada.");
@@ -234,15 +252,15 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
 
     }
 
-    public void alterarSenha(final int id_cons){
+    public void alterarSenha(final int id_cons) {
 
         LayoutInflater inflater = getLayoutInflater();
         final View alertLayout = inflater.inflate(R.layout.alerta_dialog_custom, null);
-        Button bntAlt  =(Button)alertLayout.findViewById(R.id.bt_alterar_senha);
+        Button bntAlt = (Button) alertLayout.findViewById(R.id.bt_alterar_senha);
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setView(alertLayout);
         alerta.setCancelable(false);
-        bntAlt.setOnClickListener(new View.OnClickListener(){
+        bntAlt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -254,25 +272,25 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                 senhaNovaStr = senhaNova.getText().toString();
                 senhaConfirmadaStr = senhaConfirm.getText().toString();
 
-                if(TextUtils.isEmpty(senhaNovaStr)){
+                if (TextUtils.isEmpty(senhaNovaStr)) {
                     senhaNova.setError("A senha é necessária");
                     Validacoes.requestFocus(senhaNova);
                     senhaNova.setText("");
 
 
-                }else if (!Validacoes.validaSenha(senhaNovaStr)){
+                } else if (!Validacoes.validaSenha(senhaNovaStr)) {
                     senhaNova.setError("Senha muito pequena");
                     //Validacoes.requestFocus(senhaNova);
                     senhaNova.setText("");
 
                 }
-                if(TextUtils.isEmpty(senhaConfirmadaStr)){
+                if (TextUtils.isEmpty(senhaConfirmadaStr)) {
                     senhaConfirm.setError("A senha é necessária");
                     // Validacoes.requestFocus(senhaConfirm);
                     senhaConfirm.setText("");
                     haConfirmSenha = true;
 
-                }else if (!Validacoes.validaSenha(senhaConfirmadaStr)){
+                } else if (!Validacoes.validaSenha(senhaConfirmadaStr)) {
                     senhaConfirm.setError("Senha muito pequena");
                     Validacoes.requestFocus(senhaConfirm);
                     senhaConfirm.setText("");
@@ -285,6 +303,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
         AlertDialog dialog = alerta.create();
         dialog.show();
     }
+
     public void onLoaded(String string) {
         if (string.equalsIgnoreCase("true")) {
             pb.setVisibility(View.VISIBLE);

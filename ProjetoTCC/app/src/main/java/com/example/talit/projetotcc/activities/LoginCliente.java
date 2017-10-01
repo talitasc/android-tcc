@@ -9,7 +9,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.Validacoes.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.AutenticaLogin;
+import com.example.talit.projetotcc.connectionAPI.EstabelecimentoComprador;
 import com.example.talit.projetotcc.connectionAPI.LoginComFacebook;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.example.talit.projetotcc.sqlight.MantemConsumidor;
@@ -83,12 +86,94 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                 finish();
             }
         });
+        haEmail = false;
+        haSenha = false;
+        senha.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (TextUtils.isEmpty(charSequence)) {
+                    senha.setError("A senha é necessária");
+                    Validacoes.requestFocus(email);
+                    haSenha = true;
+
+                } else if (!Validacoes.validaSenha(senha.getText().toString())) {
+                    senha.setError("Senha muito pequena");
+                    Validacoes.requestFocus(senha);
+                    haSenha = true;
+
+                }else{
+                    haSenha = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (TextUtils.isEmpty(charSequence)) {
+                    email.setError("O e-mail é necessário");
+                    Validacoes.requestFocus(email);
+                    haEmail = true;
+
+                } else if (!Validacoes.validaEmail(email.getText().toString())) {
+                    email.setError("E-mail digitado incorretamente");
+                    Validacoes.requestFocus(email);
+                    haEmail = true;
+                }else{
+                    haEmail = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         entrar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                verificaEntradas();
+
+                if (Validacoes.verifyConnection(LoginCliente.this)) {
+                    if (!haEmail && !haSenha){
+                        if (!TextUtils.isEmpty(email.getText().toString()) && !TextUtils.isEmpty(senha.getText().toString())){
+                            pb.setVisibility(View.VISIBLE);
+                            AutenticaLogin conn = new AutenticaLogin(LoginCliente.this);
+                            //conn.execute("murilo.lfs@gmail.com", "Salerno111");
+                            conn.execute(email.getText().toString().trim(), senha.getText().toString(), "Sw280717");
+                        }
+                    }
+
+                } else {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
+                    builder.setTitle("Erro ao tentar conexão!!");
+                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
+                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
+                }
+
             }
         });
 
@@ -180,54 +265,6 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                 }
             }
         });
-
-    }
-
-    public void verificaEntradas() {
-        // o progress bar vai ser tratado depois nas classes de sincronização com a api
-
-        email.setError(null);
-        senha.setError(null);
-
-        emailStr = email.getText().toString();
-        senhaStr = senha.getText().toString();
-
-        haEmail = false;
-        haSenha = false;
-        haErro = false;
-
-        if (TextUtils.isEmpty(emailStr)) {
-            email.setError("O e-mail é necessário");
-            Validacoes.requestFocus(email);
-            email.setText("");
-            haEmail = true;
-        } else if (!Validacoes.validaEmail(emailStr)) {
-            email.setError("E-mail digitado incorretamente");
-            Validacoes.requestFocus(email);
-            email.setText("");
-            haEmail = true;
-        }
-        if (TextUtils.isEmpty(senhaStr)) {
-            senha.setError("A senha é necessária");
-            Validacoes.requestFocus(senha);
-
-            senha.setText("");
-            haSenha = true;
-
-        } else if (!Validacoes.validaSenha(senhaStr)) {
-            senha.setError("Senha muito pequena");
-            Validacoes.requestFocus(senha);
-            senha.setText("");
-            haSenha = true;
-        }
-
-        if (haEmail != true && haSenha != true) {
-
-            pb.setVisibility(View.VISIBLE);
-            AutenticaLogin conn = new AutenticaLogin(this);
-            //conn.execute("murilo.lfs@gmail.com", "Salerno111");
-            conn.execute(email.getText().toString().trim(), senha.getText().toString(), "Sw280717");
-        }
 
     }
 

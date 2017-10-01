@@ -109,14 +109,19 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
         try {
             JSONObject api_result = new JSONObject(result);
             String response = api_result.getString("response");
+            Log.i("Response um ", response);
 
             JSONObject status = new JSONObject(response);
-            Log.i("Response", response);
             String status_user = status.getString("status");
-            String descricao = status.getString("descricao");
-            Log.i("Status",status_user);
+            Log.i("Response dois", status_user);
+
+            JSONObject desc = new JSONObject(response);
+            String descricao = desc.getString("descricao");
+            Log.i("descricao", descricao);
+
             if (status_user.equals("true")) {
-                String dados = status.getString("objeto");
+
+                String dados = desc.getString("objeto");
                 JSONObject dados_result = new JSONObject(dados);
 
                 MantemConsumidor mac = new MantemConsumidor(dados_result.getInt("usuario_id"), dados_result.getString("usuario_login"),

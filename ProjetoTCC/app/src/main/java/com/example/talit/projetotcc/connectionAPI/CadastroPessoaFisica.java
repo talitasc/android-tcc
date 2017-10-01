@@ -82,14 +82,24 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("Accept-Encoding", "application/json");
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("tipo_usuario_id", id_tipo_acesso);
+            /*jsonObject.accumulate("tipo_usuario_id", id_tipo_acesso);
             jsonObject.accumulate("consumidor_nome", nome);
             jsonObject.accumulate("consumidor_sobrenome", sobrenome);
             jsonObject.accumulate("email_descricao", email);
             jsonObject.accumulate("tipo_telefone_id", tipo_telefone);
             jsonObject.accumulate("telefone_ddd", telefone_dd);
             jsonObject.accumulate("telefone_numero", telefone);
-            jsonObject.accumulate("usuario_senha", senha);
+            jsonObject.accumulate("usuario_senha", senha);*/
+
+            jsonObject.accumulate("tipo_usuario_id", "2");
+            jsonObject.accumulate("consumidor_nome", "Talita");
+            jsonObject.accumulate("consumidor_sobrenome", "Castro");
+            jsonObject.accumulate("email_descricao", "blabla@gmail.com");
+            jsonObject.accumulate("tipo_telefone_id", "1");
+            jsonObject.accumulate("telefone_ddd", "19");
+            jsonObject.accumulate("telefone_numero", "38654186");
+            jsonObject.accumulate("usuario_senha", "talita23");
+
             //jsonObject.accumulate("token", token);
             String json = jsonObject.toString();
             OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
@@ -162,21 +172,6 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
                 builder.setTitle("");
                 builder.setMessage("Erro ao tentar cadastrar");
-                builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        listener.onLoaded("true");
-                    }
-                });
-                builder.setCancelable(false);
-                builder.show();
-            }
-            else {
-                CadastroConsumidor.pb.setVisibility(View.INVISIBLE);
-                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
-                builder.setTitle("");
-                builder.setMessage("E-mail já cadastrado");
                 builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

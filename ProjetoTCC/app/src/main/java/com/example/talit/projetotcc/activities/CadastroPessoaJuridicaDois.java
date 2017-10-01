@@ -1,6 +1,8 @@
 package com.example.talit.projetotcc.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -267,22 +269,37 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String cpf = edtCpf.getText().toString().replace(".","").replace("-","");
-                Log.i("CNPJ",strCnpj);
-                Log.i("NOME FANT",strNomeFant);
-                Log.i("dd",strDD);
-                Log.i("telefone",strTel);
-                Log.i("nome fun",edtNomeFunc.getText().toString());
-                Log.i("Sobrenome",edtSobrenome.getText().toString());
-                Log.i("Cpf",cpf);
-                Log.i("Usuario",edtUsuario.getText().toString());
-                Log.i("Senha",edtSenha.getText().toString());
-                pb.setVisibility(View.VISIBLE);
-               EstabelecimentoComprador conn = new EstabelecimentoComprador(CadastroPessoaJuridicaDois.this);
-                conn.execute(strCnpj, strRazaoSocial, strNomeFant, "1", strDD, strTel,"1", edtNomeFunc.getText().toString(),
-                        edtSobrenome.getText().toString(), cpf, "2", "3",
-                        edtUsuario.getText().toString(), edtSenha.getText().toString());
+                String cpf = edtCpf.getText().toString().replace(".", "").replace("-", "");
+                Log.i("CNPJ", strCnpj);
+                Log.i("NOME FANT", strNomeFant);
+                Log.i("dd", strDD);
+                Log.i("telefone", strTel);
+                Log.i("nome fun", edtNomeFunc.getText().toString());
+                Log.i("Sobrenome", edtSobrenome.getText().toString());
+                Log.i("Cpf", cpf);
+                Log.i("Usuario", edtUsuario.getText().toString());
+                Log.i("Senha", edtSenha.getText().toString());
 
+                if (Validacoes.verifyConnection(CadastroPessoaJuridicaDois.this)) {
+                    pb.setVisibility(View.VISIBLE);
+                    EstabelecimentoComprador conn = new EstabelecimentoComprador(CadastroPessoaJuridicaDois.this);
+                    conn.execute(strCnpj, strRazaoSocial, strNomeFant, "1", strDD, strTel, "1", edtNomeFunc.getText().toString(),
+                            edtSobrenome.getText().toString(), cpf, "2", "3",
+                            edtUsuario.getText().toString(), edtSenha.getText().toString());
+
+                } else {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
+                    builder.setTitle("Erro ao tentar conexão!!");
+                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
+                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
+                }
             }
         });
     }
@@ -302,9 +319,26 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, CadastroPessoaJuridica.class));
-        finishActivity(0);
+        AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.this);
+        builder.setTitle("");
+        builder.setMessage("Você tem Certeza que deseja cancelar esta operação? Ao confirmar seus dados serão perdidos.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+                startActivity(new Intent(CadastroPessoaJuridicaDois.this, CadastroPessoaJuridica.class));
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+            }
+        });
+        builder.show();
     }
 
     @Override
