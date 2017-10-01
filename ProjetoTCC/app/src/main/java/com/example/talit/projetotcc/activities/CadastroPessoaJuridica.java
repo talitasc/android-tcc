@@ -63,7 +63,6 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                habilitaBotao();
             }
 
             @Override
@@ -79,19 +78,20 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                     Validacoes.requestFocus(edtNomeFantasia);
                     haNf = true;
                 }
+                habilitaBotao();
             }
         });
         edtRazaoSocial.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                habilitaBotao();
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                habilitaBotao();
+
             }
 
             @Override
@@ -114,28 +114,33 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
         edtTelefone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                habilitaBotao();
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(edtTelefone.getText().toString())) {
+                    edtTelefone.setError("Campo Obrigatório");
+                    Validacoes.requestFocus(edtTelefone);
+                    haIe = true;
+
+
+                } else if (edtTelefone.getText().toString().length()!= 13) {
+                    edtTelefone.setError("Telefone inválido");
+                    Validacoes.requestFocus(edtTelefone);
+                    haIe = true;
+
+                }else{
+                    haIe=false;
+                    edtTelefone.setError(null);
+                }
+
+                habilitaBotao();
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
-                if (TextUtils.isEmpty(s.toString().trim())) {
-                    edtTelefone.setError("Campo Obrigatório");
-                    Validacoes.requestFocus(edtTelefone);
-                    haIe = true;
-
-
-                } else if (s.length() > 150) {
-                    edtTelefone.setError("Campo Obrigatório");
-                    Validacoes.requestFocus(edtTelefone);
-                    haIe = true;
-                }
                 habilitaBotao();
 
             }
@@ -143,35 +148,53 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
         edtCnpj.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                habilitaBotao();
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                habilitaBotao();
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
-                strCnpj = s.toString();
+                strCnpj = edtCnpj.getText().toString();
                 if (TextUtils.isEmpty(strCnpj)) {
                     edtCnpj.setError("Campo Obrigatório");
                     Validacoes.requestFocus(edtCnpj);
                     haCnpj = true;
 
-                }else if(s.length() <= 18){
-                    edtCnpj.setError("Tamanho inválido");
+                }else if(strCnpj.length() != 18){
+                    edtCnpj.setError("CNPJ inválido");
                     Validacoes.requestFocus(edtCnpj);
                     haCnpj = true;
+
+                } else {
+                    haCnpj = false;
+                    edtCnpj.setError(null);
+                    habilitaBotao();
+
                 }
-                habilitaBotao();
+
             }
         });
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verifica();
+
+                String telefoneCompleto = edtTelefone.getText().toString().replace("(","").replace(")","").replace("-","");
+                String dd = telefoneCompleto.substring(0,2);
+                String telefone = telefoneCompleto.substring(2,telefoneCompleto.length());
+                String cpf = edtCnpj.getText().toString().replace(".","").replace("/","").replace("-","");
+                Intent intent = new Intent();
+                intent.setClass(CadastroPessoaJuridica.this,CadastroPessoaJuridicaDois.class);
+                intent.putExtra("CNPJ",cpf);
+                intent.putExtra("RAZAO_SOCIAL",edtRazaoSocial.getText().toString());
+                intent.putExtra("NOME_FANTASIA",edtNomeFantasia.getText().toString());
+                intent.putExtra("DD",dd);
+                intent.putExtra("TELEFONE",telefone);
+                CadastroPessoaJuridica.this.startActivity(intent);
+                CadastroPessoaJuridica.this.finish();
             }
         });
     }
@@ -185,59 +208,6 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
            }else{
             btnContinuar.setVisibility(View.INVISIBLE);
            }
-    }
-    public void verifica() {
-
-        haIm = false;
-        haIe = false;
-        haRs = false;
-        haCnpj = false;
-        haNf = false;
-        edtNomeFantasia.setError(null);
-        edtRazaoSocial.setError(null);
-        edtTelefone.setError(null);
-        edtCnpj.setError(null);
-
-        if (TextUtils.isEmpty(edtRazaoSocial.getText().toString())) {
-            edtRazaoSocial.setError("Campo Obrigatório");
-            Validacoes.requestFocus(edtRazaoSocial);
-            haRs = true;
-        }
-        if (TextUtils.isEmpty(edtNomeFantasia.getText().toString())) {
-            edtNomeFantasia.setError("Campo Obrigatório");
-            Validacoes.requestFocus(edtNomeFantasia);
-            haNf = true;
-        }
-        if (TextUtils.isEmpty(edtCnpj.getText().toString())) {
-            edtCnpj.setError("Campo Obrigatório");
-            Validacoes.requestFocus(edtCnpj);
-            haCnpj = true;
-        }
-        if (TextUtils.isEmpty(edtTelefone.getText().toString())) {
-            edtTelefone.setError("Campo Obrigatório");
-            Validacoes.requestFocus(edtTelefone);
-            haIe = true;
-        }
-
-
-            String telefoneCompleto = edtTelefone.getText().toString().replace("(","").replace(")","").replace("-","");
-            String dd = telefoneCompleto.substring(0,2);
-            String telefone = telefoneCompleto.substring(2,telefoneCompleto.length());
-            String cpf = edtCnpj.getText().toString().replace(".","").replace("/","").replace("-","");
-            Intent intent = new Intent();
-            intent.setClass(CadastroPessoaJuridica.this,CadastroPessoaJuridicaDois.class);
-            intent.putExtra("CNPJ",cpf);
-            intent.putExtra("RAZAO_SOCIAL",edtRazaoSocial.getText().toString());
-            intent.putExtra("NOME_FANTASIA",edtNomeFantasia.getText().toString());
-            intent.putExtra("DD",dd);
-            intent.putExtra("TELEFONE",telefone);
-            this.startActivity(intent);
-            this.finish();
-            //finish();
-            //startActivity(new Intent(this, CadastroPessoaJuridicaDois.class));
-            //finish();
-
-
     }
     @Override
     public void onBackPressed() {

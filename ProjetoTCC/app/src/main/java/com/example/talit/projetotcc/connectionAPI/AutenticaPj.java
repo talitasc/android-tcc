@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.talit.projetotcc.activities.LoginCliente;
+import com.example.talit.projetotcc.activities.LoginPessoaJuridica;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.example.talit.projetotcc.sqlight.MantemConsumidor;
 
@@ -22,14 +23,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by talit on 21/04/2017.
+ * Created by talit on 30/09/2017.
  */
 
-public class AutenticaLogin extends AsyncTask<String, String, String> {
+public class AutenticaPj extends AsyncTask<String, String, String> {
+
 
     private String login;
     private String senha;
-    private String token="ba";
     private DbConn dbconn;
     private Listener listener;
     public String status = "nao";
@@ -40,7 +41,7 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
         public void onLoaded(String string);
     }
 
-    public AutenticaLogin(Listener listener) {
+    public AutenticaPj(Listener listener) {
         this.listener = listener;
 
     }
@@ -52,7 +53,6 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
 
         login = n[0];
         senha = n[1];
-        //token = n[2];
 
         HttpURLConnection urlConnection;
         String requestBody;
@@ -67,7 +67,7 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("usuario_login", login);
             jsonObject.accumulate("usuario_senha", senha);
-            //jsonObject.accumulate("token", token);
+
             String json = jsonObject.toString();
             OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
@@ -104,7 +104,8 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        dbconn = new DbConn(LoginCliente.context);
+
+        dbconn = new DbConn(LoginPessoaJuridica.context);
         status = "sim";
         try {
             JSONObject api_result = new JSONObject(result);
@@ -115,6 +116,7 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
             String status_user = status.getString("status");
             String descricao = status.getString("descricao");
             Log.i("Status",status_user);
+
             if (status_user.equals("true")) {
                 String dados = status.getString("objeto");
                 JSONObject dados_result = new JSONObject(dados);
@@ -127,8 +129,8 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                         listener.onLoaded("true");
                     }
                 } else {
-                    LoginCliente.pb.setVisibility(View.INVISIBLE);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
+                    LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                     builder.setTitle("Ative sua conta");
                     builder.setMessage("É necessário ativar sua conta com o link enviado em seu e-mail");
                     builder.setPositiveButton("Fechar", null);
@@ -139,8 +141,8 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                     }
                 }
             } else if(descricao.equals("Senha inválida!")) {
-                LoginCliente.pb.setVisibility(View.INVISIBLE);
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
+                LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                 builder.setTitle("");
                 builder.setMessage("Senha incorreta");
                 builder.setPositiveButton("Fechar", null);
@@ -150,8 +152,8 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                     listener.onLoaded("false");
                 }
             }else if(descricao.equals("Usuario não encontrato!")){
-                LoginCliente.pb.setVisibility(View.INVISIBLE);
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
+                LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                 builder.setTitle("");
                 builder.setMessage("E-mail não cadastrado");
                 builder.setPositiveButton("Fechar", null);
@@ -161,8 +163,8 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                     listener.onLoaded("false");
                 }
             }else if(descricao.equals("Requisição invalida!")){
-                LoginCliente.pb.setVisibility(View.INVISIBLE);
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
+                LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                 builder.setTitle("");
                 builder.setMessage("Dados não cadastrados!");
                 builder.setPositiveButton("Fechar", null);
@@ -175,8 +177,8 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
 
         } catch (Exception e) {
             e.printStackTrace();
-            LoginCliente.pb.setVisibility(View.INVISIBLE);
-            AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
+            LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
             builder.setTitle("Erro");
             builder.setMessage("Erro ao Carregar Dados");
             builder.setPositiveButton("Fechar", null);

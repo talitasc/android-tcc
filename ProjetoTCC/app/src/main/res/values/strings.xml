@@ -15,7 +15,7 @@
     <string name="edt_telefones">Contato</string>
     <string name="ed_nova_senha">Nova senha</string>
     <string name="ed_confirm_senha">Confirmar senha</string>
-    <string name="ed_usuario_pj">Usuário</string>
+    <string name="ed_usuario_pj">Usuário (e-mail corporativo)</string>
     <string name="ed_senha_pj">Senha</string>
     <string name="edt_nome_fantasia">Nome fantasia</string>
     <string name="ed_razao_social">Razão social</string>
@@ -34,6 +34,7 @@
     <string name="edt_numero_impresso">Nome impresso no cartão</string>
     <string name="edt_validade_cartao">Validade do cartão:</string>
     <string name="edt_cod_verif">Código de segurança</string>
+
 
 
     <!-- Strings check button -->
@@ -231,4 +232,5 @@
     <string name="txt_duvida_quatorze_solucao">A quantidade de itens que podem ser comprados depende da quantidade de itens disponibilizados pela loja.</string>
     <string name="txt_duvida_quinze">Não recebi confirmação do pedido pelo estabelecimento, como prossigo?</string>
     <string name="txt_duvida_quinze_solução">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
+    <string name="txt_solicia_pj">Insira os dados de sua empresa:</string>
 </resources>

@@ -388,7 +388,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(LoginCliente.this, WelcomeScreen.class));
+        startActivity(new Intent(LoginCliente.this, RedirecionaPessoaJuridica.class));
         finish();
     }
 

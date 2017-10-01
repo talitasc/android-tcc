@@ -41,11 +41,23 @@
             android:progressDrawable="@drawable/custom_progress_bar"
             tools:ignore="ObsoleteLayoutParam" />
 
+        <TextView
+            android:id="@+id/txt_solicita_dados"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ffff"
+            android:textSize="16dp"
+            android:layout_gravity="center"
+            android:text="@string/txt_solicia_pj"
+            tools:ignore="HardcodedText,SpUsage" />
+
         <EditText
             android:id="@+id/edt_nome_fantasia"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="35dp"
             android:background="@drawable/borda_edittext"
             android:drawableLeft="@mipmap/ic_pessoa_pj"
             android:drawableTint="@color/coresProvisoriastres"
@@ -97,7 +109,7 @@
             android:drawableLeft="@mipmap/ic_client_cpf"
             android:ems="10"
             android:hint="@string/ed_cnpj"
-            android:inputType="text"
+            android:inputType="number"
             android:drawableTint="@color/coresProvisoriastres"
             android:textColor="@color/coresProvisoriasdois"
             android:textColorHint="@color/coresProvisoriasdois"

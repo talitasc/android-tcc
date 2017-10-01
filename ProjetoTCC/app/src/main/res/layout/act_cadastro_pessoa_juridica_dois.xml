@@ -55,12 +55,11 @@
                 android:background="@drawable/borda_edittext"
                 android:drawableLeft="@mipmap/ic_cliente_ussuario"
                 android:drawableTint="@color/coresProvisoriastres"
-                android:hint="@string/edt_nome_fantasia"
+                android:hint="@string/et_nome_funcionario"
                 android:inputType="textPersonName"
                 android:textColor="@color/coresProvisoriasdois"
                 android:textColorHint="@color/coresProvisoriasdois"
-                tools:ignore="RtlHardcoded,UnusedAttribute"
-                tools:text="@string/et_nome_funcionario" />
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
 
 
             <EditText
@@ -72,12 +71,11 @@
                 android:drawableLeft="@mipmap/ic_cliente_ussuario"
                 android:drawableTint="@color/coresProvisoriastres"
                 android:ems="10"
-                android:hint="@string/ed_razao_social"
+                android:hint="@string/edt_sobrenome"
                 android:inputType="textPersonName"
                 android:textColor="@color/coresProvisoriasdois"
                 android:textColorHint="@color/coresProvisoriasdois"
-                tools:ignore="RtlHardcoded,UnusedAttribute"
-                tools:text="@string/edt_sobrenome" />
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
 
             <EditText
                 android:id="@+id/ed_cpf_funcionario"
@@ -104,7 +102,7 @@
                 android:drawableTint="@color/coresProvisoriastres"
                 android:ems="10"
                 android:hint="@string/ed_usuario_pj"
-                android:inputType="number"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/coresProvisoriasdois"
                 android:textColorHint="@color/coresProvisoriasdois"
                 tools:ignore="RtlHardcoded,TextFields,UnusedAttribute" />
@@ -157,5 +155,12 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/pb_cadastro"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.talit.projetotcc.activities.CadastroConsumidor;
+import com.example.talit.projetotcc.activities.CadastroPessoaJuridica;
+import com.example.talit.projetotcc.activities.CadastroPessoaJuridicaDois;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import org.json.JSONException;
@@ -44,9 +46,6 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
     private String usuario_email;
     private String usuario_senha;
     private Listener listener;
-    public String status = "nao";
-    private DbConn dbconn;
-    private boolean fechou = false;
 
     public interface Listener {
 
@@ -74,9 +73,11 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
         cargo_id = n[10];
         tipo_usuario = n[11];
         usuario_email = n[12];
-        usuario_senha= n[13];
+        usuario_senha = n[13];
 
         HttpURLConnection urlConnection;
+        String requestBody;
+
         try {
             URL url = new URL(api_url);
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -89,16 +90,17 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
             jsonObject.accumulate("estabelecimento_razao_social", estabelecimento_razao_social);
             jsonObject.accumulate("estabelecimento_nome_fantasia", estabelecimento_nome_fantasia);
             jsonObject.accumulate("tipo_estabelecimento_id", tipo_estabelecimento_id);
-            jsonObject.accumulate("telefone_ddd", telefone_ddd);
-            jsonObject.accumulate("telefone_numero", telefone_numero);
-            jsonObject.accumulate("tipo_telefone_id", tipo_telefone_id);
             jsonObject.accumulate("funcionario_nome", funcionario_nome);
             jsonObject.accumulate("funcionario_sobrenome", funcionario_sobrenome);
             jsonObject.accumulate("funcionario_cpf", funcionario_cpf);
             jsonObject.accumulate("cargo_id", cargo_id);
-            jsonObject.accumulate("tipo_usuario", tipo_usuario);
+            jsonObject.accumulate("tipo_telefone_id", tipo_telefone_id);
+            jsonObject.accumulate("telefone_ddd", telefone_ddd);
+            jsonObject.accumulate("telefone_numero", telefone_numero);
             jsonObject.accumulate("usuario_email", usuario_email);
             jsonObject.accumulate("usuario_senha", usuario_senha);
+            jsonObject.accumulate("tipo_usuario", tipo_usuario);
+
             String json = jsonObject.toString();
             OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
@@ -119,7 +121,10 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
             String temp, response = "";
             while ((temp = bufferedReader.readLine()) != null) {
                 response += temp;
+                JSONObject resp = new JSONObject(response);
                 Log.i("teste_api", response);
+
+
             }
             return response;
 
@@ -142,10 +147,10 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
             Log.i("Status", status_user);
             if (status_user.equalsIgnoreCase("true")) {
                 if (descricao.equals("Estabelecimento cadastrado com sucesso!")) {
-                    CadastroConsumidor.pb.setVisibility(View.VISIBLE);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
+                    CadastroPessoaJuridicaDois.pb.setVisibility(View.INVISIBLE);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
                     builder.setTitle("Dados Registrados");
-                    builder.setMessage("CadastroPessoaFisica realizado com sucesso!");
+                    builder.setMessage("Cadastro realizado com sucesso!");
                     builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -157,14 +162,27 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
                     builder.setCancelable(false);
                     builder.show();
                 }
-
+            }else{
+                CadastroPessoaJuridicaDois.pb.setVisibility(View.INVISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
+                builder.setTitle("Erro");
+                builder.setMessage("Dados inválidos!");
+                builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        listener.onLoaded("true");
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             e.printStackTrace();
-            CadastroConsumidor.pb.setVisibility(View.INVISIBLE);
-            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
+            CadastroPessoaJuridicaDois.pb.setVisibility(View.INVISIBLE);
+            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
             builder.setTitle("Erro");
             builder.setMessage("Erro ao cadastrar os Dados");
             builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {

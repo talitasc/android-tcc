@@ -1,5 +1,6 @@
 package com.example.talit.projetotcc.activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,7 +8,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,57 +22,118 @@ import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.Validacoes.Validacoes;
+import com.example.talit.projetotcc.connectionAPI.AutenticaLogin;
+import com.example.talit.projetotcc.connectionAPI.AutenticaPj;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
-public class LoginPessoaJuridica extends AppCompatActivity {
+public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaPj.Listener {
 
     private EditText edtUsuario;
     private EditText edtSenha;
     private Button btnEsqueceuSenha;
     private Button btnEntrar;
     private Button btnCadastrar;
-    private String usuarioStr;
-    private String senhaStr;
-    private String loginDb;
-    private String senhaDb;
-    private boolean haSenha;
-    private boolean haUser;
-    private boolean haErro;
     private String senhaNovaStr;
+    private boolean haSenha;
+    private boolean haLogin;
     private String senhaConfirmadaStr;
     private boolean haConfirmSenha;
-    private DbConn dbconn;
-    private String tpUsuario;
-    private ProgressBar progressBar;
-
-
-    //public static ProgressBar pb;
+    public static  ProgressBar pb;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login_pessoa_juridica);
-
-        progressBar = (ProgressBar)findViewById(R.id.ps_login);
+        context = this;
+        pb = (ProgressBar)findViewById(R.id.ps_login);
         btnEsqueceuSenha = (Button)findViewById(R.id.btn_esqueceu_senha);
         edtUsuario = (EditText)findViewById(R.id.ed_user_pj);
         edtSenha = (EditText)findViewById(R.id.ed_senha_pj);
         btnEntrar = (Button)findViewById(R.id.btn_entrar);
         btnCadastrar = (Button)findViewById(R.id.btn_cadastrar);
+        pb.setVisibility(View.INVISIBLE);
 
-        progressBar.setVisibility(View.INVISIBLE);
-
+        haSenha = false;
+        haLogin = false;
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(LoginPessoaJuridica.this, CadastroPessoaJuridica.class));
                 finish();
+            }
+        });
+        edtSenha.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (TextUtils.isEmpty(charSequence)) {
+                    edtSenha.setError("A senha é necessária");
+                    Validacoes.requestFocus(edtSenha);
+                    haSenha = true;
+
+                } else if (!Validacoes.validaSenha(edtSenha.getText().toString())) {
+                    edtSenha.setError("Senha muito pequena");
+                    Validacoes.requestFocus(edtSenha);
+                    haSenha = true;
+
+                }else{
+                    haSenha = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        edtUsuario.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (TextUtils.isEmpty(charSequence)) {
+                    edtUsuario.setError("O e-mail é necessário");
+                    Validacoes.requestFocus(edtUsuario);
+                    haLogin = true;
+
+                } else if (!Validacoes.validaEmail(edtUsuario.getText().toString())) {
+                    edtUsuario.setError("E-mail digitado incorretamente");
+                    Validacoes.requestFocus(edtUsuario);
+                    haLogin = true;
+                }else{
+                    haLogin = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verificaEntradas();
+                Log.i("email",haLogin +"");
+                Log.i("senha",haSenha +"");
+                if (!haSenha && !haLogin){
+                    if (!TextUtils.isEmpty(edtSenha.getText().toString()) && !TextUtils.isEmpty(edtUsuario.getText().toString())){
+                        pb.setVisibility(View.VISIBLE);
+                        AutenticaPj conn = new AutenticaPj(LoginPessoaJuridica.this);
+                        //conn.execute("murilo.lfs@gmail.com", "Salerno111");
+                        conn.execute(edtUsuario.getText().toString().trim(), edtSenha.getText().toString());
+                    }
+                }
             }
         });
         btnEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +141,7 @@ public class LoginPessoaJuridica extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(Validacoes.verifyConnection(LoginPessoaJuridica.this)) {
-
-                   alertaDialogoEsqueceuSenha();
+                    alertaDialogoEsqueceuSenha();
 
                 }else{
 
@@ -96,6 +160,7 @@ public class LoginPessoaJuridica extends AppCompatActivity {
             }
         });
     }
+
     public void alertaDialogoEsqueceuSenha(){
         LayoutInflater inflater = getLayoutInflater();
         final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_relembrar_senha, null);
@@ -168,76 +233,7 @@ public class LoginPessoaJuridica extends AppCompatActivity {
         });
 
     }
-    public void verificaEntradas(){
-        // o progress bar vai ser tratado depois nas classes de sincronização com a api
 
-        edtUsuario.setError(null);
-        edtSenha.setError(null);
-
-        usuarioStr = edtUsuario.getText().toString();
-        senhaStr = edtSenha.getText().toString();
-
-        haUser = false;
-        haSenha = false;
-        haErro = false;
-
-        if(TextUtils.isEmpty(usuarioStr)){
-            edtUsuario.setError("O usuário é necessário");
-            Validacoes.requestFocus(edtUsuario);
-            //pb.setVisibility(View.INVISIBLE);
-            edtUsuario.setText("");
-            haUser = true;
-        }
-        if(TextUtils.isEmpty(senhaStr)){
-            edtSenha.setError("A senha é necessária");
-            Validacoes.requestFocus(edtSenha);
-            //pb.setVisibility(View.INVISIBLE);
-            edtSenha.setText("");
-            haSenha = true;
-
-        }else if (!Validacoes.validaSenha(senhaStr)){
-            edtSenha.setError("Senha muito pequena");
-            Validacoes.requestFocus(edtSenha);
-            //pb.setVisibility(View.INVISIBLE);
-            edtSenha.setText("");
-            haSenha = true;
-        }
-
-        if(haUser != true && haSenha != true) {
-            dbconn = new DbConn(this);
-            if (dbconn.selectConsumidor() != null) {
-                loginDb = dbconn.selectConsumidor().getUsuario();
-                senhaDb = dbconn.selectConsumidor().getSenha();
-                Toast.makeText(LoginPessoaJuridica.this,loginDb +" "+ senhaDb,Toast.LENGTH_SHORT).show();
-                if (senhaStr.equals(senhaDb) && usuarioStr.equals(loginDb)) {
-                    //verifica se o id do status é 1 se for é pq ainda nao esta ativo(verificar no banco depois da API)
-                    if (dbconn.selectConsumidor().getStatus() == 1) {
-                        //pb.setVisibility(View.INVISIBLE);
-                        alterarSenha(dbconn.selectConsumidor().getIdCons());
-                    }
-                }else{
-                    haErro = true;
-                }
-            } else {
-                haErro = true;
-            }
-        }
-        if(haErro == true){
-           // pb.setVisibility(View.INVISIBLE);
-            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
-            builder.setTitle("Erro no login");
-            builder.setMessage("Senha ou e-mail Incorretos");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    //finish();
-                }
-            });
-            builder.setCancelable(false);
-            builder.show();
-        }
-    }
     public void alterarSenha(final int id_cons){
 
         LayoutInflater inflater = getLayoutInflater();
@@ -250,8 +246,7 @@ public class LoginPessoaJuridica extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                haSenha = false;
-                haConfirmSenha= false;
+
                 EditText senhaNova = (EditText) alertLayout.findViewById(R.id.ed_nova_senha);
                 EditText senhaConfirm = (EditText) alertLayout.findViewById(R.id.ed_confirm_senha);
 
@@ -263,13 +258,13 @@ public class LoginPessoaJuridica extends AppCompatActivity {
                     senhaNova.setError("A senha é necessária");
                     Validacoes.requestFocus(senhaNova);
                     senhaNova.setText("");
-                    haSenha = true;
+
 
                 }else if (!Validacoes.validaSenha(senhaNovaStr)){
                     senhaNova.setError("Senha muito pequena");
                     //Validacoes.requestFocus(senhaNova);
                     senhaNova.setText("");
-                    haSenha = true;
+
                 }
                 if(TextUtils.isEmpty(senhaConfirmadaStr)){
                     senhaConfirm.setError("A senha é necessária");
@@ -283,37 +278,39 @@ public class LoginPessoaJuridica extends AppCompatActivity {
                     senhaConfirm.setText("");
                     haConfirmSenha = true;
                 }
-                if(haSenha != true && haConfirmSenha != true) {
-                    if (senhaNovaStr.equals(senhaConfirmadaStr)) {
-                        dbconn.updateSenha(senhaConfirmadaStr, 2, id_cons);
-                        startActivity(new Intent(LoginPessoaJuridica.this, PaginalnicialConsumidor.class));
-                        finish();
 
-                    } else {
-                        //Toast.makeText(getBaseContext(),"nAO E IGUAL", Toast.LENGTH_SHORT).show();
-                        senhaNova.setError("A senhas devem ser idênticas");
-                        senhaConfirm.setError("A senhas devem ser idênticas");
-                    }
-                }
                 Toast.makeText(getBaseContext(), senhaNovaStr + " - " + senhaConfirmadaStr, Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog dialog = alerta.create();
         dialog.show();
     }
+    public void onLoaded(String string) {
+        if (string.equalsIgnoreCase("true")) {
+            pb.setVisibility(View.VISIBLE);
+            WelcomeScreen.act.finish();
+            startActivity(new Intent(this, PaginalnicialConsumidor.class));
+            finish();
+        } else {
+            pb.setVisibility(View.INVISIBLE);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(this, RedirecionaPessoaJuridica.class));
-        finishActivity(0);
+        startActivity(new Intent(LoginPessoaJuridica.this, RedirecionaPessoaJuridica.class));
+        finish();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            default:break;
+            default:
+                break;
         }
         return true;
     }
