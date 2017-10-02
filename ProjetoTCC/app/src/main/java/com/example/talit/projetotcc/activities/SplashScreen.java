@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.Validacoes.Validacoes;
 import com.example.talit.projetotcc.fragments.WelcomeSobre;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -15,7 +16,6 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_splash_screen);
-
         Thread timerThread = new Thread() {
             public void run() {
                 try {

@@ -32,6 +32,9 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.fragments.WelcomeApresentacao;
 import com.example.talit.projetotcc.fragments.WelcomeSobre;
 import com.example.talit.projetotcc.sqlight.DbConn;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class WelcomeScreen extends AppCompatActivity {
 
@@ -44,6 +47,8 @@ public class WelcomeScreen extends AppCompatActivity {
     private DbConn dbconn;
     public static Activity act;
     private static ImageView m2;
+    private SimpleDraweeView myDraweeView;
+    private LinearLayout imaLayout;
 
 
     @Override
@@ -67,9 +72,9 @@ public class WelcomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.act_welcome_screen);
         act = this;
-
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -78,6 +83,8 @@ public class WelcomeScreen extends AppCompatActivity {
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
+        myDraweeView = (SimpleDraweeView) findViewById(R.id.imLocais);
+        imaLayout  = (LinearLayout)findViewById(R.id.layoutImage);
 
         layouts = new int[]{
                 R.layout.fragment_apresentacao,
@@ -85,11 +92,16 @@ public class WelcomeScreen extends AppCompatActivity {
                 R.layout.fragment_comece};
 
         addBottomDots(0);
-
         viewPagerAdapter = new ViewPagerAdapter();
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
+        DraweeController controller =
+                Fresco.newDraweeControllerBuilder()
+                        .setUri("res:///" + R.drawable.gifloginestabelecimento)
+                        .setAutoPlayAnimations(true)
+                        .build();
+        myDraweeView.setController(controller);
     }
 
     public  void btnSkipClick(View v)
@@ -115,6 +127,7 @@ public class WelcomeScreen extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
+            addGifs(position);
 
             if (position == layouts.length - 1) {
 
@@ -124,6 +137,16 @@ public class WelcomeScreen extends AppCompatActivity {
 
                 btnNext.setText(getString(R.string.next));
                 btnSkip.setVisibility(View.VISIBLE);
+            }
+
+            if(position == 1){
+
+                DraweeController controller =
+                        Fresco.newDraweeControllerBuilder()
+                                .setUri("res:///" + R.drawable.gifloginconsumidor)
+                                .setAutoPlayAnimations(true)
+                                .build();
+                myDraweeView.setController(controller);
             }
 
         }
@@ -151,11 +174,46 @@ public class WelcomeScreen extends AppCompatActivity {
             dotsLayout.addView(dots[i]);
         }
 
-        if (dots.length > 0)
+        if (dots.length > 0) {
             dots[currentPage].setTextColor(getResources().getColor(R.color.dot_active));
+        }
     }
+    private void addGifs(int currentPage){
 
+        imaLayout.removeAllViews();
+        if(currentPage == 1){
+            imaLayout.removeAllViews();
+            DraweeController controller =
+                    Fresco.newDraweeControllerBuilder()
+                            .setUri("res:///" + R.drawable.gifloginconsumidor)
+                            .setAutoPlayAnimations(true)
+                            .build();
+            myDraweeView.setController(controller);
+            imaLayout.addView(myDraweeView);
 
+        }else if(currentPage == 2){
+            imaLayout.removeAllViews();
+            DraweeController controller =
+                    Fresco.newDraweeControllerBuilder()
+                            .setUri("res:///" + R.drawable.gifloginestabelecimento)
+                            .setAutoPlayAnimations(true)
+                            .build();
+            myDraweeView.setController(controller);
+            imaLayout.addView(myDraweeView);
+
+        }else if (currentPage == 0){
+            imaLayout.removeAllViews();
+            DraweeController controller =
+                    Fresco.newDraweeControllerBuilder()
+                            .setUri("res:///" + R.drawable.gifloginestabelecimento)
+                            .setAutoPlayAnimations(true)
+                            .build();
+            myDraweeView.setController(controller);
+            imaLayout.addView(myDraweeView);
+        }else{
+            imaLayout.removeAllViews();
+        }
+    }
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
     }

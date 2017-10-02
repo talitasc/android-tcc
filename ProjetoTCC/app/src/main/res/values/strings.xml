@@ -36,7 +36,6 @@
     <string name="edt_cod_verif">Código de segurança</string>
 
 
-
     <!-- Strings check button -->
     <string name="check_aceito">Li e aceito os termos</string>
 
@@ -84,7 +83,7 @@
     <string name="btn_cadastro">Cadastrar</string>
     <string name="bt_alterar_senha">Alterar</string>
     <string name="btn_alt_cadastro">Alterar</string>
-    <string name="bt_pessoa_fisica">Sou pessoa Fisica</string>
+    <string name="bt_pessoa_fisica">Para a minha casa</string>
     <string name="btn_começar">Começar Agora</string>
     <string name="bt_supermercado">Supermercado</string>
     <string name="btn_restaurante">Restaurante</string>
@@ -100,12 +99,13 @@
     <string name="comprar_fase_um">Finalizar Compra</string>
     <string name="dialog_excluir">Excluir item </string>
     <string name="dialog_editar">Editar quantidade</string>
-    <string name="bt_pessoa_juridica">Sou pessoa Juridica</string>
+    <string name="bt_pessoa_juridica">Para meu estabelecimento</string>
 
     <!-- Strings dos textviews -->
+    <string name="bem_vindo_app">Seja bem vindo ao Smarket</string>
+    <string name="carregando">Carregando a aplicação Aguarde.</string>
     <string name="titulo_app">titulo do App</string>
     <string name="container" />
-    <string name="bem_vindo">Bem vindo</string>
     <string name="informacoes">Aqui você encontra os melhores produtos com os menores preços!</string>
     <string name="txt_nome"> Nome</string>
     <string name="txt_alterar_senha">Alterar senha</string>
@@ -233,4 +233,7 @@
     <string name="txt_duvida_quinze">Não recebi confirmação do pedido pelo estabelecimento, como prossigo?</string>
     <string name="txt_duvida_quinze_solução">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
     <string name="txt_solicia_pj">Insira os dados de sua empresa:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

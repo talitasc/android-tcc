@@ -10,20 +10,32 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/coresProvisoriasum"
+    android:background="@drawable/mercado"
     tools:context="com.example.talit.projetotcc.activities.RedirecionaPessoaJuridica">
 
+    <ImageView
+        android:id="@+id/im_escolha"
+        android:layout_marginTop="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txt_escolha"
+        android:src="@drawable/facaseulogin"
+        android:tint="@color/colorAccent"
+        tools:ignore="ContentDescription,VectorDrawableCompat" />
 
     <TextView
         android:id="@+id/txt_escolha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffff"
-        android:layout_marginTop="80dp"
         android:gravity="center_horizontal"
         android:text="@string/txt_escolha"
         android:textSize="20sp"
-        tools:textStyle="bold" />
+        tools:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/im_escolha"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -46,8 +58,7 @@
                 android:id="@+id/im_pessoa_fis"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_insert_emoticon_black_24dp"
-                android:tint="@color/coresProvisoriastres"
+                android:src="@drawable/house"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
             <TextView
@@ -55,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:layout_marginStart="15dp"
                 android:gravity="center_horizontal"
@@ -86,8 +97,7 @@
                 android:id="@+id/im_pessoa_jur"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_business_black_24dp"
-                android:tint="@color/coresProvisoriastres"
+                android:src="@drawable/business"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
             <TextView
@@ -95,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:layout_alignBottom="@+id/im_pessoa_jur"

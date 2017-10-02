@@ -42,7 +42,7 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/estabelecimento/getEstabelecimentosPorCidadeEstado/"+ params[0] + "/" + params[1] +"/";
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/estabelecimento/getEstabelecimentosVendedoresCidadeEstado/"+ params[0] + "/" + params[1] +"/";
 
         String response = "";
 
@@ -101,15 +101,15 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                     Estabelecimento estabelecimentos = new Estabelecimento(dados_result.getInt("estabelecimento_id"),
                             dados_result.getString("estabelecimento_nome_fantasia"),
                             dados_result.getInt("tipo_estabelecimento_id"),
-                            dados_result.getString("endereco_rua"),
-                            dados_result.getInt("endereco_numero"),
-                            dados_result.getString("endereco_bairro"),
-                            dados_result.getString("endereco_cep"),
-                            dados_result.getString("cidade_descricao"),
-                            dados_result.getString("estado_sigla"),
-                            dados_result.getString("telefone_ddd"),
-                            dados_result.getString("telefone_numero"),
-                            dados_result.getString("email_descricao"));
+                            "NOME DA RUA",
+                            111,
+                            "Bairro",
+                            "CEP",
+                            "Nome da cidade",
+                            "SP",
+                            "DD",
+                            "TELEFONE",
+                            "EMAIL DESCRICAO");
                     listareEst.add(estabelecimentos);
                 }
 

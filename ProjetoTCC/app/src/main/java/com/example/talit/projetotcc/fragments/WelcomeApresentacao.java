@@ -1,8 +1,12 @@
 package com.example.talit.projetotcc.fragments;
 
 import android.content.Context;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +16,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-
+import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
+import org.w3c.dom.Text;
 
 
 /**
@@ -24,40 +36,20 @@ import com.example.talit.projetotcc.R;
 
 public class WelcomeApresentacao extends Fragment {
 
-    private static ImageView m2;
-    private static View v;
 
-    public WelcomeApresentacao(){
+    public static String strEmail = "blabla";
+
+    public WelcomeApresentacao() {
 
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_apresentacao, container, false);
-        m2 = (ImageView) v.findViewById(R.id.imageView2);
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_apresentacao, container, false);
         return v;
-    }
-
-    public static void startAnimation(){
-
-
-        ViewCompat.animate(m2)
-                .translationX(pxFromDp(v.getContext(),250.0f))
-                .alpha(0.8f)
-                .setStartDelay(300)
-                .setDuration(800).setInterpolator(
-                new DecelerateInterpolator(1.2f)).start();
-
-    }
-    public static void restartAnim(){
-        ViewCompat.animate(m2)
-                .translationX(0)
-                .alpha(0)
-                .setStartDelay(0)
-                .setDuration(10).setInterpolator(
-                new DecelerateInterpolator(1.2f)).start();
-    }
-    public static float pxFromDp(final Context context, final float dp) {
-        return dp * context.getResources().getDisplayMetrics().density;
     }
 }

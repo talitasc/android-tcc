@@ -4,46 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_screen2">
+    android:background="@drawable/mercado">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:ignore="UselessParent"
+        tools:ignore="UseCompoundDrawables,UselessParent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:id="@+id/linearLayout3">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="279dp"
-            android:layout_height="236dp"
-            android:src="@drawable/pag_bar"
-            tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/txt_informacoes"
+            android:layout_width="346dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            android:text="@string/informacoes"
+            android:textColor="#ffff"
+            android:textSize="20sp"
+            tools:textStyle="bold"
+            android:layout_marginBottom="19dp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_informacoes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/informacoes"
-        android:textColor="#ffff"
-        android:textSize="18sp"
-        tools:textStyle="bold"
-        android:layout_above="@+id/linearLayout3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
-        android:src="@drawable/poupe"
-        tools:ignore="ContentDescription"
-        android:layout_alignBottom="@+id/linearLayout3"
-        android:layout_alignStart="@+id/linearLayout3" />
 
 </RelativeLayout>

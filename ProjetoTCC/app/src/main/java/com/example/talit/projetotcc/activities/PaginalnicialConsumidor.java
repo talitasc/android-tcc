@@ -378,7 +378,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         }else if (id == R.id.menu_sair) {
             dbconn = new DbConn(PaginalnicialConsumidor.this);
 
-            if (dbconn.selectConsumidor().getTpAcesso() == 8) {
+            if (dbconn.selectConsumidor().getTpAcesso() == 2) {
                 LoginManager.getInstance().logOut();
                 dbconn.deleteConsumidor();
                 startActivity(new Intent(getApplicationContext(), WelcomeScreen.class));
