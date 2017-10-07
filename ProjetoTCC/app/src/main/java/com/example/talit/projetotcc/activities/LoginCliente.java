@@ -103,7 +103,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
                 if (TextUtils.isEmpty(charSequence)) {
                     senha.setError("A senha é necessária");
-                    Validacoes.requestFocus(email);
+                    Validacoes.requestFocus(senha);
                     haSenha = true;
 
                 } else if (!Validacoes.validaSenha(senha.getText().toString())) {
@@ -199,7 +199,6 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                             LoginComFacebook conn = new LoginComFacebook(LoginCliente.this);
                             conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
                             //Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_LONG).show();
-
 
                         }catch (Exception e){
                             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);

@@ -5,7 +5,7 @@
     android:id="@+id/act_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_screen1">
+    android:background="@drawable/mercado">
 
     <TextView
         android:id="@+id/bem_vindo"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="@string/bem_vindo_app"
         android:textColor="#ffff"

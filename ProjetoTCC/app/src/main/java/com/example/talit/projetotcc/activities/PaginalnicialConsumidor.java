@@ -3,15 +3,23 @@ package com.example.talit.projetotcc.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,12 +41,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,6 +67,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.List;
+import java.util.Locale;
 
 import de.greenrobot.event.EventBus;
 
@@ -100,6 +112,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public static RelativeLayout no_list;
     private SearchView searchView;
     private RelativeLayout rlLocal;
+    private ImageButton imFiltro;
+    private Locale locale = null;
 
     @Override
 
@@ -121,6 +135,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         listas = (RecyclerView)findViewById(R.id.lv_supermercado);
         no_list = (RelativeLayout)findViewById(R.id.rl_nolist);
         searchView = (SearchView)findViewById(R.id.search_view);
+        imFiltro = (ImageButton)findViewById(R.id.imageButton2);
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
         rlLocal = (RelativeLayout)findViewById(R.id.id_local);
 
@@ -137,7 +152,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             if(idCidade != 0) {
                 ListarSupermercadosPorDescricao conn = new ListarSupermercadosPorDescricao(null);
                 //conn.execute(idEstado+"",idCidade+"");
-                conn.execute("26", "109");
+                conn.execute("109", "26");
             }
         }
 
@@ -186,6 +201,12 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                     rlLocal.setVisibility(View.VISIBLE);
                 }
 
+            }
+        });
+        imFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filtroInicial();
             }
         });
 
@@ -392,6 +413,9 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         } else if (id == R.id.menu_ajuda) {
             startActivity(new Intent(getApplicationContext(), DuvidasFrequentes.class));
             finish();
+
+        }else if(id == R.id.menu_idiomas){
+            escolherIdiomas();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -520,6 +544,132 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         });
     }
 
+    public void escolherIdiomas() {
+        LayoutInflater inflater = getLayoutInflater();
+        final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_idiomas, null);
+        final Button btnPortugues = (Button) alertLayout.findViewById(R.id.btn_portugues);
+        final Button btnEspanhol = (Button) alertLayout.findViewById(R.id.btn_espanhol);
+        final Button btnFrances = (Button)alertLayout.findViewById(R.id.btn_francess);
+        final Button btnIngles = (Button)alertLayout.findViewById(R.id.btn_ingles);
+        Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
+
+        AlertDialog.Builder alerta = new AlertDialog.Builder(PaginalnicialConsumidor.this);
+        alerta.setView(alertLayout);
+        alerta.setCancelable(false);
+        final AlertDialog dialogo = alerta.create();
+        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogo.show();
+
+        btnPortugues.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogo.dismiss();
+            }
+        });
+        btnFrances.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogo.dismiss();
+            }
+        });
+        btnIngles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogo.dismiss();
+            }
+        });
+        btnEspanhol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PaginalnicialConsumidor.this);
+
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                String lang = preferences.getString("en", "US");
+                String systemLocale = getSystemLocale(config).getLanguage();
+                if (!"".equals(lang) && !systemLocale.equals(lang)) {
+                    locale = new Locale(lang);
+                    Locale.setDefault(locale);
+                    setSystemLocale(config, locale);
+                    updateConfiguration(config);
+                }
+                //backToMain();
+                dialogo.dismiss();
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogo.dismiss();
+            }
+
+        });
+    }
+    public void filtroInicial() {
+        LayoutInflater inflater = getLayoutInflater();
+        final View alertLayout = inflater.inflate(R.layout.custom_dialog_filtro_inicial, null);
+
+        final CheckBox checkFrete = (CheckBox) alertLayout.findViewById(R.id.checkFrete);
+        final CheckBox checkDelivery = (CheckBox) alertLayout.findViewById(R.id.checkDelivery);
+        final CheckBox checkTodos = (CheckBox) alertLayout.findViewById(R.id.checkTodos);
+
+        Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
+
+        AlertDialog.Builder alerta = new AlertDialog.Builder(PaginalnicialConsumidor.this);
+        alerta.setView(alertLayout);
+        alerta.setCancelable(false);
+        final AlertDialog dialogo = alerta.create();
+        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogo.show();
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogo.dismiss();
+            }
+
+        });
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (locale != null) {
+            setSystemLocale(newConfig, locale);
+            Locale.setDefault(locale);
+            updateConfiguration(newConfig);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private static Locale getSystemLocale(Configuration config) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return config.getLocales().get(0);
+        } else {
+            return config.locale;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private static void setSystemLocale(Configuration config, Locale locale) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void updateConfiguration(Configuration config) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            getBaseContext().createConfigurationContext(config);
+        } else {
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }
+    }
     @Override
     public void onLoaded(List<Estabelecimento> listasSupermerc) {
 
@@ -538,5 +688,25 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         this.listas.setAdapter(listaSuper);
         listaSuper.notifyDataSetChanged();*/
 
+    }
+    public void backToMain() {
+        //Monta a intent para abrir a aplicação.
+        //qBundle params;
+        Intent mStartActivity = new Intent(this, SplashScreen.class);
+        /*Se quiser adicionar algum parametro para o inicio da aplicação:
+        if (params != null) {
+            mStartActivity.putExtras(params);
+        }*/
+
+        //Realiza o agendamento da intent de abrir o aplicativo:
+        //No caso abaixo o aplicativo vai ser reaberto daqui 500ms (System.currentTimeMillis() + 500);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, 123456, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 500, mPendingIntent);
+
+        //Mata todos processos associados a este aplicativo.
+        android.os.Process.killProcess(android.os.Process.myPid());
+        //Fecha o aplicativo.
+        System.exit(1);
     }
 }

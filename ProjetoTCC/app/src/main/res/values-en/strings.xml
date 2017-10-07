@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="email_cliente">E-mail</string>
+    <string name="senha_cliente">Contraseña</string>
+    <string name="edt_sobrenome"> Apellido</string>
+    <string name="ed_email_consu">E-mail</string>
+    <string name="ed_dpf">CPF</string>
+
+</resources>

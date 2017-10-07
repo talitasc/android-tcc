@@ -56,16 +56,19 @@ public class WelcomeScreen extends AppCompatActivity {
         super.onResume();
         String login;
         dbconn = new DbConn(WelcomeScreen.this);
-        if (dbconn.selectConsumidor() != null) {
+        Intent intent = new Intent(this, PaginalnicialConsumidor.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+        /*if (dbconn.selectConsumidor() != null) {
             if (dbconn.selectConsumidor().getStatus() == 2) {
-                    if(dbconn.selectConsumidor().getTpAcesso() == 1 || dbconn.selectConsumidor().getTpAcesso()== 3) {
+                    if(dbconn.selectConsumidor().getTpAcesso() == 2 || dbconn.selectConsumidor().getTpAcesso()== 3) {
                         //Intent intent = new Intent(this, Teste.class);
                         Intent intent = new Intent(this, PaginalnicialConsumidor.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
             }
-        }
+        }*/
 
     }
 

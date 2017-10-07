@@ -44,6 +44,7 @@ public class RedirecionaPessoaJuridica extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(RedirecionaPessoaJuridica.this, WelcomeScreen.class));
         finish();
     }
     @Override

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/txt_escolha_filtro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/coresProvisoriasum"
+            android:padding="10dp"
+            android:text="@string/txt_filtro_inicial"
+            android:textColor="#ffff"
+            tools:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessParent"
+            android:weightSum="1">
+
+
+            <CheckBox
+                android:id="@+id/checkFrete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="05dp"/>
+
+            <TextView
+                android:id="@+id/txt_com_frete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="05dp"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                tools:ignore="RtlHardcoded,SmallSp"
+                android:text="@string/txt_filtro_frete"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/txt_com_delivery" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txt_com_frete"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <CheckBox
+                android:id="@+id/checkDelivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:layout_marginStart="05dp"/>
+
+            <TextView
+                android:id="@+id/txt_com_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="05dp"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                tools:ignore="RtlHardcoded,SmallSp"
+                android:text="@string/txt_filtro_delivery"
+                android:layout_below="@+id/divider"
+                android:layout_toEndOf="@+id/checkDelivery"
+                android:layout_marginStart="12dp" />
+
+            <View
+                android:id="@+id/divider_dois"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txt_com_delivery"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <CheckBox
+                android:id="@+id/checkTodos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider_dois"
+                android:layout_marginStart="05dp"/>
+
+            <TextView
+                android:id="@+id/txt_todos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="05dp"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                tools:ignore="RtlHardcoded,SmallSp"
+                android:text="@string/txt_filtro_todos"
+                android:layout_below="@+id/divider_dois"
+                android:layout_toEndOf="@+id/checkTodos"
+                android:layout_marginBottom="17dp"
+                android:layout_marginStart="12dp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded"/>
+
+</RelativeLayout>

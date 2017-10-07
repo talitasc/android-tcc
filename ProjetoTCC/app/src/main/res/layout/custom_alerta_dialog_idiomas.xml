@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/txt_escolha_idioma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/coresProvisoriasum"
+            android:padding="10dp"
+            android:text="@string/txt_escolha_idioma"
+            android:textColor="#ffff"
+            tools:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessParent"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/iv_brasil"
+                android:layout_width="70dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="10dp"
+                app:srcCompat="@drawable/brasil"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_portugues"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_escolha_portugues"
+                android:textColor="#777"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/iv_brasil" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/btn_portugues"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <ImageView
+                android:id="@+id/iv_espanha"
+                android:layout_width="70dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/divider"
+                app:srcCompat="@drawable/espanha"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_espanhol"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:text="@string/txt_escolha_espanhol"
+                android:textColor="#777"
+                android:layout_toEndOf="@+id/iv_espanha"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <View
+                android:id="@+id/divider_dois"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/btn_espanhol"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <ImageView
+                android:id="@+id/iv_ingles"
+                android:layout_width="70dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/divider_dois"
+                app:srcCompat="@drawable/usa"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_ingles"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider_dois"
+                android:text="@string/txt_escolha_ingles"
+                android:textColor="#777"
+                android:layout_toEndOf="@+id/iv_ingles"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <View
+                android:id="@+id/divider_tes"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/btn_ingles"
+                android:layout_margin="4dp"
+                android:background="#ACACAC"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <ImageView
+                android:id="@+id/iv_frances"
+                android:layout_width="70dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/divider_tes"
+                app:srcCompat="@drawable/france"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_francess"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_escolha_frances"
+                android:textColor="#777"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded"
+                android:layout_below="@+id/btn_ingles"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/iv_frances" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded"/>
+
+</RelativeLayout>
