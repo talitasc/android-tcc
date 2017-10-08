@@ -4,6 +4,7 @@ package com.example.talit.projetotcc.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Location;
 import android.location.LocationManager;
@@ -50,16 +51,12 @@ public class WelcomeScreen extends AppCompatActivity {
     private SimpleDraweeView myDraweeView;
     private LinearLayout imaLayout;
 
-
     @Override
     protected void onResume() {
         super.onResume();
         String login;
         dbconn = new DbConn(WelcomeScreen.this);
-        Intent intent = new Intent(this, PaginalnicialConsumidor.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
-        /*if (dbconn.selectConsumidor() != null) {
+        if (dbconn.selectConsumidor() != null) {
             if (dbconn.selectConsumidor().getStatus() == 2) {
                     if(dbconn.selectConsumidor().getTpAcesso() == 2 || dbconn.selectConsumidor().getTpAcesso()== 3) {
                         //Intent intent = new Intent(this, Teste.class);
@@ -68,7 +65,7 @@ public class WelcomeScreen extends AppCompatActivity {
                         startActivity(intent);
                     }
             }
-        }*/
+        }
 
     }
 

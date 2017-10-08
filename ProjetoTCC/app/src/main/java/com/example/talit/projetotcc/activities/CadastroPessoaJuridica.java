@@ -13,12 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.Validacoes.Validacoes;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.mascaras.MascaraCnpJ;
-import com.example.talit.projetotcc.mascaras.MascaraCpf;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
 
 public class CadastroPessoaJuridica extends AppCompatActivity {
@@ -50,12 +48,16 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
         edtTelefone = (EditText) findViewById(R.id.ed_telefones);
         edtCnpj = (EditText) findViewById(R.id.ed_cnpj);
 
-        btnContinuar.setVisibility(View.INVISIBLE);
-
         twCpnj = MascaraCnpJ.insert("##.###.###/####-##", edtCnpj);
         edtCnpj.addTextChangedListener(twCpnj);
         twTel = MascaraTelefone.insert("(##)####-####", edtTelefone);
         edtTelefone.addTextChangedListener(twTel);
+
+        haNf = false;
+        haRs = false;
+        haIe = false;
+        haIm = false;
+        haCnpj = false;
         edtNomeFantasia.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -65,12 +67,7 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (TextUtils.isEmpty(s.toString().trim())) {
+                if (TextUtils.isEmpty(s)) {
                     edtNomeFantasia.setError("Campo Obrigatório");
                     Validacoes.requestFocus(edtNomeFantasia);
                     haNf = true;
@@ -79,8 +76,16 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                     edtNomeFantasia.setError("Nome muito grande");
                     Validacoes.requestFocus(edtNomeFantasia);
                     haNf = true;
+                }else{
+                    haNf = false;
                 }
-                habilitaBotao();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+
             }
         });
         edtRazaoSocial.addTextChangedListener(new TextWatcher() {
@@ -92,14 +97,7 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (TextUtils.isEmpty(s.toString().trim())) {
+                if (TextUtils.isEmpty(s)) {
                     edtRazaoSocial.setError("Campo Obrigatório");
                     Validacoes.requestFocus(edtRazaoSocial);
                     haRs = true;
@@ -108,15 +106,19 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                     edtRazaoSocial.setError("Campo Obrigatório");
                     Validacoes.requestFocus(edtRazaoSocial);
                     haRs = true;
+                }else{
+                    haRs = false;
                 }
+            }
 
-                habilitaBotao();
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         edtTelefone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                habilitaBotao();
             }
 
             @Override
@@ -136,14 +138,10 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                     haIe=false;
                     edtTelefone.setError(null);
                 }
-
-                habilitaBotao();
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                habilitaBotao();
 
             }
         });
@@ -156,12 +154,8 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
                 strCnpj = edtCnpj.getText().toString();
-                if (TextUtils.isEmpty(strCnpj)) {
+                if (TextUtils.isEmpty(s)) {
                     edtCnpj.setError("Campo Obrigatório");
                     Validacoes.requestFocus(edtCnpj);
                     haCnpj = true;
@@ -174,16 +168,38 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                 } else {
                     haCnpj = false;
                     edtCnpj.setError(null);
-                    habilitaBotao();
 
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
 
             }
         });
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validaEntradas();
 
+            }
+        });
+    }
+
+    public void validaEntradas(){
+
+        Log.i("Nome fantasia:",haNf+"");
+        Log.i("razao social:",haRs+ "");
+        Log.i("Isc estadual:",haIe + "");
+        Log.i("Im:",haIm + "");
+        Log.i("cnpj:" ,haCnpj+ "");
+
+        if(!haNf && !haRs && !haIe && !haIm && !haCnpj) {
+
+            if (!TextUtils.isEmpty(edtRazaoSocial.getText().toString()) &&
+                    !TextUtils.isEmpty(edtNomeFantasia.getText().toString()) && !TextUtils.isEmpty(edtCnpj.getText().toString()) &&
+                    !TextUtils.isEmpty(edtTelefone.getText().toString())) {
                 String telefoneCompleto = edtTelefone.getText().toString().replace("(","").replace(")","").replace("-","");
                 String dd = telefoneCompleto.substring(0,2);
                 String telefone = telefoneCompleto.substring(2,telefoneCompleto.length());
@@ -197,19 +213,34 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                 intent.putExtra("TELEFONE",telefone);
                 CadastroPessoaJuridica.this.startActivity(intent);
                 CadastroPessoaJuridica.this.finish();
+
+            } else {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridica.this);
+                builder.setTitle("Campos vázios");
+                builder.setMessage("Insira seus dados para realizar o login.");
+                builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
+
             }
-        });
-    }
-
-    public void habilitaBotao(){
-
-        if(!TextUtils.isEmpty(edtRazaoSocial.getText().toString()) &&
-                !TextUtils.isEmpty(edtNomeFantasia.getText().toString())&& !TextUtils.isEmpty(edtCnpj.getText().toString())&&
-                !TextUtils.isEmpty(edtTelefone.getText().toString())){
-            btnContinuar.setVisibility(View.VISIBLE);
-           }else{
-            btnContinuar.setVisibility(View.INVISIBLE);
-           }
+        }else{
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridica.this);
+            builder.setTitle("Dados inválidos!");
+            builder.setMessage("Verifique se seus dados foram digitados corretamente.");
+            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setCancelable(false);
+            builder.show();
+        }
     }
     @Override
     public void onBackPressed() {

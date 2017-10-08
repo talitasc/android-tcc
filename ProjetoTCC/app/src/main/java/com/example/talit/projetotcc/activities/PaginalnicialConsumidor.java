@@ -61,6 +61,7 @@ import com.example.talit.projetotcc.domain.MessageEB;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
 import com.example.talit.projetotcc.service.LocationIntentService;
 import com.example.talit.projetotcc.sqlight.DbConn;
+import com.example.talit.projetotcc.utils.LocaleLanguage;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -71,8 +72,10 @@ import java.util.Locale;
 
 import de.greenrobot.event.EventBus;
 
+import static android.content.Context.*;
 
-public class PaginalnicialConsumidor extends AppCompatActivity implements ListarSupermercadosPorDescricao.Listener,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
+
+public class PaginalnicialConsumidor extends AppCompatActivity implements ListarSupermercadosPorDescricao.Listener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private ActionBar actionBar;
@@ -108,7 +111,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     RelativeLayout notificationCount1;
     public static int idEstado;
     public static int idCidade;
-    public static  RecyclerView listas;
+    public static RecyclerView listas;
     public static RelativeLayout no_list;
     private SearchView searchView;
     private RelativeLayout rlLocal;
@@ -132,12 +135,12 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         dl = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         btnTrocar = (Button) findViewById(R.id.btn_trocar);
-        listas = (RecyclerView)findViewById(R.id.lv_supermercado);
-        no_list = (RelativeLayout)findViewById(R.id.rl_nolist);
-        searchView = (SearchView)findViewById(R.id.search_view);
-        imFiltro = (ImageButton)findViewById(R.id.imageButton2);
+        listas = (RecyclerView) findViewById(R.id.lv_supermercado);
+        no_list = (RelativeLayout) findViewById(R.id.rl_nolist);
+        searchView = (SearchView) findViewById(R.id.search_view);
+        imFiltro = (ImageButton) findViewById(R.id.imageButton2);
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
-        rlLocal = (RelativeLayout)findViewById(R.id.id_local);
+        rlLocal = (RelativeLayout) findViewById(R.id.id_local);
 
         pb.setVisibility(View.INVISIBLE);
         setSupportActionBar(toolbar);
@@ -148,8 +151,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listas.setLayoutManager(llm);
 
-        if(idEstado !=0){
-            if(idCidade != 0) {
+        if (idEstado != 0) {
+            if (idCidade != 0) {
                 ListarSupermercadosPorDescricao conn = new ListarSupermercadosPorDescricao(null);
                 //conn.execute(idEstado+"",idCidade+"");
                 conn.execute("109", "26");
@@ -194,10 +197,10 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (dy > 0){
+                if (dy > 0) {
                     // Toast.makeText(PaginalnicialConsumidor.this, "baixo", Toast.LENGTH_SHORT).show();
                     rlLocal.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     rlLocal.setVisibility(View.VISIBLE);
                 }
 
@@ -211,7 +214,6 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         });
 
     }
-
     /*SearchView.OnQueryTextListener listener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
@@ -232,15 +234,15 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(STATUS_LOCALIZACAO, msgLocalizacao);
-        outState.putInt(STATUS_ID_CIDADE,idCidade);
-        outState.putInt(STATUS_ID_ESTADO,idEstado);
+        outState.putInt(STATUS_ID_CIDADE, idCidade);
+        outState.putInt(STATUS_ID_ESTADO, idEstado);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle inState) {
         super.onRestoreInstanceState(inState);
         msgLocalizacao = inState.getString(STATUS_LOCALIZACAO);
-        idCidade= inState.getInt(STATUS_ID_CIDADE);
+        idCidade = inState.getInt(STATUS_ID_CIDADE);
         idEstado = inState.getInt(STATUS_ID_ESTADO);
     }
 
@@ -387,16 +389,14 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         if (id == R.id.menu_sobre) {
 
 
-
         } else if (id == R.id.menu_meus_dados) {
 
 
-        }
-        else if (id == R.id.menu_notificações) {
+        } else if (id == R.id.menu_notificações) {
             startActivity(new Intent(getApplicationContext(), Notificacoes.class));
             finish();
 
-        }else if (id == R.id.menu_sair) {
+        } else if (id == R.id.menu_sair) {
             dbconn = new DbConn(PaginalnicialConsumidor.this);
 
             if (dbconn.selectConsumidor().getTpAcesso() == 2) {
@@ -414,7 +414,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             startActivity(new Intent(getApplicationContext(), DuvidasFrequentes.class));
             finish();
 
-        }else if(id == R.id.menu_idiomas){
+        } else if (id == R.id.menu_idiomas) {
             escolherIdiomas();
         }
 
@@ -549,8 +549,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_idiomas, null);
         final Button btnPortugues = (Button) alertLayout.findViewById(R.id.btn_portugues);
         final Button btnEspanhol = (Button) alertLayout.findViewById(R.id.btn_espanhol);
-        final Button btnFrances = (Button)alertLayout.findViewById(R.id.btn_francess);
-        final Button btnIngles = (Button)alertLayout.findViewById(R.id.btn_ingles);
+        final Button btnFrances = (Button) alertLayout.findViewById(R.id.btn_francess);
+        final Button btnIngles = (Button) alertLayout.findViewById(R.id.btn_ingles);
         Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
 
         AlertDialog.Builder alerta = new AlertDialog.Builder(PaginalnicialConsumidor.this);
@@ -564,7 +564,14 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             @Override
             public void onClick(View v) {
 
-                dialogo.dismiss();
+                Context context = LocaleLanguage.setLocale(PaginalnicialConsumidor.this, "Language");
+                Resources resources = context.getResources();
+                SharedPreferences.Editor editor = getSharedPreferences("IDIOMA", MODE_PRIVATE).edit();
+                editor.putString("lingua", "Language");
+                editor.commit();
+                backToMain();
+
+                //dialogo.dismiss();
             }
         });
         btnFrances.setOnClickListener(new View.OnClickListener() {
@@ -578,25 +585,29 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             @Override
             public void onClick(View v) {
 
+                Context context = LocaleLanguage.setLocale(PaginalnicialConsumidor.this, "en");
+                Resources resources = context.getResources();
+                SharedPreferences.Editor editor = getSharedPreferences("IDIOMA", MODE_PRIVATE).edit();
+                editor.putString("lingua", "en");
+                editor.commit();
                 dialogo.dismiss();
+                backToMain();
+
             }
         });
         btnEspanhol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PaginalnicialConsumidor.this);
 
-                Configuration config = getBaseContext().getResources().getConfiguration();
-                String lang = preferences.getString("en", "US");
-                String systemLocale = getSystemLocale(config).getLanguage();
-                if (!"".equals(lang) && !systemLocale.equals(lang)) {
-                    locale = new Locale(lang);
-                    Locale.setDefault(locale);
-                    setSystemLocale(config, locale);
-                    updateConfiguration(config);
-                }
-                //backToMain();
+                Context context = LocaleLanguage.setLocale(PaginalnicialConsumidor.this, "es");
+                Resources resources = context.getResources();
+                SharedPreferences.Editor editor = getSharedPreferences("IDIOMA", MODE_PRIVATE).edit();
+                editor.putString("lingua", "es");
+                editor.commit();
                 dialogo.dismiss();
+                backToMain();
+
+
             }
         });
 
@@ -609,7 +620,9 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
 
         });
     }
+
     public void filtroInicial() {
+
         LayoutInflater inflater = getLayoutInflater();
         final View alertLayout = inflater.inflate(R.layout.custom_dialog_filtro_inicial, null);
 
@@ -634,52 +647,41 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
 
         });
     }
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (locale != null) {
-            setSystemLocale(newConfig, locale);
-            Locale.setDefault(locale);
-            updateConfiguration(newConfig);
-        }
+
+    public void backToMain() {
+        //Monta a intent para abrir a aplicação.
+        //Bundle params;
+        dbconn = new DbConn(PaginalnicialConsumidor.this);
+        dbconn.deleteConsumidor();
+
+        /*Se quiser adicionar algum parametro para o inicio da aplicação:
+        if (params != null) {
+            mStartActivity.putExtras(params);
+        }*/
+
+        //Realiza o agendamento da intent de abrir o aplicativo:
+        //No caso abaixo o aplicativo vai ser reaberto daqui 500ms (System.currentTimeMillis() + 500);
+        Intent mStartActivity = new Intent(this, SplashScreen.class);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, 123456, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager) this.getSystemService(ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 90, mPendingIntent);
+
+        //Mata todos processos associados a este aplicativo.
+        android.os.Process.killProcess(android.os.Process.myPid());
+        //Fecha o aplicativo.
+        System.exit(1);
     }
 
-    @SuppressWarnings("deprecation")
-    private static Locale getSystemLocale(Configuration config) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return config.getLocales().get(0);
-        } else {
-            return config.locale;
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private static void setSystemLocale(Configuration config, Locale locale) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            config.setLocale(locale);
-        } else {
-            config.locale = locale;
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private void updateConfiguration(Configuration config) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            getBaseContext().createConfigurationContext(config);
-        } else {
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        }
-    }
     @Override
     public void onLoaded(List<Estabelecimento> listasSupermerc) {
 
-        ListaSupermercadosAdapter listaSuper = new ListaSupermercadosAdapter(PaginalnicialConsumidor.this,PaginalnicialConsumidor.this,listasSupermerc);
+        ListaSupermercadosAdapter listaSuper = new ListaSupermercadosAdapter(PaginalnicialConsumidor.this, PaginalnicialConsumidor.this, listasSupermerc);
         this.listas.setAdapter(listaSuper);
         listaSuper.notifyDataSetChanged();
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         txtLocalizacao.setText(" " + msgLocalizacao);
 
@@ -689,24 +691,6 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         listaSuper.notifyDataSetChanged();*/
 
     }
-    public void backToMain() {
-        //Monta a intent para abrir a aplicação.
-        //qBundle params;
-        Intent mStartActivity = new Intent(this, SplashScreen.class);
-        /*Se quiser adicionar algum parametro para o inicio da aplicação:
-        if (params != null) {
-            mStartActivity.putExtras(params);
-        }*/
 
-        //Realiza o agendamento da intent de abrir o aplicativo:
-        //No caso abaixo o aplicativo vai ser reaberto daqui 500ms (System.currentTimeMillis() + 500);
-        PendingIntent mPendingIntent = PendingIntent.getActivity(this, 123456, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 500, mPendingIntent);
 
-        //Mata todos processos associados a este aplicativo.
-        android.os.Process.killProcess(android.os.Process.myPid());
-        //Fecha o aplicativo.
-        System.exit(1);
-    }
 }

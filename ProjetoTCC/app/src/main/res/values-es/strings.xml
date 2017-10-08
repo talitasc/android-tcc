@@ -119,116 +119,126 @@
     <string name="config_sobre_tc">Términos y Condiciones</string>
     <string name="config_sobre_pv">Política de privacidad</string>
     <string name="config_sobre_sg">Sugerencias</string>
-    <string name="config_sobre_vs">Versões</string>
+    <string name="config_sobre_vs">Versiones</string>
     <string name="config_idioma">Idiomas</string>
-    <string name="menu_md">Meus Dados</string>
-    <string name="menu_notificacoes">Notificações</string>
-    <string name="config_rede">Utilização de Rede</string>
-    <string name="msg_titulo_localizacao">Localização</string>
-    <string name="msg_localizacao">Ao selecionar esta opção é necessário ativar seu GPS para encontrarmos os estabelecimentos mais próximos de você.Deseja ativar a localização agora?</string>
-    <string name="msg_nao">Não</string>
-    <string name="msg_titulo_escolha">Selecione um estado e cidade</string>
-    <string name="msg_opcoes">Selecione uma das opções abaixo para encontrarmos os estabelecimentos mais próximos de você:</string>
-    <string name="msg_localize">Localize estabelecimentos:</string>
-    <string name="msg_erro">Não foi possivel obter o endereço. Tente mais tarde.</string>
-    <string name="txt_cidade">Cidade</string>
-    <string name="tab_regras_estab">Regulamentos</string>
-    <string name="txt_estabelecimento">Estabelecimento</string>
-    <string name="txt_endereco">Endereço</string>
-    <string name="txt_contatos">Contato</string>
-    <string name="txt_funcionamento">Horários de funcionamento</string>
-    <string name="txt_semana">De segunda á sexta das 08:00 hrs á 20:00 hrs</string>
-    <string name="txt_fds">Aos fins de semanas das 08:00 á 21:00 hrs</string>
-    <string name="txt_feriado">Feriados das 08:00 á 22:00 hrs</string>
+    <string name="menu_md">Mis datos</string>
+    <string name="menu_notificacoes">Notificaciones</string>
+    <string name="config_rede">Uso de la red</string>
+    <string name="msg_titulo_localizacao">Ubicación</string>
+    <string name="msg_localizacao">Al seleccionar esta opción es necesario activar tu GPS para encontrar los establecimientos más cercanos a ti. ¿Desea activar la ubicación ahora?</string>
+    <string name="msg_nao">No</string>
+    <string name="msg_titulo_escolha">Seleccione un estado y ciudad</string>
+    <string name="msg_opcoes">Seleccione una de las siguientes opciones para encontrar los establecimientos más cercanos a usted:</string>
+    <string name="msg_localize">Localice establecimientos:</string>
+    <string name="msg_erro">No fue posible obtener la dirección. Pruebe más tarde.</string>
+    <string name="txt_cidade">Ciudad</string>
+    <string name="tab_regras_estab">Reglamentos</string>
+    <string name="txt_estabelecimento">Establecimiento</string>
+    <string name="txt_endereco">Dirección</string>
+    <string name="txt_contatos">Contacto</string>
+    <string name="txt_funcionamento">Horarios de funcionamiento</string>
+    <string name="txt_semana">De lunes a viernes de 08:00 hrs a 20:00 hrs</string>
+    <string name="txt_fds">A los fines de semanas de 08:00 a 21:00 hrs</string>
+    <string name="txt_feriado">Vacaciones de 08:00 a 22:00 hrs</string>
     <string name="txt_nome_avaliador">Dean winchester</string>
     <string name="txt_data_avaliacao">15 Abril de 2017</string>
     <string name="txt_comentario_avaliador">Produtos ótimos! Sistema de delivery excelente :)</string>
     <string name="txt_nomeCateoria">Categorias</string>
-    <string name="txt_nome_produto">Produto</string>
+    <string name="txt_nome_produto">Producto</string>
     <string name="txt_marca">Marca</string>
-    <string name="txt_preco">Preco</string>
-    <string name="txt_add_car">Adicionar ao carrinho</string>
-    <string name="txt_info">Informações</string>
-    <string name="txt_validade">Prazo de validade</string>
-    <string name="norma_cadastro">Ao aceitar os termos,você concorda que estará utilizando um aplicativo
-que comercializa produtos que estão próximos de sua data de vencimento, porém não
-descumprindo o Artigo 18 da Lei nº 8.078 de 11 de Setembro de 1990 do Código de defesa do consumidor.</string>
-    <string name="txt_trocar_senha">Insira seu endereço de e-mail:</string>
-    <string name="txt_termos_consumidor">Termos de uso:</string>
-    <string name="next">Avançar</string>
-    <string name="skip">Pular</string>
+    <string name="txt_preco">Precios</string>
+    <string name="txt_add_car">Añadir a la cesta de compra</string>
+    <string name="txt_info">Información</string>
+    <string name="txt_validade">Período de validez</string>
+    <string name="norma_cadastro">Al aceptar los términos, usted acepta que utilizará una aplicación
+que comercializa productos que están próximos a su fecha de vencimiento, pero no
+incumpliendo el artículo 18 de la Ley nº 8.078 de 11 de septiembre de 1990 del Código de protección de los consumidores.</string>
+    <string name="txt_trocar_senha">Introduzca su dirección de e-mail:</string>
+    <string name="txt_termos_consumidor">Terminos de uso:</string>
+    <string name="next">Siguiente</string>
+    <string name="skip">Saltar</string>
     <string name="start">Ir</string>
-    <string name="text_search_estab">Busque por estabelecimentos</string>
+    <string name="text_search_estab">Búsqueda por establecimientos</string>
     <string name="title_slide1">Connect the charger</string>
     <string name="desc_slide1">It will start automatically when charger is connected</string>
     <string name="title_slide2">Battery status update</string>
     <string name="desc_slide2">It will  keep you updated on battery charging status through notification and home screen widget</string>
     <string name="title_slide3">Alert on 100%</string>
     <string name="desc_slide3">It will alert you when battery reaches 100%</string>
-    <string name="txt_encontre">Encontre as lojas mais próximas de você !</string>
-    <string name="txt_comece">Então comece agora a desfrutar todos os recursos que preparamos para você!</string>
-    <string name="qtd_itens">Total de itens:</string>
+    <string name="txt_encontre">¡Encuentra las tiendas más cercanas a ti!</string>
+    <string name="txt_comece">¡Entonces empieza a disfrutar todos los recursos que te preparamos para ti!</string>
+    <string name="qtd_itens">Total de elementos:</string>
     <string name="valor_total">Valor Total:</string>
     <string name="marca_produto">Marca</string>
-    <string name="adicionados_recentemente">Mais comprados</string>
-    <string name="titulo_activity">Detalhes do produto</string>
+    <string name="adicionados_recentemente">Más vendidos</string>
+    <string name="titulo_activity">Detalles del producto</string>
     <string name="title_activity_teste">SMarket</string>
-    <string name="valida_cadastro">Ops!Para ver as avaliações deste estabelecimento é necessário estar cadastrado. Comece agora!</string>
-    <string name="valida_produtos">Ops!Para realizar suas compras é necessário estar cadastrado. Comece agora!</string>
-    <string name="txt_smarketpoint">Possui SmarketPoints?</string>
-    <string name="txt_cartao">Dados do cartão de crédito</string>
-    <string name="txt_escolha">Escolha um dos perfis e inicie uma experiência com o Smarket!</string>
+    <string name="valida_cadastro">Para ver las evaluaciones de este establecimiento es necesario estar registrado. ¡Comience ahora!</string>
+    <string name="valida_produtos">Para realizar sus compras es necesario estar registrado. ¡Comience ahora!</string>
+    <string name="txt_smarketpoint">¿Tiene SmarketPoints?</string>
+    <string name="txt_cartao">Datos de la tarjeta de crédito</string>
+    <string name="txt_escolha">¡Elija uno de los perfiles e inicie una experiencia con Smarket!</string>
     <string name="title_activity_navigation_bottom">Teste</string>
-    <string name="txt_faq">Dúvidas frequentes</string>
-    <string name="txt_contato_suporte" formatted="true">Dados do Suporte Smarket:
-                                   Telefone: 0800-08080
+    <string name="txt_faq">Dudas frecuentes</string>
+    <string name="txt_contato_suporte" formatted="true">Datos do Soporte Smarket:
+                                   Teléfono: 0800-08080
                                    E-mail: contato@smarketapp.com</string>
 
-    <string name="txt_notificacoes_smarket">Notificações Smarket</string>
-    <string name="txt_notificacoes_smarket_desc">Ligar ou desligar todas as notificações do aplicativo</string>
-    <string name="txt_notificacoes">Notificações</string>
-    <string name="txt_notificacoes_status">Status do Pedido</string>
-    <string name="txt_notificacoes_status_desc">Notificar quando houver alteração no status dos seus pedidos.</string>
-    <string name="txt_notificacoes_favoritos">Produtos favoritados</string>
-    <string name="txt_notificacoes_favorito_desc">Notificar quando um produto favorito estiver disponivel pelos estabelecimentos.</string>
-    <string name="txt_notificacoes_promoções">Promoções e ofertas</string>
-    <string name="txt_notificacoes_pomoções_desc">Recebere-mails e notificações de promoções dos estabelecimentos próximos.</string>
-    <string name="txt_configurar_notificacoes">Configurar Notificações</string>
+    <string name="txt_notificacoes_smarket">Notificaciones Smarket</string>
+    <string name="txt_notificacoes_smarket_desc">Activar o desactivar todas las notificaciones de la aplicación</string>
+    <string name="txt_notificacoes">Notificaciones</string>
+    <string name="txt_notificacoes_status">Estado del pedido</string>
+    <string name="txt_notificacoes_status_desc">Notificar cuando hay cambios en el estado de sus pedidos.</string>
+    <string name="txt_notificacoes_favoritos">Productos favorables</string>
+    <string name="txt_notificacoes_favorito_desc">Notificar cuando un producto favorito esté disponible por los establecimientos.</string>
+    <string name="txt_notificacoes_promoções">Ofertas y ofertas</string>
+    <string name="txt_notificacoes_pomoções_desc">Recibir correos electrónicos y notificaciones de promociones de los establecimientos cercanos.</string>
+    <string name="txt_configurar_notificacoes">Configurar notificaciones</string>
 
     <!-- Strings de dúvidas frequentes -->
 
-    <string name="txt_duvida_um">Como posso alterar meus dados?</string>
-    <string name="txt_duvida_um_solucao">Para atualizar seus dados cadastrados, basta selecionar a opção "'Configurações'" no menu lateral e escolher "'Meus dados'".</string>
-    <string name="txt_duvida_dois">Como posso alterar e-mail de contato?</string>
-    <string name="txt_duvida_dois_solucao">Seu e-mail é um dos principais meios de comunicação entre você e o Smarket, por isso é importante que sempre o mantenha atualizado.
-   Para atualizar seu e-mail, vá em "'Configurações'" no menu lateral e em "'Meus dados'" e escolha a opção de alterar meus dados e altere o campo e-mail.</string>
-    <string name="txt_duvida_tres">Quais são as formas de pagamentos aceitas?</string>
-    <string name="txt_duvida_tres_solucao">As formas de pagamento para pessoa Fisica são cartão de crédito ou boleto bancário. Para pessoas juridicas o pagamento das compras depende dos dados legais preenhidos mediante contrato.</string>
-    <string name="txt_duvida_quatro">O que é a forma "'Retire na loja'"?</string>
-    <string name="txt_duvida_quatro_solucao">Retirar na loja é uma forma de comprar online e buscar na loja fisica escolhida no momento da compra, se tornando uma forma mais rápida e livre dos custos de frete.</string>
-    <string name="txt_duvida_cinco">Como escolho a opção "'Retire na loja'"?</string>
-    <string name="txt_duvida_cinco_solucao">Após inserir os produtos no carrinho e finalizar a compra, basta selecionar a opção "'retirar na loja'" e após pagamento poderá acompanhar o status de sua compra.</string>
-    <string name="txt_duvida_seis">Posso agendar minha entrega ?</string>
-    <string name="txt_duvida_seis_solucao">No momento não é possivel agendar um horário para retirar seu pedido. Ao final da compra será apresentado os horários e datas de disponibilidade de cada estabelecimento.</string>
-    <string name="txt_duvida_sete">O que preciso para retirar meu pedido ?</string>
-    <string name="txt_duvida_sete_solucao">Assim que seu pedido for processado no estabelecimento,você receberá uma notificação para retirada do seu produto na loja. Para retirar seu produto leve seu RG ou um documento com foto e o numero do pedido.</string>
-    <string name="txt_duvida_oito">Quem pode retirar meu pedido ?</string>
-    <string name="txt_duvida_oito_solucao">Você poderá optar para que outra pessoa retire o produto no estabelecimento, levando um documento com foto e o numero do pedido.</string>
-    <string name="txt_duvida_nove">E se eu não retirar meu pedido ?</string>
-    <string name="txt_duvida_nove_solucao">O prazo para tirar seu pedido no estabelecimento é de até 6 dias. Após esse prazo se o pedido não for retirado,
-           entre em contato com o estabelecimento através dos dados fornecidos, ou entre em contato com nosso suporte.</string>
-    <string name="txt_duvida_dez">E a opção frete ?</string>
-    <string name="txt_duvida_dez_solucao">Caso o estebelcimento ofereça esta opção, será sinalizado na pagina do estabeleciemnto e ao finalizar a compra haverá a opção de "'Frete'". O custo varia de estabelecimento para estabelecimento.</string>
-    <string name="txt_duvida_onze">Posso alterar meu endereço de entrega ?</string>
-    <string name="txt_duvida_onze_solucao">Sim. Após realizar seu cadastro no aplicativo, haverá a opção de cadastrar seu  endereço na opção "'Meus dados'" que será opcional.</string>
-    <string name="txt_duvida_doze">Como cancelo um pedido de compra ?</string>
-    <string name="txt_duvida_doze_solucao">Para cancelar um pedido é necessário entrar em contato com o estabelecimento no prazo de até 3 dias após a confirmação do pedido para que o valor seja devolvido. Caso não haja retorno por parte do estabelecimento entre em contato com nosso suporte para que seja resolvido.</string>
-    <string name="txt_duvida_treze">Como posso realizar a devolução de um produto?</string>
-    <string name="txt_duvida_treze_solucao">Os produtos só podem ser devolvidos se houver violação ou se já estiver fora do prazo de validade. Caso seu produto se encontre nesse estado você deverá entrar em contato com o estabelecimento (dados estarão contidos no pedido ou na pagina da loja), podendo trocar o produto ou pedir o seu valor de volta.</string>
-    <string name="txt_duvida_quatorze">Quantos itens do mesmo produto posso comprar?</string>
-    <string name="txt_duvida_quatorze_solucao">A quantidade de itens que podem ser comprados depende da quantidade de itens disponibilizados pela loja.</string>
-    <string name="txt_duvida_quinze">Não recebi confirmação do pedido pelo estabelecimento, como prossigo?</string>
-    <string name="txt_duvida_quinze_solução">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
-    <string name="txt_solicia_pj">Insira os dados de sua empresa:</string>
+    <string name="txt_duvida_um">¿Cómo puedo cambiar mis datos?</string>
+    <string name="txt_duvida_um_solucao">Para actualizar sus datos registrados, basta con seleccionar la opción "Configuración" en el menú lateral y elegir "Mis datos".</string>
+    <string name="txt_duvida_dois">¿Cómo puedo cambiar el correo electrónico de contacto?</string>
+    <string name="txt_duvida_dois_solucao">Su e-mail es uno de los principales medios de comunicación entre usted y Smarket, por lo que es importante que siempre lo mantenga actualizado.
+    Para actualizar su correo electrónico, vaya a "Configuración" en el menú lateral y en "Mis datos" y elija la opción de cambiar mis datos y cambiar el campo de correo electrónico.</string>
+    <string name="txt_duvida_tres">¿Cuáles son las formas de pagos aceptados?</string>
+    <string name="txt_duvida_tres_solucao">Las formas de pago para persona Fisica son tarjetas de crédito o boleto bancario. Para las personas jurídicas el pago de las
+         las compras dependen de los datos legales previstos mediante contrato.</string>
+    <string name="txt_duvida_quatro">¿Qué es la forma "Retirar en la tienda"?</string>
+    <string name="txt_duvida_quatro_solucao">El retiro en la tienda es una forma de comprar en línea y buscar en la tienda física elegida en el momento de la compra,
+         que se convierte en una forma más rápida y libre de los costos de flete.</string>
+    <string name="txt_duvida_cinco">¿Cómo elijo la opción "'Retirar en la tienda'?</string>
+    <string name="txt_duvida_cinco_solucao">Después de insertar los productos en el carrito y finalizar la compra, basta seleccionar la opción "'retirar en la tienda'" y después del pago
+         puede seguir el estado de su compra.</string>
+    <string name="txt_duvida_seis">¿Puedo programar mi entrega?</string>
+    <string name="txt_duvida_seis_solucao">En el momento no es posible programar un horario para retirar su pedido.
+         Al final de la compra se presentarán los horarios y fechas de disponibilidad de cada establecimiento.</string>
+    <string name="txt_duvida_sete">¿Qué necesito para retirar mi pedido?</string>
+    <string name="txt_duvida_sete_solucao">Una vez que su pedido sea procesado en el establecimiento, usted recibirá una notificación para retirar su producto en la tienda.
+         Para retirar su producto lleve su RG o un documento con foto y el número de pedido.</string>
+    <string name="txt_duvida_oito">¿Quién puede retirar mi pedido?</string>
+    <string name="txt_duvida_oito_solucao">Usted podrá optar por que otra persona retire el producto en el establecimiento, llevando un documento con foto y el número de pedido.</string>
+    <string name="txt_duvida_nove">¿Y si no retiro mi petición?</string>
+    <string name="txt_duvida_nove_solucao">El plazo para tomar su pedido en el establecimiento es de hasta 6 días. Después de ese plazo si la solicitud no se retira,
+            entre en contacto con el establecimiento a través de los datos suministrados, o póngase en contacto con nuestro soporte.</string>
+    <string name="txt_duvida_dez">¿Y la opción de flete?</string>
+    <string name="txt_duvida_dez_solucao">En caso de que el esteblecimiento ofrezca esta opción, será señalado en la página del establecimiento y al finalizar la compra habrá
+         la opción de "Flete". El costo varía de establecimiento a establecimiento.</string>
+    <string name="txt_duvida_onze">¿Puedo cambiar mi dirección de entrega?</string>
+    <string name="txt_duvida_onze_solucao">Sí. Después de realizar su registro en la aplicación, habrá la opción de registrar su dirección en la opción "'Mis datos'"
+         que será opcional.</string>
+    <string name="txt_duvida_doze">¿Cómo cancelo una solicitud de compra?</string>
+    <string name="txt_duvida_doze_solucao">Para cancelar una solicitud es necesario ponerse en contacto con el establecimiento en el plazo de hasta 3 días después de la confirmación del pedido.
+         se solicita que se devuelva el valor. Si no hay retorno por parte del establecimiento, póngase en contacto con nuestro soporte para que sea resuelto.</string>
+    <string name="txt_duvida_treze">¿Cómo puedo realizar la devolución de un producto?</string>
+    <string name="txt_duvida_treze_solucao">Los productos sólo pueden ser devueltos si hay violación o si ya está fuera de la fecha de caducidad.
+         Si su producto se encuentra en ese estado usted deberá entrar en contacto con el establecimiento (datos estarán contenidos en el pedido o en la página de la tienda),
+         puede cambiar el producto o pedir su valor de vuelta.</string>
+    <string name="txt_duvida_quatorze">¿Cuántos elementos del mismo producto puedo comprar?</string>
+    <string name="txt_duvida_quatorze_solucao">La cantidad de artículos que se pueden comprar depende de la cantidad de artículos disponibles por la tienda.</string>
+    <string name="txt_duvida_quinze">¿No recibí la confirmación de la solicitud por el establecimiento, como prosigo?</string>
+    <string name="txt_duvida_quinze_solução">Si no recibe la notificación sobre el estado de su solicitud en un plazo de 4 días, póngase en contacto con nuestro soporte a través del correo electrónico o el teléfono suministrados al final de la página.</string>
+    <string name="txt_solicia_pj">Introduzca los datos de su empresa:</string>
 
 </resources>

@@ -3,10 +3,8 @@ package com.example.talit.projetotcc.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,35 +17,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.Validacoes.Validacoes;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.AutenticaLogin;
-import com.example.talit.projetotcc.connectionAPI.EstabelecimentoComprador;
 import com.example.talit.projetotcc.connectionAPI.LoginComFacebook;
 import com.example.talit.projetotcc.sqlight.DbConn;
-import com.example.talit.projetotcc.sqlight.MantemConsumidor;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
-import com.facebook.Profile;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Listener, LoginComFacebook.Listener {
@@ -155,17 +142,42 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
             public void onClick(View v) {
 
                 if (Validacoes.verifyConnection(LoginCliente.this)) {
-                    if (!haEmail && !haSenha){
+                    if (!haEmail && !haSenha ){
                         if (!TextUtils.isEmpty(email.getText().toString()) && !TextUtils.isEmpty(senha.getText().toString())){
                             pb.setVisibility(View.VISIBLE);
                             AutenticaLogin conn = new AutenticaLogin(LoginCliente.this);
                             //conn.execute("murilo.lfs@gmail.com", "Salerno111");
                             conn.execute(email.getText().toString().trim(), senha.getText().toString(), "Sw280717");
+
+                        }else{
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this.context);
+                            builder.setTitle("Campos vázios");
+                            builder.setMessage("Inserira seus dados para realizar o login.");
+                            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.setCancelable(false);
+                            builder.show();
                         }
+                    }else{
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this.context);
+                        builder.setTitle("Dados inválidos!");
+                        builder.setMessage("Verifique se seus dados foram digitados corretamente.");
+                        builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.setCancelable(false);
+                        builder.show();
                     }
 
                 } else {
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this.context);
                     builder.setTitle("Erro ao tentar conexão!!");
                     builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
                     builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {

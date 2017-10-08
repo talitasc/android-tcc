@@ -99,11 +99,6 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/MyTheme.NoActionBar" />
-        <activity
-            android:name=".activities.CadastroPessoaJuridicaTres"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyTheme.NoActionBar" />
         <!--
         <activity
             android:name=".activities.PaginalnicialConsumidor"
@@ -121,7 +116,6 @@
         <activity android:name=".activities.WelcomeScreen"></activity>
         -->
 
-        <activity android:name=".activities.ConfiguarcoesApp" />
         <activity android:name=".activities.ListarEstados" />
         <activity android:name=".activities.ListarCidades" />
         <activity android:name=".activities.PaginaInicialEstabelecimentos" />

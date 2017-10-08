@@ -21,10 +21,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.Validacoes.Validacoes;
-import com.example.talit.projetotcc.connectionAPI.AutenticaLogin;
+import com.example.talit.projetotcc.connectionAPI.LoginComFacebook;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.AutenticaPj;
-import com.example.talit.projetotcc.sqlight.DbConn;
 
 public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaPj.Listener {
 
@@ -126,6 +125,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
             public void onClick(View view) {
                 Log.i("email", haLogin + "");
                 Log.i("senha", haSenha + "");
+
                 if (!haSenha && !haLogin) {
                     if (!TextUtils.isEmpty(edtSenha.getText().toString()) && !TextUtils.isEmpty(edtUsuario.getText().toString())) {
 
@@ -137,7 +137,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
 
                         } else {
 
-                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
                             builder.setTitle("Erro ao tentar conexão!!");
                             builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
                             builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
@@ -150,7 +150,30 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                             builder.show();
                         }
                     }
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
+                    builder.setTitle("Campos vázios");
+                    builder.setMessage("Inserira seus dados para realizar o login.");
+                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
 
+                }else{
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
+                    builder.setTitle("Dados inválidos!");
+                    builder.setMessage("Verifique se seus dados foram digitados corretamente.");
+                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
                 }
             }
         });

@@ -22,19 +22,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.Validacoes.Validacoes;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.CadastroPessoaFisica;
 import com.example.talit.projetotcc.mascaras.MascaraCpf;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
-import com.example.talit.projetotcc.sqlight.DbConn;
-
-import org.w3c.dom.Text;
-
-import java.util.UUID;
 
 public class CadastroConsumidor extends AppCompatActivity implements CadastroPessoaFisica.Listener {
 
@@ -90,7 +83,6 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
             adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             smp.setAdapter(adp);
 
-            btnCadastrar.setVisibility(View.INVISIBLE);
             pb.setVisibility(View.INVISIBLE);
 
             esTel = "";
@@ -110,24 +102,24 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    if (TextUtils.isEmpty(s.toString().trim())) {
+                    if (TextUtils.isEmpty(charSequence)) {
                         edtNome.setError("Campo Obrigatório");
                         Validacoes.requestFocus(edtNome);
                         haNome = true;
 
-                    } else if (s.length() > 150) {
+                    } else if (charSequence.length() > 150) {
                         edtNome.setError("Nome muito grande");
                         Validacoes.requestFocus(edtNome);
                         haNome = true;
                     } else {
                         haNome = false;
-                        habilitaBotao();
+
                     }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
                 }
             });
             edtSobrenome.addTextChangedListener(new TextWatcher() {
@@ -139,24 +131,22 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                    if (TextUtils.isEmpty(s.toString().trim())) {
+                    if (TextUtils.isEmpty(charSequence)) {
                         edtSobrenome.setError("Campo Obrigatório");
                         Validacoes.requestFocus(edtSobrenome);
                         haSobrenome = true;
-                    } else if (s.length() > 150) {
+                    } else if (charSequence.length() > 150) {
                         edtSobrenome.setError("Nome muito grande");
                         Validacoes.requestFocus(edtSobrenome);
                         haSobrenome = true;
                     } else {
-                        haSobrenome = true;
+                        haSobrenome = false;
                         edtSobrenome.setError(null);
                     }
-                    habilitaBotao();
+                }
+                @Override
+                public void afterTextChanged(Editable s) {
+
                 }
             });
             edtEmail.addTextChangedListener(new TextWatcher() {
@@ -176,15 +166,15 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                         Validacoes.requestFocus(edtEmail);
                         haEmail = true;
                     } else {
-                        haEmail = true;
+                        haEmail = false;
                         edtEmail.setError(null);
                     }
-                    habilitaBotao();
+
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    habilitaBotao();
+
 
 
                 }
@@ -206,14 +196,13 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                     } else {
                         haTelefone = false;
                         edtTel.setError(null);
-                        habilitaBotao();
+
                     }
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
 
-                    habilitaBotao();
                 }
             });
             edtSenha.addTextChangedListener(new TextWatcher() {
@@ -238,12 +227,11 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                         haSenha = false;
                         edtSenha.setError(null);
                     }
-                    habilitaBotao();
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    habilitaBotao();
+
                 }
             });
             edtConfirSenha.addTextChangedListener(new TextWatcher() {
@@ -254,10 +242,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
 
-                @Override
-                public void afterTextChanged(Editable editable) {
                     if (TextUtils.isEmpty(edtConfirSenha.getText().toString())) {
                         edtConfirSenha.setError("Campo Obrigatório");
                         Validacoes.requestFocus(edtConfirSenha);
@@ -276,8 +261,12 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                     } else {
                         haConfirmarsenha = false;
                         edtConfirSenha.setError(null);
-                        habilitaBotao();
+
                     }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
 
                 }
             });
@@ -298,6 +287,20 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                         twTel = MascaraTelefone.insert("(##)#####-####", edtTel);
                         edtTel.addTextChangedListener(twTel);
                     }
+                    if (esTel.equals("Teléfono")) {
+                        idTelefone = 1;
+                        edtTel.setText("");
+                        edtTel.removeTextChangedListener(twTel);
+                        twTel = MascaraTelefone.insert("(##)####-####", edtTel);
+                        edtTel.addTextChangedListener(twTel);
+                    }
+                    if (esTel.equals("Móviles")) {
+                        idTelefone = 2;
+                        edtTel.setText("");
+                        edtTel.removeTextChangedListener(twTel);
+                        twTel = MascaraTelefone.insert("(##)#####-####", edtTel);
+                        edtTel.addTextChangedListener(twTel);
+                    }
                     //Toast.makeText(CadastroConsumidor.this, esTel, Toast.LENGTH_SHORT).show();
                 }
 
@@ -309,94 +312,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                 @Override
                 public void onClick(View v) {
 
-                    if (Validacoes.verifyConnection(CadastroConsumidor.this)) {
-                        LayoutInflater inflater = getLayoutInflater();
-                        final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_termos, null);
-                        final CheckBox aceitar = (CheckBox) alertLayout.findViewById(R.id.check_aceito);
-                        Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
-                        Button continuar = (Button) alertLayout.findViewById(R.id.btn_continuar);
-                        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroConsumidor.this);
-                        alerta.setView(alertLayout);
-                        alerta.setCancelable(false);
-                        final AlertDialog dialogo = alerta.create();
-                        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        dialogo.show();
-                        continuar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (aceitar.isChecked()) {
-                                    pb.setVisibility(View.VISIBLE);
-                                    String telefoneCompleto = edtTel.getText().toString().replace("(", "").replace(")", "").replace("-", "");
-
-                                    String dd = telefoneCompleto.substring(0, 2);
-                                    String telefone = telefoneCompleto.substring(2, telefoneCompleto.length());
-                                    Log.i("DD", dd);
-                                    Log.i("telefone", telefone);
-
-                                    CadastroPessoaFisica conn = new CadastroPessoaFisica(CadastroConsumidor.this);
-                                    //conn.execute("1","Murilo","Lourenço","murilo.lfs@gmail.com","1","19","31141333","31141333");
-                                    conn.execute("2", edtNome.getText().toString().trim(),
-                                            edtSobrenome.getText().toString(), edtEmail.getText().toString().trim(), "1", dd, telefone, edtSenha.getText().toString().trim(), "Sw280717");
-                                    dialogo.dismiss();
-                                } else {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
-                                    builder.setTitle("");
-                                    builder.setMessage("Aceite os termo santes de prosseguir.");
-                                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                                    builder.setCancelable(false);
-                                    builder.show();
-                                }
-
-                            }
-
-                        });
-                        cancelar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
-                                builder.setTitle("");
-                                builder.setMessage("Certeza que deseja cancelar esta operação?");
-                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        startActivity(new Intent(CadastroConsumidor.this, LoginCliente.class));
-                                        dialog.dismiss();
-                                        dialogo.dismiss();
-                                        finish();
-                                    }
-                                });
-                                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-
-                                    }
-                                });
-                                builder.show();
-                            }
-
-                        });
-
-                    } else {
-
-                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
-                        builder.setTitle("Erro ao tentar conexão!!");
-                        builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                        builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        builder.setCancelable(false);
-                        builder.show();
-                    }
+                    verificaEntradas();
                 }
 
             });
@@ -412,18 +328,138 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                 haCpf = true;
             }*/
     }
-    public void habilitaBotao() {
+    public void verificaEntradas() {
+        Log.i("nome", haNome +"");
+        Log.i("sobrenome", haSobrenome +"");
+        Log.i("email", haEmail +"");
+        Log.i("telefone", haTelefone +"");
+        Log.i("haSenha", haSenha +"");
+        Log.i("haConfirmar", haConfirmarsenha +"");
 
-        if (!TextUtils.isEmpty(edtNome.getText().toString()) &&
-                !TextUtils.isEmpty(edtSobrenome.getText().toString()) && !TextUtils.isEmpty(edtTel.getText().toString()) &&
-                !TextUtils.isEmpty(edtEmail.getText().toString()) && !TextUtils.isEmpty(edtSenha.getText().toString())
-                && !TextUtils.isEmpty(edtConfirSenha.getText().toString())) {
-            btnCadastrar.setVisibility(View.VISIBLE);
-        } else {
-            btnCadastrar.setVisibility(View.INVISIBLE);
+        if(!haNome && !haSobrenome && !haEmail && !haTelefone && !haSenha && !haConfirmarsenha) {
+
+            if (!TextUtils.isEmpty(edtNome.getText().toString()) &&
+                    !TextUtils.isEmpty(edtSobrenome.getText().toString()) && !TextUtils.isEmpty(edtTel.getText().toString()) &&
+                    !TextUtils.isEmpty(edtEmail.getText().toString()) && !TextUtils.isEmpty(edtSenha.getText().toString())
+                    && !TextUtils.isEmpty(edtConfirSenha.getText().toString())) {
+                if (Validacoes.verifyConnection(CadastroConsumidor.this)) {
+                    LayoutInflater inflater = getLayoutInflater();
+                    final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_termos, null);
+                    final CheckBox aceitar = (CheckBox) alertLayout.findViewById(R.id.check_aceito);
+                    Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
+                    Button continuar = (Button) alertLayout.findViewById(R.id.btn_continuar);
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroConsumidor.this);
+                    alerta.setView(alertLayout);
+                    alerta.setCancelable(false);
+                    final AlertDialog dialogo = alerta.create();
+                    dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialogo.show();
+                    continuar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (aceitar.isChecked()) {
+                                pb.setVisibility(View.VISIBLE);
+                                String telefoneCompleto = edtTel.getText().toString().replace("(", "").replace(")", "").replace("-", "");
+
+                                String dd = telefoneCompleto.substring(0, 2);
+                                String telefone = telefoneCompleto.substring(2, telefoneCompleto.length());
+                                Log.i("DD", dd);
+                                Log.i("telefone", telefone);
+
+                                CadastroPessoaFisica conn = new CadastroPessoaFisica(CadastroConsumidor.this);
+                                //conn.execute("1","Murilo","Lourenço","murilo.lfs@gmail.com","1","19","31141333","31141333");
+                                conn.execute("2", edtNome.getText().toString().trim(),
+                                        edtSobrenome.getText().toString(), edtEmail.getText().toString().trim(), "1", dd, telefone, edtSenha.getText().toString().trim(), "Sw280717");
+                                dialogo.dismiss();
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
+                                builder.setTitle("");
+                                builder.setMessage("Aceite os termo santes de prosseguir.");
+                                builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                builder.setCancelable(false);
+                                builder.show();
+                            }
+
+                        }
+
+                    });
+                    cancelar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
+                            builder.setTitle("");
+                            builder.setMessage("Certeza que deseja cancelar esta operação?");
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    startActivity(new Intent(CadastroConsumidor.this, LoginCliente.class));
+                                    dialog.dismiss();
+                                    dialogo.dismiss();
+                                    finish();
+                                }
+                            });
+                            builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+
+                                }
+                            });
+                            builder.show();
+                        }
+
+                    });
+
+                } else {
+
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
+                    builder.setTitle("Erro ao tentar conexão!!");
+                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
+                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
+                }
+
+            } else {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroConsumidor.this);
+                builder.setTitle("Campos vázios");
+                builder.setMessage("Insira seus dados para realizar o login.");
+                builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
+
+            }
+        }else{
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroConsumidor.this.context);
+            builder.setTitle("Dados inválidos!");
+            builder.setMessage("Verifique se seus dados foram digitados corretamente.");
+            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setCancelable(false);
+            builder.show();
         }
     }
-
+    
     @Override
     public void onBackPressed() {
         //super.onBackPressed();

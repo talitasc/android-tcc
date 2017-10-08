@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.Validacoes.Validacoes;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
