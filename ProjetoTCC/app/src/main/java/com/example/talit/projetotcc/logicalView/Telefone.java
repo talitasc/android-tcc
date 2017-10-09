@@ -7,14 +7,20 @@ package com.example.talit.projetotcc.logicalView;
 public class Telefone implements Cloneable {
 
     private int idTelefone;
-    private TipoTelefone idTf;
+    private String idTf;
     private String ddd;
     private String numeroTelefone;
 
-    public Telefone(int idTelefone, TipoTelefone idTf, String ddd, String numeroTelefone) {
+    public Telefone(String idTf, String ddd, String numeroTelefone) {
+
+        this.idTf = idTf;
+        this.ddd = ddd;
+        this.numeroTelefone = numeroTelefone;
+    }
+    public Telefone(int idTelefone, String idTf, String ddd, String numeroTelefone) {
 
         this.idTelefone = idTelefone;
-        this.idTf = (TipoTelefone) idTf.clone();
+        this.idTf = idTf;
         this.ddd = ddd;
         this.numeroTelefone = numeroTelefone;
     }
@@ -22,7 +28,7 @@ public class Telefone implements Cloneable {
 
         try{
             this.idTelefone = tel.idTelefone;
-            this.idTf = (TipoTelefone)tel.idTf.clone();
+            this.idTf = tel.idTf;
             this.ddd = tel.ddd;
             this.numeroTelefone = tel.numeroTelefone;
 
@@ -50,11 +56,11 @@ public class Telefone implements Cloneable {
         this.idTelefone = idTelefone;
     }
 
-    public TipoTelefone getIdTf() {
+    public String getIdTf() {
         return idTf;
     }
 
-    public void setIdTf(TipoTelefone idTf) {
+    public void setIdTf(String idTf) {
         this.idTf = idTf;
     }
 

@@ -14,6 +14,8 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
@@ -41,6 +43,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,6 +53,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -67,6 +71,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -78,12 +83,8 @@ import static android.content.Context.*;
 public class PaginalnicialConsumidor extends AppCompatActivity implements ListarSupermercadosPorDescricao.Listener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
-    private ActionBar actionBar;
-    private AppBarLayout appbar;
     private DrawerLayout dl;
     private ActionBarDrawerToggle at;
-    private ViewPager view;
-    private TabLayout tab;
     public static TextView txtLocalizacao;
     public static String msgLocalizacao;
     private GoogleApiClient googleApiClient;
@@ -96,12 +97,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public static final String STATUS_ID_CIDADE = "cidade";
     public static final String STATUS_ID_ESTADO = "estado";
     public static final int REQUEST_PERMISSIONS_CODE = 128;
-    public static String tbFavoritos;
-    public static String tbCarrinho;
-    public static String tbSupermercados;
     private NavigationView navigationView;
     public static ProgressBar pb;
-    public static ProgressBar pbLocais;
     public static Context context;
     public static Activity act;
     private int type;
@@ -118,20 +115,17 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     private ImageButton imFiltro;
     private Locale locale = null;
 
-    @Override
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pagina_inicial_consumidor);
-        //getSupportActionBar().setElevation(0);
-        //getSupportActionBar().setTitle("SMarket");
         context = this;
         act = this;
 
         EventBus.getDefault().register(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         txtLocalizacao = (TextView) findViewById(R.id.txt_localizacao);
-        //view = (ViewPager) findViewById(R.id.view_pager);
         dl = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         btnTrocar = (Button) findViewById(R.id.btn_trocar);
@@ -158,7 +152,6 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 conn.execute("109", "26");
             }
         }
-
         at = new ActionBarDrawerToggle(this, dl, R.string.menu_item_um, R.string.menu_item_dois);
         dl.addDrawerListener(at);
         at.syncState();
@@ -325,6 +318,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             public void run() {
                 String subLocalizacao;
                 Log.i("LOG", m.getResultMessage());
+
                 subLocalizacao = m.getResultMessage().substring(m.getResultMessage().indexOf("-") + 1);
                 //msgLocalizacao = subLocalizacao.substring(subLocalizacao.indexOf("-")+ 1);
                 msgLocalizacao = m.getResultMessage();
@@ -614,7 +608,6 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 dialogo.dismiss();
             }
 
@@ -670,6 +663,22 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         android.os.Process.killProcess(android.os.Process.myPid());
         //Fecha o aplicativo.
         System.exit(1);
+
+    }
+
+    public static Bitmap convert(String base64Str) throws IllegalArgumentException {
+        byte[] decodedBytes = Base64.decode(
+                base64Str.substring(base64Str.indexOf(",") + 1),
+                Base64.DEFAULT
+        );
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
+    public static String convert(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class ProdutosEstabelecimento extends AppCompatActivity {
         txtCount = (TextView) findViewById(R.id.notificacao);
 
         rec.setHasFixedSize(true);
-        getSupportActionBar().setTitle("Produtos");
+        getSupportActionBar().setTitle("estabelecimento");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         getSupportActionBar().setHomeButtonEnabled(true);
 

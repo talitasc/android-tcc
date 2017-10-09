@@ -84,7 +84,7 @@ public class WelcomeScreen extends AppCompatActivity {
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
         myDraweeView = (SimpleDraweeView) findViewById(R.id.imLocais);
-        imaLayout  = (LinearLayout)findViewById(R.id.layoutImage);
+        imaLayout = (LinearLayout) findViewById(R.id.layoutImage);
 
         layouts = new int[]{
                 R.layout.fragment_apresentacao,
@@ -102,7 +102,9 @@ public class WelcomeScreen extends AppCompatActivity {
                         .setAutoPlayAnimations(true)
                         .build();
         myDraweeView.setController(controller);
+
     }
+
 
     public  void btnSkipClick(View v)
     {

@@ -3,10 +3,15 @@ package com.example.talit.projetotcc.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,7 +19,15 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.fragments.DetalhesEstab;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.DraweeHolder;
+import com.facebook.drawee.view.DraweeView;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
@@ -26,12 +39,14 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     public static class ListarSupermercadoViewHolder extends RecyclerView.ViewHolder {
         private TextView nome_supermercado;
         private TextView nome_cidade;
+        private DraweeView imLogo;
         private View view;
 
         public ListarSupermercadoViewHolder(View v) {
             super(v);
             nome_supermercado = (TextView) v.findViewById(R.id.txt_nome_super);
             nome_cidade = (TextView) v.findViewById(R.id.txt_cidade_estab);
+            imLogo = (DraweeView) v.findViewById(R.id.im_logo_supermercado);
             view = v;
         }
     }
@@ -59,35 +74,43 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     @Override
     public void onBindViewHolder(final ListarSupermercadoViewHolder holder, int position) {
         final Estabelecimento listaSuper = listaSupermercado.get(position);
-        holder.nome_supermercado.setText(listaSuper.getNomeFantasia());
-        holder.nome_cidade.setText(listaSuper.getCidade());
+        holder.nome_supermercado.setText(listaSuper.getNome_fantasia());
+        holder.nome_cidade.setText(listaSuper.getBairro());
+        //holder.imLogo.setImageBitmap();
+
+
+        //holder.nome_cidade.setText(listaSuper.getCidade());
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Estabelecimento estabelecimento = new Estabelecimento(listaSuper.getId(),
-                        listaSuper.getNomeFantasia(),
-                        listaSuper.getTipoEstabelecimento(),
+                        listaSuper.getCnpj(),
+                        listaSuper.getRazao_social(),
+                        listaSuper.getNome_fantasia(),
+                        listaSuper.getInscricao_estadual(),
+                        listaSuper.getInscricao_municipal(),
+                        listaSuper.getEstab_vendedor(),
+                        listaSuper.getTipo_estab_desc(),
                         listaSuper.getRua(),
                         listaSuper.getNumero(),
                         listaSuper.getBairro(),
+                        listaSuper.getComplemento(),
                         listaSuper.getCep(),
-                        listaSuper.getCidade(),
-                        listaSuper.getEstadoSigla(),
-                        listaSuper.getDdd(),
-                        listaSuper.getTelefone(),
-                        listaSuper.getEmail());
-                Toast.makeText(act, estabelecimento.getNomeFantasia(), Toast.LENGTH_SHORT).show();
-                PaginaInicialEstabelecimentos.nomeEstab = estabelecimento.getNomeFantasia();
-                DetalhesEstab.strNomeFantasia = estabelecimento.getNomeFantasia();
+                        listaSuper.getTpTel(),
+                        listaSuper.getDd(),
+                        listaSuper.getTelefone());
+                //Toast.makeText(act, estabelecimento.getNomeFantasia(), Toast.LENGTH_SHORT).show();
+                PaginaInicialEstabelecimentos.nomeEstab = estabelecimento.getNome_fantasia();
+                DetalhesEstab.strNomeFantasia = estabelecimento.getNome_fantasia();
                 DetalhesEstab.strRua = estabelecimento.getRua();
                 DetalhesEstab.strNumero = estabelecimento.getNumero() + "";
                 DetalhesEstab.strbairro = estabelecimento.getBairro();
                 DetalhesEstab.strCep = estabelecimento.getCep();
-                DetalhesEstab.strCidade = estabelecimento.getCidade();
-                DetalhesEstab.strSigla = estabelecimento.getEstadoSigla();
-                DetalhesEstab.strDdd = estabelecimento.getDdd();
+                DetalhesEstab.strCidade = estabelecimento.getBairro();
+                DetalhesEstab.strSigla = estabelecimento.getCep();
+                DetalhesEstab.strDdd = estabelecimento.getDd();
                 DetalhesEstab.strTelefone = estabelecimento.getTelefone();
-                DetalhesEstab.strEmail = estabelecimento.getEmail();
+                DetalhesEstab.strEmail = estabelecimento.getInscricao_municipal();
                 act.startActivity(new Intent(act, PaginaInicialEstabelecimentos.class));
                 act.finishActivity(0);
             }
@@ -109,4 +132,20 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
+    public static Bitmap convert(String base64Str) throws IllegalArgumentException {
+        byte[] decodedBytes = Base64.decode(
+                base64Str.substring(base64Str.indexOf(",") + 1),
+                Base64.DEFAULT
+        );
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
+    public static String convert(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+    }
+
 }

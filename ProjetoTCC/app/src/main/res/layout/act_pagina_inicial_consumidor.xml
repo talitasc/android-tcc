@@ -72,6 +72,8 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lv_supermercado"
             android:layout_width="match_parent"
@@ -89,6 +91,8 @@
             android:visibility="invisible"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
+
             <TextView
                 android:id="@+id/tv_nolist"
                 android:layout_width="match_parent"
@@ -101,6 +105,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/teste"/>
+
 
         </RelativeLayout>
 

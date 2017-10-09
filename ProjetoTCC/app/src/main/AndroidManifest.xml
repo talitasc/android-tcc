@@ -8,15 +8,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/smarket"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <supports-screens
             android:anyDensity="true"
             android:largeScreens="true"
@@ -26,14 +23,14 @@
             android:smallScreens="true"
             android:xlargeScreens="true" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity
             android:name=".activities.SplashScreen"
             android:screenOrientation="portrait"
@@ -132,7 +129,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.FinalizarCompra" />
         <activity android:name=".activities.DuvidasFrequentes" />
-        <activity android:name=".activities.Notificacoes"></activity>
+        <activity android:name=".activities.Notificacoes" />
+        <activity android:name=".activities.Subcategorias"></activity>
     </application>
 
 </manifest>

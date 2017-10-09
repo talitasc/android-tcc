@@ -240,5 +240,6 @@ incumpliendo el artículo 18 de la Ley nº 8.078 de 11 de septiembre de 1990 del
     <string name="txt_duvida_quinze">¿No recibí la confirmación de la solicitud por el establecimiento, como prosigo?</string>
     <string name="txt_duvida_quinze_solução">Si no recibe la notificación sobre el estado de su solicitud en un plazo de 4 días, póngase en contacto con nuestro soporte a través del correo electrónico o el teléfono suministrados al final de la página.</string>
     <string name="txt_solicia_pj">Introduzca los datos de su empresa:</string>
+    <string name="txt_produto_desc">Producto</string>
 
 </resources>

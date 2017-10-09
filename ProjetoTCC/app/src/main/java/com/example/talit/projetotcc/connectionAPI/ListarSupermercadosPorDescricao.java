@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
 import com.example.talit.projetotcc.adapters.ListaSupermercadosAdapter;
+import com.example.talit.projetotcc.logicalView.Endereco;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
+import com.example.talit.projetotcc.logicalView.Telefone;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,24 +98,40 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                 PaginalnicialConsumidor.no_list.setVisibility(View.INVISIBLE);
                 JSONArray dados = status.getJSONArray("objeto");
                 ArrayList<Estabelecimento> listareEst = new ArrayList<>();
+                ArrayList<Telefone> telefones  = new ArrayList<>();
+
                 for (int i = 0; i < dados.length(); ++i) {
                     JSONObject dados_result = dados.getJSONObject(i);
+                    JSONArray endereco = dados_result.getJSONArray("endereco");
+                    JSONArray telefone = dados_result.getJSONArray("telefone");
+
+                    Endereco end = null;
+                    for(int i2 = 0; i2 < endereco.length(); ++i2) {
+                                end = new Endereco(endereco.getString(0),
+                                endereco.getString(1),endereco.getString(2),
+                                endereco.getString(3),endereco.getString(4));
+
+                    }
+
+                    Telefone tel = null;
+                    for (int i3 = 0; i3< telefone.length(); i3++){
+                        tel = new Telefone(telefone.getString(0),telefone.getString(1),telefone.getString(2));
+                    }
                     Estabelecimento estabelecimentos = new Estabelecimento(dados_result.getInt("estabelecimento_id"),
+                            dados_result.getString("estabelecimento_cnpj"),
+                            dados_result.getString("estabelecimento_razao_social"),
                             dados_result.getString("estabelecimento_nome_fantasia"),
-                            dados_result.getInt("tipo_estabelecimento_id"),
-                            "NOME DA RUA",
-                            111,
-                            "Bairro",
-                            "CEP",
-                            "Nome da cidade",
-                            "SP",
-                            "DD",
-                            "TELEFONE",
-                            "EMAIL DESCRICAO");
+                            dados_result.getString("estabelecimento_inscricao_estadual"),
+                            dados_result.getString("estabelecimento_inscricao_municipal"),
+                            dados_result.getString("estabelecimento_vendedor"),
+                            dados_result.getString("tipo_estabelecimento_descricao"),
+                            end.getRua(),end.getNumero(),end.getBairro(),end.getComplemento(),end.getCep(),
+                            tel.getIdTf(),tel.getDdd(),tel.getNumeroTelefone());
                     listareEst.add(estabelecimentos);
                 }
 
                 if(listareEst.size()> 0) {
+                    Log.i("array",listareEst.toString());
                     PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                     ListaSupermercadosAdapter listarSupmermercadoAdapter = new ListaSupermercadosAdapter(PaginalnicialConsumidor.act, PaginalnicialConsumidor.context, listareEst);
                     PaginalnicialConsumidor.listas.setAdapter(listarSupmermercadoAdapter);
@@ -137,4 +155,5 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
             }
         }
     }
+
 }

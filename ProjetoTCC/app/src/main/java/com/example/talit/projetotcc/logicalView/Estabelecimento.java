@@ -8,190 +8,182 @@ import android.os.Parcelable;
  */
 
 public class Estabelecimento implements Cloneable {
-    private int id;
-    private String nomeFantasia;
-    private int tipoEstabelecimento;
-    private String rua;
-    private int numero;
-    private String bairro;
-    private String cep;
-    private String cidade;
-    private String estadoSigla;
-    private String ddd;
-    private String telefone;
-    private String email;
 
-    public Estabelecimento(int id, String nomeFantasia, int tipoEstabelecimento, String rua, int numero, String bairro, String cep, String cidade, String estadoSigla, String ddd, String telefone, String email) {
+    private int id;
+    private String cnpj;
+    private String razao_social;
+    private String nome_fantasia;
+    private String inscricao_estadual;
+    private String inscricao_municipal;
+    private String estab_vendedor;
+    private String tipo_estab_desc;
+    private String rua;
+    private String numero;
+    private String bairro;
+    private String complemento;
+    private String cep;
+    private String tpTel;
+    private String dd;
+    private String telefone;
+
+    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc) {
+
         this.id = id;
-        this.nomeFantasia = nomeFantasia;
-        this.tipoEstabelecimento = tipoEstabelecimento;
+        this.cnpj = cnpj;
+        this.razao_social = razao_social;
+        this.nome_fantasia = nome_fantasia;
+        this.inscricao_estadual = inscricao_estadual;
+        this.inscricao_municipal = inscricao_municipal;
+        this.estab_vendedor = estab_vendedor;
+        this.tipo_estab_desc = tipo_estab_desc;
+    }
+
+    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String rua, String numero, String bairro, String complemento, String cep,String tpTel, String dd, String telefone) {
+        this.id = id;
+        this.cnpj = cnpj;
+        this.razao_social = razao_social;
+        this.nome_fantasia = nome_fantasia;
+        this.inscricao_estadual = inscricao_estadual;
+        this.inscricao_municipal = inscricao_municipal;
+        this.estab_vendedor = estab_vendedor;
+        this.tipo_estab_desc = tipo_estab_desc;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
+        this.complemento = complemento;
         this.cep = cep;
-        this.cidade = cidade;
-        this.estadoSigla = estadoSigla;
-        this.ddd = ddd;
+        this.tpTel = tpTel;
+        this.dd = dd;
         this.telefone = telefone;
-        this.email = email;
-    }
-    public Estabelecimento(Estabelecimento est){
-        try {
-
-            this.id = est.id;
-            this.nomeFantasia = est.nomeFantasia;
-            this.tipoEstabelecimento = est.tipoEstabelecimento;
-            this.rua= est.rua;
-            this.numero = est.numero;
-            this.bairro = est.bairro;
-            this.cep= est.cep;
-            this.cidade = est.cidade;
-            this.estadoSigla = est.estadoSigla;
-            this.ddd = est.ddd;
-            this.telefone = est.telefone;
-            this.email = est.telefone;
-            this.email = est.email;
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
-    protected Estabelecimento(Parcel in) {
-        id = in.readInt();
-        nomeFantasia = in.readString();
-        tipoEstabelecimento = in.readInt();
-        rua = in.readString();
-        numero = in.readInt();
-        bairro = in.readString();
-        cep = in.readString();
-        cidade = in.readString();
-        estadoSigla = in.readString();
-        ddd = in.readString();
-        telefone = in.readString();
-        email = in.readString();
-    }
-
-    public Object clone(){
-
-        Object clone = null;
-
-        try{
-            clone = new Estabelecimento(this);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return clone;
-    }
-
-    public Estabelecimento(int id, String nomeFantasia, String cidade) {
-        this.id = id;
-        this.nomeFantasia = nomeFantasia;
-        this.cidade = cidade;
-    }
 
     public int getId() {
         return id;
-    }
-
-    public int getTipoEstabelecimento() {
-        return tipoEstabelecimento;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getEstadoSigla() {
-        return estadoSigla;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDdd() {
-        return ddd;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setTipoEstabelecimento(int tipoEstabelecimento) {
-        this.tipoEstabelecimento = tipoEstabelecimento;
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getRazao_social() {
+        return razao_social;
+    }
+
+    public void setRazao_social(String razao_social) {
+        this.razao_social = razao_social;
+    }
+
+    public String getNome_fantasia() {
+        return nome_fantasia;
+    }
+
+    public void setNome_fantasia(String nome_fantasia) {
+        this.nome_fantasia = nome_fantasia;
+    }
+
+    public String getInscricao_estadual() {
+        return inscricao_estadual;
+    }
+
+    public void setInscricao_estadual(String inscricao_estadual) {
+        this.inscricao_estadual = inscricao_estadual;
+    }
+
+    public String getInscricao_municipal() {
+        return inscricao_municipal;
+    }
+
+    public void setInscricao_municipal(String inscricao_municipal) {
+        this.inscricao_municipal = inscricao_municipal;
+    }
+
+    public String getEstab_vendedor() {
+        return estab_vendedor;
+    }
+
+    public void setEstab_vendedor(String estab_vendedor) {
+        this.estab_vendedor = estab_vendedor;
+    }
+
+    public String getTipo_estab_desc() {
+        return tipo_estab_desc;
+    }
+
+    public void setTipo_estab_desc(String tipo_estab_desc) {
+        this.tipo_estab_desc = tipo_estab_desc;
+    }
+
+    public String getRua() {
+        return rua;
     }
 
     public void setRua(String rua) {
         this.rua = rua;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getCep() {
+        return cep;
     }
 
     public void setCep(String cep) {
         this.cep = cep;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public String getDd() {
+        return dd;
     }
 
-    public void setEstadoSigla(String estadoSigla) {
-        this.estadoSigla = estadoSigla;
+    public void setDd(String dd) {
+        this.dd = dd;
     }
 
-    public void setDdd(String ddd) {
-        this.ddd = ddd;
+    public String getTelefone() {
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getTpTel() {
+        return tpTel;
     }
 
-    public int getIdEstabelecimento() {
-        return id;
+    public void setTpTel(String tpTel) {
+        this.tpTel = tpTel;
     }
-
-    public void setIdEstabelecimento(int id) {
-        this.id = id;
-    }
-
-    public String getNomeFantasia() {
-        return nomeFantasia;
-    }
-
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
-    }
-
 }
+
