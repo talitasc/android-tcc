@@ -36,15 +36,16 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
         public void onLoaded(List<Estabelecimento> estab);
     }
 
-    public ListarSupermercadosPorDescricao(ListarSupermercadosPorDescricao.Listener mListener){
+    public ListarSupermercadosPorDescricao(ListarSupermercadosPorDescricao.Listener mListener) {
 
         this.mListener = mListener;
         PaginalnicialConsumidor.pb.setVisibility(View.VISIBLE);
     }
+
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/estabelecimento/getEstabelecimentosVendedoresCidadeEstado/"+ params[0] + "/" + params[1] +"/";
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/estabelecimento/getEstabelecimentosVendedoresCidadeEstado/" + params[0] + "/" + params[1] + "/";
 
         String response = "";
 
@@ -92,31 +93,29 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
 
             String status_est = status.getString("status");
             String descricao = status.getString("descricao");
-            Log.i("Status",status_est);
+            Log.i("Status", status_est);
 
-            if(status_est.equals("true")) {
+            if (status_est.equals("true")) {
                 PaginalnicialConsumidor.no_list.setVisibility(View.INVISIBLE);
                 JSONArray dados = status.getJSONArray("objeto");
                 ArrayList<Estabelecimento> listareEst = new ArrayList<>();
-                ArrayList<Telefone> telefones  = new ArrayList<>();
+                ArrayList<Telefone> telefones = new ArrayList<>();
 
                 for (int i = 0; i < dados.length(); ++i) {
                     JSONObject dados_result = dados.getJSONObject(i);
-                    JSONArray endereco = dados_result.getJSONArray("endereco");
-                    JSONArray telefone = dados_result.getJSONArray("telefone");
+                    String endereco = dados_result.getString("endereco");
+                    String telefone = dados_result.getString("telefone");
 
-                    Endereco end = null;
-                    for(int i2 = 0; i2 < endereco.length(); ++i2) {
-                                end = new Endereco(endereco.getString(0),
-                                endereco.getString(1),endereco.getString(2),
-                                endereco.getString(3),endereco.getString(4));
+                    JSONObject end_result = new JSONObject(endereco);
+                    Endereco end = new Endereco(end_result.getString("endereco_rua"),
+                                end_result.getString("endereco_numero"), end_result.getString("endereco_bairro"),
+                                end_result.getString("endereco_complemento"), end_result.getString("endereco_cep"),
+                                end_result.getString("cidade_descricao"), end_result.getString("estado_sigla"));
 
-                    }
 
-                    Telefone tel = null;
-                    for (int i3 = 0; i3< telefone.length(); i3++){
-                        tel = new Telefone(telefone.getString(0),telefone.getString(1),telefone.getString(2));
-                    }
+                    JSONObject tel_result = new JSONObject(telefone);
+                    Telefone tel = new Telefone(tel_result.getString("telefone_ddd"), tel_result.getString("telefone_numero"), tel_result.getString("tipo_telefone_descricao"));
+
                     Estabelecimento estabelecimentos = new Estabelecimento(dados_result.getInt("estabelecimento_id"),
                             dados_result.getString("estabelecimento_cnpj"),
                             dados_result.getString("estabelecimento_razao_social"),
@@ -125,23 +124,26 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                             dados_result.getString("estabelecimento_inscricao_municipal"),
                             dados_result.getString("estabelecimento_vendedor"),
                             dados_result.getString("tipo_estabelecimento_descricao"),
-                            end.getRua(),end.getNumero(),end.getBairro(),end.getComplemento(),end.getCep(),
-                            tel.getIdTf(),tel.getDdd(),tel.getNumeroTelefone());
+                            dados_result.getString("email_contato"),
+                            end.getRua(), end.getNumero(),
+                            end.getBairro(), end.getComplemento(),
+                            end.getCep(),end.getCidade_descricao(),end.getEstado_sigla(),
+                            tel.getIdTf(), tel.getDdd(), tel.getNumeroTelefone());
                     listareEst.add(estabelecimentos);
                 }
 
-                if(listareEst.size()> 0) {
-                    Log.i("array",listareEst.toString());
+                if (listareEst.size() > 0) {
+                    Log.i("array", listareEst.toString());
                     PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                     ListaSupermercadosAdapter listarSupmermercadoAdapter = new ListaSupermercadosAdapter(PaginalnicialConsumidor.act, PaginalnicialConsumidor.context, listareEst);
                     PaginalnicialConsumidor.listas.setAdapter(listarSupmermercadoAdapter);
                     listarSupmermercadoAdapter.notifyDataSetChanged();
                     //TabBuscar.listas.deferNotifyDataSetChanged();
-                }else{
+                } else {
                     PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
                 }
 
-            }else if(descricao.equals("Nenhum estabelecimentos encontrado!")){
+            } else if (descricao.equals("Nenhum estabelecimentos encontrado!")) {
                 PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
                 PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                 PaginalnicialConsumidor.listas.setAdapter(null);

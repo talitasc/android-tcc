@@ -119,4 +119,11 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/pb_produtos"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
 </RelativeLayout>

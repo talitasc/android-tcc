@@ -25,8 +25,11 @@ public class Estabelecimento implements Cloneable {
     private String tpTel;
     private String dd;
     private String telefone;
+    private String email;
+    private String cidade;
+    private String estado_sigla;
 
-    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc) {
+    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String email) {
 
         this.id = id;
         this.cnpj = cnpj;
@@ -36,9 +39,10 @@ public class Estabelecimento implements Cloneable {
         this.inscricao_municipal = inscricao_municipal;
         this.estab_vendedor = estab_vendedor;
         this.tipo_estab_desc = tipo_estab_desc;
+        this.email = email;
     }
 
-    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String rua, String numero, String bairro, String complemento, String cep,String tpTel, String dd, String telefone) {
+    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String email,String rua, String numero, String bairro, String complemento, String cep,String cidade,String sigla,String tpTel, String dd, String telefone) {
         this.id = id;
         this.cnpj = cnpj;
         this.razao_social = razao_social;
@@ -47,11 +51,14 @@ public class Estabelecimento implements Cloneable {
         this.inscricao_municipal = inscricao_municipal;
         this.estab_vendedor = estab_vendedor;
         this.tipo_estab_desc = tipo_estab_desc;
+        this.email = email;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
         this.cep = cep;
+        this.cidade = cidade;
+        this.estado_sigla = sigla;
         this.tpTel = tpTel;
         this.dd = dd;
         this.telefone = telefone;
@@ -184,6 +191,30 @@ public class Estabelecimento implements Cloneable {
 
     public void setTpTel(String tpTel) {
         this.tpTel = tpTel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado_sigla() {
+        return estado_sigla;
+    }
+
+    public void setEstado_sigla(String estado_sigla) {
+        this.estado_sigla = estado_sigla;
     }
 }
 

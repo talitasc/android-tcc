@@ -75,9 +75,8 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     public void onBindViewHolder(final ListarSupermercadoViewHolder holder, int position) {
         final Estabelecimento listaSuper = listaSupermercado.get(position);
         holder.nome_supermercado.setText(listaSuper.getNome_fantasia());
-        holder.nome_cidade.setText(listaSuper.getBairro());
-        //holder.imLogo.setImageBitmap();
-
+        holder.nome_cidade.setText(listaSuper.getCidade());
+        holder.imLogo.setImageBitmap(convert(act.getResources().getString(R.string.teste_base64)));
 
         //holder.nome_cidade.setText(listaSuper.getCidade());
         holder.view.setOnClickListener(new View.OnClickListener() {
@@ -91,11 +90,14 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                         listaSuper.getInscricao_municipal(),
                         listaSuper.getEstab_vendedor(),
                         listaSuper.getTipo_estab_desc(),
+                        listaSuper.getEmail(),
                         listaSuper.getRua(),
                         listaSuper.getNumero(),
                         listaSuper.getBairro(),
                         listaSuper.getComplemento(),
                         listaSuper.getCep(),
+                        listaSuper.getCidade(),
+                        listaSuper.getEstado_sigla(),
                         listaSuper.getTpTel(),
                         listaSuper.getDd(),
                         listaSuper.getTelefone());
@@ -106,11 +108,11 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                 DetalhesEstab.strNumero = estabelecimento.getNumero() + "";
                 DetalhesEstab.strbairro = estabelecimento.getBairro();
                 DetalhesEstab.strCep = estabelecimento.getCep();
-                DetalhesEstab.strCidade = estabelecimento.getBairro();
-                DetalhesEstab.strSigla = estabelecimento.getCep();
+                DetalhesEstab.strCidade = estabelecimento.getCidade();
+                DetalhesEstab.strSigla = estabelecimento.getEstado_sigla();
                 DetalhesEstab.strDdd = estabelecimento.getDd();
                 DetalhesEstab.strTelefone = estabelecimento.getTelefone();
-                DetalhesEstab.strEmail = estabelecimento.getInscricao_municipal();
+                DetalhesEstab.strEmail = estabelecimento.getEmail();
                 act.startActivity(new Intent(act, PaginaInicialEstabelecimentos.class));
                 act.finishActivity(0);
             }

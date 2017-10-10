@@ -3,6 +3,7 @@
     <string name="pref_locale">en</string>
 
     <!-- Strings edittext -->
+    <string name="teste_base64"> teste</string>
     <string name="email_cliente">E-mail</string>
     <string name="senha_cliente">Contraseña</string>
     <string name="edt_sobrenome"> Apellido</string>

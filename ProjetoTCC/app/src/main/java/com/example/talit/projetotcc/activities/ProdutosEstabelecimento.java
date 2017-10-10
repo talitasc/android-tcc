@@ -12,6 +12,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class ProdutosEstabelecimento extends AppCompatActivity {
     public static RelativeLayout no_Cadastrado;
     private DbConn dbconn;
     private TextView txtCount;
+    public static ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class ProdutosEstabelecimento extends AppCompatActivity {
         btnCarrinho = (FloatingActionButton) findViewById(R.id.btn_carrinho);
         no_Cadastrado = (RelativeLayout)findViewById(R.id.rl_noCdastrado);
         txtCount = (TextView) findViewById(R.id.notificacao);
+        pb = (ProgressBar) findViewById(R.id.pb_produtos);
+        pb.setVisibility(View.INVISIBLE);
 
         rec.setHasFixedSize(true);
         getSupportActionBar().setTitle("estabelecimento");

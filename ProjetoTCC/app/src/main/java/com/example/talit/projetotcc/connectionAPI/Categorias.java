@@ -39,6 +39,7 @@ public class Categorias extends AsyncTask<String, String, String> {
     public Categorias(Listener mListener){
 
         this.mListener = mListener;
+        TabCategorias.pb.setVisibility(View.VISIBLE);
     }
     @Override
     protected String doInBackground(String... params) {
