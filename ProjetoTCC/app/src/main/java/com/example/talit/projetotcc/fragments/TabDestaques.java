@@ -85,12 +85,12 @@ public class TabDestaques extends Fragment {
         rec.setLayoutManager(layoutManager);
         //dbconn = new DbConn(getActivity());
 
-        produtos.add(new Produtos(R.drawable.logo_super, 1, "Bolacha Recheada", "passatempo", 00.50, "Passatempo sabor Morango com 143g Nabisco. Para valores nutricionais estão informados no verso do produto.", "Validade:20/06/2017","1"));
+        /*produtos.add(new Produtos(R.drawable.logo_super, 1, "Bolacha Recheada", "passatempo", 00.50, "Passatempo sabor Morango com 143g Nabisco. Para valores nutricionais estão informados no verso do produto.", "Validade:20/06/2017","1"));
         produtos.add(new Produtos(R.drawable.logo_super, 2, "Biscoito Salgado", "Pit Stop", 1.75, "Biscoito agua e sal Pit stop com 9 Unidades.Para valores nutricionais estão informados no verso do produto.", "Validade:20/06/2017","2"));
         produtos.add(new Produtos(R.drawable.logo_super, 3, "Creme de Amendoin", "Paçoquita", 2.00, "Paçoquita cremosa 180G.Para valores nutricionais estão informados no verso do produto", "Validade:20/06/2017","3"));
         produtos.add(new Produtos(R.drawable.logo_super, 4, "Bolacha Recheada", "passatempo", 00.50, "Passatempo sabor Morango com 143g Nabisco. Para valores nutricionais estão informados no verso do produto.", "Validade:20/06/2017","4"));
         produtos.add(new Produtos(R.drawable.logo_super, 5, "Biscoito Salgado", "Pit Stop", 1.75, "Biscoito agua e sal Pit stop com 9 Unidades.Para valores nutricionais estão informados no verso do produto.", "Validade:20/06/2017","5"));
-        produtos.add(new Produtos(R.drawable.logo_super, 6, "Creme de Amendoin", "Paçoquita", 2.00, "Paçoquita cremosa 180G.Para valores nutricionais estão informados no verso do produto", "Validade:20/06/2017","6"));
+        produtos.add(new Produtos(R.drawable.logo_super, 6, "Creme de Amendoin", "Paçoquita", 2.00, "Paçoquita cremosa 180G.Para valores nutricionais estão informados no verso do produto", "Validade:20/06/2017","6"));*/
 
         rec.setAdapter(new AdicionadosDestaques(produtos, getActivity()));
         //rec.setAdapter(new ProdutosAdapter(produtos, getActivity()));*/

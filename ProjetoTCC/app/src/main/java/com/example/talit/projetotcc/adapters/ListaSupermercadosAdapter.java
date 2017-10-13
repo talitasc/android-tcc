@@ -39,14 +39,14 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     public static class ListarSupermercadoViewHolder extends RecyclerView.ViewHolder {
         private TextView nome_supermercado;
         private TextView nome_cidade;
-        private DraweeView imLogo;
+        private SimpleDraweeView imLogo;
         private View view;
 
         public ListarSupermercadoViewHolder(View v) {
             super(v);
             nome_supermercado = (TextView) v.findViewById(R.id.txt_nome_super);
             nome_cidade = (TextView) v.findViewById(R.id.txt_cidade_estab);
-            imLogo = (DraweeView) v.findViewById(R.id.im_logo_supermercado);
+            imLogo = (SimpleDraweeView) v.findViewById(R.id.im_logo_supermercado);
             view = v;
         }
     }
@@ -76,7 +76,7 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
         final Estabelecimento listaSuper = listaSupermercado.get(position);
         holder.nome_supermercado.setText(listaSuper.getNome_fantasia());
         holder.nome_cidade.setText(listaSuper.getCidade());
-        holder.imLogo.setImageBitmap(convert(act.getResources().getString(R.string.teste_base64)));
+        //holder.imLogo.setImageBitmap(convert(act.getResources().getString(R.string.teste_base64)));
 
         //holder.nome_cidade.setText(listaSuper.getCidade());
         holder.view.setOnClickListener(new View.OnClickListener() {

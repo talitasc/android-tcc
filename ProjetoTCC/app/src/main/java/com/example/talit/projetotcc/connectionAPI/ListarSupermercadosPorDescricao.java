@@ -148,7 +148,6 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                 PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                 PaginalnicialConsumidor.listas.setAdapter(null);
                 //TabBuscar.listas.deferNotifyDataSetChanged();
-
             }
         } catch (JSONException e) {
             e.printStackTrace();

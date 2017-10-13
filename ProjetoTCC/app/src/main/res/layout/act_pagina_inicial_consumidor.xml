@@ -45,7 +45,7 @@
                     android:background="@drawable/borda_search_view"
                     android:icon="@android:drawable/ic_menu_search"
                     app:queryHint="Type something..."
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                    app:theme="@style/SearchViewStyle" />
 
                 <ImageButton
                     android:id="@+id/imageButton2"
@@ -53,9 +53,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_tune_black_24dp"
                     android:tint="@android:color/white"
+                    app:srcCompat="@drawable/ic_tune_black_24dp"
                     tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/txt_busca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginStart="40dp"
+                    android:textColor="#acacac"
+                    android:text="@string/txt_buscar"
+                    android:textSize="16sp"
+                    app:layout_anchorGravity="bottom|center_horizontal"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
 
             </RelativeLayout>
 
@@ -71,7 +84,6 @@
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
         </android.support.design.widget.AppBarLayout>
-
 
 
         <android.support.v7.widget.RecyclerView
@@ -92,7 +104,6 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-
             <TextView
                 android:id="@+id/tv_nolist"
                 android:layout_width="match_parent"
@@ -105,12 +116,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/teste"/>
-
 
         </RelativeLayout>
 
@@ -154,12 +159,12 @@
 
             <Button
                 android:id="@+id/btn_trocar"
+                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="18dp"
-                style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
                 android:text="@string/btn_troca"
                 android:textAllCaps="true"
                 android:textColor="#fff"
@@ -169,8 +174,8 @@
                 android:id="@+id/divider_dois"
                 android:layout_width="1dp"
                 android:layout_height="45dp"
-                android:layout_margin="4dp"
                 android:layout_alignParentBottom="true"
+                android:layout_margin="4dp"
                 android:layout_toStartOf="@id/btn_trocar"
                 android:background="#ffff" />
 
@@ -185,7 +190,7 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <android.support.design.widget.NavigationView
+   <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

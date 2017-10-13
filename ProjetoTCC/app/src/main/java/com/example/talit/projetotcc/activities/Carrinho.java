@@ -64,6 +64,7 @@ public class Carrinho extends AppCompatActivity {
 
        Intent it = getIntent();
         String nome_del = "";
+       /*ver depois
        if (it.getStringExtra("NOME_DEL") != null) {
             nome_del = it.getStringExtra("NOME_DEL");
             if (nome_del != "") {
@@ -73,8 +74,9 @@ public class Carrinho extends AppCompatActivity {
                 //dbconn.selectIdProduto(nome_del).getIdProduto();
                 dbconn.deleteCarrinhoId("14");
             }
-        }
+        }*/
 
+       /* ver depois
         if (dbconn.selectProutos() != null) {
             CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
             listas.setAdapter(carAdapter);
@@ -84,7 +86,7 @@ public class Carrinho extends AppCompatActivity {
 
             //int count = dbconn.totalItensCarrinho();
             //Toast.makeText(getBaseContext(),"itens" + count, Toast.LENGTH_SHORT).show();
-        }
+        }*/
         if(listas.getCount() == 0){
             no_list.setVisibility(View.VISIBLE);
             cardFinal.setVisibility(View.INVISIBLE);
@@ -119,8 +121,8 @@ public class Carrinho extends AppCompatActivity {
 
         if(id == R.id.menu_excluir){
             dbconn.deleteSacola();
-            CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
-            listas.setAdapter(carAdapter);
+            //CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
+            //listas.setAdapter(carAdapter);
             listas.deferNotifyDataSetChanged();
             no_list.setVisibility(View.VISIBLE);
             cardFinal.setVisibility(View.INVISIBLE);

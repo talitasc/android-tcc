@@ -71,6 +71,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Locale;
@@ -113,6 +115,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     private SearchView searchView;
     private RelativeLayout rlLocal;
     private ImageButton imFiltro;
+    private TextView txtBusca;
     private Locale locale = null;
 
 
@@ -135,6 +138,11 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         imFiltro = (ImageButton) findViewById(R.id.imageButton2);
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
         rlLocal = (RelativeLayout) findViewById(R.id.id_local);
+        txtBusca = (TextView)findViewById(R.id.txt_busca);
+
+        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchAutoComplete.setHintTextColor(getColor(R.color.botoesPrimarios));
+        searchAutoComplete.setTextColor(getColor(R.color.botoesPrimarios));
 
         pb.setVisibility(View.INVISIBLE);
         setSupportActionBar(toolbar);
@@ -203,6 +211,16 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             @Override
             public void onClick(View view) {
                 filtroInicial();
+            }
+        });
+
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtBusca.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(PaginalnicialConsumidor.this,SearchViewCustom.class));
+                finish();
             }
         });
 

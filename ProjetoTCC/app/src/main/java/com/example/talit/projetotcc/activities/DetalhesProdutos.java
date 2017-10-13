@@ -95,13 +95,14 @@ public class DetalhesProdutos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                /*ve depois
                 if (dbconn.selectIdProduto(strnomeProd) != null ){
                     CreateSnackbar("Este produto já existe em seu carrinho.");
                 }else{
                     dbconn.insertSacola(strnomeProd,strMarca,Double.parseDouble(strPreco.replace("R$","")),b,strCodRef);
                     //dbconn.insertSacola(strnomeProd,strMarca,strPreco,b,strCodRef);
                     CreateSnackbar("Este produto foi adicionado ao carrinho");
-                }
+                }*/
 
                 /*Intent intent = new Intent();
                 intent.setClass(DetalhesProdutos_1.this,Carrinho.class);

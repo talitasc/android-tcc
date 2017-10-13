@@ -57,6 +57,7 @@ public class DbConn {
         }
         return null;
     }
+   /*mudar o oonstrtor depois
     public ArrayList<Produtos> selectProutos(){
         ArrayList<Produtos> listas = new ArrayList<Produtos>();
 
@@ -78,7 +79,7 @@ public class DbConn {
         }
 
         return listas;
-    }
+    }*/
     public void updateSenha(String senha, int id_status,int id_cons){
         ContentValues valor = new ContentValues();
         valor.put("senha", senha);
@@ -91,6 +92,7 @@ public class DbConn {
         valor.put("senha", senha);
         db.update("consumidor",valor,"id_cons ="+id_cons,null);
     }
+    /*mudr o construtor depois
     public Produtos selectIdProduto(String nome){
 
         String[] colunas_db = new String[]{"id_lista","nomeProd","marca","preco","imagem","codRef"};
@@ -109,7 +111,7 @@ public class DbConn {
 
         }
         return null;
-    }
+    }*/
 
    public double totalCarrinho(){
 

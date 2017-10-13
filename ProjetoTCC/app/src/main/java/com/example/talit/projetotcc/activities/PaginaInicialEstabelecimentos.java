@@ -1,6 +1,8 @@
 package com.example.talit.projetotcc.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -44,17 +46,18 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
     private TabLayout tab;
     public static ProgressBar pb;
     private DbConn dbconn;
-    private ActionBar actionBar;
-    private Toolbar toolbar;
     private FloatingActionButton btnCarrinho;
     private TextView txtCount;
     BottomNavigationView navigation;
+    public static Activity act;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pagina_inicial_estabelecimentos);
-
+        act = this;
+        context = this;
         //getSupportActionBar().setElevation(0);
 
         //view = (ViewPager) findViewById(R.id.view_pager);
@@ -119,6 +122,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 onBackPressed();
 
+               /*ver depois
                if (dbconn.selectProutos().size() > 0) {
                    dbconn.deleteSacola();
                    startActivity(new Intent(PaginaInicialEstabelecimentos.this, PaginalnicialConsumidor.class));
@@ -128,7 +132,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
                    startActivity(new Intent(PaginaInicialEstabelecimentos.this, PaginalnicialConsumidor.class));
                    dialog.dismiss();
                    finish();
-               }
+               }*/
 
             }
         });

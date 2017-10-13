@@ -52,6 +52,8 @@
         <!-- Gets rid of the search icon when the SearchView is expanded -->
         <item name="searchHintIcon">@color/corQuatro</item>
         <item name="android:color">@color/corQuatro</item>
+        <item name="android:textColor">@color/corQuatro</item>
+        <item name="android:colorControlActivated">@color/corQuatro</item>
         <!-- The hint text that appears when the user has not typed anything
         <item name="queryHint">@string/search_hint</item>-->
     </style>

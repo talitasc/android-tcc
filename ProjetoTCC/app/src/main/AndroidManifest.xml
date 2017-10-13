@@ -37,8 +37,8 @@
             android:theme="@style/MyTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="com.google.android.voicesearch.SELF_NOTE" />
             </intent-filter>
         </activity>
 
@@ -130,6 +130,7 @@
         <activity android:name=".activities.FinalizarCompra" />
         <activity android:name=".activities.DuvidasFrequentes" />
         <activity android:name=".activities.Notificacoes" />
+        <activity android:name=".activities.SearchViewCustom" />
         <activity android:name=".activities.Subcategorias"></activity>
     </application>
 

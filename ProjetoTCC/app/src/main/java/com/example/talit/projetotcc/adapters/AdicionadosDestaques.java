@@ -58,6 +58,7 @@ public class AdicionadosDestaques extends RecyclerView.Adapter<AdicionadosDestaq
     @Override
     public void onBindViewHolder(final AdicionadosDestaques.AdicionadosDestaquesHolder holder, int position) {
         final Produtos produtos = prod.get(position);
+        /*ver depois
         holder.imagem.setBackgroundResource(produtos.getIdImagem());
         holder.txtNome.setText(produtos.getNome());
         holder.txtMarca.setText(produtos.getMarca());
@@ -81,7 +82,7 @@ public class AdicionadosDestaques extends RecyclerView.Adapter<AdicionadosDestaq
                 act.startActivity(intent);
                 act.finish();
             }
-        });
+        });*/
     }
 
     @Override

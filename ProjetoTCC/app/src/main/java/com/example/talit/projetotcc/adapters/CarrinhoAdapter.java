@@ -76,10 +76,11 @@ public class CarrinhoAdapter extends BaseAdapter {
         }
 
         final Produtos produtos = prods.get(position);
+       /*ver depois
         holder.txtNome.setText(produtos.getNome());
         holder.txtMarca.setText(produtos.getMarca());
         holder.txtPreco.setText("R$ " + produtos.getPreco());
-        holder.txtCod.setText(""+ produtos.getCodReferencia());
+        holder.txtCod.setText(""+ produtos.getCodReferencia());*/
         //holder.imagem.setImageBitmap(DetalhesProdutos.b);
         //holder.imagem.setBackgroundResource(produtos.getIdImagem());
         holder.btnExcluir.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +102,7 @@ public class CarrinhoAdapter extends BaseAdapter {
                 excluir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        /*ver depois
                         dbconn = new DbConn(Carrinho.act);
                         dbconn.deleteCarrinhoId(produtos.getCodReferencia());
                         CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.act, Carrinho.context, dbconn.selectProutos());
@@ -113,7 +115,7 @@ public class CarrinhoAdapter extends BaseAdapter {
                             Carrinho.no_list.setVisibility(View.VISIBLE);
                             Carrinho.cardFinal.setVisibility(View.INVISIBLE);
                             Carrinho.btnFinal.setVisibility(View.INVISIBLE);
-                        }
+                        }*/
 
                         dialogo.dismiss();
                     }
