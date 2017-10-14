@@ -244,6 +244,7 @@
     <string name="txt_filtro_todos">Todos s estabelecimentos</string>
     <string name="txt_produto_desc">Produto</string>
     <string name="teste_base64"></string>
+    <string name="busca">Digite sua busca...</string>
     <string name="txt_buscar">Busque por lojas ou produtos...</string>
     <string name="txt_sugestoes">Algumas sugestões para você:</string>
     <string name="txt_sugestoes_1">Arroz</string>

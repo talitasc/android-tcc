@@ -14,7 +14,7 @@ import com.example.talit.projetotcc.utils.LocaleLanguage;
 public class SplashScreen extends AppCompatActivity {
 
     public static final String NOME_PREFERENCE = "IDIOMA";
-    private String lingua;
+    private static String lingua = "pt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +44,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onResume();
         SharedPreferences prefs = getSharedPreferences(NOME_PREFERENCE, MODE_PRIVATE);
         lingua = prefs.getString("lingua", null);
-        if(lingua == null){
-            lingua = "en";
-        }
+
     }
    protected void attachBaseContext(Context base){
 

@@ -13,7 +13,7 @@
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/search_voice_btn"
-        android:icon="@android:drawable/stat_notify_voicemail"
+        android:icon="@drawable/ic_keyboard_voice_black_24dp"
         app:showAsAction="always"
         tools:ignore="MenuTitle" />
 

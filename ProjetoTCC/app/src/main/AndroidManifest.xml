@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -38,7 +39,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="com.google.android.voicesearch.SELF_NOTE" />
+
             </intent-filter>
         </activity>
 
@@ -130,7 +131,8 @@
         <activity android:name=".activities.FinalizarCompra" />
         <activity android:name=".activities.DuvidasFrequentes" />
         <activity android:name=".activities.Notificacoes" />
-        <activity android:name=".activities.SearchViewCustom" />
+        <activity android:name=".activities.SearchViewCustom"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.Subcategorias"></activity>
     </application>
 

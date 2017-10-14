@@ -15,6 +15,7 @@
 
     <color name="coresProvisoriasum">#02243b</color>
     <color name="coresProvisoriasdois">#cccccc</color>
+    <color name="coresSearchView">#fff</color>
     <color name="coresProvisoriastres">#f9a61a</color>
     <color name="corQuatro">#878787</color>
 

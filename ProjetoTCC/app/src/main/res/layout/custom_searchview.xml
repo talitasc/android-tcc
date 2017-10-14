@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/white">
+
+    </android.support.v7.widget.Toolbar>
 
     <ListView
         android:id="@+id/list_suggestios"
@@ -11,205 +21,205 @@
         android:layout_height="317dp" />
 
     <TextView
+        android:id="@+id/sugestoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes"
-        android:layout_marginStart="10sp"
-        android:textSize="20sp"
         android:layout_below="@+id/list_suggestios"
-        android:id="@+id/sugestoes"/>
+        android:layout_marginStart="10sp"
+        android:text="@string/txt_sugestoes"
+        android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/sugestao1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/sugestoes"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/borda_search_view"
+        android:backgroundTint="@color/botoesAuxiliares"
+        android:padding="10dp"
         android:text="@string/txt_sugestoes_1"
-        android:layout_marginStart="30sp"
-        android:layout_marginTop="16dp"
         android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestoes"
-        android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao1"/>
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_2"
+        android:layout_below="@+id/sugestoes"
         android:layout_marginStart="10sp"
         android:layout_marginTop="16dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
         android:layout_toEndOf="@+id/sugestao1"
-        android:layout_below="@+id/sugestoes"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao2"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_2"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_3"
+        android:layout_below="@+id/sugestoes"
         android:layout_marginStart="10sp"
         android:layout_marginTop="16dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
         android:layout_toEndOf="@+id/sugestao2"
-        android:layout_below="@+id/sugestoes"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao3"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_3"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_4"
+        android:layout_below="@+id/sugestoes"
         android:layout_marginStart="10sp"
         android:layout_marginTop="16dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestoes"
         android:layout_toEndOf="@+id/sugestao3"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao4"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_4"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_5"
-        android:layout_marginStart="10sp"
-        android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
         android:layout_below="@+id/sugestao1"
-        android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao5"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_6"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
         android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
+        android:backgroundTint="@color/botoesAuxiliares"
         android:padding="10dp"
+        android:text="@string/txt_sugestoes_5"
+        android:textColor="#fff"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/sugestao6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/sugestao2"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="05dp"
         android:layout_toEndOf="@+id/sugestao5"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao6"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_6"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_7"
+        android:layout_below="@+id/sugestao2"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao2"
         android:layout_toEndOf="@+id/sugestao6"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao7"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_7"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_8"
+        android:layout_below="@+id/sugestao2"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao2"
         android:layout_toEndOf="@+id/sugestao7"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao8"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_8"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_9"
+        android:layout_below="@+id/sugestao2"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao2"
         android:layout_toEndOf="@+id/sugestao8"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao9"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_9"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_10"
+        android:layout_below="@+id/sugestao5"
         android:layout_marginStart="30sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
         android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao5"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao10"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_10"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_11"
+        android:layout_below="@+id/sugestao5"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao5"
         android:layout_toEndOf="@+id/sugestao10"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao11"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_11"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_12"
+        android:layout_below="@+id/sugestao5"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao5"
         android:layout_toEndOf="@+id/sugestao11"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao12"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_12"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/sugestao13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sugestoes_13"
+        android:layout_below="@+id/sugestao5"
         android:layout_marginStart="10sp"
         android:layout_marginTop="05dp"
-        android:textColor="#fff"
-        android:background="@drawable/borda_search_view"
-        android:textSize="13sp"
-        android:padding="10dp"
-        android:layout_below="@+id/sugestao5"
         android:layout_toEndOf="@+id/sugestao12"
+        android:background="@drawable/borda_search_view"
         android:backgroundTint="@color/botoesAuxiliares"
-        android:id="@+id/sugestao13"/>
+        android:padding="10dp"
+        android:text="@string/txt_sugestoes_13"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
 
 </RelativeLayout>
