@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 
 
+import com.example.talit.projetotcc.logicalView.Busca;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.example.talit.projetotcc.logicalView.Usuario;
 
@@ -42,8 +43,13 @@ public class DbConn {
         valor.put("imagem", String.valueOf(b));
         valor.put("codRef", codRef);
         db.insert("sacola", null, valor);
-    }
 
+    }
+    public void insertSearchView(String busca){
+        ContentValues valor = new ContentValues();
+        valor.put("busca",busca);
+        db.insert("searchview", null, valor);
+    }
     public MantemConsumidor selectConsumidor() {
 
         Cursor cursor = db.query(true, "consumidor", null, null, null, null, null, null, null);
@@ -80,6 +86,24 @@ public class DbConn {
 
         return listas;
     }*/
+
+    public ArrayList<Busca> selectHistorico(){
+        ArrayList<Busca> listas = new ArrayList<Busca>();
+
+        String[] colunas_db = new String[]{"id_hist","busca"};
+        Cursor cursor = db.query(true, "searchview", null, null, null, null, null, null, null);
+
+        if(cursor.moveToFirst()){
+
+            do{
+                listas.add(new Busca(cursor.getInt(0),
+                        cursor.getString(1)));
+
+            }while(cursor.moveToNext());
+
+        }
+        return listas;
+    }
     public void updateSenha(String senha, int id_status,int id_cons){
         ContentValues valor = new ContentValues();
         valor.put("senha", senha);
@@ -137,6 +161,18 @@ public class DbConn {
         return count;
     }
 
+    public int totalBuscas(){
+
+        Cursor cursor = db.rawQuery("SELECT COUNT (*) FROM searchview",null);
+
+        int count = 0;
+        if(cursor.moveToFirst())
+        {
+            count = cursor.getInt(0);
+        }
+        return count;
+    }
+
     public void deleteConsumidor() {
         db.execSQL("delete from consumidor");
     }
@@ -147,5 +183,9 @@ public class DbConn {
 
     public void deleteCarrinhoId(String codigo){
         db.delete("sacola","codRef  ="+ codigo,null);
+    }
+
+    public void deleteBusca(int id){
+        db.delete("searchview","id_hist  ="+ id,null);
     }
 }

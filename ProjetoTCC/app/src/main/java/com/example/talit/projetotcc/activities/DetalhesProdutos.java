@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,9 @@ import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.sqlight.DbConn;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.io.ByteArrayOutputStream;
 
 public class DetalhesProdutos extends AppCompatActivity {
 
@@ -30,12 +34,13 @@ public class DetalhesProdutos extends AppCompatActivity {
     private TextView prazoValidade;
     private TextView informacoes;
     private TextView codRef;
-    private ImageView imProduto;
+    private SimpleDraweeView imProduto;
     private Button btnAdicionar;
     private String strnomeProd;
     private String strMarca;
     private String strPreco;
     private String strCodRef;
+    private String strImagem;
     private DbConn dbconn;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -48,7 +53,7 @@ public class DetalhesProdutos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_detalhes_produtos);
-        //imProduto = (ImageView) findViewById(R.id.ic_produto);
+        imProduto = (SimpleDraweeView) findViewById(R.id.id_logo_produto);
         nomeProd = (TextView) findViewById(R.id.txtNomeProduto);
         marca = (TextView) findViewById(R.id.txt_marca_prod);
         preco = (TextView) findViewById(R.id.txt_preco);
@@ -60,16 +65,11 @@ public class DetalhesProdutos extends AppCompatActivity {
         cord = (CoordinatorLayout)findViewById(R.id.act_detalhes_produtos);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Detalhes do Produto");
+        getSupportActionBar().setTitle("Detalhes do produto");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         //getSupportActionBar().setHomeButtonEnabled(true);
 
         dbconn = new DbConn(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        dbconn = new DbConn(this);
-
         if (getIntent().hasExtra("nomeProduto") && getIntent().hasExtra("img") &&
                 getIntent().hasExtra("marcaProduto") && getIntent().hasExtra("precoProduto")
                 && getIntent().hasExtra("prazoProduto") && getIntent().hasExtra("infosProduto")&& getIntent().hasExtra("codRef")) {
@@ -78,16 +78,16 @@ public class DetalhesProdutos extends AppCompatActivity {
             strMarca = getIntent().getStringExtra("marcaProduto");
             strPreco= getIntent().getStringExtra("precoProduto");
             strCodRef = getIntent().getStringExtra("codRef");
+            strImagem = getIntent().getStringExtra("img");
 
-
-            nomeProd.setText(getIntent().getStringExtra("nomeProduto"));
-            marca.setText("Marca: " + getIntent().getStringExtra("marcaProduto"));
-            preco.setText("R$"+ getIntent().getStringExtra("precoProduto"));
+            nomeProd.setText(strnomeProd);
+            marca.setText(strMarca);
+            preco.setText(String.format("R$%s", strPreco));
             prazoValidade.setText(getIntent().getStringExtra("prazoProduto"));
             informacoes.setText(getIntent().getStringExtra("infosProduto"));
             codRef.setText(getIntent().getStringExtra("codRef"));
-            b = BitmapFactory.decodeByteArray(getIntent().getByteArrayExtra("img"), 0, getIntent().getByteArrayExtra("img").length);
-            //imProduto.setImageBitmap(b);
+            imProduto.setImageBitmap(convert(strImagem));
+
             //dbconn.insertSacola(strnomeProd,strMarca,strPreco,b);
             //dbconn.insertConsumidor(mac.getIdCons(), mac.getUsuario(), mac.getSenha(), mac.getStatus(), mac.getTpAcesso());
         }
@@ -137,6 +137,20 @@ public class DetalhesProdutos extends AppCompatActivity {
 
         Snackbar.make(cord, mensagem, Snackbar.LENGTH_LONG)
                 .setAction("Ok", null).show();
+    }
+    public static Bitmap convert(String base64Str) throws IllegalArgumentException {
+        byte[] decodedBytes = Base64.decode(
+                base64Str.substring(base64Str.indexOf(",") + 1),
+                Base64.DEFAULT
+        );
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
+    public static String convert(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
     @Override
     public void onBackPressed() {

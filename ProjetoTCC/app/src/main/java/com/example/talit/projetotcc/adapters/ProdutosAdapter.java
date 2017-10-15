@@ -76,10 +76,6 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ByteArrayOutputStream bs = new ByteArrayOutputStream();
-                holder.imagem.buildDrawingCache();
-                Bitmap bmap = holder.imagem.getDrawingCache();
-                bmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
                 Intent intent = new Intent();
                 intent.setClass(act,DetalhesProdutos.class);
                 intent.putExtra("nomeProduto",produtos.getDescricao());

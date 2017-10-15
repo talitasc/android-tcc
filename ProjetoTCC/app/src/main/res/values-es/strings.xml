@@ -3,6 +3,12 @@
 
     <string name="pref_locale">es</string>
 
+    <!--chave de identificação  do app cadastrado na pagina do facebook-->
+    <string name="facebook_app_id">460634367628229</string>
+    <string name="fb_login_protocol_scheme">fb460634367628229</string>
+
+    <!-- Strings nome do app -->
+    <string name="app_name">SmarketAPP</string>
     <!-- Strings edittext -->
     <string name="email_cliente">E-mail</string>
     <string name="senha_cliente">Contraseña</string>

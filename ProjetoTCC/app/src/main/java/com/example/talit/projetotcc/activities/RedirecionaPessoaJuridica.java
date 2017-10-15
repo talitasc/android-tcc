@@ -27,14 +27,14 @@ public class RedirecionaPessoaJuridica extends AppCompatActivity {
         imgPessoaFis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RedirecionaPessoaJuridica.this, LoginCliente.class));
+                startActivity(new Intent(RedirecionaPessoaJuridica.this, LoginCliente.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 finish();
             }
         });
         imPessoaJur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RedirecionaPessoaJuridica.this, LoginPessoaJuridica.class));
+                startActivity(new Intent(RedirecionaPessoaJuridica.this, LoginPessoaJuridica.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 finish();
             }
         });
@@ -44,17 +44,7 @@ public class RedirecionaPessoaJuridica extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(RedirecionaPessoaJuridica.this, WelcomeScreen.class));
+        //startActivity(new Intent(RedirecionaPessoaJuridica.this, WelcomeScreen.class));
         finish();
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:break;
-        }
-        return true;
     }
 }

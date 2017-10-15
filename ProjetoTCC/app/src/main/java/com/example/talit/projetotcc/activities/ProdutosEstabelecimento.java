@@ -93,6 +93,10 @@ public class ProdutosEstabelecimento extends AppCompatActivity implements Produt
         });
     }
 
+    public void onLoaded(List<Produtos> prods) {
+        ProdutosAdapter produtosAdapter  = new ProdutosAdapter(prods,ProdutosEstabelecimento.this, ProdutosEstabelecimento.this);
+        ProdutosEstabelecimento.rec.setAdapter(produtosAdapter);
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -113,9 +117,4 @@ public class ProdutosEstabelecimento extends AppCompatActivity implements Produt
         return true;
     }
 
-
-    public void onLoaded(List<Produtos> prods) {
-        ProdutosAdapter produtosAdapter  = new ProdutosAdapter(prods,ProdutosEstabelecimento.this, ProdutosEstabelecimento.this);
-        ProdutosEstabelecimento.rec.setAdapter(produtosAdapter);
-    }
 }

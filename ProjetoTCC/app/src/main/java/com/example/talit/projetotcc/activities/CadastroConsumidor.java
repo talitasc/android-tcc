@@ -470,10 +470,11 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                onBackPressed();
-                startActivity(new Intent(CadastroConsumidor.this, LoginCliente.class));
+
+                startActivity(new Intent(CadastroConsumidor.this, LoginCliente.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 dialog.dismiss();
                 finish();
+                onBackPressed();
             }
         });
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {

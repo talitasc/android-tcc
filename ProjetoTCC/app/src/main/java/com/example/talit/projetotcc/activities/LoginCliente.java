@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import com.example.talit.projetotcc.R;
@@ -140,7 +141,6 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
             @Override
             public void onClick(View v) {
-
                 if (Validacoes.verifyConnection(LoginCliente.this)) {
                     if (!haEmail && !haSenha ){
                         if (!TextUtils.isEmpty(email.getText().toString()) && !TextUtils.isEmpty(senha.getText().toString())){
@@ -197,9 +197,10 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         callbackManager = CallbackManager.Factory.create();
         lb.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends", "user_birthday"));
         lb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+                Log.i("erroChatlino",loginResult.toString());
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
@@ -209,8 +210,8 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                             pb.setVisibility(View.VISIBLE);
                             Log.d("Objeto",object.toString());
                             LoginComFacebook conn = new LoginComFacebook(LoginCliente.this);
-                            conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
-                            //Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_LONG).show();
+                            //conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
+                            Toast.makeText(getApplicationContext(), "ver", Toast.LENGTH_LONG).show();
 
                         }catch (Exception e){
                             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
@@ -242,6 +243,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
             @Override
             public void onError(FacebookException exception) {
+                Log.i("erroChatlino",exception.toString());
                 if (!Validacoes.verifyConnection(LoginCliente.this)) {
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("Erro ao tentar conexão!!");
@@ -455,5 +457,4 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         }
         return true;
     }
-
 }

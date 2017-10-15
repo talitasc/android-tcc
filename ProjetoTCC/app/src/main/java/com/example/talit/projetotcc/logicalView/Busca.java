@@ -6,11 +6,11 @@ package com.example.talit.projetotcc.logicalView;
 
 public class Busca {
     private int idString;
-    private String txtBusca;
+    private String strBusca;
 
-    public Busca(int idString, String txtBusca) {
+    public Busca(int idString, String strBusca) {
         this.idString = idString;
-        this.txtBusca = txtBusca;
+        this.strBusca = strBusca;
     }
 
     public int getIdString() {
@@ -22,10 +22,10 @@ public class Busca {
     }
 
     public String getTxtBusca() {
-        return txtBusca;
+        return strBusca;
     }
 
-    public void setTxtBusca(String txtBusca) {
-        this.txtBusca = txtBusca;
+    public void setTxtBusca(String strBusca) {
+        this.strBusca = strBusca;
     }
 }

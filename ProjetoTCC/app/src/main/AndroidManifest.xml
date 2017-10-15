@@ -43,10 +43,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
 
@@ -122,7 +118,6 @@
         <activity android:name=".activities.Avaliacoes" />
         <activity
             android:name=".activities.DetalhesProdutos"
-            android:label="@string/titulo_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.PaginalnicialConsumidor"
@@ -131,7 +126,7 @@
         <activity android:name=".activities.FinalizarCompra" />
         <activity android:name=".activities.DuvidasFrequentes" />
         <activity android:name=".activities.Notificacoes" />
-        <activity android:name=".activities.SearchViewCustom"
+        <activity android:name=".activities.SearchViewPaginaInicial"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.Subcategorias"></activity>
     </application>

@@ -261,5 +261,7 @@
     <string name="txt_sugestoes_12">Yogurte</string>
     <string name="txt_sugestoes_13">Creme dental</string>
     <string name="txt_sugestoes_14">Achocolatado</string>
-
+    <string name="txt_diga_algo">Tente dizer algo</string>
+    <string name="txt_sem_permissao">Sem permissão. Verifique as configurações de audio do seu aparelho.</string>
+    <string name="txt_sem_historico">Não há histórico de buscas</string>
 </resources>

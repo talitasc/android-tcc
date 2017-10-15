@@ -7,21 +7,25 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:tint="#acacac"
         android:id="@+id/icone_registro"
         app:srcCompat="@drawable/ic_access_time_black_24dp"
         android:contentDescription=""
         tools:ignore="ContentDescription" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="20dp"
         android:textSize="20sp"
+        android:layout_marginStart="10dp"
         android:text="@string/busca"
         android:id="@+id/txt_history"
+        android:layout_marginBottom="16dp"
         android:layout_toEndOf="@id/icone_registro"/>
 
 </RelativeLayout>
