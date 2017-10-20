@@ -120,6 +120,9 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(PaginaInicialEstabelecimentos.this, PaginalnicialConsumidor.class));
+                dialog.dismiss();
+                finish();
                 onBackPressed();
 
                /*ver depois

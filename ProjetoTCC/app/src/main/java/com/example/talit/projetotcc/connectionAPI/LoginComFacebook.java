@@ -122,7 +122,7 @@ public class LoginComFacebook extends AsyncTask<String, String, String> {
                         dados_result.getString("usuario_senha"), dados_result.getInt("status_id"), dados_result.getInt("tipo_usuario_id"));
 
                 if (descricao.equals("Login com facebook realizado com sucesso!")) {
-                    //dbconn.insertConsumidor(mac.getIdCons(), mac.getUsuario(), mac.getSenha(), mac.getStatus(), mac.getTpAcesso());
+                    dbconn.insertConsumidor(mac.getIdCons(), mac.getUsuario(), mac.getSenha(), mac.getStatus(), mac.getTpAcesso());
                     if (listener != null) {
                         listener.onLoaded("true");
                     }

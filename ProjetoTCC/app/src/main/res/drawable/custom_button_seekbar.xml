@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:width="25dip"
+        android:height="25dip" />
+    <stroke
+        android:width="1dip"
+        android:color="@color/coresProvisoriasum" />
+    <gradient
+        android:angle="270"
+        android:endColor="@color/coresProvisoriasum"
+        android:startColor="@color/coresProvisoriasum"
+        android:type="linear" />
+</shape>

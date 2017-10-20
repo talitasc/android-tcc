@@ -188,4 +188,8 @@ public class DbConn {
     public void deleteBusca(int id){
         db.delete("searchview","id_hist  ="+ id,null);
     }
+
+    public void deleteHistorico() {
+        db.execSQL("delete from searchview");
+    }
 }

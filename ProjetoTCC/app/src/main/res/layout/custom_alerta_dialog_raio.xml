@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent"
+        android:id="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/im_logo_supermercado"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/coresProvisoriasum"
+            app:srcCompat="@drawable/gps"
+            android:tint="#ffff"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/txt_inserir_raio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="05dp"
+            android:textColor="#ffff"
+            android:gravity="center"
+            android:background="@color/coresProvisoriasum"
+            android:text="@string/txt_raio"
+            android:textSize="18sp"
+            tools:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_raio_km"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="05dp"
+            android:gravity="center"
+            android:padding="05dp"
+            android:text="@string/txt_raio_km"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText"
+            tools:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_raio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="02dp"
+            android:gravity="center"
+            android:padding="05dp"
+            android:text="0"
+            android:textSize="10sp"
+            tools:ignore="HardcodedText"
+            tools:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:max="50"
+            android:thumb="@drawable/custom_button_seekbar"
+            tools:ignore="ObsoleteLayoutParam" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordas_grid_buttons"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/txt_ok"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+</RelativeLayout>

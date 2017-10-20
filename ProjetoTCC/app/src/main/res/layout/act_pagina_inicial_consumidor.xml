@@ -144,13 +144,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
 
+            <View
+                android:id="@+id/divider"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/coresProvisoriasum"
+                />
+
             <TextView
                 android:id="@+id/txt_localizacao"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="05dp"
                 android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/divider_dois"
                 android:layout_centerHorizontal="true"
-                android:background="@color/coresProvisoriasum"
                 android:gravity="center_vertical|left"
                 android:text="@string/rodape"
                 android:textColor="#ffff"
@@ -190,7 +199,7 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-   <android.support.design.widget.NavigationView
+    <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

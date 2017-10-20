@@ -35,6 +35,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,10 +47,12 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.adapters.ListaSupermercadosAdapter;
+import com.example.talit.projetotcc.connectionAPI.ListaSupermercadoPoRaio;
 import com.example.talit.projetotcc.connectionAPI.ListarSupermercadosPorDescricao;
 import com.example.talit.projetotcc.domain.MessageEB;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
@@ -59,7 +62,10 @@ import com.example.talit.projetotcc.utils.LocaleLanguage;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -77,6 +83,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public static String msgLocalizacao;
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
+    private LocationRequest locationRequest;
     private Button btnTrocar;
     public static final String LOCATION = "location";
     public static final String TYPE = "type";
@@ -103,7 +110,9 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     private ImageButton imFiltro;
     private TextView txtBusca;
     private Locale locale = null;
-
+    public static double latitude;
+    public static double longitude;
+    public static String raio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +133,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         imFiltro = (ImageButton) findViewById(R.id.imageButton2);
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
         rlLocal = (RelativeLayout) findViewById(R.id.id_local);
-        txtBusca = (TextView)findViewById(R.id.txt_busca);
+        txtBusca = (TextView) findViewById(R.id.txt_busca);
 
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setHintTextColor(getColor(R.color.botoesPrimarios));
@@ -145,6 +154,10 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 //conn.execute(idEstado+"",idCidade+"");
                 conn.execute("109", "26");
             }
+        }else if (latitude != 0 && longitude !=0 && !raio.isEmpty()){
+
+            ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
+            connRaio.execute(String.format("%s", latitude), String.format("%s",longitude), raio);
         }
         at = new ActionBarDrawerToggle(this, dl, R.string.menu_item_um, R.string.menu_item_dois);
         dl.addDrawerListener(at);
@@ -155,7 +168,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         address = null;
         callConnection();
 
-        if (houveBusca != true) {
+        if (!houveBusca) {
             buscarLocais();
         }
         if (msgLocalizacao == null) {
@@ -205,12 +218,13 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             @Override
             public void onClick(View view) {
                 txtBusca.setVisibility(View.INVISIBLE);
-                startActivity(new Intent(PaginalnicialConsumidor.this,SearchViewPaginaInicial.class));
+                startActivity(new Intent(PaginalnicialConsumidor.this, SearchViewPaginaInicial.class));
                 finish();
             }
         });
 
     }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -275,6 +289,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
 
             if (l != null) {
                 lastLocation = l;
+                latitude = l.getLatitude();
+                longitude = l.getLongitude();
                 Log.i("Log", "latitude: " + l.getLatitude());
                 Log.i("Log", "longitude: " + l.getLongitude());
                 Log.i("Log", "address: " + address);
@@ -307,11 +323,11 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 String subLocalizacao;
                 Log.i("LOG", m.getResultMessage());
 
-                subLocalizacao = m.getResultMessage().substring(m.getResultMessage().indexOf("-") + 1);
+                //subLocalizacao = m.getResultMessage().substring(m.getResultMessage().indexOf("-") + 1);
                 //msgLocalizacao = subLocalizacao.substring(subLocalizacao.indexOf("-")+ 1);
                 msgLocalizacao = m.getResultMessage();
                 Log.i("TESTE SUBSTRING", msgLocalizacao);
-                txtLocalizacao.setText(" " + msgLocalizacao);
+                txtLocalizacao.setText(" " + m.getResultMessage());
             }
         });
     }
@@ -356,6 +372,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             if (dbconn.selectConsumidor().getTpAcesso() == 2) {
                 LoginManager.getInstance().logOut();
                 dbconn.deleteConsumidor();
+                dbconn.deleteHistorico();
                 startActivity(new Intent(getApplicationContext(), WelcomeScreen.class));
                 finish();
             } else {
@@ -420,6 +437,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         }
     }
 
+
     public void callAccessLocation() {
         // Log.i(TAG, "callAccessLocation()");
 
@@ -474,6 +492,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             @Override
             public void onClick(View v) {
                 getLocationListener(v);
+                alertaRaio();
                 dialogo.dismiss();
             }
         });
@@ -498,6 +517,95 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         });
     }
 
+    public void alertaRaio() {
+
+        LayoutInflater inflater = getLayoutInflater();
+        final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_raio, null);
+        final Button btnOk = (Button) alertLayout.findViewById(R.id.btn_ok);
+        SeekBar seekBar = (SeekBar) alertLayout.findViewById(R.id.seekBar);
+        final TextView txtRaio = (TextView) alertLayout.findViewById(R.id.txt_raio);
+        Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(PaginalnicialConsumidor.this);
+        alerta.setView(alertLayout);
+        alerta.setCancelable(false);
+        final AlertDialog dialogo = alerta.create();
+        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogo.show();
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                txtRaio.setText(String.format(String.valueOf(progress)));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogo.dismiss();
+                houveBusca = true;
+                raio = txtRaio.getText().toString();
+                ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
+                connRaio.execute(String.format("%s", latitude), String.format("%s",longitude),raio);
+
+
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogo.dismiss();
+            }
+
+        });
+    }
+
+    /*public LatLng teste() {
+
+        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        List<String> providers = lm != null ? lm.getProviders(true) : null;
+
+        Location location = null;
+
+        for (int i = (providers != null ? providers.size() : 0) - 1; i >= 0; i--) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return null;
+            }
+            location = lm != null ?
+                    lm.getLastKnownLocation(providers != null ?
+                            providers.get(i)
+                            : null)
+                    : null;
+            if (location != null) break;
+        }
+
+        if (location != null) {
+            double longitude = location.getLongitude();
+            double latitude = location.getLatitude();
+            Log.i("longitudedois", String.valueOf(latitude));
+            Log.i("longitudedois", String.valueOf(longitude));
+            return new LatLng(latitude, longitude);
+
+        } else {
+            return null;
+        }
+    }*/
     public void escolherIdiomas() {
         LayoutInflater inflater = getLayoutInflater();
         final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_idiomas, null);
@@ -653,12 +761,15 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public void onResume() {
         super.onResume();
         txtLocalizacao.setText(" " + msgLocalizacao);
-
         /*List<Estabelecimento> listasSupermerc= new ArrayList<>();
         ListaSupermercadosAdapter listaSuper = new ListaSupermercadosAdapter(PaginalnicialConsumidor.this,PaginalnicialConsumidor.this,listasSupermerc);
         this.listas.setAdapter(listaSuper);
         listaSuper.notifyDataSetChanged();*/
 
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
     }
     @Override
     public void onBackPressed() {
@@ -670,4 +781,6 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             finish();
         }
     }
+
+
 }

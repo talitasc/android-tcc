@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by talit on 26/05/2017.
+ * Created by talit on 15/10/2017.
  */
 
-public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, String> {
+public class ListaSupermercadoPoRaio extends AsyncTask<String, String, String> {
 
     private Listener mListener;
 
@@ -35,9 +35,7 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
 
         public void onLoaded(List<Estabelecimento> estab);
     }
-
-    public ListarSupermercadosPorDescricao(ListarSupermercadosPorDescricao.Listener mListener) {
-
+    public ListaSupermercadoPoRaio(Listener mListener){
         this.mListener = mListener;
         PaginalnicialConsumidor.pb.setVisibility(View.VISIBLE);
     }
@@ -45,7 +43,7 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/estabelecimento/getEstabelecimentosVendedoresCidadeEstado/" + params[0] + "/" + params[1] + "/";
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/estabelecimento/getEstabelecimentosVendedoresLocalidade/" + params[0] + "/" + params[1] + "/" + params[2] + "/";
 
         String response = "";
 
@@ -70,7 +68,7 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
             while ((temp = bufferedReader.readLine()) != null) {
                 response += temp;
             }
-            Log.i("response listar super", response);
+            Log.i("response", response);
             return response;
 
         } catch (IOException e) {
@@ -108,9 +106,9 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
 
                     JSONObject end_result = new JSONObject(endereco);
                     Endereco end = new Endereco(end_result.getString("endereco_rua"),
-                                end_result.getString("endereco_numero"), end_result.getString("endereco_bairro"),
-                                end_result.getString("endereco_complemento"), end_result.getString("endereco_cep"),
-                                end_result.getString("cidade_descricao"), end_result.getString("estado_sigla"));
+                            end_result.getString("endereco_numero"), end_result.getString("endereco_bairro"),
+                            end_result.getString("endereco_complemento"), end_result.getString("endereco_cep"),
+                            end_result.getString("cidade_descricao"), end_result.getString("estado_sigla"));
 
 
                     JSONObject tel_result = new JSONObject(telefone);
@@ -156,5 +154,4 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
             }
         }
     }
-
 }

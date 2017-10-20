@@ -264,4 +264,7 @@
     <string name="txt_diga_algo">Tente dizer algo</string>
     <string name="txt_sem_permissao">Sem permissão. Verifique as configurações de audio do seu aparelho.</string>
     <string name="txt_sem_historico">Não há histórico de buscas</string>
+    <string name="txt_raio">Insira o raio de alcance:</string>
+    <string name="txt_ok">Ok</string>
+    <string name="txt_raio_km">Raio em Km:</string>
 </resources>

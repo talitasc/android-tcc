@@ -62,9 +62,10 @@ public class LocationIntentService  extends IntentService {
         if(list != null && list.size() > 0){
             Address a = list.get(0);
             if(type == 2 || address == null){
-                for(int i = 0, tam = a.getMaxAddressLineIndex(); i < tam; i++){
+                int tam = a.getMaxAddressLineIndex();
+                for(int i = 0; i <= tam; i++){
                     resultAddress += a.getAddressLine(i);
-                    resultAddress += i < tam - 1 ? " ● " : "";
+                    resultAddress += i < tam - 1 ? ", " : "";
                 }
             }
             else{
