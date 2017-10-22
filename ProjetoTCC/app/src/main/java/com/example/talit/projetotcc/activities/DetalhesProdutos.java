@@ -17,6 +17,7 @@ import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,6 +33,9 @@ import com.example.talit.projetotcc.utils.Validacoes;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DetalhesProdutos extends AppCompatActivity {
 
@@ -40,14 +44,20 @@ public class DetalhesProdutos extends AppCompatActivity {
     private TextView preco;
     private TextView prazoValidade;
     private TextView informacoes;
-    private TextView codRef;
+    private TextView categoria;
+    private TextView quantidade;
     private SimpleDraweeView imProduto;
     private Button btnAdicionar;
+    private ImageButton btnDiminui;
+    private ImageButton btnAumenta;
     public static String strnomeProd;
     public static String strMarca;
     public static String strPreco;
     public static String strIdProd;
     public static String strImagem;
+    public static String strCategoria;
+    public static String strQtd;
+    public static String strData;
     private DbConn dbconn;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -68,35 +78,78 @@ public class DetalhesProdutos extends AppCompatActivity {
         preco = (TextView) findViewById(R.id.txt_preco);
         prazoValidade = (TextView) findViewById(R.id.txt_prazo_validade);
         informacoes = (TextView) findViewById(R.id.txt_informacoes);
-        codRef = (TextView) findViewById(R.id.txt_cod);
+        categoria = (TextView) findViewById(R.id.txt_categorias);
+        quantidade = (TextView) findViewById(R.id.txt_qtd);
         btnAdicionar = (Button) findViewById(R.id.btn_adiconar_carrinho);
+        btnAumenta = (ImageButton) findViewById(R.id.btn_aumenta);
+        btnDiminui = (ImageButton) findViewById(R.id.btn_diminui);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         cord = (CoordinatorLayout) findViewById(R.id.act_detalhes_produtos);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         pb = (ProgressBar) findViewById(R.id.pb_detalhes_prod);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Detalhes do produto");
+        pb.setVisibility(View.INVISIBLE);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         //getSupportActionBar().setHomeButtonEnabled(true);
 
         dbconn = new DbConn(this);
         if (getIntent().hasExtra("nomeProduto") && getIntent().hasExtra("img") &&
                 getIntent().hasExtra("marcaProduto") && getIntent().hasExtra("precoProduto")
-                && getIntent().hasExtra("prazoProduto") && getIntent().hasExtra("infosProduto") && getIntent().hasExtra("idLote")) {
+                && getIntent().hasExtra("prazoProduto") && getIntent().hasExtra("infosProduto") && getIntent().hasExtra("idLote")
+                && getIntent().hasExtra("categoria") && getIntent().hasExtra("quantidade")) {
 
             strnomeProd = getIntent().getStringExtra("nomeProduto");
             strMarca = getIntent().getStringExtra("marcaProduto");
             strPreco = getIntent().getStringExtra("precoProduto");
             strIdProd = getIntent().getStringExtra("idLote");
             strImagem = getIntent().getStringExtra("img");
+            strQtd = getIntent().getStringExtra("quantidade");
+            strCategoria =  getIntent().getStringExtra("categoria");
+
+            strData = getIntent().getStringExtra("prazoProduto");
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date data = formato.parse(strData);
+                formato.applyPattern("dd/MM/yyyy");
+                strData = formato.format(data);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             nomeProd.setText(strnomeProd);
             marca.setText(strMarca);
             preco.setText(String.format("R$ %s", strPreco));
-            prazoValidade.setText(getIntent().getStringExtra("prazoProduto"));
+            prazoValidade.setText(strData.replace("-","/"));
             informacoes.setText(getIntent().getStringExtra("infosProduto"));
-            codRef.setText(strIdProd);
+            categoria.setText(strCategoria);
             imProduto.setImageBitmap(convert(strImagem));
+
+           final int qtdLote = Integer.parseInt(strQtd);
+
+            btnDiminui.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int qtdCampo = Integer.parseInt(quantidade.getText().toString());
+                    if(qtdCampo >= 2){
+                        qtdCampo = qtdCampo - 1;
+                        quantidade.setText(String.format("%d", qtdCampo));
+                    }
+                }
+            });
+            btnAumenta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int qtdCampo = Integer.parseInt(quantidade.getText().toString());
+                    if(qtdCampo <= qtdLote){
+                        qtdCampo = qtdCampo+1;
+                        quantidade.setText(String.format("%d", qtdCampo));
+                    }
+                }
+            });
+
         }
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override

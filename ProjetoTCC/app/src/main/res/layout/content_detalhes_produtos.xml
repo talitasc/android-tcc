@@ -30,83 +30,150 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="10dp"
-            android:textSize="25sp"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,UnknownIdInLayout"
-            tools:text="@string/txt_nome_produto"
+            android:text="@string/txt_nome_produto"
             android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/txt_marca_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNomeProduto"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+            android:text="@string/txt_marca" />
 
         <TextView
             android:id="@+id/txt_marca_prod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/txt_marca_desc"
             android:layout_below="@+id/txtNomeProduto"
-            android:padding="10dp"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="10dp"
             android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textSize="13sp"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-            tools:text="@string/txt_marca" />
+            android:text="@string/txt_marca" />
+
+        <TextView
+            android:id="@+id/txt_categorias_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_marca_prod"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+            android:text="@string/txt_nomeCateoria" />
+
+        <TextView
+            android:id="@+id/txt_categorias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_marca_prod"
+            android:layout_toEndOf="@+id/txt_categorias_desc"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+            android:text="@string/txt_nomeCateoria" />
+
+        <TextView
+            android:id="@+id/txt_prazo_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_categorias"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+            android:text="@string/txt_validade" />
 
         <TextView
             android:id="@+id/txt_prazo_validade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_marca_prod"
-            android:layout_marginLeft="05dp"
-            android:padding="05dp"
+            android:layout_below="@+id/txt_categorias"
+            android:layout_toEndOf="@+id/txt_prazo_desc"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="10dp"
             android:textAllCaps="false"
             android:textSize="13sp"
-            android:textStyle="italic"
-            android:textColor="#055A8C"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-            tools:text="@string/txt_validade" />
-
-        <TextView
-            android:id="@+id/txt_cod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_prazo_validade"
-            android:layout_marginLeft="05dp"
-            android:padding="05dp"
-            android:textAllCaps="false"
-            android:textSize="13sp"
-            android:textStyle="italic"
-            android:textColor="#055A8C"
-            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-            tools:text="cod" />
-
-        <View
-            android:id="@+id/divider_dois"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/txt_cod"
-            android:layout_margin="4dp"
-            android:background="#ACACAC" />
+            android:text="@string/txt_validade" />
 
         <TextView
             android:id="@+id/txt_preco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider_dois"
-            android:layout_marginLeft="05dp"
-            android:layout_alignParentEnd="true"
-            android:padding="05dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/txt_prazo_validade"
             android:textAllCaps="false"
             android:textSize="20sp"
             android:textColor="#4CAF54"
             android:textStyle="italic"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-            tools:text="@string/txt_preco" />
+            android:text="@string/txt_preco" />
+
+
+        <ImageButton
+            android:id="@+id/btn_diminui"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_marginStart="05dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/txt_preco"
+            android:background="@drawable/bt_botoes_aux"
+            android:tint="@color/corQuatro"
+            app:srcCompat="@drawable/ic_remove_black_24dp"
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/txt_qtd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/btn_diminui"
+            android:layout_below="@+id/txt_preco"
+            android:layout_marginTop="23dp"
+            android:layout_marginStart="15dp"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="#055A8C"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+            android:text="1" />
+
+        <ImageButton
+            android:id="@+id/btn_aumenta"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bt_botoes_aux"
+            android:layout_toEndOf="@+id/txt_qtd"
+            android:tint="@color/corQuatro"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:layout_below="@+id/txt_preco"
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
 
         <View
             android:id="@+id/divider_tres"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/txt_preco"
-            android:layout_margin="4dp"
+            android:layout_below="@id/btn_aumenta"
+            android:layout_margin="10dp"
             android:background="#ACACAC" />
+
 
         <TextView
             android:id="@+id/txt_informacoes"
@@ -119,7 +186,7 @@
             android:textSize="18sp"
             android:textStyle="italic"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-            tools:text="@string/txt_info" />
+            android:text="@string/txt_info" />
 
 
     </RelativeLayout>

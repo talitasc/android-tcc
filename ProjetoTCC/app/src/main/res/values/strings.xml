@@ -146,13 +146,13 @@
     <string name="txt_nome_avaliador">Dean winchester</string>
     <string name="txt_data_avaliacao">15 Abril de 2017</string>
     <string name="txt_comentario_avaliador">Produtos ótimos! Sistema de delivery excelente :)</string>
-    <string name="txt_nomeCateoria">Categorias</string>
+    <string name="txt_nomeCateoria">Categorias:</string>
     <string name="txt_nome_produto">Produto</string>
-    <string name="txt_marca">Marca</string>
+    <string name="txt_marca">Marca:</string>
     <string name="txt_preco">Preco</string>
     <string name="txt_add_car">Adicionar ao carrinho</string>
     <string name="txt_info">Informações</string>
-    <string name="txt_validade">Prazo de validade</string>
+    <string name="txt_validade">Validade:</string>
     <string name="norma_cadastro">Ao aceitar os termos,você concorda que estará utilizando um aplicativo
     que comercializa produtos que estão próximos de sua data de vencimento, porém não
     descumprindo o Artigo 18 da Lei nº 8.078 de 11 de Setembro de 1990 do Código de defesa do consumidor.</string>
@@ -267,4 +267,6 @@
     <string name="txt_raio">Insira o raio de alcance:</string>
     <string name="txt_ok">Ok</string>
     <string name="txt_raio_km">Raio em Km:</string>
+    <string name="txt_subcategorias">Subcategorias</string>
+    <string name="txt_editar">Quantidade</string>
 </resources>

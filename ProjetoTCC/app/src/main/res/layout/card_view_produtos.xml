@@ -42,20 +42,6 @@
             android:layout_marginEnd="10dp"
             tools:ignore="ContentDescription" />
 
-        <ImageButton
-            android:id="@+id/btn_adicionar"
-            android:layout_width="30sp"
-            android:layout_height="30sp"
-            android:layout_alignEnd="@id/btn_gostei"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/bt_botoes_aux"
-            android:tint="@color/corQuatro"
-            android:layout_alignTop="@+id/txt_preco"
-            android:layout_marginTop="08dp"
-            app:srcCompat="@drawable/ic_add_black_24dp"
-            tools:ignore="ContentDescription,VectorDrawableCompat" />
-
-
         <TextView
             android:id="@+id/txtNomeProduto"
             android:layout_width="wrap_content"
@@ -96,18 +82,30 @@
             tools:text="@string/txt_preco" />
 
         <TextView
-            android:id="@+id/txt_codRef"
-            android:visibility="visible"
+            android:id="@+id/txt_prazo_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="05dp"
-            android:textAllCaps="false"
+            android:layout_marginStart="10dp"
             android:textSize="10sp"
             android:textStyle="bold"
+            android:layout_below="@+id/txt_preco"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-            tools:text="@string/txt_preco" />
+            android:text="@string/txt_validade" />
+
+        <ImageButton
+            android:id="@+id/btn_adicionar"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_alignEnd="@id/btn_gostei"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/bt_botoes_aux"
+            android:tint="@color/corQuatro"
+            android:layout_alignTop="@+id/txt_preco"
+            android:layout_marginTop="08dp"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
 
     </RelativeLayout>
 
