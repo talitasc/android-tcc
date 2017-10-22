@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 
 import com.example.talit.projetotcc.logicalView.Busca;
 import com.example.talit.projetotcc.logicalView.Produtos;
+import com.example.talit.projetotcc.logicalView.Sacola;
 import com.example.talit.projetotcc.logicalView.Usuario;
 
 import java.util.ArrayList;
@@ -35,15 +36,16 @@ public class DbConn {
         db.insert("consumidor", null, valor);
     }
 
-    public void insertSacola(String nomeProd,String marca, double preco, Bitmap b, String codRef) {
+    public void insertSacola(int id_prod,int lote_id,String nomeProd,String marca, double preco, int qtd, String imagem) {
         ContentValues valor = new ContentValues();
+        valor.put("id_pod", id_prod);
+        valor.put("lote_id", lote_id);
         valor.put("nomeProd", nomeProd);
         valor.put("marca", marca);
         valor.put("preco", preco);
-        valor.put("imagem", String.valueOf(b));
-        valor.put("codRef", codRef);
+        valor.put("qtd",qtd);
+        valor.put("imagem",imagem);
         db.insert("sacola", null, valor);
-
     }
     public void insertSearchView(String busca){
         ContentValues valor = new ContentValues();
@@ -63,29 +65,29 @@ public class DbConn {
         }
         return null;
     }
-   /*mudar o oonstrtor depois
-    public ArrayList<Produtos> selectProutos(){
-        ArrayList<Produtos> listas = new ArrayList<Produtos>();
 
-        String[] colunas_db = new String[]{"id_lista","nomeProd","marca","preco","imagem","codRef"};
+    public ArrayList<Sacola> selectProutos(){
+        ArrayList<Sacola> listas = new ArrayList<Sacola>();
+
+        String[] colunas_db = new String[]{"id_pod","lote_id","nomeProd","marca","preco","qtd","imagem"};
         Cursor cursor = db.query(true, "sacola", null, null, null, null, null, null, null);
 
         if(cursor.moveToFirst()){
 
             do{
-                listas.add(new Produtos(cursor.getInt(0),
-                        cursor.getString(1),
+                listas.add(new Sacola(cursor.getInt(0),
+                        cursor.getInt(1),
                         cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getBlob(4),
-                        cursor.getString(5)));
+                        cursor.getString(3),
+                        cursor.getDouble(4),
+                        cursor.getInt(5),
+                        cursor.getString(6)));
 
             }while(cursor.moveToNext());
-
         }
 
         return listas;
-    }*/
+    }
 
     public ArrayList<Busca> selectHistorico(){
         ArrayList<Busca> listas = new ArrayList<Busca>();
@@ -116,30 +118,31 @@ public class DbConn {
         valor.put("senha", senha);
         db.update("consumidor",valor,"id_cons ="+id_cons,null);
     }
-    /*mudr o construtor depois
-    public Produtos selectIdProduto(String nome){
 
-        String[] colunas_db = new String[]{"id_lista","nomeProd","marca","preco","imagem","codRef"};
-        Cursor cursor  = db.query(true,"sacola", colunas_db, "nomeProd = '"+nome+"'", null,null, null, null,null);
+    public Sacola selectIdProduto(int id){
+
+        String[] colunas_db = new String[]{"id_pod","lote_id","nomeProd","marca","preco","qtd","imagem"};
+        Cursor cursor  = db.query(true,"sacola", colunas_db, "id_pod = '"+id+"'", null,null, null, null,null);
 
         if(cursor.moveToFirst()){
 
             do{
-                return new Produtos(cursor.getInt(0),
-                        cursor.getString(1),
+                return new Sacola(cursor.getInt(0),
+                        cursor.getInt(1),
                         cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getBlob(4),
-                        cursor.getString(5));
+                        cursor.getString(3),
+                        cursor.getDouble(4),
+                        cursor.getInt(5),
+                        cursor.getString(6));
             }while(cursor.moveToNext());
 
         }
         return null;
-    }*/
+    }
 
    public double totalCarrinho(){
 
-        Cursor cursor = db.rawQuery("SELECT SUM(preco) FROM sacola",null);
+        Cursor cursor = db.rawQuery("SELECT SUM(preco * qtd ) FROM sacola",null);
 
         double amount = 0.00;
         if(cursor.moveToFirst())
@@ -181,8 +184,8 @@ public class DbConn {
         db.execSQL("delete from sacola");
     }
 
-    public void deleteCarrinhoId(String codigo){
-        db.delete("sacola","codRef  ="+ codigo,null);
+    public void deleteCarrinhoId(int codigo){
+        db.delete("sacola","id_pod  ="+ codigo,null);
     }
 
     public void deleteBusca(int id){

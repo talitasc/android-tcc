@@ -84,7 +84,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
                 intent.putExtra("precoProduto",produtos.getLote_preco() + "");
                 intent.putExtra("prazoProduto",produtos.getLote_data_vencimento());
                 intent.putExtra("infosProduto",produtos.getLote_obs());
-                intent.putExtra("codRef",produtos.getIdProduto());
+                intent.putExtra("idLote",produtos.getIdLote()+"");
                 act.startActivity(intent);
                 act.finish();
             }

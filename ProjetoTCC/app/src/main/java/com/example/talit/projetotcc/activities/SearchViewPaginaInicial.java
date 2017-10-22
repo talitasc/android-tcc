@@ -242,6 +242,7 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
                     ArrayList<String> voiceText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String voice = voiceText.get(0);
                     searchView.setQuery(voice, true);
+
                     //Toast.makeText(SearchViewPaginaInicial.this, voice, Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -252,7 +253,9 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
 
 
         dbconn.insertSearchView(busca);
-        startActivity(new Intent(SearchViewPaginaInicial.this, PaginalnicialConsumidor.class));
+        Intent intent = new Intent(SearchViewPaginaInicial.this, PaginalnicialConsumidor.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
         finish();
     }
 

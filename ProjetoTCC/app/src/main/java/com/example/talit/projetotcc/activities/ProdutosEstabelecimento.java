@@ -17,14 +17,14 @@ import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.adapters.ProdutosAdapter;
-import com.example.talit.projetotcc.connectionAPI.ProdutosEstab;
+import com.example.talit.projetotcc.connectionAPI.LotePorCategoria;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutosEstabelecimento extends AppCompatActivity implements ProdutosEstab.Listener {
+public class ProdutosEstabelecimento extends AppCompatActivity implements LotePorCategoria.Listener {
 
     public static RecyclerView rec;
     private FloatingActionButton btnCarrinho;
@@ -79,7 +79,7 @@ public class ProdutosEstabelecimento extends AppCompatActivity implements Produt
             txtCount.setVisibility(View.INVISIBLE);
         }
 
-        ProdutosEstab conn = new ProdutosEstab(null);
+        LotePorCategoria conn = new LotePorCategoria(null);
         conn.execute("5");
         btnCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override

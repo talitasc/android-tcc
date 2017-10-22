@@ -62,8 +62,11 @@ public class ListarCidades extends AppCompatActivity implements Cidades.Listener
 
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(ListarCidades.this, ListarEstados.class));
+        Intent intent = new Intent(ListarCidades.this, ListarEstados.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
         finish();
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

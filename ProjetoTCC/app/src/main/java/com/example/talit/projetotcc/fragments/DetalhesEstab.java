@@ -34,6 +34,7 @@ public class DetalhesEstab extends Fragment {
     public static String strDdd;
     public static String strTelefone;
     public static String strEmail;
+    public static String strIdEstab;
 
     public DetalhesEstab() {
     }

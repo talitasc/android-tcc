@@ -24,6 +24,7 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.adapters.CarrinhoAdapter;
 
 import com.example.talit.projetotcc.logicalView.Produtos;
+import com.example.talit.projetotcc.logicalView.Sacola;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import java.util.ArrayList;
@@ -34,7 +35,6 @@ public class Carrinho extends AppCompatActivity {
     public static Context context;
     public static Activity act;
     public static ProgressBar pbLocais;
-    private ArrayList<Produtos> produtos = new ArrayList<Produtos>();
     private DbConn dbconn;
     public static RelativeLayout no_list;
     public static CardView cardFinal;
@@ -63,30 +63,27 @@ public class Carrinho extends AppCompatActivity {
         dbconn = new DbConn(this);
 
        Intent it = getIntent();
-        String nome_del = "";
-       /*ver depois
+        String id_del = "";
        if (it.getStringExtra("NOME_DEL") != null) {
-            nome_del = it.getStringExtra("NOME_DEL");
-            if (nome_del != "") {
-                Toast.makeText(getBaseContext(),nome_del, Toast.LENGTH_SHORT).show();
+           id_del = it.getStringExtra("NOME_DEL");
+            if (id_del != "") {
+                Toast.makeText(getBaseContext(),id_del, Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getBaseContext(),"itens" + dbconn.selectIdProduto(nome_del).getCodReferencia(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"itens" + dbconn.selectIdProduto(Integer.parseInt(id_del)), Toast.LENGTH_SHORT).show();
                 //dbconn.selectIdProduto(nome_del).getIdProduto();
-                dbconn.deleteCarrinhoId("14");
+                dbconn.deleteCarrinhoId(Integer.parseInt(id_del));
             }
-        }*/
+        }
 
-       /* ver depois
         if (dbconn.selectProutos() != null) {
             CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
             listas.setAdapter(carAdapter);
             listas.deferNotifyDataSetChanged();
             txtValorTotal.setText("R$ " + dbconn.totalCarrinho());
             txtQtd.setText(""+ dbconn.totalItensCarrinho());
-
             //int count = dbconn.totalItensCarrinho();
             //Toast.makeText(getBaseContext(),"itens" + count, Toast.LENGTH_SHORT).show();
-        }*/
+        }
         if(listas.getCount() == 0){
             no_list.setVisibility(View.VISIBLE);
             cardFinal.setVisibility(View.INVISIBLE);
@@ -121,8 +118,8 @@ public class Carrinho extends AppCompatActivity {
 
         if(id == R.id.menu_excluir){
             dbconn.deleteSacola();
-            //CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
-            //listas.setAdapter(carAdapter);
+            CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
+            listas.setAdapter(carAdapter);
             listas.deferNotifyDataSetChanged();
             no_list.setVisibility(View.VISIBLE);
             cardFinal.setVisibility(View.INVISIBLE);

@@ -91,6 +91,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public static final String STATUS_LOCALIZACAO = "texto";
     public static final String STATUS_ID_CIDADE = "cidade";
     public static final String STATUS_ID_ESTADO = "estado";
+    public static final String STATUS_LONGITUDE = "longitude";
+    public static final String STATUS_LATITUDE = "latitude";
     public static final int REQUEST_PERMISSIONS_CODE = 128;
     private NavigationView navigationView;
     public static ProgressBar pb;
@@ -154,10 +156,14 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 //conn.execute(idEstado+"",idCidade+"");
                 conn.execute("109", "26");
             }
-        }else if (latitude != 0 && longitude !=0 && !raio.isEmpty()){
-
-            ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
-            connRaio.execute(String.format("%s", latitude), String.format("%s",longitude), raio);
+        }
+        if (latitude != 0){
+            if(longitude != 0) {
+                if(raio != null) {
+                    ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
+                    connRaio.execute(String.format("%s", latitude), String.format("%s", longitude), raio);
+                }
+            }
         }
         at = new ActionBarDrawerToggle(this, dl, R.string.menu_item_um, R.string.menu_item_dois);
         dl.addDrawerListener(at);
@@ -231,6 +237,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         outState.putString(STATUS_LOCALIZACAO, msgLocalizacao);
         outState.putInt(STATUS_ID_CIDADE, idCidade);
         outState.putInt(STATUS_ID_ESTADO, idEstado);
+        outState.putDouble(STATUS_LATITUDE,latitude);
+        outState.putDouble(STATUS_LONGITUDE, longitude);
     }
 
     @Override
@@ -239,6 +247,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         msgLocalizacao = inState.getString(STATUS_LOCALIZACAO);
         idCidade = inState.getInt(STATUS_ID_CIDADE);
         idEstado = inState.getInt(STATUS_ID_ESTADO);
+        latitude= inState.getDouble(STATUS_LATITUDE);
+        longitude= inState.getDouble(STATUS_LONGITUDE);
     }
 
     @Override
@@ -491,6 +501,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         meuLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                idEstado = 0;
+                idCidade = 0;
                 getLocationListener(v);
                 alertaRaio();
                 dialogo.dismiss();
@@ -499,6 +511,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         buscarEstados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                latitude = 0;
+                longitude = 0;
                 startActivity(new Intent(PaginalnicialConsumidor.this, ListarEstados.class));
                 finish();
                 dialogo.dismiss();
@@ -552,6 +566,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             public void onClick(View v) {
                 dialogo.dismiss();
                 houveBusca = true;
+                listas.removeAllViews();
                 raio = txtRaio.getText().toString();
                 ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
                 connRaio.execute(String.format("%s", latitude), String.format("%s",longitude),raio);

@@ -26,7 +26,7 @@ import java.util.List;
  * Created by talit on 08/10/2017.
  */
 
-public class ProdutosEstab extends AsyncTask<String, String, String> {
+public class LotePorCategoria extends AsyncTask<String, String, String> {
 
     private Listener mListener;
 
@@ -34,7 +34,7 @@ public class ProdutosEstab extends AsyncTask<String, String, String> {
 
         public void onLoaded(List<Produtos> estab);
     }
-    public ProdutosEstab(ProdutosEstab.Listener mListener){
+    public LotePorCategoria(LotePorCategoria.Listener mListener){
 
         this.mListener = mListener;
         ProdutosEstabelecimento.pb.setVisibility(View.VISIBLE);
@@ -43,7 +43,7 @@ public class ProdutosEstab extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/produto/getProdutosByCategoria/" + params[0] + "/";
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/produto/getLoteByCategoria/" + params[0] + "/";
 
         String response = "";
 
@@ -114,6 +114,7 @@ public class ProdutosEstab extends AsyncTask<String, String, String> {
                             dados_result.getInt("quantidade"),
                             dados_result.getString("unidade_medida_sigla"),
                             dados_result.getString("sub_categoria_descricao"),
+                            lote_result.getInt("lote_id"),
                             lote_result.getString("lote_data_fabricacao"),
                             lote_result.getString("lote_data_vencimento"),
                             lote_result.getString("lote_preco"),

@@ -4,8 +4,12 @@
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
+import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
 
  /**
@@ -62,5 +66,10 @@ public class Validacoes {
          } else {
              return false;
          }
+     }
+     public static void showSnackBar(Context context, CoordinatorLayout cord, String text) {
+         Snackbar sb = Snackbar.make(cord, text, Snackbar.LENGTH_SHORT);
+         sb.getView().setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
+         sb.show();
      }
 }

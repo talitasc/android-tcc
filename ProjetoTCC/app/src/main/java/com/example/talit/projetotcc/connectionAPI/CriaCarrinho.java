@@ -1,7 +1,16 @@
 package com.example.talit.projetotcc.connectionAPI;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+
+import com.example.talit.projetotcc.activities.CadastroConsumidor;
+import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.activities.LoginPessoaJuridica;
+import com.example.talit.projetotcc.sqlight.DbConn;
+import com.example.talit.projetotcc.utils.Validacoes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +38,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
     private String lote_id;
     private String quantidade;
     private Listener listener;
+    private DbConn dbconn;
 
     public interface Listener {
 
@@ -102,4 +112,45 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
         return null;
     }
 
+    @Override
+    protected void onPostExecute(String result) {
+
+        dbconn = new DbConn(DetalhesProdutos.c);
+        try {
+            JSONObject api_result = new JSONObject(result);
+            String response = api_result.getString("response");
+            JSONObject status = new JSONObject(response);
+            Log.i("Começo do Response", response);
+            String status_user = status.getString("status");
+            String descricao = status.getString("descricao");
+            Log.i("Status", status_user);
+            if (status_user.equalsIgnoreCase("true")) {
+                if (descricao.equals("Carrinho inicializado com sucesso!")) {
+                    Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,"Produto adicionado ao carrinho");
+                    dbconn.insertSacola(Integer.parseInt(DetalhesProdutos.strIdProd), Integer.parseInt(DetalhesProdutos.strIdProd),
+                            DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")), 1, DetalhesProdutos.strImagem);
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.printStackTrace();
+            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
+            builder.setTitle("Erro");
+            builder.setMessage("Ocorreu um erro...");
+            builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.dismiss();
+                    listener.onLoaded("true");
+                }
+            });
+            builder.setCancelable(false);
+            builder.show();
+
+        }
+
+    }
 }

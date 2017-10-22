@@ -76,4 +76,10 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/pb_detalhes_prod"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 </android.support.design.widget.CoordinatorLayout>

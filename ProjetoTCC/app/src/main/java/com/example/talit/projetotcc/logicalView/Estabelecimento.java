@@ -29,6 +29,9 @@ public class Estabelecimento implements Cloneable {
     private String cidade;
     private String estado_sigla;
 
+    public Estabelecimento(){
+        this.id= 0;
+    }
     public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String email) {
 
         this.id = id;

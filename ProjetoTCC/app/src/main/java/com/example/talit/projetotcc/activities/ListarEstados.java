@@ -58,7 +58,9 @@ public class ListarEstados extends AppCompatActivity implements Estados.Listener
 
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(ListarEstados.this, PaginalnicialConsumidor.class));
+        Intent intent = new Intent(ListarEstados.this, PaginalnicialConsumidor.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
         finish();
     }
     @Override

@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +22,10 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.Carrinho;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
 import com.example.talit.projetotcc.logicalView.Produtos;
+import com.example.talit.projetotcc.logicalView.Sacola;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
@@ -30,11 +35,11 @@ import java.util.List;
 public class CarrinhoAdapter extends BaseAdapter {
     Activity act;
     Context c;
-    List<Produtos> prods;
+    List<Sacola> prods;
     LayoutInflater inflater;
     private DbConn dbconn;
 
-    public CarrinhoAdapter(Activity act, Context c, List<Produtos> prods){
+    public CarrinhoAdapter(Activity act, Context c, List<Sacola> prods){
         this.act = act;
         this.c = c;
         this.prods = prods;
@@ -75,13 +80,13 @@ public class CarrinhoAdapter extends BaseAdapter {
             holder = (CarrinhoAdapter.ViewHolder) view.getTag();
         }
 
-        final Produtos produtos = prods.get(position);
-       /*ver depois
-        holder.txtNome.setText(produtos.getNome());
+        final Sacola produtos = prods.get(position);
+
+        holder.txtNome.setText(produtos.getDescrProduto());
         holder.txtMarca.setText(produtos.getMarca());
-        holder.txtPreco.setText("R$ " + produtos.getPreco());
-        holder.txtCod.setText(""+ produtos.getCodReferencia());*/
-        //holder.imagem.setImageBitmap(DetalhesProdutos.b);
+        holder.txtPreco.setText(String.format("R$ %s", produtos.getPreco()));
+        holder.txtCod.setText(String.format("%d", produtos.getIdProduto()));
+        holder.imagem.setImageBitmap(convert(produtos.getImgBase64()));
         //holder.imagem.setBackgroundResource(produtos.getIdImagem());
         holder.btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,9 +107,9 @@ public class CarrinhoAdapter extends BaseAdapter {
                 excluir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*ver depois
+
                         dbconn = new DbConn(Carrinho.act);
-                        dbconn.deleteCarrinhoId(produtos.getCodReferencia());
+                        dbconn.deleteCarrinhoId(produtos.getIdProduto());
                         CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.act, Carrinho.context, dbconn.selectProutos());
                         Carrinho.listas.setAdapter(carAdapter);
                         Carrinho.listas.deferNotifyDataSetChanged();
@@ -115,7 +120,7 @@ public class CarrinhoAdapter extends BaseAdapter {
                             Carrinho.no_list.setVisibility(View.VISIBLE);
                             Carrinho.cardFinal.setVisibility(View.INVISIBLE);
                             Carrinho.btnFinal.setVisibility(View.INVISIBLE);
-                        }*/
+                        }
 
                         dialogo.dismiss();
                     }
@@ -128,15 +133,15 @@ public class CarrinhoAdapter extends BaseAdapter {
                     }
                 });
 
-               /* String nomeRemov;
-                nomeRemov = prods.get(position).getNome();
+               /* int idProd;
+                idProd = produtos.getIdProduto();
                 Intent intent = new Intent();
                 intent.setClass(c,Carrinho.class);
-                intent.putExtra("NOME_DEL",nomeRemov);
-                act.startActivity(intent);8/
+                intent.putExtra("NOME_DEL", String.format("%d", idProd));
+                act.startActivity(intent);*/
 
 
-                Toast.makeText(Carrinho.context, produtos.getCodReferencia(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Carrinho.context, produtos.getCodReferencia(), Toast.LENGTH_SHORT).show();
                 /*Toast.makeText(Carrinho.context, produtos.getNome(), Toast.LENGTH_SHORT).show();
                 DbConn dbconn = new DbConn(Carrinho.context);
                 Toast.makeText(Carrinho.context, dbconn.selectIdProduto(produtos.getNome()).getCodReferencia()+"", Toast.LENGTH_SHORT).show();
@@ -184,5 +189,21 @@ public class CarrinhoAdapter extends BaseAdapter {
                 dialogo.dismiss();
             }
         });
+    }
+    public static Bitmap convert(String base64Str) throws IllegalArgumentException
+    {
+        byte[] decodedBytes = Base64.decode(
+                base64Str.substring(base64Str.indexOf(",") + 1),
+                Base64.DEFAULT
+        );
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
+    public static String convert(Bitmap bitmap)
+    {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 }
