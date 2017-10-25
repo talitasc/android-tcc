@@ -27,6 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.connectionAPI.DeleteCarrinho;
 import com.example.talit.projetotcc.fragments.DetalhesEstab;
 import com.example.talit.projetotcc.fragments.TabCategorias;
 import com.example.talit.projetotcc.fragments.TabDestaques;
@@ -39,11 +40,6 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
     public static String categorias;
     public static String destaques;
     public static String nomeEstab;
-    public static String tabInfo;
-    public static String tabAvaliacao;
-    public static String tabRegulamentos;
-    private ViewPager view;
-    private TabLayout tab;
     public static ProgressBar pb;
     private DbConn dbconn;
     private FloatingActionButton btnCarrinho;
@@ -51,6 +47,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
     BottomNavigationView navigation;
     public static Activity act;
     public static Context context;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +58,15 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
         //getSupportActionBar().setElevation(0);
 
         //view = (ViewPager) findViewById(R.id.view_pager);
-        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
         btnCarrinho = (FloatingActionButton) findViewById(R.id.btn_carrinho);
         txtCount = (TextView) findViewById(R.id.notificacao);
+        pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
 
         pb.setVisibility(View.INVISIBLE);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(0);
 
@@ -167,6 +166,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
                 case R.id.action_depart:
                     replaceFragment(new TabCategorias());
                     //fragmentTransaction.replace(R.id.content, new DetalhesEstab()).commit();
+
                     return true;
 
                 case R.id.action_info:
@@ -233,4 +233,5 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity {
             }
         }
     }
+
 }

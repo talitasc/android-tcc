@@ -33,6 +33,7 @@
             android:layout_marginStart="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,UnknownIdInLayout"
             android:text="@string/txt_nome_produto"
             android:layout_alignParentTop="true" />

@@ -27,74 +27,93 @@
             android:id="@+id/im_logo_supermercado"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="11dp"
             fresco:placeholderImage="@drawable/mercado"
             fresco:roundAsCircle="true"
             fresco:failureImage="@drawable/logo_super"
-            android:layout_alignTop="@+id/txt_avaliacao"
+            android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/txt_nome_super"
-            android:layout_width="wrap_content"
+            android:layout_width="183sp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/im_logo_supermercado"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginStart="08dp"
+            android:layout_marginTop="16dp"
+            android:textAllCaps="false"
             android:textStyle="bold"
-            android:textColor="#330066"
-            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+            android:fontFamily="sans-serif"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
             tools:text="@string/txt_nome_super"
-            tools:textSize="16sp"/>
+            tools:textSize="08sp"/>
+
+        <ImageView
+            android:id="@+id/im_local"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="05dp"
+            android:layout_below="@+id/txt_nome_super"
+            android:layout_toEndOf="@+id/im_logo_supermercado"
+            android:layout_marginStart="05dp"
+            android:tint="#ACACAC"
+            app:srcCompat="@drawable/ic_location_on_black_24dp"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <TextView
             android:id="@+id/txt_cidade_estab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_nome_super"
-            android:layout_toEndOf="@+id/im_logo_supermercado"
-            android:layout_marginStart="20dp"
-            android:textAllCaps="true"
-            android:textStyle="bold"
+            android:layout_marginTop="02dp"
+            android:layout_toEndOf="@+id/im_local"
+            android:layout_marginStart="05dp"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
             android:textColor="@color/botoesPrimarios"
             tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
             tools:text="@string/txt_cidade"
-            tools:textSize="10sp"/>
+            tools:textSize="08sp"/>
+
+
+        <ImageView
+            android:id="@+id/im_avaliacao"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="05dp"
+            android:layout_toEndOf="@+id/im_logo_supermercado"
+            android:layout_below="@+id/txt_cidade_estab"
+            android:layout_marginTop="05dp"
+            android:tint="#FFCC66"
+            app:srcCompat="@drawable/ic_star_black_24dp"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <TextView
             android:id="@+id/txt_avaliacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginStart="05dp"
+            android:layout_toEndOf="@+id/im_avaliacao"
+            android:layout_below="@+id/txt_cidade_estab"
+            android:layout_marginTop="02dp"
             android:text="4,6"
             android:textColor="#FFCC66"
             android:textStyle="bold"
-            tools:textSize="13sp"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageView
-            android:id="@+id/im_avaliacao"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:paddingBottom="20dp"
-            app:srcCompat="@mipmap/ic_ava"
-            tools:ignore="ContentDescription,RtlHardcoded" />
+            tools:textSize="08sp"
+            tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
         <ImageButton
             android:id="@+id/btn_frete"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
-            android:layout_marginTop="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginTop="05dp"
             android:tint="@color/corQuatro"
             app:srcCompat="@drawable/ic_local_shipping_black_24dp"
             android:background="@drawable/bt_botoes_aux"
-            tools:ignore="ContentDescription,VectorDrawableCompat" />
+            tools:ignore="ContentDescription,VectorDrawableCompat"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

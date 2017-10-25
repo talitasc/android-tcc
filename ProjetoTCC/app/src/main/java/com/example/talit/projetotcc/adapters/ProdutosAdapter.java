@@ -20,6 +20,9 @@ import com.facebook.drawee.view.DraweeView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +37,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         private TextView txtMarca;
         private TextView txtPreco;
         private SimpleDraweeView imagem;
-        private TextView codRef;
+        private TextView txtData;
         private View view;
 
         public ProdutosViewHolder(View v) {
@@ -43,7 +46,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
             txtMarca = (TextView)v.findViewById(R.id.txt_marca_prod);
             txtPreco = (TextView)v.findViewById(R.id.txt_preco);
             imagem = (SimpleDraweeView)v.findViewById(R.id.im_logo_produto);
-            codRef = (TextView) v.findViewById(R.id.txt_codRef);
+            txtData= (TextView)v.findViewById(R.id.txt_prazo_validade);
+            //codRef = (TextView) v.findViewById(R.id.txt_codRef);
             view = v;
         }
     }
@@ -72,7 +76,17 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         holder.txtNome.setText(produtos.getDescricao());
         holder.txtMarca.setText(produtos.getMarcaDescricao());
         holder.txtPreco.setText("R$ "+ produtos.getLote_preco());
-        holder.codRef.setText(produtos.getIdProduto()+"");
+
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date data = formato.parse(produtos.getLote_data_vencimento());
+            formato.applyPattern("dd/MM/yyyy");
+            holder.txtData.setText(formato.format(data).replace("-","/"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //holder.codRef.setText(produtos.getIdProduto()+"");
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +100,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
                 intent.putExtra("infosProduto",produtos.getLote_obs());
                 intent.putExtra("categoria",produtos.getCategoria_descr());
                 intent.putExtra("quantidade",produtos.getLote_quantidade());
+                intent.putExtra("unMed",produtos.getUnidade_medida_sigla());
                 intent.putExtra("idLote",produtos.getIdLote()+"");
                 act.startActivity(intent);
                 act.finish();

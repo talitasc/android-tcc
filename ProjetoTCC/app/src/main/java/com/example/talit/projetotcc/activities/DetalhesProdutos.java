@@ -1,5 +1,6 @@
 package com.example.talit.projetotcc.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.connectionAPI.AtualizaCarrinho;
 import com.example.talit.projetotcc.connectionAPI.CriaCarrinho;
+import com.example.talit.projetotcc.connectionAPI.DeleteCarrinho;
 import com.example.talit.projetotcc.fragments.DetalhesEstab;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -37,7 +39,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DetalhesProdutos extends AppCompatActivity {
+public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinho.Listener{
 
     private TextView nomeProd;
     private TextView marca;
@@ -50,6 +52,7 @@ public class DetalhesProdutos extends AppCompatActivity {
     private Button btnAdicionar;
     private ImageButton btnDiminui;
     private ImageButton btnAumenta;
+    public static String strQuantidade;
     public static String strnomeProd;
     public static String strMarca;
     public static String strPreco;
@@ -58,6 +61,7 @@ public class DetalhesProdutos extends AppCompatActivity {
     public static String strCategoria;
     public static String strQtd;
     public static String strData;
+    public static String strUmed;
     private DbConn dbconn;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -66,12 +70,14 @@ public class DetalhesProdutos extends AppCompatActivity {
     public static CoordinatorLayout cord;
     public static Context c;
     public static ProgressBar pb;
+    public  static Activity act;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_detalhes_produtos);
-        c= this;
+        c = this;
+        act = this;
         imProduto = (SimpleDraweeView) findViewById(R.id.id_logo_produto);
         nomeProd = (TextView) findViewById(R.id.txtNomeProduto);
         marca = (TextView) findViewById(R.id.txt_marca_prod);
@@ -97,7 +103,7 @@ public class DetalhesProdutos extends AppCompatActivity {
         if (getIntent().hasExtra("nomeProduto") && getIntent().hasExtra("img") &&
                 getIntent().hasExtra("marcaProduto") && getIntent().hasExtra("precoProduto")
                 && getIntent().hasExtra("prazoProduto") && getIntent().hasExtra("infosProduto") && getIntent().hasExtra("idLote")
-                && getIntent().hasExtra("categoria") && getIntent().hasExtra("quantidade")) {
+                && getIntent().hasExtra("categoria") && getIntent().hasExtra("quantidade") && getIntent().hasExtra("unMed")) {
 
             strnomeProd = getIntent().getStringExtra("nomeProduto");
             strMarca = getIntent().getStringExtra("marcaProduto");
@@ -106,8 +112,9 @@ public class DetalhesProdutos extends AppCompatActivity {
             strImagem = getIntent().getStringExtra("img");
             strQtd = getIntent().getStringExtra("quantidade");
             strCategoria =  getIntent().getStringExtra("categoria");
-
+            strUmed = getIntent().getStringExtra("unMed");
             strData = getIntent().getStringExtra("prazoProduto");
+
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 Date data = formato.parse(strData);
@@ -154,7 +161,7 @@ public class DetalhesProdutos extends AppCompatActivity {
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                strQuantidade = quantidade.getText().toString();
                 if (dbconn.selectIdProduto(Integer.parseInt(strIdProd)) != null) {
                     Validacoes.showSnackBar(getBaseContext(),cord,"Este produto já existe em seu carrinho.");
                 } else {
@@ -164,7 +171,9 @@ public class DetalhesProdutos extends AppCompatActivity {
                                     String.format("%d", dbconn.selectConsumidor().getTpAcesso()),
                                     DetalhesEstab.strIdEstab,
                                     strIdProd,
-                                    "1");
+                                    strQuantidade);
+                            //dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
+                                    //strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), Double.parseDouble(strPreco.replace("R$", "")),strUmed,Integer.parseInt(strQuantidade), strImagem,strQtd);
 
                             //Toast.makeText(Carrinho.context, "cria" , Toast.LENGTH_SHORT).show();
                         }else{
@@ -229,6 +238,15 @@ public class DetalhesProdutos extends AppCompatActivity {
         }
     }*/
 
+    public void onLoaded(String string) {
+        if (string.equalsIgnoreCase("true")) {
+            pb.setVisibility(View.VISIBLE);
+            startActivity(new Intent(this, PaginaInicialEstabelecimentos.class));
+            finish();
+        } else {
+            pb.setVisibility(View.INVISIBLE);
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

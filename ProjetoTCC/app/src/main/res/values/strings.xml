@@ -269,4 +269,10 @@
     <string name="txt_raio_km">Raio em Km:</string>
     <string name="txt_subcategorias">Subcategorias</string>
     <string name="txt_editar">Quantidade</string>
+    <string name="txt_unitario">Preço unitário:</string>
+    <string name="txt_adicionar">Adicionar</string>
+    <string name="erro_carrinho">Ops! Você já tem um carrinho com uma compra não finalizada. Deseja excluir para começar outro?</string>
+    <string name="erro_titulo">Atenção!</string>
+    <string name="positive_button">Sim</string>
+    <string name="negative_button">Não</string>
 </resources>

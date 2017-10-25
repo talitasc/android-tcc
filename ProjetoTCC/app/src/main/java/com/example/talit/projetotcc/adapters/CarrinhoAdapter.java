@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class CarrinhoAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
-        CarrinhoAdapter.ViewHolder holder;
+        final CarrinhoAdapter.ViewHolder holder;
 
         if(view == null){
             holder = new CarrinhoAdapter.ViewHolder();
@@ -72,7 +73,13 @@ public class CarrinhoAdapter extends BaseAdapter {
             holder.txtPreco = (TextView)view.findViewById(R.id.txt_preco);
             holder.imagem = (ImageView)view.findViewById(R.id.im_logo_produto);
             holder.btnExcluir= (Button)view.findViewById(R.id.btnExcluir);
-            holder.txtCod = (TextView)view.findViewById(R.id.txt_cod);
+            holder.txtUmed = (TextView)view.findViewById(R.id.txt_unidade_med);
+            holder.txtUnidade = (TextView)view.findViewById(R.id.txt_unidade);
+            holder.txtPrecoUni = (TextView)view.findViewById(R.id.txt_preco_un);
+            holder.txtQtdAum = (TextView)view.findViewById(R.id.txt_qtd);
+            holder.btnAumenta = (ImageButton) view.findViewById(R.id.btn_aumenta);
+            holder.btnDiminui = (ImageButton) view.findViewById(R.id.btn_diminui);
+            //holder.txtCod = (TextView)view.findViewById(R.id.txt_cod);
             view.setTag(holder);
 
         }
@@ -81,13 +88,53 @@ public class CarrinhoAdapter extends BaseAdapter {
         }
 
         final Sacola produtos = prods.get(position);
-
+        dbconn = new DbConn(Carrinho.act);
         holder.txtNome.setText(produtos.getDescrProduto());
         holder.txtMarca.setText(produtos.getMarca());
         holder.txtPreco.setText(String.format("R$ %s", produtos.getPreco()));
-        holder.txtCod.setText(String.format("%d", produtos.getIdProduto()));
-        holder.imagem.setImageBitmap(convert(produtos.getImgBase64()));
+        holder.txtUnidade.setText(String.format("%d", produtos.getQuantidade()));
+        holder.txtPrecoUni.setText(String.format("R$ %s", produtos.getPreco()));
+        holder.txtUmed.setText(produtos.getUnd_med());
+        holder.txtQtdAum.setText(String.format("%d", produtos.getQuantidade()));
+       // holder.imagem.setImageBitmap(convert(produtos.getImgBase64()));
         //holder.imagem.setBackgroundResource(produtos.getIdImagem());
+
+        final int qtdLote =Integer.parseInt(dbconn.selectIdProduto(produtos.getIdProduto()).getQtdLote());
+
+        holder.btnDiminui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int qtdCampo = Integer.parseInt(holder.txtUnidade.getText().toString());
+
+                if(qtdCampo >= 2){
+                    qtdCampo = qtdCampo - 1;
+                    holder.txtQtdAum.setText(String.format("%d", qtdCampo));
+                    holder.txtUnidade.setText(String.format("%d", qtdCampo));
+                    dbconn.updateQtdEpreco(produtos.getIdProduto(),qtdCampo,Double.parseDouble(holder.txtPreco.getText().toString().replace("R$ ","")));
+                    Carrinho.txtValorTotal.setText("R$ " + dbconn.totalCarrinho());
+                    Carrinho.txtQtd.setText(""+ dbconn.totalItensCarrinho());
+                    //holder.txtPreco.setText(String.format("R$ ", dbconn.totalPorItem(produtos.getIdProduto())));
+
+                }
+            }
+        });
+        holder.btnAumenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int qtdCampo = Integer.parseInt(holder.txtUnidade.getText().toString());
+                if(qtdCampo <= qtdLote){
+                    qtdCampo = qtdCampo+1;
+                    holder.txtQtdAum.setText(String.format("%d", qtdCampo));
+                    holder.txtUnidade.setText(String.format("%d", qtdCampo));
+                    dbconn.updateQtdEpreco(produtos.getIdProduto(),qtdCampo,Double.parseDouble(holder.txtPreco.getText().toString().replace("R$ ","")));
+                    Carrinho.txtValorTotal.setText("R$ " + dbconn.totalCarrinho());
+                    Carrinho.txtQtd.setText(""+ dbconn.totalItensCarrinho());
+                    //holder.txtPreco.setText(String.format("R$ ", dbconn.totalPorItem(produtos.getIdProduto())));
+                }
+            }
+        });
+
         holder.btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +155,6 @@ public class CarrinhoAdapter extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
 
-                        dbconn = new DbConn(Carrinho.act);
                         dbconn.deleteCarrinhoId(produtos.getIdProduto());
                         CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.act, Carrinho.context, dbconn.selectProutos());
                         Carrinho.listas.setAdapter(carAdapter);
@@ -133,19 +179,6 @@ public class CarrinhoAdapter extends BaseAdapter {
                     }
                 });
 
-               /* int idProd;
-                idProd = produtos.getIdProduto();
-                Intent intent = new Intent();
-                intent.setClass(c,Carrinho.class);
-                intent.putExtra("NOME_DEL", String.format("%d", idProd));
-                act.startActivity(intent);*/
-
-
-                //Toast.makeText(Carrinho.context, produtos.getCodReferencia(), Toast.LENGTH_SHORT).show();
-                /*Toast.makeText(Carrinho.context, produtos.getNome(), Toast.LENGTH_SHORT).show();
-                DbConn dbconn = new DbConn(Carrinho.context);
-                Toast.makeText(Carrinho.context, dbconn.selectIdProduto(produtos.getNome()).getCodReferencia()+"", Toast.LENGTH_SHORT).show();
-                dbconn.deleteCarrinhoId(dbconn.selectIdProduto(produtos.getNome()));*/
             }
         });
 
@@ -158,7 +191,12 @@ public class CarrinhoAdapter extends BaseAdapter {
         private TextView txtPreco;
         private ImageView imagem;
         private Button btnExcluir;
-        private TextView txtCod;
+        private TextView txtUmed;
+        private TextView txtUnidade;
+        private TextView txtPrecoUni;
+        private TextView txtQtdAum;
+        private ImageButton btnAumenta;
+        private ImageButton btnDiminui;
     }
 
     public void mostarOpções() {

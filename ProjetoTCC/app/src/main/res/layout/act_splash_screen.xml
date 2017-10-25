@@ -34,7 +34,7 @@
             android:id="@+id/imLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/smarket"
+            android:src="@drawable/smarket_dois"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

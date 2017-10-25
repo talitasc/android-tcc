@@ -113,7 +113,8 @@
 
         <activity android:name=".activities.ListarEstados" />
         <activity android:name=".activities.ListarCidades" />
-        <activity android:name=".activities.PaginaInicialEstabelecimentos" />
+        <activity android:name=".activities.PaginaInicialEstabelecimentos"
+                  android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.ProdutosEstabelecimento" />
         <activity android:name=".activities.Carrinho" />
         <activity android:name=".activities.Avaliacoes" />
@@ -124,6 +125,7 @@
             android:name=".activities.PaginalnicialConsumidor"
             android:label="@string/title_activity_teste"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".activities.FinalizarCompra" />
         <activity android:name=".activities.DuvidasFrequentes" />
         <activity android:name=".activities.Notificacoes" />

@@ -2,12 +2,15 @@ package com.example.talit.projetotcc.connectionAPI;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.CadastroConsumidor;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.activities.LoginCliente;
 import com.example.talit.projetotcc.activities.LoginPessoaJuridica;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.example.talit.projetotcc.utils.Validacoes;
@@ -126,15 +129,45 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
             Log.i("Status", status_user);
             if (status_user.equalsIgnoreCase("true")) {
                 if (descricao.equals("Carrinho inicializado com sucesso!")) {
-                    Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,"Produto adicionado ao carrinho");
-                    dbconn.insertSacola(Integer.parseInt(DetalhesProdutos.strIdProd), Integer.parseInt(DetalhesProdutos.strIdProd),
-                            DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")), 1, DetalhesProdutos.strImagem);
-                }
 
+                    String dados = status.getString("objeto");
+                    JSONObject dados_result = new JSONObject(dados);
+
+                    Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,"Produto adicionado ao carrinho");
+
+                    dbconn.insertSacola(dados_result.getInt("carrinho_id"), Integer.parseInt(DetalhesProdutos.strIdProd),
+                            DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
+                            Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
+                            DetalhesProdutos.strUmed,Integer.parseInt(DetalhesProdutos.strQuantidade), DetalhesProdutos.strImagem,
+                            DetalhesProdutos.strQtd);
+
+                }
+            }else{
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetalhesProdutos.c);
+                builder.setTitle(R.string.erro_titulo);
+                builder.setMessage(R.string.erro_carrinho);
+
+                builder.setPositiveButton(R.string.positive_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        DeleteCarrinho connDel = new DeleteCarrinho(null);
+                        connDel.execute("7");
+
+                    }
+                });
+                builder.setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                    }
+                });
+                builder.show();
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
             e.printStackTrace();
             AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
             builder.setTitle("Erro");
@@ -144,7 +177,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
                 public void onClick(DialogInterface dialog, int which) {
 
                     dialog.dismiss();
-                    listener.onLoaded("true");
+
                 }
             });
             builder.setCancelable(false);
