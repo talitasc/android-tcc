@@ -8,6 +8,7 @@ import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
 import com.example.talit.projetotcc.adapters.CategoriasAdapter;
 import com.example.talit.projetotcc.adapters.ListaSupermercadosAdapter;
 import com.example.talit.projetotcc.fragments.TabCategorias;
+import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.CategoriasProdutos;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
 
@@ -39,7 +40,7 @@ public class Categorias extends AsyncTask<String, String, String> {
     public Categorias(Listener mListener){
 
         this.mListener = mListener;
-        TabCategorias.pb.setVisibility(View.VISIBLE);
+        TabDestaques.pb.setVisibility(View.VISIBLE);
     }
     @Override
     protected String doInBackground(String... params) {
@@ -109,10 +110,13 @@ public class Categorias extends AsyncTask<String, String, String> {
 
                 if(listaCateg.size()> 0) {
                     Log.i("array",listaCateg.toString());
-                    TabCategorias.pb.setVisibility(View.INVISIBLE);
-                    CategoriasAdapter categoriasAdapter = new CategoriasAdapter(TabCategorias.activity, TabCategorias.context, listaCateg);
-                    TabCategorias.listView.setAdapter(categoriasAdapter);
-                    categoriasAdapter.notifyDataSetChanged();
+                    TabDestaques.pb.setVisibility(View.INVISIBLE);
+                    //CategoriasAdapter categoriasAdapter = new CategoriasAdapter(TabCategorias.activity, TabCategorias.context, listaCateg);
+
+                    CategoriasAdapter categoriasAdapter  = new CategoriasAdapter(TabDestaques.activity,listaCateg);
+                    TabDestaques.rec.setAdapter(categoriasAdapter);
+                    //TabCategorias.listView.setAdapter(categoriasAdapter);
+                    //categoriasAdapter.notifyDataSetChanged();
 
                     //TabBuscar.listas.deferNotifyDataSetChanged();
                 }else{
@@ -121,8 +125,8 @@ public class Categorias extends AsyncTask<String, String, String> {
 
             }else if(descricao.equals("Nenhum estabelecimentos encontrado!")){
                 //PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
-                TabCategorias.pb.setVisibility(View.INVISIBLE);
-                TabCategorias.listView.setAdapter(null);
+                TabDestaques.pb.setVisibility(View.INVISIBLE);
+                TabDestaques.rec.setAdapter(null);
                 //TabBuscar.listas.deferNotifyDataSetChanged();
 
             }

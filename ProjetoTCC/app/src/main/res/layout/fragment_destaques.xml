@@ -1,90 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="64dp"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:padding="3dp"
     android:background="#FFFF"
+    android:orientation="vertical"
+    android:paddingBottom="05dp"
     tools:ignore="RtlHardcoded">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
+    <RelativeLayout
+        android:id="@+id/search_layout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="#EDEFF0"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        tools:ignore="UselessLeaf">
-
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/btn_compartilhar"
-        android:layout_width="35sp"
-        android:layout_height="35sp"
-        android:tint="#FFCC66"
-        android:layout_marginStart="10dp"
-        app:srcCompat="@drawable/trophy"
-        android:layout_below="@+id/view_pager"
-        style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
-        tools:ignore="ContentDescription,VectorDrawableCompat" />
-
-    <TextView
-        android:id="@+id/txtAddRecent"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/adicionados_recentemente"
-        android:layout_alignStart="@id/btn_compartilhar"
-        android:layout_marginStart="40dp"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/view_pager" />
+        android:background="@color/coresProvisoriasum"
+        android:padding="10dp"
+        android:paddingEnd="01dp"
+        tools:ignore="RtlSymmetry">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imageButton2"
+            android:background="@drawable/borda_search_view"
+            android:icon="@android:drawable/ic_menu_search"
+            app:queryHint="Type something..."
+            app:theme="@style/SearchViewStyle" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_tune_black_24dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/txt_busca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="13dp"
+            android:text="@string/txt_buscar"
+            android:textColor="#acacac"
+            android:textSize="16sp"
+            app:layout_anchorGravity="bottom|center_horizontal"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_categ"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_destaques"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginTop="05dp"
         android:scrollbars="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/txtAddRecent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <ProgressBar
+        android:id="@+id/pb_categorias"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="180dp"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginTop="05dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_prod"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rec_categ"
+        android:layout_marginTop="03dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth" />
 
     <RelativeLayout
         android:id="@+id/rl_nolist"
         android:layout_width="match_parent"
-        android:visibility="invisible"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/tv_nolist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Não há nada disponivel no momento :("
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:text="Nenhuma categoria encontrada :("
             android:textColor="#ACACAC"
-            android:textStyle="bold"
             android:textSize="18sp"
+            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_noCdastrado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDEFF0"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/tv_cadastrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:text="@string/valida_produtos"
+            android:textColor="#ACACAC"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cadastrado"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/bordas_grid_buttons"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/btn_cadastro"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            tools:text="@string/btn_cadastro" />
+
+    </RelativeLayout>
 
 
 

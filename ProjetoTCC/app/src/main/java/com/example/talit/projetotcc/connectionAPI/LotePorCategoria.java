@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.activities.ProdutosEstabelecimento;
 import com.example.talit.projetotcc.adapters.ProdutosAdapter;
+import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.Produtos;
 
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
     public LotePorCategoria(LotePorCategoria.Listener mListener){
 
         this.mListener = mListener;
-        ProdutosEstabelecimento.pb.setVisibility(View.VISIBLE);
+        //ProdutosEstabelecimento.pb.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -125,9 +126,9 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
 
                 if (prods.size() > 0) {
                     Log.i("array", prods.toString());
-                    ProdutosEstabelecimento.pb.setVisibility(View.INVISIBLE);
+                    TabDestaques.pb.setVisibility(View.INVISIBLE);
                     ProdutosAdapter produtosAdapter  = new ProdutosAdapter(prods,ProdutosEstabelecimento.act, ProdutosEstabelecimento.context);
-                    ProdutosEstabelecimento.rec.setAdapter(produtosAdapter);
+                    TabDestaques.recProdutos.setAdapter(produtosAdapter);
                     //TabBuscar.listas.deferNotifyDataSetChanged();
                 } else {
                     //ProdutosEstabelecimento.no_list.setVisibility(View.VISIBLE);
@@ -135,7 +136,7 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
 
             } else if (descricao.equals("Nenhum estabelecimentos encontrado!")) {
                 //PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
-                PaginaInicialEstabelecimentos.pb.setVisibility(View.INVISIBLE);
+                TabDestaques.pb.setVisibility(View.INVISIBLE);
                 //PaginalnicialConsumidor.listas.setAdapter(null);
                 //TabBuscar.listas.deferNotifyDataSetChanged();
             }

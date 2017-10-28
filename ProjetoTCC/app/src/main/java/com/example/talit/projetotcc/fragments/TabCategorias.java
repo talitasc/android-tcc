@@ -56,8 +56,8 @@ public class TabCategorias extends Fragment implements Categorias.Listener{
     @Override
     public void onLoaded(List<CategoriasProdutos> categProd) {
 
-        CategoriasAdapter categoriasAdapter = new CategoriasAdapter(TabCategorias.activity, TabCategorias.context, categProd);
-        this.listView.setAdapter(categoriasAdapter);
-        categoriasAdapter.notifyDataSetChanged();
+        //CategoriasAdapter categoriasAdapter = new CategoriasAdapter(TabCategorias.activity, TabCategorias.context, categProd);
+        //this.listView.setAdapter(categoriasAdapter);
+        //categoriasAdapter.notifyDataSetChanged();
     }
 }

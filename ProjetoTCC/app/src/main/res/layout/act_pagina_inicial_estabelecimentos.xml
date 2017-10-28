@@ -9,100 +9,50 @@
     android:orientation="vertical"
     tools:context="com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/coord"
+
+    <!--<android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_collapseMode="pin"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    </android.support.design.widget.AppBarLayout>
 
-            <RelativeLayout
-                android:id="@+id/search_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/app_bar"
-                android:background="@color/coresProvisoriasum"
-                android:padding="10dp"
-                android:paddingEnd="01dp"
-                tools:ignore="RtlSymmetry">
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_below="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <android.support.v7.widget.SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/imageButton2"
-                    android:background="@drawable/borda_search_view"
-                    android:icon="@android:drawable/ic_menu_search"
-                    app:queryHint="Type something..."
-                    app:theme="@style/SearchViewStyle" />
+    </FrameLayout>
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:tint="@android:color/white"
-                    app:srcCompat="@drawable/ic_tune_black_24dp"
-                    tools:ignore="ContentDescription" />
+    <ProgressBar
+        android:id="@+id/pb_localizaçao"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp" />
 
-                <TextView
-                    android:id="@+id/txt_busca"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="13dp"
-                    android:text="@string/txt_buscar"
-                    android:textColor="#acacac"
-                    android:textSize="16sp"
-                    app:layout_anchorGravity="bottom|center_horizontal"
-                    tools:ignore="RelativeOverlap,RtlHardcoded" />
-
-            </RelativeLayout>
-
-
-            <!--<android.support.design.widget.TabLayout
-                android:id="@+id/tablayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_collapseMode="pin"
-                app:tabMaxWidth="0dp"
-                app:tabGravity="fill"
-                app:tabMode="fixed"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
-
-        </android.support.design.widget.AppBarLayout>
-
-        <FrameLayout
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/navigation"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        </FrameLayout>
-
-        <ProgressBar
-            android:id="@+id/pb_localizaçao"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp" />
-
-    </android.support.design.widget.CoordinatorLayout>
 
     <RelativeLayout
         android:id="@+id/badge_layout3"

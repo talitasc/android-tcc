@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.ProdutosEstabelecimento;
 import com.example.talit.projetotcc.fragments.TabCategorias;
 import com.example.talit.projetotcc.logicalView.CategoriasProdutos;
+import com.example.talit.projetotcc.logicalView.Produtos;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.ByteArrayOutputStream;
@@ -27,74 +29,75 @@ import java.util.List;
  * Created by talit on 11/06/2017.
  */
 
-public class CategoriasAdapter extends BaseAdapter {
+public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.CategoriasAdapterHolder>{
 
-    Activity act;
-    Context c;
-    List<CategoriasProdutos> categProd;
-    LayoutInflater inflater;
+    public static class CategoriasAdapterHolder extends RecyclerView.ViewHolder  {
+        TextView nomeCategoria;
+        SimpleDraweeView imCategorias;
+        private View view;
 
-    public CategoriasAdapter(Activity act, Context c, List<CategoriasProdutos> categ){
+        public CategoriasAdapterHolder(View v) {
+            super(v);
+            nomeCategoria = (TextView)v.findViewById(R.id.txtNomeCategoria);
+            imCategorias = (SimpleDraweeView) v.findViewById(R.id.img_categorias);
+            view = v;
+        }
+    }
+
+    private Activity act;
+    private List<CategoriasProdutos> categProd;
+    private View v;
+
+    public CategoriasAdapter(Activity act, List<CategoriasProdutos> categ){
         this.act = act;
-        this.c = c;
         this.categProd = categ;
-        this.inflater  = LayoutInflater.from(c);
     }
     @Override
-    public int getCount() {
+    public CategoriasAdapter.CategoriasAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_categorias, parent, false);
+        v = itemView;
+        return new CategoriasAdapter.CategoriasAdapterHolder (itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(CategoriasAdapterHolder holder, int position) {
+        final CategoriasProdutos categs = categProd.get(position);
+        holder.nomeCategoria.setText(categs.getDescricaoCategoria());
+        holder.imCategorias.setImageBitmap(convert(categs.getImagem64()));
+        /*holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                holder.imagem.buildDrawingCache();
+                Bitmap bmap = holder.imagem.getDrawingCache();
+                bmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
+                Intent intent = new Intent();
+                intent.setClass(act,DetalhesProdutos.class);
+                intent.putExtra("nomeProduto",produtos.getNome());
+                intent.putExtra("img", bs.toByteArray());
+                intent.putExtra("marcaProduto",produtos.getMarca());
+                intent.putExtra("precoProduto",produtos.getPreco()+"");
+                intent.putExtra("prazoProduto",produtos.getPrazoValidade());
+                intent.putExtra("infosProduto",produtos.getInformacoes());
+                intent.putExtra("codRef",produtos.getCodReferencia());
+                act.startActivity(intent);
+                act.finish();
+            }
+        });*/
+    }
+
+
+    @Override
+    public int getItemCount() {
         return categProd.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return categProd.get(position);
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
 
-    @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        CategoriasAdapter.ViewHolder holder;
-
-        if(view == null){
-            holder = new CategoriasAdapter.ViewHolder();
-            view = this.inflater.inflate(R.layout.card_view_categorias, viewGroup, false);
-            holder.nomeCategoria = (TextView)view.findViewById(R.id.txtNomeCategoria);
-            holder.imCategorias = (ImageView) view.findViewById(R.id.img_categorias);
-
-            view.setTag(holder);
-
-        }
-        else{
-            holder = (CategoriasAdapter.ViewHolder) view.getTag();
-        }
-
-        final CategoriasProdutos categs = categProd.get(position);
-        holder.nomeCategoria.setText(categs.getDescricaoCategoria());
-
-        if(categs.getImagem64() != null) {
-            holder.imCategorias.setImageBitmap(convert(categs.getImagem64()));
-        }else{
-            holder.imCategorias.setImageResource(R.drawable.errorcategoria);
-        }
-
-        TabCategorias.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                act.startActivity(new Intent(act,ProdutosEstabelecimento.class));
-                act.finish();
-            }
-        });
-
-        return view;
-    }
-    private class ViewHolder {
-        TextView nomeCategoria;
-        ImageView imCategorias;
-    }
     public static Bitmap convert(String base64Str) throws IllegalArgumentException
     {
         byte[] decodedBytes = Base64.decode(
