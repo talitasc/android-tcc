@@ -166,14 +166,14 @@ public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinh
                     Validacoes.showSnackBar(getBaseContext(),cord,"Este produto já existe em seu carrinho.");
                 } else {
                         if(dbconn.totalItensCarrinho()<=0){
-                            CriaCarrinho connCria = new CriaCarrinho(null);
+                           CriaCarrinho connCria = new CriaCarrinho(null);
                             connCria.execute(String.format("%d", dbconn.selectConsumidor().getIdCons()),
                                     String.format("%d", dbconn.selectConsumidor().getTpAcesso()),
                                     DetalhesEstab.strIdEstab,
                                     strIdProd,
                                     strQuantidade);
-                            //dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
-                                    //strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), Double.parseDouble(strPreco.replace("R$", "")),strUmed,Integer.parseInt(strQuantidade), strImagem,strQtd);
+                            dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
+                                    strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), Double.parseDouble(strPreco.replace("R$", "")),strUmed,Integer.parseInt(strQuantidade), strImagem,strQtd);
 
                             //Toast.makeText(Carrinho.context, "cria" , Toast.LENGTH_SHORT).show();
                         }else{

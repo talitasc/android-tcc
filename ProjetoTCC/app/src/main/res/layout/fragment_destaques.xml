@@ -22,14 +22,14 @@
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/imageButton2"
+            android:layout_toStartOf="@+id/imgfiltroEstab"
             android:background="@drawable/borda_search_view"
             android:icon="@android:drawable/ic_menu_search"
             app:queryHint="Type something..."
             app:theme="@style/SearchViewStyle" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/imgfiltroEstab"
             style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,6 +62,7 @@
         android:scrollbars="horizontal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+
     <ProgressBar
         android:id="@+id/pb_categorias"
         style="?android:attr/progressBarStyleLarge"
@@ -80,20 +81,53 @@
         android:gravity="center"
         android:stretchMode="columnWidth" />
 
+    <ProgressBar
+        android:id="@+id/pb_produtos"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rec_categ"
+        android:layout_marginTop="20dp" />
+
     <RelativeLayout
-        android:id="@+id/rl_nolist"
+        android:id="@+id/rl_no_produto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/rec_categ"
+        android:layout_marginTop="03dp"
         android:visibility="invisible">
 
         <TextView
-            android:id="@+id/tv_nolist"
+            android:id="@+id/tv_no_prod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="Nenhuma categoria encontrada :("
+            android:text="@string/no_produto"
+            android:textColor="#ACACAC"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_no_catgeorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginTop="05dp"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/tv_no_categ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/no_categ"
             android:textColor="#ACACAC"
             android:textSize="18sp"
             android:textStyle="bold"

@@ -5,6 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -14,16 +18,23 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.activities.ProdutosEstabelecimento;
+import com.example.talit.projetotcc.connectionAPI.LotePorCategoria;
 import com.example.talit.projetotcc.fragments.TabCategorias;
+import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.CategoriasProdutos;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+
+import static com.example.talit.projetotcc.fragments.TabDestaques.activity;
 
 /**
  * Created by talit on 11/06/2017.
@@ -64,26 +75,15 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Ca
         final CategoriasProdutos categs = categProd.get(position);
         holder.nomeCategoria.setText(categs.getDescricaoCategoria());
         holder.imCategorias.setImageBitmap(convert(categs.getImagem64()));
-        /*holder.view.setOnClickListener(new View.OnClickListener() {
+        holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ByteArrayOutputStream bs = new ByteArrayOutputStream();
-                holder.imagem.buildDrawingCache();
-                Bitmap bmap = holder.imagem.getDrawingCache();
-                bmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
-                Intent intent = new Intent();
-                intent.setClass(act,DetalhesProdutos.class);
-                intent.putExtra("nomeProduto",produtos.getNome());
-                intent.putExtra("img", bs.toByteArray());
-                intent.putExtra("marcaProduto",produtos.getMarca());
-                intent.putExtra("precoProduto",produtos.getPreco()+"");
-                intent.putExtra("prazoProduto",produtos.getPrazoValidade());
-                intent.putExtra("infosProduto",produtos.getInformacoes());
-                intent.putExtra("codRef",produtos.getCodReferencia());
-                act.startActivity(intent);
-                act.finish();
+                TabDestaques.idCateg = categs.getIdCategoria()+"";
+                ((FragmentActivity)TabDestaques.context).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content, new TabDestaques())
+                        .commit();
             }
-        });*/
+        });
     }
 
 

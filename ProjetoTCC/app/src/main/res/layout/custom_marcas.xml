@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_marcas"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="03dp"
+        android:layout_marginStart="08dp"
+        android:layout_marginTop="03dp"
+        android:src="@drawable/errorcategoria"
+        android:tint="#acdc"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/txt_marca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/img_marcas"
+        android:padding="10dp"
+        android:text="@string/filtro_marcas"
+        android:textStyle="bold" />
+
+</RelativeLayout>

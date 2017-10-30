@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent"
+        android:id="@+id/linearLayout4">
+
+        <TextView
+            android:id="@+id/txt_fitros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/coresProvisoriasum"
+            android:padding="10dp"
+            android:text="@string/filtro_estabelecimento"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessLeaf">
+
+            <ImageView
+                android:id="@+id/img_categorias"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="03dp"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="03dp"
+                android:src="@drawable/errorcategoria"
+                android:tint="#acdc"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txt_subcategroias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img_categorias"
+                android:padding="10dp"
+                android:text="@string/filtro_subCategorias"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_categ"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_subcategroias"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="05dp"
+                android:scrollbars="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp"
+                android:visibility="invisible"
+                android:id="@+id/no_sub"
+                android:layout_marginBottom="06dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/txt_no_sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="04dp"
+                    android:padding="10dp"
+                    android:text="@string/no_sub"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="06dp"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessLeaf">
+
+            <ImageView
+                android:id="@+id/img_marcas"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="03dp"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/marca"
+                android:tint="#acdc"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txt_marcas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="04dp"
+                android:layout_toEndOf="@+id/img_marcas"
+                android:padding="10dp"
+                android:text="@string/filtro_marcas"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_marcas"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_marcas"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="05dp"
+                android:scrollbars="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp"
+                android:visibility= "invisible"
+                android:id="@+id/no_marcas"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/txt_no_marca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/no_marca"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/pb_marcas"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_below="@+id/txt_marcas"
+                android:layout_marginStart="150dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+</RelativeLayout>

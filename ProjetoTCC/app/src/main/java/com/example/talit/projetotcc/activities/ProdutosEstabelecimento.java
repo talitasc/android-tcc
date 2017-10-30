@@ -24,7 +24,7 @@ import com.example.talit.projetotcc.sqlight.DbConn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutosEstabelecimento extends AppCompatActivity implements LotePorCategoria.Listener {
+public class ProdutosEstabelecimento extends AppCompatActivity  {
 
     public static RecyclerView rec;
     private FloatingActionButton btnCarrinho;

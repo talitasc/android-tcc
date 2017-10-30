@@ -4,13 +4,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
-import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
-import com.example.talit.projetotcc.adapters.CategoriasAdapter;
-import com.example.talit.projetotcc.adapters.ListaSupermercadosAdapter;
-import com.example.talit.projetotcc.fragments.TabCategorias;
+import com.example.talit.projetotcc.adapters.MarcaAdapter;
 import com.example.talit.projetotcc.fragments.TabDestaques;
-import com.example.talit.projetotcc.logicalView.CategoriasProdutos;
-import com.example.talit.projetotcc.logicalView.Estabelecimento;
+import com.example.talit.projetotcc.logicalView.Marca;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,34 +19,33 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by talit on 08/10/2017.
+ * Created by talit on 29/10/2017.
  */
 
-public class Categorias extends AsyncTask<String, String, String> {
+public class Marcas extends AsyncTask<String, String, String> {
 
     private Listener mListener;
-    public String status = "false";
 
     public interface Listener {
 
-        public void onLoaded(String msg);
+        public void onLoaded(String status);
     }
-    public Categorias(Listener mListener){
+    public Marcas(Listener mListener){
 
         this.mListener = mListener;
-        TabDestaques.pb.setVisibility(View.VISIBLE);
+        TabDestaques.pbMarcas.setVisibility(View.VISIBLE);
     }
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/categoria/getCategorias";
+        String api_url = " http://www.mlprojetos.com/webservice/index.php/marca/getMarcas";
 
         String response = "";
 
         HttpURLConnection urlConnection;
+
 
         try {
 
@@ -79,12 +74,12 @@ public class Categorias extends AsyncTask<String, String, String> {
         }
         return null;
     }
+
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
         try {
-
             JSONObject api_result = new JSONObject(result);
             String response = api_result.getString("response");
 
@@ -93,55 +88,54 @@ public class Categorias extends AsyncTask<String, String, String> {
 
             String status_est = status.getString("status");
             String descricao = status.getString("descricao");
-            Log.i("Status",status_est);
+            Log.i("Status", status_est);
 
-            if(status_est.equals("true")) {
-                TabDestaques.no_categoria.setVisibility(View.INVISIBLE);
-
+            if (status_est.equals("true")) {
+                TabDestaques.no_marcas.setVisibility(View.INVISIBLE);
                 JSONArray dados = status.getJSONArray("objeto");
-                ArrayList<CategoriasProdutos> listaCateg = new ArrayList<>();
+                ArrayList<Marca> marcas = new ArrayList<>();
 
                 for (int i = 0; i < dados.length(); ++i) {
                     JSONObject dados_result = dados.getJSONObject(i);
-                    CategoriasProdutos categs = new CategoriasProdutos(dados_result.getInt("categoria_id"),
-                                            dados_result.getString("categoria_descricao"),
-                                            dados_result.getString("categoria_img_b64"));
-                    listaCateg.add(categs);
+                    Marca marca = new Marca(
+                            dados_result.getInt("produto_id"),
+                            dados_result.getString("produto_descricao"),
+                            dados_result.getString("produto_img_b64"));
+                    marcas.add(marca);
                 }
+                if (marcas.size() > 0) {
+                    Log.i("array", marcas.toString());
+                    TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
+                    TabDestaques.recMarca.setAdapter(null);
+                    MarcaAdapter marcaAdapter  = new MarcaAdapter(TabDestaques.activity, marcas);
+                    TabDestaques.recMarca.setAdapter(marcaAdapter);
+                    //produtosAdapter.notifyDataSetChanged();
 
-                if(listaCateg.size()> 0) {
-                    Log.i("array",listaCateg.toString());
-                    TabDestaques.pb.setVisibility(View.INVISIBLE);
-                    CategoriasAdapter categoriasAdapter  = new CategoriasAdapter(TabDestaques.activity,listaCateg);
-                    TabDestaques.rec.setAdapter(categoriasAdapter);
 
                     if (mListener != null) {
-                        mListener.onLoaded("Categoria");
+                        mListener.onLoaded("Marca");
                     }
-                }else{
-                    TabDestaques.pb.setVisibility(View.INVISIBLE);
-                    TabDestaques.rec.setAdapter(null);
-                    TabDestaques.no_categoria.setVisibility(View.VISIBLE);
+
+                } else {
+                    TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
+                    TabDestaques.recMarca.setAdapter(null);
+                     TabDestaques.no_marcas.setVisibility(View.VISIBLE);
 
                     if (mListener != null) {
                         mListener.onLoaded("false");
                     }
-
                 }
 
-            }else if(descricao.equals("Nenhuma categoria encontrada")){
-                TabDestaques.no_categoria.setVisibility(View.VISIBLE);
-                TabDestaques.pb.setVisibility(View.INVISIBLE);
-                TabDestaques.rec.setAdapter(null);
-                if (mListener != null) {
-                    mListener.onLoaded("false");
-                }
-
+            } else if (descricao.equals("Nenhum lote encontrado!")) {
+                 TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
+                 TabDestaques.recMarca.setAdapter(null);
+                 TabDestaques.no_marcas.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            TabDestaques.no_categoria.setVisibility(View.VISIBLE);
-            TabDestaques.pb.setVisibility(View.INVISIBLE);
+            TabDestaques.no_marcas.setVisibility(View.VISIBLE);
+            TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
+
             if (mListener != null) {
                 mListener.onLoaded("false");
             }

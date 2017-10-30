@@ -1,18 +1,11 @@
 package com.example.talit.projetotcc.connectionAPI;
 
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 
-import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
-import com.example.talit.projetotcc.activities.ProdutosEstabelecimento;
 import com.example.talit.projetotcc.adapters.ProdutosAdapter;
-import com.example.talit.projetotcc.fragments.TabDestaques;
-import com.example.talit.projetotcc.logicalView.Produtos;
+import com.example.talit.projetotcc.logicalView.Marca;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,31 +18,28 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by talit on 08/10/2017.
+ * Created by talit on 29/10/2017.
  */
 
-public class LotePorCategoria extends AsyncTask<String, String, String> {
+public class MarcaPorId extends AsyncTask<String, String, String> {
 
     private Listener mListener;
-    public String status = "false";
 
     public interface Listener {
 
         public void onLoaded(String status);
     }
-    public LotePorCategoria(LotePorCategoria.Listener mListener){
+    public MarcaPorId(Listener mListener){
 
         this.mListener = mListener;
-        TabDestaques.pbProdutos.setVisibility(View.VISIBLE);
+        //TabDestaques.pbProdutos.setVisibility(View.VISIBLE);
     }
-
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/produto/getLoteByCategoria/" + params[0] + "/";
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/marca/getMarcaPorId/" + params[0] + "/";
 
         String response = "";
 
@@ -89,7 +79,6 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
         super.onPostExecute(result);
 
         try {
-
             JSONObject api_result = new JSONObject(result);
             String response = api_result.getString("response");
 
@@ -101,40 +90,25 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
             Log.i("Status", status_est);
 
             if (status_est.equals("true")) {
-                TabDestaques.no_produto.setVisibility(View.INVISIBLE);
+                //TabDestaques.no_produto.setVisibility(View.INVISIBLE);
                 JSONArray dados = status.getJSONArray("objeto");
-                ArrayList<Produtos> prods = new ArrayList<>();
+                ArrayList<Marca> marcas = new ArrayList<>();
 
                 for (int i = 0; i < dados.length(); ++i) {
                     JSONObject dados_result = dados.getJSONObject(i);
-                    String lote = dados_result.getString("lote");
-                    JSONObject lote_result = new JSONObject(lote);
-
-                    Produtos prod = new Produtos(
+                    Marca marca = new Marca(
                             dados_result.getInt("produto_id"),
                             dados_result.getString("produto_descricao"),
-                            dados_result.getString("produto_img_b64"),
-                            dados_result.getString("estabelecimento_nome_fantasia"),
-                            dados_result.getString("marca_descricao"),
-                            dados_result.getString("categoria_descricao"),
-                            dados_result.getInt("quantidade"),
-                            dados_result.getString("unidade_medida_sigla"),
-                            dados_result.getString("sub_categoria_descricao"),
-                            lote_result.getInt("lote_id"),
-                            lote_result.getString("lote_data_fabricacao"),
-                            lote_result.getString("lote_data_vencimento"),
-                            lote_result.getString("lote_preco"),
-                            lote_result.getString("lote_obs"),
-                            lote_result.getString("lote_quantidade"));
-                    prods.add(prod);
+                            dados_result.getString("produto_img_b64"));
+                   marcas.add(marca);
                 }
-                if (prods.size() > 0) {
-                    Log.i("array", prods.toString());
-                    TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
-                    TabDestaques.recProdutos.setAdapter(null);
-                    ProdutosAdapter produtosAdapter  = new ProdutosAdapter(prods,TabDestaques.activity, TabDestaques.context);
-                    TabDestaques.recProdutos.setAdapter(produtosAdapter);
-                    produtosAdapter.notifyDataSetChanged();
+                if (marcas.size() > 0) {
+                    Log.i("array", marcas.toString());
+                    //TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
+                    //TabDestaques.recProdutos.setAdapter(null);
+                   // ProdutosAdapter produtosAdapter  = new ProdutosAdapter(prods,TabDestaques.activity, TabDestaques.context);
+                    //TabDestaques.recProdutos.setAdapter(produtosAdapter);
+                    //produtosAdapter.notifyDataSetChanged();
 
 
                     if (mListener != null) {
@@ -142,9 +116,9 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
                     }
 
                 } else {
-                    TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
-                    TabDestaques.recProdutos.setAdapter(null);
-                    TabDestaques.no_produto.setVisibility(View.VISIBLE);
+                   // TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
+                   // TabDestaques.recProdutos.setAdapter(null);
+                   // TabDestaques.no_produto.setVisibility(View.VISIBLE);
 
                     if (mListener != null) {
                         mListener.onLoaded("false");
@@ -152,14 +126,14 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
                 }
 
             } else if (descricao.equals("Nenhum lote encontrado!")) {
-                TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
-                TabDestaques.recProdutos.setAdapter(null);
-                TabDestaques.no_produto.setVisibility(View.VISIBLE);
+               // TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
+                //TabDestaques.recProdutos.setAdapter(null);
+                //TabDestaques.no_produto.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            TabDestaques.no_produto.setVisibility(View.VISIBLE);
-            TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
+            //TabDestaques.no_produto.setVisibility(View.VISIBLE);
+            //TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
 
             if (mListener != null) {
                 mListener.onLoaded("false");

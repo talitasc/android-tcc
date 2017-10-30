@@ -113,6 +113,18 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         return prod.size();
     }
 
+    public void clear() {
+
+        int size = prod.size();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                prod.remove(0);
+            }
+
+            this.notifyItemRangeRemoved(0, size);
+        }
+    }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);

@@ -27,7 +27,7 @@ import java.util.List;
  * Created by talit on 05/06/2017.
  */
 
-public class TabCategorias extends Fragment implements Categorias.Listener{
+public class TabCategorias extends Fragment {
 
     public static Context context;
     public static Activity activity;
@@ -53,11 +53,11 @@ public class TabCategorias extends Fragment implements Categorias.Listener{
         return view;
     }
 
-    @Override
+   /* @Override
     public void onLoaded(List<CategoriasProdutos> categProd) {
 
         //CategoriasAdapter categoriasAdapter = new CategoriasAdapter(TabCategorias.activity, TabCategorias.context, categProd);
         //this.listView.setAdapter(categoriasAdapter);
         //categoriasAdapter.notifyDataSetChanged();
-    }
+    }*/
 }

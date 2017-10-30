@@ -133,6 +133,7 @@ public class ListaSupermercadoPoRaio extends AsyncTask<String, String, String> {
                 if (listareEst.size() > 0) {
                     Log.i("array", listareEst.toString());
                     PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
+                    PaginalnicialConsumidor.listas.setAdapter(null);
                     ListaSupermercadosAdapter listarSupmermercadoAdapter = new ListaSupermercadosAdapter(PaginalnicialConsumidor.act, PaginalnicialConsumidor.context, listareEst);
                     PaginalnicialConsumidor.listas.setAdapter(listarSupmermercadoAdapter);
                     listarSupmermercadoAdapter.notifyDataSetChanged();
@@ -149,6 +150,7 @@ public class ListaSupermercadoPoRaio extends AsyncTask<String, String, String> {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            PaginalnicialConsumidor.listas.setAdapter(null);
             if (mListener != null) {
                 mListener.onLoaded(null);
             }

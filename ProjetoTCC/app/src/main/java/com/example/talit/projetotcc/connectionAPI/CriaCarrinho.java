@@ -153,7 +153,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         DeleteCarrinho connDel = new DeleteCarrinho(null);
-                        connDel.execute("7");
+                        connDel.execute("20");
 
                     }
                 });
