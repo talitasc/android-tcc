@@ -277,7 +277,7 @@
     <string name="negative_button">Não</string>
     <string name="no_produto">Nenhum produto disponivel:(</string>
     <string name="no_categ">Nenhuma categoria encontrada :(</string>
-    <string name="filtro_estabelecimento">Busque por:</string>
+    <string name="filtro_estabelecimento">Filtre por:</string>
     <string name="filtro_subCategorias">Subcategorias</string>
     <string name="filtro_marcas">Marcas</string>
     <string name="no_sub">Não há subcategorias para ser exibido :(</string>

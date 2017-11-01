@@ -132,9 +132,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
 
                     String dados = status.getString("objeto");
                     JSONObject dados_result = new JSONObject(dados);
-
                     Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,"Produto adicionado ao carrinho");
-
                     dbconn.insertSacola(dados_result.getInt("carrinho_id"), Integer.parseInt(DetalhesProdutos.strIdProd),
                             DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
                             Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
@@ -143,7 +141,6 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
 
                 }
             }else{
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetalhesProdutos.c);
                 builder.setTitle(R.string.erro_titulo);
                 builder.setMessage(R.string.erro_carrinho);
@@ -153,7 +150,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         DeleteCarrinho connDel = new DeleteCarrinho(null);
-                        connDel.execute("20");
+                        connDel.execute();
 
                     }
                 });

@@ -14,24 +14,23 @@ import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.fragments.TabDestaques;
-import com.example.talit.projetotcc.logicalView.Marca;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.example.talit.projetotcc.logicalView.Subcategoria;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
- * Created by talit on 30/10/2017.
+ * Created by talit on 31/10/2017.
  */
 
-public class MarcaAdapter  extends RecyclerView.Adapter<MarcaAdapter.MarcaAdapterAdapterHolder>{
+public class SubcategoriaAdapter extends RecyclerView.Adapter<SubcategoriaAdapter.SubcategoriadapterAdapterHolder> {
 
-    public static class MarcaAdapterAdapterHolder extends RecyclerView.ViewHolder {
+    public static class SubcategoriadapterAdapterHolder extends RecyclerView.ViewHolder {
         private TextView nomeMarca;
         private ImageView imMarca;
         private View view;
 
-        public MarcaAdapterAdapterHolder(View v) {
+        public SubcategoriadapterAdapterHolder(View v) {
             super(v);
             nomeMarca = (TextView) v.findViewById(R.id.txt_itens);
             imMarca = (ImageView) v.findViewById(R.id.img_itens);
@@ -40,29 +39,31 @@ public class MarcaAdapter  extends RecyclerView.Adapter<MarcaAdapter.MarcaAdapte
     }
 
     private Activity act;
-    private List<Marca> marcaProd;
+    private List<Subcategoria> subcategorias;
     private View v;
 
-    public MarcaAdapter(Activity act, List<Marca> marcaProd){
+    public SubcategoriaAdapter(Activity act, List<Subcategoria> subcategorias){
         this.act = act;
-        this.marcaProd = marcaProd;
+        this.subcategorias = subcategorias;
     }
     @Override
-    public MarcaAdapter.MarcaAdapterAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SubcategoriaAdapter.SubcategoriadapterAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_marcas, parent, false);
         v = itemView;
-        return new MarcaAdapter.MarcaAdapterAdapterHolder (itemView);
+        return new SubcategoriaAdapter.SubcategoriadapterAdapterHolder (itemView);
     }
 
     @Override
-    public void onBindViewHolder(MarcaAdapterAdapterHolder holder, int position) {
-        final Marca marca = marcaProd.get(position);
-        holder.nomeMarca.setText(marca.getDescricao());
-        holder.imMarca.setImageBitmap(convert(marca.getImgbase64()));
+    public void onBindViewHolder(SubcategoriadapterAdapterHolder holder, int position) {
+        final Subcategoria subcategoria = subcategorias.get(position);
+        holder.nomeMarca.setText(subcategoria.getSub_categoria_descricao());
+        holder.imMarca.setVisibility(View.INVISIBLE);
+        //holder.imMarca.setImageBitmap(convert(marca.getImgbase64()));
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TabDestaques.idMarca = marca.getIdMarca()+"";
+
+                TabDestaques.idSubCateg = subcategoria.getSub_categoria_id()+"";
                 ((FragmentActivity)TabDestaques.context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content, new TabDestaques())
                         .commit();
@@ -73,7 +74,7 @@ public class MarcaAdapter  extends RecyclerView.Adapter<MarcaAdapter.MarcaAdapte
 
     @Override
     public int getItemCount() {
-        return marcaProd.size();
+        return subcategorias.size();
     }
 
     @Override

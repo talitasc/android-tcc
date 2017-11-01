@@ -40,7 +40,10 @@ import com.example.talit.projetotcc.adapters.ProdutosAdapter;
 import com.example.talit.projetotcc.connectionAPI.Categorias;
 import com.example.talit.projetotcc.connectionAPI.ListarSupermercadosPorDescricao;
 import com.example.talit.projetotcc.connectionAPI.LotePorCategoria;
+import com.example.talit.projetotcc.connectionAPI.LotePorMarca;
+import com.example.talit.projetotcc.connectionAPI.LotePorSubcategoria;
 import com.example.talit.projetotcc.connectionAPI.Marcas;
+import com.example.talit.projetotcc.connectionAPI.Subcategorias;
 import com.example.talit.projetotcc.logicalView.CategoriasProdutos;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -62,6 +65,7 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
     public static RecyclerView rec;
     public static RecyclerView recProdutos;
     public static RecyclerView recMarca;
+    public static RecyclerView recSubcategorias;
     private static ArrayList<Produtos> produtos = new ArrayList<Produtos>();
     private ArrayList<CategoriasProdutos> categProd = new ArrayList<CategoriasProdutos>();
     public static RelativeLayout no_produto;
@@ -72,7 +76,11 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
     public static ProgressBar pb;
     public static ProgressBar pbProdutos;
     public static ProgressBar pbMarcas;
+    public static ProgressBar pbSubcategorias;
     public static String idCateg;
+    public static String idSubCateg;
+    public static String idMarca;
+    public static AlertDialog dialogo;
     private ImageButton imFiltro;
 
     @Override
@@ -112,6 +120,14 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
             connProd.execute(idCateg);
             Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
         }
+        if(idMarca != null){
+            LotePorMarca connMarca = new LotePorMarca(null);
+            connMarca.execute(idMarca);
+        }
+        if(idSubCateg != null){
+            LotePorSubcategoria connSub = new LotePorSubcategoria(null);
+            connSub.execute(idSubCateg);
+        }
         imFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,48 +143,33 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
         final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_subcategorias, null);
         Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
         recMarca = (RecyclerView)alertLayout.findViewById(R.id.rec_marcas);
+        recSubcategorias = (RecyclerView)alertLayout.findViewById(R.id.rec_categ);
         pbMarcas = (ProgressBar) alertLayout.findViewById(R.id.pb_marcas);
+        pbSubcategorias = (ProgressBar)alertLayout.findViewById(R.id.pb_sub);
         no_sub = (RelativeLayout)alertLayout.findViewById(R.id.no_sub);
-        no_produto = (RelativeLayout)alertLayout.findViewById(R.id.no_marcas);
+        no_marcas = (RelativeLayout)alertLayout.findViewById(R.id.no_marcas);
+
+        pbSubcategorias.setVisibility(View.INVISIBLE);
+        pbMarcas.setVisibility(View.INVISIBLE);
 
         AlertDialog.Builder alerta = new AlertDialog.Builder(getActivity());
         alerta.setView(alertLayout);
         alerta.setCancelable(false);
-        final AlertDialog dialogo = alerta.create();
+        dialogo = alerta.create();
         dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogo.show();
+
         Marcas connMarca= new Marcas(null);
         connMarca.execute();
 
-       /* seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                txtRaio.setText(String.format(String.valueOf(progress)));
-            }
+        Subcategorias connSub = new Subcategorias(null);
+        connSub.execute();
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+        LinearLayoutManager layoutManagerMarca = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recMarca.setLayoutManager(layoutManagerMarca);
 
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogo.dismiss();
-                houveBusca = true;
-                listas.removeAllViews();
-                raio = txtRaio.getText().toString();
-                ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
-                connRaio.execute(String.format("%s", latitude), String.format("%s",longitude),raio);
-
-
-            }
-        });
+        LinearLayoutManager layoutManagerSub = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recSubcategorias.setLayoutManager(layoutManagerSub);
 
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,7 +177,7 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
                 dialogo.dismiss();
             }
 
-        });*/
+        });
     }
     @Override
     public void onLoaded(String result) {

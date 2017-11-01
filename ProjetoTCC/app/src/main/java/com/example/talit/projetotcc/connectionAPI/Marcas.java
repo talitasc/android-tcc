@@ -98,13 +98,13 @@ public class Marcas extends AsyncTask<String, String, String> {
                 for (int i = 0; i < dados.length(); ++i) {
                     JSONObject dados_result = dados.getJSONObject(i);
                     Marca marca = new Marca(
-                            dados_result.getInt("produto_id"),
-                            dados_result.getString("produto_descricao"),
-                            dados_result.getString("produto_img_b64"));
+                            dados_result.getInt("marca_id"),
+                            dados_result.getString("marca_descricao"),
+                            dados_result.getString("marca_path_img"));
                     marcas.add(marca);
                 }
                 if (marcas.size() > 0) {
-                    Log.i("array", marcas.toString());
+                    Log.i("array","teste");
                     TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
                     TabDestaques.recMarca.setAdapter(null);
                     MarcaAdapter marcaAdapter  = new MarcaAdapter(TabDestaques.activity, marcas);
