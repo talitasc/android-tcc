@@ -78,7 +78,10 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Ca
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TabDestaques.idCateg = categs.getIdCategoria()+"";
+                TabDestaques.idMarca = null;
+                TabDestaques.idSubCateg= null;
+                TabDestaques.idCateg = null;
+                 TabDestaques.idCateg = categs.getIdCategoria()+"";
                 ((FragmentActivity)TabDestaques.context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content, new TabDestaques())
                         .commit();

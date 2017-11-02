@@ -62,6 +62,9 @@ public class MarcaAdapter  extends RecyclerView.Adapter<MarcaAdapter.MarcaAdapte
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TabDestaques.idSubCateg = null;
+                TabDestaques.idCateg = null;
+                TabDestaques.idEstab = null;
                 TabDestaques.idMarca = marca.getIdMarca()+"";
                 ((FragmentActivity)TabDestaques.context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content, new TabDestaques())

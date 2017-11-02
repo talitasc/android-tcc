@@ -16,6 +16,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public static final String NOME_PREFERENCE = "IDIOMA";
     private static String lingua = "pt";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

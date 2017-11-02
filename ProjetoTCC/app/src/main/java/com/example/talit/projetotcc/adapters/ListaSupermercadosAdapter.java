@@ -3,6 +3,7 @@ package com.example.talit.projetotcc.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -30,6 +31,8 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by talit on 23/04/2017.
@@ -104,6 +107,11 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                         listaSuper.getTelefone());
                 //Toast.makeText(act, estabelecimento.getNomeFantasia(), Toast.LENGTH_SHORT).show();
                 PaginaInicialEstabelecimentos.nomeEstab = estabelecimento.getNome_fantasia();
+
+                SharedPreferences.Editor editor = act.getSharedPreferences("ID", MODE_PRIVATE).edit();
+                editor.putString("idEstab", String.format("%d", estabelecimento.getId()));
+                editor.commit();
+
                 DetalhesEstab.strNomeFantasia = estabelecimento.getNome_fantasia();
                 DetalhesEstab.strRua = estabelecimento.getRua();
                 DetalhesEstab.strNumero = estabelecimento.getNumero() + "";

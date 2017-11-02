@@ -62,7 +62,10 @@ public class SubcategoriaAdapter extends RecyclerView.Adapter<SubcategoriaAdapte
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TabDestaques.idCateg = null;
+                TabDestaques.idMarca = null;
+                TabDestaques.idEstab = null;
+                TabDestaques.idSubCateg = null;
                 TabDestaques.idSubCateg = subcategoria.getSub_categoria_id()+"";
                 ((FragmentActivity)TabDestaques.context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content, new TabDestaques())
