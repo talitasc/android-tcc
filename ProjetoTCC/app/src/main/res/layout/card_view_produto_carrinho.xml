@@ -174,13 +174,14 @@
 
                 <Button
                     android:id="@+id/btnExcluir"
-                    android:layout_width="36dp"
+                    android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/ic_more_vert_black_24dp"
+                    android:background="@drawable/delete_empty"
                     android:backgroundTint="@color/coresProvisoriasum"
                     tools:ignore="ContentDescription,UnusedAttribute"
-                    android:layout_alignBottom="@+id/txtNomeProduto"
-                    android:layout_alignEnd="@+id/txt_preco" />
+                    android:layout_alignTop="@+id/txtNomeProduto"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true" />
 
                 <TextView
                     android:id="@+id/txt_preco"
@@ -194,7 +195,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="19dp" />
+                    android:layout_marginEnd="10dp" />
 
 
             </RelativeLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos"
+    tools:showIn="@layout/act_pagina_inicial_estabelecimentos">
+
+    <RelativeLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/coresProvisoriasum"
+        android:padding="10dp"
+        android:paddingEnd="01dp"
+        tools:ignore="RtlSymmetry">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imgfiltroEstab"
+            android:background="@drawable/borda_search_view"
+            android:icon="@android:drawable/ic_menu_search"
+            app:queryHint="Type something..."
+            app:theme="@style/SearchViewStyle" />
+
+        <ImageButton
+            android:id="@+id/imgfiltroEstab"
+            style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_tune_black_24dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/txt_busca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="13dp"
+            android:text="@string/txt_buscar"
+            android:textColor="#acacac"
+            android:textSize="16sp"
+            app:layout_anchorGravity="bottom|center_horizontal"
+            tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_categ"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_layout"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="05dp"
+        android:scrollbars="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:ignore="UnknownIdInLayout" />
+
+
+    <ProgressBar
+        android:id="@+id/pb_categorias"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="05dp"
+        tools:ignore="UnknownIdInLayout" />
+
+    <RelativeLayout
+        android:id="@+id/rl_no_catgeorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginTop="05dp"
+        android:visibility="invisible"
+        tools:ignore="UnknownIdInLayout">
+
+        <TextView
+            android:id="@+id/tv_no_categ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/no_categ"
+            android:textColor="#ACACAC"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

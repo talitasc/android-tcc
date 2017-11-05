@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
 import com.example.talit.projetotcc.adapters.CategoriasAdapter;
 import com.example.talit.projetotcc.adapters.ListaSupermercadosAdapter;
@@ -36,12 +37,12 @@ public class Categorias extends AsyncTask<String, String, String> {
 
     public interface Listener {
 
-        public void onLoaded(String msg);
+        public void onLoaded(List<CategoriasProdutos> estab);
     }
     public Categorias(Listener mListener){
 
         this.mListener = mListener;
-        TabDestaques.pb.setVisibility(View.VISIBLE);
+        PaginaInicialEstabelecimentos.pbCateg.setVisibility(View.VISIBLE);
     }
     @Override
     protected String doInBackground(String... params) {
@@ -96,7 +97,7 @@ public class Categorias extends AsyncTask<String, String, String> {
             Log.i("Status",status_est);
 
             if(status_est.equals("true")) {
-                TabDestaques.no_categoria.setVisibility(View.INVISIBLE);
+                PaginaInicialEstabelecimentos.no_categoria.setVisibility(View.INVISIBLE);
 
                 JSONArray dados = status.getJSONArray("objeto");
                 ArrayList<CategoriasProdutos> listaCateg = new ArrayList<>();
@@ -111,39 +112,33 @@ public class Categorias extends AsyncTask<String, String, String> {
 
                 if(listaCateg.size()> 0) {
                     Log.i("array",listaCateg.toString());
-                    TabDestaques.pb.setVisibility(View.INVISIBLE);
+                    PaginaInicialEstabelecimentos.pbCateg.setVisibility(View.INVISIBLE);
                     CategoriasAdapter categoriasAdapter  = new CategoriasAdapter(TabDestaques.activity,listaCateg);
-                    TabDestaques.rec.setAdapter(categoriasAdapter);
+                    PaginaInicialEstabelecimentos.recCategorias.setAdapter(categoriasAdapter);
 
-                    if (mListener != null) {
-                        mListener.onLoaded("Categoria");
-                    }
                 }else{
-                    TabDestaques.pb.setVisibility(View.INVISIBLE);
-                    TabDestaques.rec.setAdapter(null);
-                    TabDestaques.no_categoria.setVisibility(View.VISIBLE);
+                    PaginaInicialEstabelecimentos.pbCateg.setVisibility(View.INVISIBLE);
+                    PaginaInicialEstabelecimentos.recCategorias.setAdapter(null);
+                    PaginaInicialEstabelecimentos.no_categoria.setVisibility(View.VISIBLE);
 
-                    if (mListener != null) {
-                        mListener.onLoaded("false");
-                    }
 
                 }
 
             }else if(descricao.equals("Nenhuma categoria encontrada")){
-                TabDestaques.no_categoria.setVisibility(View.VISIBLE);
-                TabDestaques.pb.setVisibility(View.INVISIBLE);
-                TabDestaques.rec.setAdapter(null);
+                PaginaInicialEstabelecimentos.no_categoria.setVisibility(View.VISIBLE);
+                PaginaInicialEstabelecimentos.pbCateg.setVisibility(View.INVISIBLE);
+                PaginaInicialEstabelecimentos.recCategorias.setAdapter(null);
                 if (mListener != null) {
-                    mListener.onLoaded("false");
+                    mListener.onLoaded(null);
                 }
 
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            TabDestaques.no_categoria.setVisibility(View.VISIBLE);
-            TabDestaques.pb.setVisibility(View.INVISIBLE);
+            PaginaInicialEstabelecimentos.no_categoria.setVisibility(View.VISIBLE);
+            PaginaInicialEstabelecimentos.pbCateg.setVisibility(View.INVISIBLE);
             if (mListener != null) {
-                mListener.onLoaded("false");
+                mListener.onLoaded(null);
             }
         }
     }

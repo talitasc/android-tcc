@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.adapters.MarcaAdapter;
 import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.Marca;
@@ -35,7 +36,7 @@ public class Marcas extends AsyncTask<String, String, String> {
     public Marcas(Listener mListener){
 
         this.mListener = mListener;
-        TabDestaques.pbMarcas.setVisibility(View.VISIBLE);
+        PaginaInicialEstabelecimentos.pbMarcas.setVisibility(View.VISIBLE);
     }
     @Override
     protected String doInBackground(String... params) {
@@ -105,10 +106,10 @@ public class Marcas extends AsyncTask<String, String, String> {
                 }
                 if (marcas.size() > 0) {
                     Log.i("array","teste");
-                    TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
-                    TabDestaques.recMarca.setAdapter(null);
+                    PaginaInicialEstabelecimentos.pbMarcas.setVisibility(View.INVISIBLE);
+                    PaginaInicialEstabelecimentos.recMarca.setAdapter(null);
                     MarcaAdapter marcaAdapter  = new MarcaAdapter(TabDestaques.activity, marcas);
-                    TabDestaques.recMarca.setAdapter(marcaAdapter);
+                    PaginaInicialEstabelecimentos.recMarca.setAdapter(marcaAdapter);
                     //produtosAdapter.notifyDataSetChanged();
 
 
@@ -117,9 +118,9 @@ public class Marcas extends AsyncTask<String, String, String> {
                     }
 
                 } else {
-                    TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
-                    TabDestaques.recMarca.setAdapter(null);
-                     TabDestaques.no_marcas.setVisibility(View.VISIBLE);
+                    PaginaInicialEstabelecimentos.pbMarcas.setVisibility(View.INVISIBLE);
+                    PaginaInicialEstabelecimentos.recMarca.setAdapter(null);
+                    PaginaInicialEstabelecimentos.no_marcas.setVisibility(View.VISIBLE);
 
                     if (mListener != null) {
                         mListener.onLoaded("false");
@@ -127,14 +128,14 @@ public class Marcas extends AsyncTask<String, String, String> {
                 }
 
             } else if (descricao.equals("Nenhum lote encontrado!")) {
-                 TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
-                 TabDestaques.recMarca.setAdapter(null);
-                 TabDestaques.no_marcas.setVisibility(View.VISIBLE);
+                PaginaInicialEstabelecimentos.pbMarcas.setVisibility(View.INVISIBLE);
+                PaginaInicialEstabelecimentos.recMarca.setAdapter(null);
+                PaginaInicialEstabelecimentos.no_marcas.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            TabDestaques.no_marcas.setVisibility(View.VISIBLE);
-            TabDestaques.pbMarcas.setVisibility(View.INVISIBLE);
+            PaginaInicialEstabelecimentos.no_marcas.setVisibility(View.VISIBLE);
+            PaginaInicialEstabelecimentos.pbMarcas.setVisibility(View.INVISIBLE);
 
             if (mListener != null) {
                 mListener.onLoaded("false");

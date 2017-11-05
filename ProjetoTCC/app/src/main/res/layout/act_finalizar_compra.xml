@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
+    android:paddingBottom="05dp"
     android:paddingLeft="05dp"
     android:paddingRight="05dp"
     android:paddingTop="05dp"
@@ -36,40 +36,41 @@
                 app:cardUseCompatPadding="true">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/txt_smarketPoint"
+                        android:id="@+id/txt_dados"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="3"
                         android:padding="12dp"
-                        android:text="@string/txt_smarketpoint"
+                        android:text="@string/dados_pessoais"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         tools:ignore="SpUsage" />
 
                     <View
-                        android:id="@+id/divider"
+                        android:id="@+id/divi"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/txt_smarketPoint"
+                        android:layout_below="@id/txt_dados"
                         android:layout_margin="4dp"
                         android:background="#ACACAC" />
 
                     <EditText
-                        android:id="@+id/ed_smarketpoint"
+                        android:id="@+id/ed_cpf"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_below="@+id/divider"
                         android:layout_marginBottom="05dp"
                         android:layout_marginLeft="05dp"
-                        android:layout_marginRight="05dp"
-                        android:layout_marginTop="05dp"
+                        android:layout_marginStart="05dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/divi"
                         android:background="@drawable/bordas_editext_cinza"
-                        android:hint="@string/ed_smarkepoint"
-                        android:inputType="textPersonName"
+                        android:hint="@string/dados_pessoais_cpf"
+                        android:inputType="numberDecimal"
+                        android:maxLength="14"
                         android:padding="12dp"
                         android:textAllCaps="false"
                         android:textSize="14sp"
@@ -82,7 +83,526 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="360dp"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="#FFF"
+                app:cardCornerRadius="03dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="3dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt_tp_entrega"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:padding="12dp"
+                        android:text="@string/tp_ent"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/txt_tp_entrega"
+                        android:layout_margin="4dp"
+                        android:background="#ACACAC" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_aguardar"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/divider"
+                        android:layout_marginStart="180dp"
+                        android:layout_marginTop="02dp"
+                        tools:ignore="UnknownIdInLayout" />
+
+                    <RadioButton
+                        android:id="@+id/rd_delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:text="@string/ret_local"
+                        android:textColor="#ACACAC"
+                        tools:ignore="HardcodedText" />
+
+                    <RadioButton
+                        android:id="@+id/rd_frete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:layout_toEndOf="@+id/rd_delivery"
+                        android:text="@string/ret_frete"
+                        android:textColor="#ACACAC"
+                        tools:ignore="HardcodedText" />
+
+                    <RelativeLayout
+                        android:id="@+id/delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/rd_frete"
+                        android:visibility="gone"
+                        tools:ignore="UselessLeaf">
+
+                        <ImageView
+                            android:id="@+id/end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="05dp"
+                            android:layout_marginTop="11dp"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="#ACACAC"
+                            tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/txt_endereco"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/end"
+                            android:maxLines="3"
+                            android:padding="12dp"
+                            android:text="@string/ret_edn_estab"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <View
+                            android:id="@+id/divider_oito"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/txt_endereco"
+                            android:layout_margin="4dp"
+                            android:background="#DCDCDC" />
+
+                        <TextView
+                            android:id="@+id/txt_rua"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/divider_oito"
+                            android:layout_marginLeft="01dp"
+                            android:padding="12dp"
+                            android:text="@string/ret_end"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="RtlHardcoded,SmallSp" />
+
+                        <TextView
+                            android:id="@+id/txt_numero"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/divider_oito"
+                            android:layout_marginStart="05dp"
+                            android:layout_toEndOf="@+id/txt_rua"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp"
+                            tools:text="@string/ret_numero" />
+
+                        <View
+                            android:id="@+id/divider_quatro"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/txt_rua"
+                            android:layout_margin="4dp"
+                            android:background="#DCDCDC" />
+
+                        <TextView
+                            android:id="@+id/txt_bairro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/divider_quatro"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp"
+                            tools:text="@string/ret_bairro" />
+
+                        <TextView
+                            android:id="@+id/txt_cep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/divider_quatro"
+                            android:layout_marginStart="05dp"
+                            android:layout_toEndOf="@+id/txt_bairro"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp"
+                            tools:text="@string/ret_ceo" />
+
+                        <View
+                            android:id="@+id/divider_cinco"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/txt_bairro"
+                            android:layout_margin="4dp"
+                            android:background="#DCDCDC" />
+
+                        <TextView
+                            android:id="@+id/txt_cidade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/divider_cinco"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp"
+                            tools:text="@string/ret_localidade" />
+
+                        <TextView
+                            android:id="@+id/txt_sigla"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/divider_cinco"
+                            android:layout_marginStart="05dp"
+                            android:layout_toEndOf="@+id/txt_cidade"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp"
+                            tools:text="@string/ret_uf" />
+
+                        <View
+                            android:id="@+id/divider_enc_end"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/txt_sigla"
+                            android:layout_margin="4dp"
+                            android:background="#DCDCDC" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/divider_enc_end">
+
+                            <ImageView
+                                android:id="@+id/time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="05dp"
+                                android:layout_marginTop="11dp"
+                                android:src="@drawable/ic_access_time_black_24dp"
+                                android:tint="#ACACAC"
+                                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+                            <TextView
+                                android:id="@+id/txt_funcionamento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/time"
+                                android:maxLines="3"
+                                android:padding="12dp"
+                                android:text="@string/txt_funcionamento"
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="SpUsage" />
+
+                            <View
+                                android:id="@+id/divider_dez"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@id/txt_funcionamento"
+                                android:layout_margin="4dp"
+                                android:background="#DCDCDC" />
+
+                            <TextView
+                                android:id="@+id/txt_semana"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divider_dez"
+                                android:layout_marginLeft="01dp"
+                                android:padding="12dp"
+                                android:text="@string/txt_semana"
+                                android:textAllCaps="false"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded,SmallSp" />
+
+                            <View
+                                android:id="@+id/divider_onze"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@id/txt_semana"
+                                android:layout_margin="4dp"
+                                android:background="#DCDCDC" />
+
+                            <TextView
+                                android:id="@+id/txt_fds"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divider_onze"
+                                android:layout_marginLeft="01dp"
+                                android:padding="12dp"
+                                android:text="@string/txt_fds"
+                                android:textAllCaps="false"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded,SmallSp" />
+
+                            <View
+                                android:id="@+id/divider_doze"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@id/txt_fds"
+                                android:layout_margin="4dp"
+                                android:background="#DCDCDC" />
+
+                            <TextView
+                                android:id="@+id/txt_feriado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divider_doze"
+                                android:layout_marginLeft="01dp"
+                                android:padding="12dp"
+                                android:text="@string/txt_feriado"
+                                android:textAllCaps="false"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded,SmallSp" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/calc_frete"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/rd_frete"
+                        android:visibility="gone"
+                        tools:ignore="UselessLeaf">
+
+                        <EditText
+                            android:id="@+id/ed_cep"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="05dp"
+                            android:layout_marginLeft="05dp"
+                            android:layout_marginStart="05dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bordas_editext_cinza"
+                            android:hint="@string/ret_ceo"
+                            android:inputType="numberDecimal"
+                            android:maxLength="8"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="RtlHardcoded"
+                            tools:targetApi="m" />
+
+                        <Button
+                            android:id="@+id/btn_consultar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="17dp"
+                            android:layout_toEndOf="@+id/ed_cep"
+                            android:background="@drawable/borda_search_view"
+                            android:backgroundTint="@color/coresProvisoriasum"
+                            android:text="@string/ret_consul"
+                            android:textAllCaps="false"
+                            android:textColor="#ffff"
+                            tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/txt_valor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="02dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_toEndOf="@+id/btn_consultar"
+                            android:textAllCaps="false"
+                            android:textSize="13sp"
+                            tools:ignore="RelativeOverlap,SmallSp"
+                            tools:text="@string/ret_vl_frete" />
+
+                        <RelativeLayout
+                            android:id="@+id/end_por_cep"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/ed_cep"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/txt_end_ent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="3"
+                                android:padding="08dp"
+                                android:text="@string/ret_end_entrega"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                tools:ignore="SpUsage" />
+
+                            <Button
+                                android:id="@+id/btn_buscar_cep"
+                                android:layout_width="165dp"
+                                android:layout_height="36dp"
+                                android:layout_below="@+id/txt_end_ent"
+                                android:layout_marginEnd="02dp"
+                                android:layout_marginStart="05dp"
+                                android:layout_marginTop="05dp"
+                                android:background="@drawable/borda_search_view"
+                                android:backgroundTint="@color/coresProvisoriasum"
+                                android:text="@string/ret_por_cep"
+                                android:textAllCaps="false"
+                                android:textColor="#ffff"
+                                tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
+
+                            <Button
+                                android:id="@+id/btn_meu_end"
+                                android:layout_width="175dp"
+                                android:layout_height="36dp"
+                                android:layout_below="@+id/txt_end_ent"
+                                android:layout_marginEnd="05dp"
+                                android:layout_marginTop="05dp"
+                                android:layout_toEndOf="@+id/btn_buscar_cep"
+                                android:background="@drawable/borda_search_view"
+                                android:backgroundTint="@color/coresProvisoriasum"
+                                android:text="@string/ret_meu_end"
+                                android:textAllCaps="false"
+                                android:textColor="#ffff"
+                                tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
+
+
+                            <TextView
+                                android:id="@+id/txt_valida_busca"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/btn_buscar_cep"
+                                android:layout_marginEnd="05dp"
+                                android:layout_marginStart="08dp"
+                                android:layout_marginTop="05dp"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/holo_red_light"
+                                android:textSize="15sp"
+                                tools:ignore="RelativeOverlap,SmallSp"
+                                tools:text="@string/ret_valida_busca" />
+
+                            <EditText
+                                android:id="@+id/ed_rua"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/txt_valida_busca"
+                                android:layout_marginBottom="05dp"
+                                android:layout_marginLeft="05dp"
+                                android:layout_marginRight="05dp"
+                                android:layout_marginTop="04dp"
+                                android:background="@drawable/bordas_editext_cinza"
+                                android:hint="@string/ret_end"
+                                android:inputType="textPersonName"
+                                android:padding="12dp"
+                                android:textAllCaps="false"
+                                android:textColor="#808080"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded"
+                                tools:targetApi="m" />
+
+                            <EditText
+                                android:id="@+id/ed_localidade"
+                                android:layout_width="200dp"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/ed_rua"
+                                android:layout_marginBottom="05dp"
+                                android:layout_marginLeft="05dp"
+                                android:layout_marginRight="05dp"
+                                android:layout_marginTop="05dp"
+                                android:background="@drawable/bordas_editext_cinza"
+                                android:hint="@string/ret_localidade"
+                                android:inputType="textPersonName"
+                                android:padding="12dp"
+                                android:textAllCaps="false"
+                                android:textColor="#808080"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded"
+                                tools:targetApi="m" />
+
+                            <EditText
+                                android:id="@+id/ed_uf"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/ed_rua"
+                                android:layout_marginBottom="05dp"
+                                android:layout_marginLeft="05dp"
+                                android:layout_marginRight="05dp"
+                                android:layout_marginTop="05dp"
+                                android:layout_toEndOf="@+id/ed_localidade"
+                                android:background="@drawable/bordas_editext_cinza"
+                                android:hint="@string/ret_uf"
+                                android:inputType="textPersonName"
+                                android:padding="12dp"
+                                android:textAllCaps="false"
+                                android:textColor="#808080"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded"
+                                tools:targetApi="m" />
+
+                            <EditText
+                                android:id="@+id/ed_bairro"
+                                android:layout_width="200dp"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/ed_localidade"
+                                android:layout_marginBottom="05dp"
+                                android:layout_marginLeft="05dp"
+                                android:layout_marginRight="05dp"
+                                android:layout_marginTop="05dp"
+                                android:background="@drawable/bordas_editext_cinza"
+                                android:hint="@string/ret_bairro"
+                                android:inputType="textPersonName"
+                                android:padding="12dp"
+                                android:textAllCaps="false"
+                                android:textColor="#808080"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded"
+                                tools:targetApi="m" />
+
+                            <EditText
+                                android:id="@+id/ed_numero"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/ed_localidade"
+                                android:layout_marginBottom="05dp"
+                                android:layout_marginLeft="05dp"
+                                android:layout_marginRight="05dp"
+                                android:layout_marginTop="05dp"
+                                android:layout_toEndOf="@+id/ed_bairro"
+                                android:background="@drawable/bordas_editext_cinza"
+                                android:hint="@string/ret_numero"
+                                android:inputType="number"
+                                android:padding="12dp"
+                                android:textAllCaps="false"
+                                android:textColor="#808080"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded"
+                                tools:targetApi="m" />
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="01dp"
                 app:cardBackgroundColor="#FFF"
                 app:cardCornerRadius="03dp"
@@ -93,134 +613,237 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/txt_cartao"
+                        android:id="@+id/txt_form_pagamento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="3"
                         android:padding="12dp"
-                        android:text="@string/txt_cartao"
+                        android:text="@string/pag_titulo"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         tools:ignore="SpUsage" />
 
                     <View
-                        android:id="@+id/divider_dois"
+                        android:id="@+id/div"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/txt_cartao"
+                        android:layout_below="@id/txt_form_pagamento"
                         android:layout_margin="4dp"
                         android:background="#ACACAC" />
 
-                    <EditText
-                        android:id="@+id/ed_numero_cartao"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/divider_dois"
-                        android:layout_marginBottom="05dp"
-                        android:layout_marginLeft="05dp"
-                        android:layout_marginRight="05dp"
-                        android:layout_marginTop="05dp"
-                        android:background="@drawable/bordas_editext_cinza"
-                        android:hint="@string/edt_numero_cartao"
-                        android:inputType="textPersonName"
-                        android:padding="12dp"
-                        android:textAllCaps="false"
-                        android:textSize="14sp"
-                        tools:ignore="RtlHardcoded"
-                        tools:targetApi="m" />
-
-                    <EditText
-                        android:id="@+id/ed_impresso"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/ed_numero_cartao"
-                        android:layout_marginBottom="05dp"
-                        android:layout_marginLeft="05dp"
-                        android:layout_marginRight="05dp"
-                        android:layout_marginTop="05dp"
-                        android:background="@drawable/bordas_editext_cinza"
-                        android:hint="@string/edt_numero_impresso"
-                        android:inputType="textPersonName"
-                        android:padding="12dp"
-                        android:textAllCaps="false"
-                        android:textSize="14sp"
-                        tools:ignore="RtlHardcoded"
-                        tools:targetApi="m" />
-
-                    <TextView
-                        android:id="@+id/txt_validade_cartao"
+                    <RadioButton
+                        android:id="@+id/rd_nota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/ed_impresso"
+                        android:layout_below="@+id/div"
                         android:layout_marginBottom="05dp"
                         android:layout_marginLeft="05dp"
                         android:layout_marginRight="05dp"
                         android:layout_marginTop="05dp"
-                        android:padding="12dp"
-                        android:textAllCaps="false"
-                        android:textSize="14sp"
-                        tools:ignore="SmallSp"
-                        android:text="@string/edt_validade_cartao" />
+                        android:text="@string/pag_nota"
+                        android:textColor="#ACACAC"
+                        tools:ignore="HardcodedText" />
 
-                    <RelativeLayout
-                        android:layout_width="170dp"
+                    <RadioButton
+                        android:id="@+id/rd_cartao"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/txt_validade_cartao"
-                        android:id="@+id/rl_spn_mes"
+                        android:layout_below="@+id/div"
+                        android:layout_marginBottom="05dp"
                         android:layout_marginLeft="05dp"
-                        android:layout_margin="05dp"
-                        android:background="@drawable/bordas_editext_cinza">
-
-                        <Spinner
-                            android:id="@+id/spinMes"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="10dp" />
-
-                    </RelativeLayout>
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:layout_toEndOf="@+id/rd_nota"
+                        android:text="@string/pag_cartao"
+                        android:textColor="#ACACAC"
+                        tools:ignore="HardcodedText" />
 
                     <RelativeLayout
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txt_validade_cartao"
-                        android:layout_toEndOf="@+id/rl_spn_mes"
-                        android:layout_marginEnd="05dp"
-                        android:layout_margin="05dp"
-                        android:id="@+id/rl_spn_ano"
-                        android:background="@drawable/bordas_editext_cinza">
-
-                        <Spinner
-                            android:id="@+id/spinAno"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="10dp" />
-
-                    </RelativeLayout>
-
-                    <EditText
-                        android:id="@+id/ed_cod_seg"
+                        android:id="@+id/dinheiro"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/rl_spn_ano"
-                        android:layout_marginBottom="05dp"
-                        android:layout_marginLeft="05dp"
-                        android:layout_marginRight="05dp"
-                        android:layout_marginTop="05dp"
-                        android:background="@drawable/bordas_editext_cinza"
-                        android:hint="@string/edt_cod_verif"
-                        android:inputType="textPersonName"
-                        android:padding="12dp"
-                        android:textAllCaps="false"
-                        android:textSize="14sp"
-                        tools:ignore="RtlHardcoded"
-                        tools:targetApi="m" />
+                        android:layout_below="@+id/rd_nota"
+                        android:visibility="gone"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt_pag_dinheiro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:padding="12dp"
+                            android:text="@string/pag_nota"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/txt_pagemento_dinheiro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_pag_dinheiro"
+                            android:padding="05dp"
+                            android:textColor="#ACACAC"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp"
+                            android:text="@string/pag_dinheiro" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/formas_pagamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/rd_nota"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/txt_cartao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:padding="12dp"
+                            android:text="@string/txt_cartao"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <View
+                            android:id="@+id/divider_dois"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/txt_cartao"
+                            android:layout_margin="4dp"
+                            android:background="#ACACAC" />
+
+                        <EditText
+                            android:id="@+id/ed_numero_cartao"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/divider_dois"
+                            android:layout_marginBottom="05dp"
+                            android:layout_marginLeft="05dp"
+                            android:layout_marginRight="05dp"
+                            android:layout_marginTop="05dp"
+                            android:background="@drawable/bordas_editext_cinza"
+                            android:hint="@string/edt_numero_cartao"
+                            android:inputType="textPersonName"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="RtlHardcoded"
+                            tools:targetApi="m" />
+
+                        <EditText
+                            android:id="@+id/ed_impresso"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/ed_numero_cartao"
+                            android:layout_marginBottom="05dp"
+                            android:layout_marginLeft="05dp"
+                            android:layout_marginRight="05dp"
+                            android:layout_marginTop="05dp"
+                            android:background="@drawable/bordas_editext_cinza"
+                            android:hint="@string/edt_numero_impresso"
+                            android:inputType="textPersonName"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="RtlHardcoded"
+                            tools:targetApi="m" />
+
+                        <TextView
+                            android:id="@+id/txt_validade_cartao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_impresso"
+                            android:layout_marginBottom="05dp"
+                            android:layout_marginLeft="05dp"
+                            android:layout_marginRight="05dp"
+                            android:layout_marginTop="05dp"
+                            android:padding="12dp"
+                            android:text="@string/edt_validade_cartao"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_spn_mes"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_validade_cartao"
+                            android:layout_margin="05dp"
+                            android:layout_marginLeft="05dp"
+                            android:background="@drawable/bordas_editext_cinza"
+                            tools:ignore="RtlHardcoded">
+
+                            <Spinner
+                                android:id="@+id/spinMes"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_spn_ano"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_validade_cartao"
+                            android:layout_margin="05dp"
+                            android:layout_marginEnd="05dp"
+                            android:layout_toEndOf="@+id/rl_spn_mes"
+                            android:background="@drawable/bordas_editext_cinza">
+
+                            <Spinner
+                                android:id="@+id/spinAno"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp" />
+
+                        </RelativeLayout>
+
+                        <EditText
+                            android:id="@+id/ed_cod_seg"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/rl_spn_ano"
+                            android:layout_marginBottom="05dp"
+                            android:layout_marginLeft="05dp"
+                            android:layout_marginRight="05dp"
+                            android:layout_marginTop="05dp"
+                            android:background="@drawable/bordas_editext_cinza"
+                            android:hint="@string/edt_cod_verif"
+                            android:inputType="textPersonName"
+                            android:padding="12dp"
+                            android:textAllCaps="false"
+                            android:textSize="14sp"
+                            tools:ignore="RtlHardcoded"
+                            tools:targetApi="m" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_adiconar_carrinho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:background="@color/coresProvisoriasum"
+                android:text="@string/comprar_fase_um"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                tools:ignore="ObsoleteLayoutParam" />
 
         </LinearLayout>
 

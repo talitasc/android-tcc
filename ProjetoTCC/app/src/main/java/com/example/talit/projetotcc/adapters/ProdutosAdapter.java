@@ -10,12 +10,18 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.activities.Carrinho;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
+import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.Produtos;
+import com.example.talit.projetotcc.sqlight.DbConn;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.facebook.drawee.view.DraweeView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -31,12 +37,14 @@ import java.util.List;
 
 public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ProdutosViewHolder> {
 
+    private DbConn dbconn;
     public static class ProdutosViewHolder extends RecyclerView.ViewHolder  {
 
         private TextView txtNome;
         private TextView txtMarca;
         private TextView txtPreco;
         private SimpleDraweeView imagem;
+        private Button btnAdicionar;
         private TextView txtData;
         private View view;
 
@@ -47,6 +55,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
             txtPreco = (TextView)v.findViewById(R.id.txt_preco);
             imagem = (SimpleDraweeView)v.findViewById(R.id.im_logo_produto);
             txtData= (TextView)v.findViewById(R.id.txt_prazo_validade);
+            btnAdicionar = (Button)v.findViewById(R.id.btn_adicionar);
             //codRef = (TextView) v.findViewById(R.id.txt_codRef);
             view = v;
         }
@@ -77,6 +86,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         holder.txtMarca.setText(produtos.getMarcaDescricao());
         holder.txtPreco.setText("R$ "+ produtos.getLote_preco());
 
+        dbconn = new DbConn(PaginaInicialEstabelecimentos.act);
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -87,6 +97,16 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
             e.printStackTrace();
         }
         //holder.codRef.setText(produtos.getIdProduto()+"");
+        holder.btnAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Validacoes.showSnackBar(PaginaInicialEstabelecimentos.context, TabDestaques.coordinatorLayout,PaginaInicialEstabelecimentos.context.getResources().getString(R.string.prod_add));
+                dbconn.insertSacola(Integer.parseInt(produtos.getIdLote()+""), Integer.parseInt(produtos.getIdLote()+""),
+                        produtos.getDescricao(), produtos.getMarcaDescricao(), Double.parseDouble(produtos.getLote_preco().toString().replace("R$", "")), Double.parseDouble(produtos.getLote_preco().toString().replace("R$", "")),produtos.getUnidade_medida_sigla(),
+                        1, produtos.getImbase64(),produtos.getLote_quantidade());
+            }
+        });
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

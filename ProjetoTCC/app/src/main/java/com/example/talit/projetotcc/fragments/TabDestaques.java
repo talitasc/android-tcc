@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -65,30 +66,21 @@ import static com.example.talit.projetotcc.activities.SplashScreen.NOME_PREFEREN
  * Created by talit on 05/06/2017.
  */
 
-public class TabDestaques extends Fragment implements Categorias.Listener, LotePorCategoria.Listener {
+public class TabDestaques extends Fragment implements LotePorCategoria.Listener {
 
     public static Context context;
     public static Activity activity;
-    public static RecyclerView rec;
     public static RecyclerView recProdutos;
-    public static RecyclerView recMarca;
-    public static RecyclerView recSubcategorias;
+    public static CoordinatorLayout coordinatorLayout;
     private static ArrayList<Produtos> produtos = new ArrayList<Produtos>();
     private ArrayList<CategoriasProdutos> categProd = new ArrayList<CategoriasProdutos>();
     public static RelativeLayout no_produto;
-    public static RelativeLayout no_categoria;
     public static RelativeLayout no_Cadastrado;
-    public static RelativeLayout no_marcas;
-    public static RelativeLayout no_sub;
-    public static ProgressBar pb;
     public static ProgressBar pbProdutos;
-    public static ProgressBar pbMarcas;
-    public static ProgressBar pbSubcategorias;
     public static String idCateg;
     public static String idSubCateg;
     public static String idMarca;
     public static AlertDialog dialogo;
-    private ImageButton imFiltro;
     public static final String ID_ESTABELECIMENTO = "ID";
     public static String idEstab;
 
@@ -102,23 +94,12 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
         context = container.getContext();
         activity = getActivity();
         View view = inflater.inflate(R.layout.fragment_destaques, container, false);
-        rec = (RecyclerView) view.findViewById(R.id.rec_categ);
         recProdutos = (RecyclerView) view.findViewById(R.id.lv_prod);
         no_Cadastrado = (RelativeLayout) view.findViewById(R.id.rl_noCdastrado);
         no_produto = (RelativeLayout) view.findViewById(R.id.rl_no_produto);
-        no_categoria = (RelativeLayout) view.findViewById(R.id.rl_no_catgeorias);
+        coordinatorLayout = (CoordinatorLayout)view.findViewById(R.id.destaque);
         pbProdutos = (ProgressBar) view.findViewById(R.id.pb_produtos);
-        pb = (ProgressBar) view.findViewById(R.id.pb_categorias);
-        imFiltro = (ImageButton)view.findViewById(R.id.imgfiltroEstab);
-
-        pb.setVisibility(View.INVISIBLE);
         pbProdutos.setVisibility(View.INVISIBLE);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        rec.setLayoutManager(layoutManager);
-
-        Categorias conn = new Categorias(null);
-        conn.execute();
 
         StaggeredGridLayoutManager llm = new StaggeredGridLayoutManager(2, 1);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -131,6 +112,7 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
             LotePorCategoria connProd = new LotePorCategoria(null);
             connProd.execute(idCateg);
             Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
+
         }else if(idMarca != null){
             LotePorMarca connMarca = new LotePorMarca(null);
             connMarca.execute(idMarca);
@@ -142,65 +124,18 @@ public class TabDestaques extends Fragment implements Categorias.Listener, LoteP
             connEstab.execute(idEstab);
         }
         Log.i("IDeSTAB", idEstab);
-        imFiltro.setOnClickListener(new View.OnClickListener() {
+        /*imFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fltroSupermercado();
             }
-        });
+        });*/
 
         return view;
-    }
-    public void fltroSupermercado() {
-
-        LayoutInflater inflater = activity.getLayoutInflater();
-        final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_subcategorias, null);
-        Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
-        recMarca = (RecyclerView)alertLayout.findViewById(R.id.rec_marcas);
-        recSubcategorias = (RecyclerView)alertLayout.findViewById(R.id.rec_categ);
-        pbMarcas = (ProgressBar) alertLayout.findViewById(R.id.pb_marcas);
-        pbSubcategorias = (ProgressBar)alertLayout.findViewById(R.id.pb_sub);
-        no_sub = (RelativeLayout)alertLayout.findViewById(R.id.no_sub);
-        no_marcas = (RelativeLayout)alertLayout.findViewById(R.id.no_marcas);
-
-        pbSubcategorias.setVisibility(View.INVISIBLE);
-        pbMarcas.setVisibility(View.INVISIBLE);
-
-        AlertDialog.Builder alerta = new AlertDialog.Builder(getActivity());
-        alerta.setView(alertLayout);
-        alerta.setCancelable(false);
-        dialogo = alerta.create();
-        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialogo.show();
-
-        Marcas connMarca= new Marcas(null);
-        connMarca.execute();
-
-        Subcategorias connSub = new Subcategorias(null);
-        connSub.execute();
-
-        LinearLayoutManager layoutManagerMarca = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        recMarca.setLayoutManager(layoutManagerMarca);
-
-        LinearLayoutManager layoutManagerSub = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        recSubcategorias.setLayoutManager(layoutManagerSub);
-
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogo.dismiss();
-            }
-
-        });
     }
     @Override
     public void onLoaded(String result) {
 
-        if (result.equalsIgnoreCase("Categoria")) {
-            CategoriasAdapter categoriasAdapter = new CategoriasAdapter(activity, categProd);
-            rec.setAdapter(categoriasAdapter);
-            categoriasAdapter.notifyDataSetChanged();
-        }
         if (result.equalsIgnoreCase("Produtos")) {
             ProdutosAdapter produtosAdapter = new ProdutosAdapter(produtos, activity, context);
             recProdutos.setAdapter(produtosAdapter);

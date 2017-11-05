@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.adapters.SubcategoriaAdapter;
 import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.Marca;
@@ -36,7 +37,7 @@ public class Subcategorias extends AsyncTask<String, String, String> {
     public Subcategorias(Listener mListener){
 
         this.mListener = mListener;
-        TabDestaques.pbSubcategorias.setVisibility(View.VISIBLE);
+        PaginaInicialEstabelecimentos.pbSubcategorias.setVisibility(View.VISIBLE);
     }
     @Override
     protected String doInBackground(String... params) {
@@ -92,7 +93,7 @@ public class Subcategorias extends AsyncTask<String, String, String> {
             Log.i("Status", status_est);
 
             if (status_est.equals("true")) {
-                TabDestaques.no_sub.setVisibility(View.INVISIBLE);
+                PaginaInicialEstabelecimentos.no_sub.setVisibility(View.INVISIBLE);
                 JSONArray dados = status.getJSONArray("objeto");
                 ArrayList<Subcategoria> subcategorias = new ArrayList<>();
 
@@ -103,10 +104,10 @@ public class Subcategorias extends AsyncTask<String, String, String> {
                 }
                 if (subcategorias.size() > 0) {
                     Log.i("array","teste");
-                    TabDestaques.pbSubcategorias.setVisibility(View.INVISIBLE);
-                    TabDestaques.recSubcategorias.setAdapter(null);
+                    PaginaInicialEstabelecimentos.pbSubcategorias.setVisibility(View.INVISIBLE);
+                    PaginaInicialEstabelecimentos.recSubcategorias.setAdapter(null);
                     SubcategoriaAdapter subcategoriaAdapter  = new SubcategoriaAdapter(TabDestaques.activity, subcategorias);
-                    TabDestaques.recSubcategorias.setAdapter(subcategoriaAdapter);
+                    PaginaInicialEstabelecimentos.recSubcategorias.setAdapter(subcategoriaAdapter);
                     //produtosAdapter.notifyDataSetChanged();
 
 
@@ -115,9 +116,9 @@ public class Subcategorias extends AsyncTask<String, String, String> {
                     }
 
                 } else {
-                    TabDestaques.pbSubcategorias.setVisibility(View.INVISIBLE);
-                    TabDestaques.recSubcategorias.setAdapter(null);
-                    TabDestaques.no_sub.setVisibility(View.VISIBLE);
+                    PaginaInicialEstabelecimentos.pbSubcategorias.setVisibility(View.INVISIBLE);
+                    PaginaInicialEstabelecimentos.recSubcategorias.setAdapter(null);
+                    PaginaInicialEstabelecimentos.no_sub.setVisibility(View.VISIBLE);
 
                     if (mListener != null) {
                         mListener.onLoaded("false");
@@ -125,14 +126,14 @@ public class Subcategorias extends AsyncTask<String, String, String> {
                 }
 
             } else if (descricao.equals("Nenhum lote encontrado!")) {
-                TabDestaques.pbSubcategorias.setVisibility(View.INVISIBLE);
-                TabDestaques.recSubcategorias.setAdapter(null);
-                TabDestaques.no_sub.setVisibility(View.VISIBLE);
+                PaginaInicialEstabelecimentos.pbSubcategorias.setVisibility(View.INVISIBLE);
+                PaginaInicialEstabelecimentos.recSubcategorias.setAdapter(null);
+                PaginaInicialEstabelecimentos.no_sub.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            TabDestaques.no_sub.setVisibility(View.VISIBLE);
-            TabDestaques.pbSubcategorias.setVisibility(View.INVISIBLE);
+            PaginaInicialEstabelecimentos.no_sub.setVisibility(View.VISIBLE);
+            PaginaInicialEstabelecimentos.pbSubcategorias.setVisibility(View.INVISIBLE);
 
             if (mListener != null) {
                 mListener.onLoaded("false");

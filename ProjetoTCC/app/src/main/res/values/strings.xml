@@ -282,5 +282,30 @@
     <string name="filtro_marcas">Marcas</string>
     <string name="no_sub">Não há subcategorias para ser exibido :(</string>
     <string name="no_marca">Não há marcas para ser exibido :(</string>
-
+    <string name="prod_add">Produto adicionado ao carrinho</string>
+    <string name="tp_ent">Qual o tipo de entrega?</string>
+    <string name="ret_local">Retirar no local</string>
+    <string name="ret_frete">Frete</string>
+    <string name="ret_ceo">CEP</string>
+    <string name="ret_consul">Consultar</string>
+    <string name="ret_vl_frete">valor frete</string>
+    <string name="ret_end_entrega">Endereço para entrega:</string>
+    <string name="ret_end">Endereço</string>
+    <string name="ret_localidade">Localidade</string>
+    <string name="ret_uf">UF</string>
+    <string name="ret_bairro">Bairro</string>
+    <string name="ret_numero">Numero</string>
+    <string name="ret_no_cep">Não entregamos neste CEP.</string>
+    <string name="ret_por_cep">Endereço por CEP</string>
+    <string name="ret_meu_end">Meu endereço</string>
+    <string name="ret_valida_busca">Erro ao preencher dados.</string>
+    <string name="ret_valida_end_cep">Não há endereço para o CEP informado.</string>
+    <string name="ret_cep_vazio">O campo CEP  deve estar preenchido.</string>
+    <string name="ret_edn_estab">Endereço do estabelecimento</string>
+    <string name="pag_titulo">Qual a forma de pagamento?</string>
+    <string name="pag_nota">Em dinheiro</string>
+    <string name="pag_cartao">Cartão de crédito</string>
+    <string name="pag_dinheiro">O pagamento em dinheiro deve ser realizado no momento da retirada do pedido no estabelecimento.</string>
+    <string name="dados_pessoais">Dados pessoais</string>
+    <string name="dados_pessoais_cpf">Numero do CPF</string>
 </resources>

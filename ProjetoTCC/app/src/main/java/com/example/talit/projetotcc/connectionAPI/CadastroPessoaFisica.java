@@ -130,6 +130,7 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        super.onPostExecute(result);
 
         try {
             JSONObject api_result = new JSONObject(result);

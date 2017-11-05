@@ -32,15 +32,14 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity
             android:name=".activities.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/MyTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -113,8 +112,9 @@
 
         <activity android:name=".activities.ListarEstados" />
         <activity android:name=".activities.ListarCidades" />
-        <activity android:name=".activities.PaginaInicialEstabelecimentos"
-                  android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PaginaInicialEstabelecimentos"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.ProdutosEstabelecimento" />
         <activity android:name=".activities.Carrinho" />
         <activity android:name=".activities.Avaliacoes" />
@@ -125,13 +125,13 @@
             android:name=".activities.PaginalnicialConsumidor"
             android:label="@string/title_activity_teste"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".activities.FinalizarCompra" />
         <activity android:name=".activities.DuvidasFrequentes" />
         <activity android:name=".activities.Notificacoes" />
-        <activity android:name=".activities.SearchViewPaginaInicial"
+        <activity
+            android:name=".activities.SearchViewPaginaInicial"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.Subcategorias"></activity>
+        <activity android:name=".activities.Subcategorias" />
     </application>
 
 </manifest>

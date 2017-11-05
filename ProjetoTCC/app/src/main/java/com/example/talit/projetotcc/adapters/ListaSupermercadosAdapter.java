@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.activities.FinalizarCompra;
 import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.fragments.DetalhesEstab;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
@@ -123,6 +124,13 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                 DetalhesEstab.strTelefone = estabelecimento.getTelefone();
                 DetalhesEstab.strEmail = estabelecimento.getEmail();
                 DetalhesEstab.strIdEstab = String.format("%d", estabelecimento.getId());
+                FinalizarCompra.strRua = estabelecimento.getRua();
+                FinalizarCompra.strBairro = estabelecimento.getBairro();
+                FinalizarCompra.strNumero = estabelecimento.getNumero()+"";
+                FinalizarCompra.strUf = estabelecimento.getEstado_sigla();
+                FinalizarCompra.strCep = estabelecimento.getCep();
+                FinalizarCompra.strCidade = estabelecimento.getCidade();
+
                 act.startActivity(new Intent(act, PaginaInicialEstabelecimentos.class));
                 act.finishActivity(0);
             }

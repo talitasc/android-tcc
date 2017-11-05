@@ -12,12 +12,12 @@
         app:showAsAction="ifRoom"
         tools:ignore="HardcodedText" />
 
-    <item
+    <!--<item
         android:id="@+id/action_depart"
         android:icon="@drawable/ic_view_list_black_24dp"
         android:title="@string/tab_categorias_estabelcimento"
         app:showAsAction="ifRoom"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText" />-->
 
     <item
         android:id="@+id/action_info"

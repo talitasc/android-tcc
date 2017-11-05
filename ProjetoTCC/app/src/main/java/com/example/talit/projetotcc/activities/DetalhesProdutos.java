@@ -167,27 +167,28 @@ public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinh
                 } else {
                         if(dbconn.totalItensCarrinho()<=0){
                            CriaCarrinho connCria = new CriaCarrinho(null);
-                            connCria.execute(String.format("%d", dbconn.selectConsumidor().getIdCons()),
+                            /*connCria.execute(String.format("%d", dbconn.selectConsumidor().getIdCons()),
                                     String.format("%d", dbconn.selectConsumidor().getTpAcesso()),
                                     DetalhesEstab.strIdEstab,
                                     strIdProd,
-                                    strQuantidade);
-                            //dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
-                                    //strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), Double.parseDouble(strPreco.replace("R$", "")),strUmed,Integer.parseInt(strQuantidade), strImagem,strQtd);
+                                    strQuantidade);*/
+                            Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,getResources().getString(R.string.prod_add));
+                            dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
+                                    strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), Double.parseDouble(strPreco.replace("R$", "")),strUmed,Integer.parseInt(strQuantidade), strImagem,strQtd);
 
                             //Toast.makeText(Carrinho.context, "cria" , Toast.LENGTH_SHORT).show();
                         }else{
-                            AtualizaCarrinho connAtualiza = new AtualizaCarrinho(null);
+                            Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,getResources().getString(R.string.prod_add));
+                            dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
+                                    strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), Double.parseDouble(strPreco.replace("R$", "")),strUmed,Integer.parseInt(strQuantidade), strImagem,strQtd);
+                            /*AtualizaCarrinho connAtualiza = new AtualizaCarrinho(null);
                             connAtualiza.execute(String.format("%d", dbconn.selectConsumidor().getIdCons()),
                                     String.format("%d", dbconn.selectConsumidor().getTpAcesso()),
                                     DetalhesEstab.strIdEstab,
                                     strIdProd,
-                                    "1");
+                                    "1");*/
                             //Toast.makeText(Carrinho.context,"atualiza", Toast.LENGTH_SHORT).show();
                         }
-                   // dbconn.insertSacola(Integer.parseInt(strIdProd), Integer.parseInt(strIdProd),
-                            //strnomeProd, strMarca, Double.parseDouble(strPreco.replace("R$", "")), 2, strImagem);
-                    //Validacoes.showSnackBar(getBaseContext(),cord,"Este produto foi adicionado ao carrinho");
                 }
             }
         });
@@ -222,7 +223,7 @@ public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinh
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(DetalhesProdutos.this, ProdutosEstabelecimento.class));
+        startActivity(new Intent(DetalhesProdutos.this, PaginaInicialEstabelecimentos.class));
         finish();
 
     }

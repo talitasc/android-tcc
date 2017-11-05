@@ -80,8 +80,8 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Ca
             public void onClick(View v) {
                 TabDestaques.idMarca = null;
                 TabDestaques.idSubCateg= null;
-                TabDestaques.idCateg = null;
-                 TabDestaques.idCateg = categs.getIdCategoria()+"";
+                TabDestaques.idCateg= null;
+                TabDestaques.idCateg = categs.getIdCategoria()+"";
                 ((FragmentActivity)TabDestaques.context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content, new TabDestaques())
                         .commit();

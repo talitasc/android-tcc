@@ -132,7 +132,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
 
                     String dados = status.getString("objeto");
                     JSONObject dados_result = new JSONObject(dados);
-                    Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,"Produto adicionado ao carrinho");
+                    Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,DetalhesProdutos.act.getResources().getString(R.string.prod_add));
                     dbconn.insertSacola(dados_result.getInt("carrinho_id"), Integer.parseInt(DetalhesProdutos.strIdProd),
                             DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
                             Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
