@@ -308,4 +308,8 @@
     <string name="pag_dinheiro">O pagamento em dinheiro deve ser realizado no momento da retirada do pedido no estabelecimento.</string>
     <string name="dados_pessoais">Dados pessoais</string>
     <string name="dados_pessoais_cpf">Numero do CPF</string>
+    <string name="pag_dinheiro_titulo">Pagamento em dinheiro</string>
+    <string name="txt_aviso">aviso</string>
+    <string name="txt_compra_fin_tit">Pedido finalizado</string>
+    <string name="txt_compra_fin_msg">Seu pedido foi realizado. Foi enviado um e-mail, mas você também pode acompanhar o andamento do seu pedido na sua area em "Meus pedidos". O código gerado foi :</string>
 </resources>

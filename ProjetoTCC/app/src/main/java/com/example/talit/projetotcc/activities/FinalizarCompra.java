@@ -1,28 +1,37 @@
 package com.example.talit.projetotcc.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.connectionAPI.EnderecoPorCep;
+import com.example.talit.projetotcc.connectionAPI.ListaSupermercadoPoRaio;
 import com.example.talit.projetotcc.logicalView.Cep;
+import com.example.talit.projetotcc.sqlight.DbConn;
 import com.google.android.gms.vision.text.Text;
 
 public class FinalizarCompra extends AppCompatActivity {
@@ -37,6 +46,7 @@ public class FinalizarCompra extends AppCompatActivity {
     private Context context;
     private Button btnCep;
     private Button btnBuscaEnd;
+    private Button btnPagar;
     public static RelativeLayout relatEndereco;
     public static RelativeLayout relativeFrete;
     public static RelativeLayout relativeDelivery;
@@ -47,6 +57,9 @@ public class FinalizarCompra extends AppCompatActivity {
     private static EditText edtUf;
     private static EditText edtBairro;
     private static EditText edtNumero;
+    private static EditText edtNumerocartão;
+    private static EditText edtCodigoSeg;
+    private static EditText edtImpresso;
     private EditText edtCep;
     private RadioButton rdButtonFrete;
     private RadioButton rdButtonDelivery;
@@ -67,6 +80,11 @@ public class FinalizarCompra extends AppCompatActivity {
     public static String strCidade;
     public static String strCep;
     public static String strUf;
+    public boolean houveFrete;
+    public boolean houveCartao;
+    public boolean houveDelivery;
+    public boolean houveDinheiro;
+    private DbConn dbConn;
 
 
     @Override
@@ -89,6 +107,9 @@ public class FinalizarCompra extends AppCompatActivity {
         edtBairro = (EditText) findViewById(R.id.ed_bairro);
         edtNumero = (EditText) findViewById(R.id.ed_numero);
         edtCep = (EditText) findViewById(R.id.ed_cep);
+        edtNumerocartão = (EditText) findViewById(R.id.ed_numero_cartao);
+        edtCodigoSeg = (EditText) findViewById(R.id.ed_cod_seg);
+        edtImpresso = (EditText) findViewById(R.id.ed_impresso);
         relatEndereco = (RelativeLayout)findViewById(R.id.end_por_cep);
         relativeFrete = (RelativeLayout)findViewById(R.id.calc_frete);
         relativeDelivery = (RelativeLayout) findViewById(R.id.delivery);
@@ -106,9 +127,11 @@ public class FinalizarCompra extends AppCompatActivity {
         txtCep = (TextView) findViewById(R.id.txt_cep);
         txtUf = (TextView) findViewById(R.id.txt_sigla);
         txtCidade = (TextView) findViewById(R.id.txt_cidade);
+        btnPagar = (Button) findViewById(R.id.btn_pagar);
 
         pbAguardar = (ProgressBar) findViewById(R.id.pb_aguardar);
         pbAguardar.setVisibility(View.INVISIBLE);
+        dbConn = new DbConn(FinalizarCompra.this);
 
         txtRua.setText(strRua+",");
         txtNumero.setText(strNumero);
@@ -127,37 +150,39 @@ public class FinalizarCompra extends AppCompatActivity {
         adpAno.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spAno.setAdapter(adpAno);
 
+        rdButtonDelivery.setChecked(false);
+        rdButtonFrete.setChecked(false);
         rdButtonFrete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                rdButtonDelivery.setChecked(false);
                 relativeFrete.setVisibility(View.VISIBLE);
                 relativeDelivery.setVisibility(View.GONE);
+                rdButtonDelivery.setChecked(false);
             }
         });
         rdButtonDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                rdButtonFrete.setChecked(false);
                 relativeFrete.setVisibility(View.GONE);
                 relativeDelivery.setVisibility(View.VISIBLE);
+                rdButtonFrete.setChecked(false);
 
             }
         });
         rdDinheiro.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                rdCartao.setChecked(false);
                 relativePagamento.setVisibility(View.GONE);
                 relativeDinheiro.setVisibility(View.VISIBLE);
+                rdCartao.setChecked(false);
             }
         });
         rdCartao.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                rdDinheiro.setChecked(false);
                 relativePagamento.setVisibility(View.VISIBLE);
                 relativeDinheiro.setVisibility(View.GONE);
+                rdDinheiro.setChecked(false);
             }
         });
         btnCep.setOnClickListener(new View.OnClickListener() {
@@ -211,6 +236,38 @@ public class FinalizarCompra extends AppCompatActivity {
                 }
             }
         });
+        btnPagar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(rdButtonFrete.isChecked()){
+                    if(edtNomeRua.getText().toString().isEmpty()|| edtBairro.getText().toString().isEmpty()||
+                            edtUf.getText().toString().isEmpty() || edtNumero.getText().toString().isEmpty() ||
+                            edtLocalidade.getText().toString().isEmpty()){
+                        houveFrete = true;
+                        //Toast.makeText(getBaseContext(),"itens" + "campos cartão do frete vazio", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(rdCartao.isChecked()){
+                    if(edtNumerocartão.getText().toString().isEmpty() || edtCodigoSeg.getText().toString().isEmpty()||
+                            edtImpresso.getText().toString().isEmpty()){
+                        houveCartao = true;
+                        //Toast.makeText(getBaseContext(),"itens" + "campos do cartao vazio", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(rdDinheiro.isChecked()){
+                    houveDinheiro = true;
+                }else{
+                    houveDinheiro = false;
+                }
+                if(rdButtonDelivery.isChecked()){
+                    houveDelivery = true;
+                }else{
+                    houveDelivery = false;
+                }
+                pedidoGerado();
+            }
+
+        });
     }
     public static final void getValues(String rua, String localidade, String uf, String bairro){
         edtNomeRua.setText(rua);
@@ -219,6 +276,35 @@ public class FinalizarCompra extends AppCompatActivity {
         edtBairro.setText(bairro);
     }
 
+    public void pedidoGerado() {
+
+        LayoutInflater inflater = getLayoutInflater();
+        final View alertLayout = inflater.inflate(R.layout.custom_alert_dialog_avisos, null);
+        Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
+        TextView txtTitulo = (TextView) alertLayout.findViewById(R.id.txt_titulo_aviso);
+        TextView txtMsg= (TextView) alertLayout.findViewById(R.id.txt_msg);
+        ImageView img = (ImageView) alertLayout.findViewById(R.id.im_aviso);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(FinalizarCompra.this);
+        alerta.setView(alertLayout);
+        alerta.setCancelable(false);
+        txtTitulo.setText(R.string.txt_compra_fin_tit);
+        txtMsg.setText(R.string.txt_compra_fin_msg);
+        img.setImageResource(R.drawable.purchase);
+
+        final AlertDialog dialogo = alerta.create();
+        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogo.show();
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogo.dismiss();
+                dbConn.deleteSacola();
+                startActivity(new Intent(FinalizarCompra.this, PaginaInicialEstabelecimentos.class));
+                finish();
+            }
+
+        });
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

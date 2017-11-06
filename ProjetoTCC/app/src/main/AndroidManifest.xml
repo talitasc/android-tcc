@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
 
-        <intent-filter>
+        <!--<intent-filter>
             <action android:name="android.intent.action.VIEW" />
 
             <category android:name="android.intent.category.DEFAULT" />
@@ -51,7 +51,7 @@
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        </intent-filter>-->
 
         <service
             android:name=".service.LocationIntentService"
@@ -131,7 +131,6 @@
         <activity
             android:name=".activities.SearchViewPaginaInicial"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.Subcategorias" />
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_splash_screen);
-        MultiDex.install(this);
+        //MultiDex.install(this);
         Thread timerThread = new Thread() {
             public void run() {
                 try {
