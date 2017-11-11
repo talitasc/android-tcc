@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.adapters.BuscaAdapter;
+import com.example.talit.projetotcc.connectionAPI.BuscaFullText;
 import com.example.talit.projetotcc.logicalView.Busca;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
@@ -251,12 +252,15 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
 
     public void insereHistorico(String busca) {
 
-
         dbconn.insertSearchView(busca);
-        Intent intent = new Intent(SearchViewPaginaInicial.this, PaginalnicialConsumidor.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
-        finish();
+        BuscaFullText conn = new BuscaFullText(null);
+        conn.execute();
+
+
+        //Intent intent = new Intent(SearchViewPaginaInicial.this, PaginalnicialConsumidor.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        //startActivity(intent);
+        //finish();
     }
 
     @Override

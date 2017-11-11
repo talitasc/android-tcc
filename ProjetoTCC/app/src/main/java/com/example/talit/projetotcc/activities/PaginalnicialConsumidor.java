@@ -115,6 +115,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public static double latitude;
     public static double longitude;
     public static String raio;
+    public static String avaliacao;
+    public static String informacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +138,9 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
         rlLocal = (RelativeLayout) findViewById(R.id.id_local);
         txtBusca = (TextView) findViewById(R.id.txt_busca);
+
+        avaliacao = getString(R.string.tab_avaliacao_estabelecimento);
+        informacoes = getString(R.string.tab_descricao_estabelcimento);
 
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setHintTextColor(getColor(R.color.botoesPrimarios));

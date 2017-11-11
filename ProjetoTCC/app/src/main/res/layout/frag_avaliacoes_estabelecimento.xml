@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDEFF0">
+    android:background="#EDEFF0"
+    android:orientation="vertical">
 
-    <ListView
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/dado_est"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        android:id="@+id/lv_supermercado" />
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/dados_ava"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_ava"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/rl_nolist"
         android:layout_width="match_parent"
-        android:visibility="invisible"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/tv_nolist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Não ha avaliações aqui..."
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:text="@string/txt_sem_ava"
             android:textColor="#ACACAC"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
     </RelativeLayout>
@@ -37,39 +55,47 @@
     <RelativeLayout
         android:id="@+id/rl_noCdastrado"
         android:layout_width="match_parent"
-        android:visibility="invisible"
+        android:layout_height="match_parent"
         android:background="#EDEFF0"
-        android:layout_height="match_parent">
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/tv_cadastrado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/valida_cadastro"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center_horizontal"
+            android:text="@string/valida_cadastro"
             android:textColor="#ACACAC"
-            android:textStyle="bold"
             android:textSize="18sp"
+            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btn_cadastro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_below="@+id/tv_cadastrado"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
             android:background="@drawable/bordas_grid_buttons"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/btn_cadastro"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="18sp"
-            android:padding="10dp"
-            android:text="@string/btn_cadastro"
-            tools:text="@string/btn_cadastro"
-            android:layout_below="@+id/tv_cadastrado"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="17dp" />
+            tools:text="@string/btn_cadastro" />
 
     </RelativeLayout>
 
-</RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_avaliacoes"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+</android.support.design.widget.CoordinatorLayout>

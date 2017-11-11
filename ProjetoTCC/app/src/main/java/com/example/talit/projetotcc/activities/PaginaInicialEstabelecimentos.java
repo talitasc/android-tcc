@@ -236,7 +236,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
                 case R.id.action_avaliações:
                     searchViewLayout.setVisibility(View.GONE);
                     coordDetalhes.setVisibility(View.GONE);
-                    startActivity(new Intent(PaginaInicialEstabelecimentos.this,Avaliacoes.class));
+                    startActivity(new Intent(PaginaInicialEstabelecimentos.this,SobreLoja.class));
                     finish();
                     break;
 

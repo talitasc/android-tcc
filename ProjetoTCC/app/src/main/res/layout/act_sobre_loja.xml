@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.talit.projetotcc.activities.SobreLoja">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <!-- <android.support.v7.widget.Toolbar
+             android:id="@+id/toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             app:layout_collapseMode="pin"
+             app:layout_scrollFlags="scroll|enterAlways"
+             app:popupTheme="@style/AppTheme.PopupOverlay"
+             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:fitsSystemWindows="true"
+            android:background="@drawable/mercado"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/id_logo_produto"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                fresco:placeholderImage="@drawable/logos_test"
+                fresco:roundAsCircle="true"
+                android:scaleType="centerCrop"
+                fresco:failureImage="@drawable/logo_super"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_layout"
+            app:layout_collapseMode="pin"
+            app:tabMode="fixed"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <!--<include layout="@layout/content_sobre_loja" />-->
+
+
+</android.support.design.widget.CoordinatorLayout>

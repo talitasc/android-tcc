@@ -193,7 +193,7 @@ public class DbConn {
 
     public int totalBuscas(){
 
-        Cursor cursor = db.rawQuery("SELECT COUNT (*) FROM searchview",null);
+        Cursor cursor = db.rawQuery("SELECT COUNT (*) FROM searchview ",null);
 
         int count = 0;
         if(cursor.moveToFirst())

@@ -79,8 +79,8 @@ public class Carrinho extends AppCompatActivity {
             CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
             listas.setAdapter(carAdapter);
             listas.deferNotifyDataSetChanged();
-            txtValorTotal.setText("R$ " + dbconn.totalCarrinho());
-            txtQtd.setText(""+ dbconn.totalItensCarrinho());
+            //txtValorTotal.setText("R$ " + dbconn.totalCarrinho());
+            //txtQtd.setText(""+ dbconn.totalItensCarrinho());
             //int count = dbconn.totalItensCarrinho();
             //Toast.makeText(getBaseContext(),"itens" + count, Toast.LENGTH_SHORT).show();
         }

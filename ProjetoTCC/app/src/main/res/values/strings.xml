@@ -312,4 +312,6 @@
     <string name="txt_aviso">aviso</string>
     <string name="txt_compra_fin_tit">Pedido finalizado</string>
     <string name="txt_compra_fin_msg">Seu pedido foi realizado. Foi enviado um e-mail, mas você também pode acompanhar o andamento do seu pedido na sua area em "Meus pedidos". O código gerado foi :</string>
+    <string name="title_activity_sobre_loja">SobreLoja</string>
+    <string name="txt_sem_ava">Não há nenhuma avaliação para este estabelecimento. Finalize uma compra e seja  primeiro!</string>
 </resources>

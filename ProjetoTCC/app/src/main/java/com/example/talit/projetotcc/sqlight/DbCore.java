@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbCore extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "SUPERMERCADO_CLIENTE";
-    private static final int DB_VERSION = 19;
+    private static final int DB_VERSION = 25;
 
     public DbCore(Context c){
         super(c,DB_NAME,null,DB_VERSION);
@@ -27,6 +27,6 @@ public class DbCore extends SQLiteOpenHelper {
         //db.execSQL("drop table consumidor;");
         //db.execSQL("drop table sacola");
         //db.execSQL("drop table searchview");
-        //onCreate(db);
+        onCreate(db);
     }
 }

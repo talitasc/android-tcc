@@ -2,111 +2,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
     android:paddingLeft="05dp"
-    android:paddingRight="05dp"
-    android:paddingTop="05dp">
+    android:paddingRight="05dp">
 
 
     <LinearLayout
         android:id="@+id/dados_estabelecimento"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="ScrollViewSize,UselessParent">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="114dp"
+            android:layout_height="match_parent"
             app:cardBackgroundColor="#FFF"
             app:cardCornerRadius="03dp"
             app:cardElevation="1dp"
             app:cardMaxElevation="3dp"
             app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            android:layout_marginBottom="02dp">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp">
+
 
                 <ImageView
-                    android:id="@+id/im_logo_supermercado"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="05dp"
-                    app:srcCompat="@drawable/logo_super"
-                    tools:ignore="ContentDescription,RtlHardcoded" />
-
-                <ImageView
-                    android:id="@+id/ic_supermercado"
+                    android:id="@+id/buss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_cliente"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="30dp"
-                    tools:ignore="ContentDescription,RtlHardcoded" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="22dp"
+                    android:src="@drawable/ic_account_box_black_24dp"
+                    android:tint="#ACACAC"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <TextView
                     android:id="@+id/txt_nome_avaliador"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
+                    android:layout_toEndOf="@+id/buss"
+                    android:layout_marginStart="05dp"
                     android:layout_marginTop="25dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
                     android:text="@string/txt_nome_avaliador" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/txt_data_avaliacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="45dp"
                     android:textAllCaps="false"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
-                    android:text="@string/txt_data_avaliacao" />
+                    android:text="@string/txt_data_avaliacao" />-->
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="05dp"
+                    android:numStars="5"
+                    android:rating=".1"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_below="@+id/txt_nome_avaliador"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/txt_comentario_avaliacao"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="75dp"
                     android:textAllCaps="false"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
                     tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
                     android:text="@string/txt_comentario_avaliador" />
 
 
-                <TextView
-                    android:id="@+id/txt_avaliacao"
+                <ImageView
+                    android:id="@+id/calendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginTop="17dp"
-                    android:text="4,6"
-                    android:textColor="#FFCC66"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText,RtlHardcoded" />
+                    android:layout_marginEnd="05dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_date_range_black_24dp"
+                    android:tint="#ACACAC"
+                    tools:ignore="VectorDrawableCompat" />
 
-                <ImageView
-                    android:id="@+id/im_avaliacao"
-                    android:layout_width="60dp"
+
+                <TextView
+                    android:id="@+id/txt_data_avaliacao"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="30dp"
-                    android:paddingBottom="20dp"
-                    app:srcCompat="@mipmap/ic_ava"
-                    tools:ignore="ContentDescription,RtlHardcoded" />
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginTop="17dp"
+                    android:textAllCaps="false"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+                    android:text="@string/txt_data_avaliacao"
+                    android:layout_marginBottom="30dp"/>
 
             </RelativeLayout>
 
