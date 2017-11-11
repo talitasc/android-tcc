@@ -50,7 +50,7 @@ public class BuscaFullText extends AsyncTask<String, String, String> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("Accept-Encoding", "application/json");
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("busca", "PRODUTO B");
+            jsonObject.accumulate("busca", "Emanuelly e Sabrina Mudanças Ltda");
             String json = jsonObject.toString();
             OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));

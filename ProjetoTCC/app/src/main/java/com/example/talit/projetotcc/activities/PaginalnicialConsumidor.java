@@ -224,7 +224,6 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             }
         });
 
-
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
