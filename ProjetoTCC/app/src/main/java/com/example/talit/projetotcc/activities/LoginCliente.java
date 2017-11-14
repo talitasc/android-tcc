@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.connectionAPI.RecuperarSenha;
 import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.AutenticaLogin;
 import com.example.talit.projetotcc.connectionAPI.LoginComFacebook;
@@ -54,6 +55,8 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
     private LoginButton lb;
     private CallbackManager callbackManager;
     private DbConn dbconn;
+    public static ProgressBar pbRecuperar;
+    public static AlertDialog dialogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -362,10 +365,12 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
         Button btnEnviar = (Button) alertLayout.findViewById(R.id.btn_enviar);
         Button btnCancelar = (Button) alertLayout.findViewById(R.id.btn_cancelar);
         final EditText edtEmail = (EditText) alertLayout.findViewById(R.id.ed_email);
+        pbRecuperar = (ProgressBar)alertLayout.findViewById(R.id.ps_recuperar);
+        pbRecuperar.setVisibility(View.INVISIBLE);
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setView(alertLayout);
         alerta.setCancelable(false);
-        final AlertDialog dialogo = alerta.create();
+        dialogo = alerta.create();
         dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogo.show();
         btnEnviar.setOnClickListener(new View.OnClickListener() {
@@ -384,7 +389,9 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                     Validacoes.requestFocus(edtEmail);
                     edtEmail.setText("");
                 } else {
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
+                    RecuperarSenha connRec = new RecuperarSenha();
+                    connRec.execute(edtEmail.getText().toString());
+                   /* android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("E-mail enviado!");
                     builder.setMessage("Sua nova senha foi enviada via e-mail.Verifique sua caixa de entrada.");
                     builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
@@ -395,7 +402,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                         }
                     });
                     builder.setCancelable(false);
-                    builder.show();
+                    builder.show();*/
                 }
             }
         });

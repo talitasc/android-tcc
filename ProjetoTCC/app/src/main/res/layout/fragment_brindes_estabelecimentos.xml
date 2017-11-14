@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_prod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rec_categ"
+        android:layout_marginTop="03dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        tools:ignore="UnknownIdInLayout" />
+
+    <ProgressBar
+        android:id="@+id/pb_produtos"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rec_categ"
+        android:layout_marginTop="20dp"
+        tools:ignore="UnknownIdInLayout" />
+
+    <RelativeLayout
+        android:id="@+id/rl_no_produto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rec_categ"
+        android:layout_marginTop="03dp"
+        android:visibility="invisible"
+        tools:ignore="UnknownIdInLayout">
+
+        <TextView
+            android:id="@+id/tv_no_prod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/no_produto"
+            android:textColor="#ACACAC"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_noCdastrado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDEFF0"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/tv_cadastrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:text="@string/valida_produtos"
+            android:textColor="#ACACAC"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cadastrado"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/bordas_grid_buttons"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/btn_cadastro"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            tools:text="@string/btn_cadastro" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -11,18 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.activities.SearchViewEstabelecimento;
 import com.example.talit.projetotcc.activities.SearchViewPaginaInicial;
 import com.example.talit.projetotcc.fragments.Buscas;
+import com.example.talit.projetotcc.fragments.BuscasProd;
 import com.example.talit.projetotcc.logicalView.Busca;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import java.util.List;
 
 /**
- * Created by talit on 14/10/2017.
+ * Created by talit on 12/11/2017.
  */
 
-public class BuscaAdapter extends BaseAdapter {
+public class BuscaAdapterProds extends BaseAdapter {
 
     Activity act;
     Context c;
@@ -30,7 +32,7 @@ public class BuscaAdapter extends BaseAdapter {
     LayoutInflater inflater;
     private DbConn dbconn;
 
-    public BuscaAdapter(Activity act, Context c, List<Busca> buscas) {
+    public BuscaAdapterProds(Activity act, Context c, List<Busca> buscas) {
         this.act = act;
         this.c = c;
         this.buscas = buscas;
@@ -56,33 +58,33 @@ public class BuscaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        BuscaAdapter.ViewHolder holder;
+        BuscaAdapterProds.ViewHolder holder;
 
 
         if (view == null) {
-            holder = new BuscaAdapter.ViewHolder();
+            holder = new BuscaAdapterProds.ViewHolder();
             view = this.inflater.inflate(R.layout.custom_search_history, viewGroup, false);
             holder.txtBusca = (TextView) view.findViewById(R.id.txt_history);
             view.setTag(holder);
 
         } else {
-            holder = (BuscaAdapter.ViewHolder) view.getTag();
+            holder = (BuscaAdapterProds.ViewHolder) view.getTag();
         }
 
         final Busca listBusca = buscas.get(position);
         holder.txtBusca.setText(listBusca.getTxtBusca());
-        Buscas.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        BuscasProd.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Busca bus = new Busca(buscas.get(i).getIdString(), buscas.get(i).getTxtBusca());
-                SearchViewPaginaInicial.searchView.setQuery(bus.getTxtBusca(), true);
-                Toast.makeText(SearchViewPaginaInicial.act, bus.getTxtBusca(), Toast.LENGTH_SHORT).show();
+                SearchViewEstabelecimento.searchView.setQuery(bus.getTxtBusca(), true);
+                Toast.makeText(SearchViewEstabelecimento.act, bus.getTxtBusca(), Toast.LENGTH_SHORT).show();
             }
         });
-        dbconn = new DbConn(SearchViewPaginaInicial.act);
+        dbconn = new DbConn(SearchViewEstabelecimento.act);
 
-        if (Buscas.listview.getCount() > 4) {
+        if (BuscasProd.listview.getCount() > 4) {
             dbconn.deleteBusca(buscas.get(4).getIdString());
         }
         return view;

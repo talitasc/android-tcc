@@ -21,8 +21,8 @@
 
     <item
         android:id="@+id/action_info"
-        android:icon="@drawable/ic_info_outline_black_24dp"
-        android:title="@string/tab_descricao_estabelcimento"
+        android:icon="@drawable/ic_card_giftcard_black_24dp"
+        android:title="@string/txt_brindes"
         app:showAsAction="ifRoom"
         tools:ignore="HardcodedText" />
 

@@ -374,7 +374,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
 
 
         } else if (id == R.id.menu_meus_dados) {
-
+            startActivity(new Intent(getApplicationContext(), AlteraDadosConsumidor.class));
+            finish();
 
         } else if (id == R.id.menu_notificações) {
             startActivity(new Intent(getApplicationContext(), Notificacoes.class));

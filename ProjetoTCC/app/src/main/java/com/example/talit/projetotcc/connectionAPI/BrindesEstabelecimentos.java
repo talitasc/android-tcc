@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.talit.projetotcc.adapters.BrindesAdaper;
 import com.example.talit.projetotcc.adapters.ProdutosAdapter;
 import com.example.talit.projetotcc.fragments.BrindesEstabelecimento;
+import com.example.talit.projetotcc.fragments.ListarEstabBuscas;
 import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.Produtos;
 
@@ -21,24 +22,26 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by talit on 02/11/2017.
+ * Created by talit on 12/11/2017.
  */
 
-public class LotePorEstabelecimento extends AsyncTask<String, String, String> {
+public class BrindesEstabelecimentos extends AsyncTask<String, String, String> {
 
     private Listener mListener;
     public String status = "false";
 
     public interface Listener {
 
-        public void onLoaded(String status);
+        public void onLoaded(List<Produtos> prods);
     }
-    public LotePorEstabelecimento(Listener mListener){
+
+    public BrindesEstabelecimentos(Listener mListener) {
 
         this.mListener = mListener;
-        TabDestaques.pbProdutos.setVisibility(View.VISIBLE);
+        BrindesEstabelecimento.pbProdutos.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -96,7 +99,7 @@ public class LotePorEstabelecimento extends AsyncTask<String, String, String> {
             Log.i("Status", status_est);
 
             if (status_est.equals("true")) {
-                TabDestaques.no_produto.setVisibility(View.INVISIBLE);
+                BrindesEstabelecimento.no_produto.setVisibility(View.INVISIBLE);
                 JSONArray dados = status.getJSONArray("objeto");
                 ArrayList<Produtos> prods = new ArrayList<>();
 
@@ -125,39 +128,32 @@ public class LotePorEstabelecimento extends AsyncTask<String, String, String> {
                 }
                 if (prods.size() > 0) {
                     Log.i("array", prods.toString());
-                    TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
-                    TabDestaques.recProdutos.setAdapter(null);
-                    ProdutosAdapter produtosAdapter  = new ProdutosAdapter(prods,TabDestaques.activity, TabDestaques.context);
-                    TabDestaques.recProdutos.setAdapter(produtosAdapter);
-                    produtosAdapter.notifyDataSetChanged();
+                    BrindesEstabelecimento.pbProdutos.setVisibility(View.INVISIBLE);
+                    BrindesEstabelecimento.recProdutos.setAdapter(null);
+                    BrindesAdaper brindesAdaper = new BrindesAdaper(prods, BrindesEstabelecimento.activity, BrindesEstabelecimento.context);
+                    BrindesEstabelecimento.recProdutos.setAdapter(brindesAdaper);
+                    brindesAdaper.notifyDataSetChanged();
 
 
-                    if (mListener != null) {
-                        mListener.onLoaded("Produtos");
-                    }
 
                 } else {
-                    TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
-                    TabDestaques.recProdutos.setAdapter(null);
-                    TabDestaques.no_produto.setVisibility(View.VISIBLE);
-
-                    if (mListener != null) {
-                        mListener.onLoaded("false");
-                    }
+                    BrindesEstabelecimento.pbProdutos.setVisibility(View.INVISIBLE);
+                    BrindesEstabelecimento.recProdutos.setAdapter(null);
+                    BrindesEstabelecimento.no_produto.setVisibility(View.VISIBLE);
                 }
 
             } else if (descricao.equals("Nenhum lote encontrado!")) {
-                TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
-                TabDestaques.recProdutos.setAdapter(null);
-                TabDestaques.no_produto.setVisibility(View.VISIBLE);
+                BrindesEstabelecimento.pbProdutos.setVisibility(View.INVISIBLE);
+                BrindesEstabelecimento.recProdutos.setAdapter(null);
+                BrindesEstabelecimento.no_produto.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            TabDestaques.no_produto.setVisibility(View.VISIBLE);
-            TabDestaques.pbProdutos.setVisibility(View.INVISIBLE);
+            BrindesEstabelecimento.no_produto.setVisibility(View.VISIBLE);
+            BrindesEstabelecimento.pbProdutos.setVisibility(View.INVISIBLE);
 
             if (mListener != null) {
-                mListener.onLoaded("false");
+                mListener.onLoaded(null);
             }
         }
     }

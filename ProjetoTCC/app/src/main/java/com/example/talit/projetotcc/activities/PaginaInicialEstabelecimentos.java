@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ import com.example.talit.projetotcc.connectionAPI.Categorias;
 import com.example.talit.projetotcc.connectionAPI.DeleteCarrinho;
 import com.example.talit.projetotcc.connectionAPI.Marcas;
 import com.example.talit.projetotcc.connectionAPI.Subcategorias;
+import com.example.talit.projetotcc.fragments.BrindesEstabelecimento;
 import com.example.talit.projetotcc.fragments.DetalhesEstab;
 import com.example.talit.projetotcc.fragments.TabCategorias;
 import com.example.talit.projetotcc.fragments.TabDestaques;
@@ -81,6 +83,9 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
     public static RelativeLayout no_sub;
     public static RecyclerView recMarca;
     public static RecyclerView recSubcategorias;
+    private SearchView searchView;
+    private TextView txtBusca;
+    private RelativeLayout smarketPoints;
 
 
     @Override
@@ -104,6 +109,9 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
         recCategorias = (RecyclerView) findViewById(R.id.rec_categ);
         pbCateg = (ProgressBar) findViewById(R.id.pb_categorias);
         imFiltro = (ImageButton) findViewById(R.id.imgfiltroEstab);
+        searchView = (SearchView) findViewById(R.id.search_view);
+        txtBusca = (TextView) findViewById(R.id.txt_busca);
+        smarketPoints = (RelativeLayout)findViewById(R.id.rl_smarket);
         pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
 
         pbCateg.setVisibility(View.INVISIBLE);
@@ -153,7 +161,14 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
                 fltroSupermercado();
             }
         });
-
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtBusca.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(PaginaInicialEstabelecimentos.this, SearchViewEstabelecimento.class));
+                finish();
+            }
+        });
     }
 
    /* @Override
@@ -227,10 +242,10 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
                     return true;*/
 
                 case R.id.action_info:
-                    coordDetalhes.setVisibility(View.VISIBLE);
-                    searchViewLayout.setVisibility(View.GONE);
-                    replaceFragment(new DetalhesEstab());
-                    //fragmentTransaction.replace(R.id.content, new DetalhesEstab()).commit();
+                    smarketPoints.setVisibility(View.VISIBLE);
+                    recCategorias.setVisibility(View.GONE);
+                    //searchViewLayout.setVisibility(View.GONE);
+                    replaceFragment(new BrindesEstabelecimento());
                     return true;
 
                 case R.id.action_avaliações:
@@ -241,8 +256,9 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
                     break;
 
                 case R.id.action_inicio:
-                     searchViewLayout.setVisibility(View.VISIBLE);
-                    coordDetalhes.setVisibility(View.GONE);
+                    searchViewLayout.setVisibility(View.VISIBLE);
+                    smarketPoints.setVisibility(View.GONE);
+                    recCategorias.setVisibility(View.VISIBLE);
                     replaceFragment(new TabDestaques());
                     //fragmentTransaction.replace(R.id.content, new TabDestaques()).commit();
                     return true;

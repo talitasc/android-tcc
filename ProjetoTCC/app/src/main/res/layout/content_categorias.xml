@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -45,7 +44,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="40dp"
             android:layout_marginTop="13dp"
-            android:text="@string/txt_buscar"
+            android:text="@string/txt_buscar_estabs"
             android:textColor="#acacac"
             android:textSize="16sp"
             app:layout_anchorGravity="bottom|center_horizontal"
@@ -95,6 +94,39 @@
             android:textColor="#ACACAC"
             android:textSize="18sp"
             android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_smarket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_layout"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:visibility="gone"
+        tools:ignore="UnknownIdInLayout">
+
+        <TextView
+            android:id="@+id/smarketPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="05dp"
+            android:textSize="15sp"
+            android:layout_marginStart="30dp"
+            android:text="@string/txt_points"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/smarketPoints"
+            android:layout_marginTop="05dp"
+            android:layout_marginStart="05dp"
+            android:textSize="15sp"
+            android:text="50"
             tools:ignore="HardcodedText" />
 
     </RelativeLayout>

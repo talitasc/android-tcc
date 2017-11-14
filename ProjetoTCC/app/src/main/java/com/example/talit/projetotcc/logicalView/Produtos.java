@@ -25,6 +25,22 @@ public class Produtos {
     private String lote_quantidade;
 
 
+    public Produtos(int idProduto, String descricao, String imbase64, String marcaDescricao, String categoria_descr, int quantidade, String unidade_medida_sigla, String sub_categoria_string, int idLote, String lote_data_fabricacao, String lote_data_vencimento, String lote_preco, String lote_obs, String lote_quantidade) {
+        this.idProduto = idProduto;
+        this.descricao = descricao;
+        this.imbase64 = imbase64;
+        this.marcaDescricao = marcaDescricao;
+        this.categoria_descr = categoria_descr;
+        this.quantidade = quantidade;
+        this.unidade_medida_sigla = unidade_medida_sigla;
+        this.sub_categoria_string = sub_categoria_string;
+        this.idLote = idLote;
+        this.lote_data_fabricacao = lote_data_fabricacao;
+        this.lote_data_vencimento = lote_data_vencimento;
+        this.lote_preco = lote_preco;
+        this.lote_obs = lote_obs;
+        this.lote_quantidade = lote_quantidade;
+    }
     public Produtos(int idProduto, String descricao, String imbase64, String nomeFantasia, String marcaDescricao, String categoria_descr, int quantidade, String unidade_medida_sigla, String sub_categoria_string, int idLote, String lote_data_fabricacao, String lote_data_vencimento, String lote_preco, String lote_obs, String lote_quantidade) {
         this.idProduto = idProduto;
         this.descricao = descricao;

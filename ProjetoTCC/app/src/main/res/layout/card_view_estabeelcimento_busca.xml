@@ -1,0 +1,149 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="01dp"
+        android:layout_marginTop="01dp"
+        android:orientation="vertical"
+        android:paddingBottom="05dp"
+        android:paddingLeft="05dp"
+        android:paddingRight="05dp"
+        android:paddingTop="05dp"
+        app:cardBackgroundColor="#FFF"
+        app:cardCornerRadius="03dp"
+        app:cardElevation="02dp"
+        app:cardMaxElevation="03dp"
+        app:contentPaddingBottom="01dp" >
+
+
+        <RelativeLayout
+            android:id="@+id/relativeId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/im_logo_supermercado"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/txt_nome_super"
+                android:layout_marginStart="11dp"
+                fresco:failureImage="@drawable/logo_super"
+                fresco:placeholderImage="@drawable/mercado"
+                fresco:roundAsCircle="true" />
+
+            <TextView
+                android:id="@+id/txt_nome_super"
+                android:layout_width="183sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="08dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/im_logo_supermercado"
+                android:fontFamily="sans-serif"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+                tools:text="@string/txt_nome_super"
+                tools:textSize="08sp" />
+
+            <ImageView
+                android:id="@+id/im_local"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_below="@+id/txt_nome_super"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="05dp"
+                android:layout_toEndOf="@+id/im_logo_supermercado"
+                android:tint="#ACACAC"
+                app:srcCompat="@drawable/ic_location_on_black_24dp"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/txt_cidade_estab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_nome_super"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="02dp"
+                android:layout_toEndOf="@+id/im_local"
+                android:fontFamily="sans-serif"
+                android:textAllCaps="false"
+                android:textColor="@color/botoesPrimarios"
+                android:textStyle="normal"
+                tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp"
+                tools:text="@string/txt_cidade"
+                tools:textSize="08sp" />
+
+
+            <ImageView
+                android:id="@+id/im_avaliacao"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_below="@+id/txt_cidade_estab"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="05dp"
+                android:layout_toEndOf="@+id/im_logo_supermercado"
+                android:tint="#FFCC66"
+                app:srcCompat="@drawable/ic_star_black_24dp"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/txt_avaliacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_cidade_estab"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="02dp"
+                android:layout_toEndOf="@+id/im_avaliacao"
+                android:text="4,6"
+                android:textColor="#FFCC66"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SmallSp"
+                tools:textSize="08sp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txt_avaliacao"
+                android:layout_margin="25dp"
+                android:background="#DCDCDC" />
+
+            <TextView
+                android:id="@+id/txt_ir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/ir_para_loja"
+                android:textColor="#DCDCDC"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SmallSp"
+                tools:textSize="08sp"
+                android:layout_alignTop="@+id/divider"
+                android:layout_marginTop="07dp"
+                android:layout_alignBottom="@+id/im_logo_supermercado"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:tint="#ACACAC"
+                app:srcCompat="@mipmap/ic_progress"
+                tools:ignore="ContentDescription"
+                android:layout_alignTop="@+id/divider"
+                android:layout_toEndOf="@+id/txt_ir" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

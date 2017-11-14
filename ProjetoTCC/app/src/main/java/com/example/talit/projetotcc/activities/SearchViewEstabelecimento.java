@@ -5,53 +5,46 @@ import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.adapters.BuscaAdapter;
 import com.example.talit.projetotcc.connectionAPI.BuscaFullText;
+import com.example.talit.projetotcc.connectionAPI.BuscaFullTextProdutos;
 import com.example.talit.projetotcc.fragments.Buscas;
+import com.example.talit.projetotcc.fragments.BuscasProd;
 import com.example.talit.projetotcc.fragments.ListarEstabBuscas;
-import com.example.talit.projetotcc.fragments.TabDestaques;
-import com.example.talit.projetotcc.logicalView.Busca;
+import com.example.talit.projetotcc.fragments.ListarProdBuscas;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by talit on 12/10/2017.
+ * Created by talit on 12/11/2017.
  */
 
-public class SearchViewPaginaInicial extends AppCompatActivity {
+public class SearchViewEstabelecimento extends AppCompatActivity {
 
     public static SearchView searchView;
     public static Activity act;
     public static Context context;
     public static FrameLayout frameEstab;
     private DbConn dbconn;
+    public static final String ID_ESTABELECIMENTO = "ID";
+    public static String idEstab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +57,8 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(2);
-        dbconn = new DbConn(SearchViewPaginaInicial.this);
-        replaceFragment(new Buscas());
+        dbconn = new DbConn(SearchViewEstabelecimento.this);
+        replaceFragment(new BuscasProd());
     }
 
     @Override
@@ -103,9 +96,9 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
         closeSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SearchViewPaginaInicial.this, "fechou", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchViewEstabelecimento.this, "fechou", Toast.LENGTH_SHORT).show();
                 searchView.setQuery("",false);
-                replaceFragment(new Buscas());
+                replaceFragment(new BuscasProd());
             }
         });
 
@@ -131,7 +124,7 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
             startActivityForResult(i, 100);
 
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(SearchViewPaginaInicial.this, getResources().getString(R.string.txt_sem_permissao), Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchViewEstabelecimento.this, getResources().getString(R.string.txt_sem_permissao), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -154,9 +147,13 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
     public void insereHistorico(String busca) {
 
         dbconn.insertSearchView(busca);
-        BuscaFullText conn = new BuscaFullText(null);
-        conn.execute(busca);
-        replaceFragment(new ListarEstabBuscas());
+        SharedPreferences prefs = getSharedPreferences(ID_ESTABELECIMENTO, MODE_PRIVATE);
+        idEstab = prefs.getString("idEstab", null);
+
+        BuscaFullTextProdutos conn = new BuscaFullTextProdutos(null);
+        conn.execute(busca,idEstab);
+        replaceFragment(new ListarProdBuscas());
+
 
     }
     public void replaceFragment(Fragment fragment) {
@@ -168,7 +165,7 @@ public class SearchViewPaginaInicial extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(SearchViewPaginaInicial.this, PaginalnicialConsumidor.class);
+        Intent intent = new Intent(SearchViewEstabelecimento.this, PaginaInicialEstabelecimentos.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
         finish();

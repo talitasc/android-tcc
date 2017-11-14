@@ -112,7 +112,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:text="Nenhum estabelecimento encontrado :("
+                android:text="@string/nao_ha_estab"
                 android:textColor="#ACACAC"
                 android:textSize="18sp"
                 android:textStyle="bold"

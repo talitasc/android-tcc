@@ -112,6 +112,7 @@
 
         <activity android:name=".activities.ListarEstados" />
         <activity android:name=".activities.ListarCidades" />
+        <activity android:name=".activities.AlteraDadosConsumidor" />
         <activity
             android:name=".activities.PaginaInicialEstabelecimentos"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -134,7 +135,12 @@
         <activity
             android:name=".activities.SobreLoja"
             android:label="@string/title_activity_sobre_loja"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activities.SearchViewEstabelecimento"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
