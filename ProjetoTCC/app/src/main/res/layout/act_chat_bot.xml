@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.talit.projetotcc.activities.ChatBot">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reyclerview_message_list"
+        android:layout_width="385dp"
+        android:layout_height="500dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/layout_chatbox"
+        tools:layout_editor_absoluteX="0dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <!-- A horizontal line between the chatbox and RecyclerView -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#dfdfdf"
+        app:layout_constraintBottom_toTopOf="@+id/layout_chatbox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/view2" />
+
+    <LinearLayout
+        android:id="@+id/layout_chatbox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <EditText
+            android:id="@+id/edittext_chatbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="#80f9f7d5"
+            android:hint="@string/chat_digite"
+            android:maxLines="6" />
+
+        <ImageButton
+            android:id="@+id/button_voice"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:tint="#fff"
+            android:src="@drawable/ic_keyboard_voice_black_24dp"
+            android:background="@drawable/borda_search_view"
+            android:backgroundTint="#75adadad"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="SEND"
+            android:textColor="#fff"
+            android:textSize="14dp"
+            tools:ignore="ContentDescription,HardcodedText,SpUsage,UnusedAttribute,VectorDrawableCompat" />
+
+        <ImageButton
+            android:id="@+id/button_chatbox_send"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:tint="#fff"
+            app:srcCompat="@drawable/ic_send_black_24dp"
+            android:background="@drawable/borda_search_view"
+            android:backgroundTint="@color/coresProvisoriasum"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="SEND"
+            android:textColor="#fff"
+            android:textSize="14dp"
+            tools:ignore="ContentDescription,HardcodedText,SpUsage,UnusedAttribute" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

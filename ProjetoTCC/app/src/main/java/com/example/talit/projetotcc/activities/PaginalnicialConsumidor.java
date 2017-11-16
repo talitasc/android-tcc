@@ -135,7 +135,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         no_list = (RelativeLayout) findViewById(R.id.rl_nolist);
         searchView = (SearchView) findViewById(R.id.search_view);
         imFiltro = (ImageButton) findViewById(R.id.imageButton2);
-        pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
+        pb = (ProgressBar) findViewById(R.id.pb_localizacao);
         rlLocal = (RelativeLayout) findViewById(R.id.id_local);
         txtBusca = (TextView) findViewById(R.id.txt_busca);
 
@@ -162,9 +162,9 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 conn.execute("109", "26");
             }
         }
-        if (latitude != 0){
-            if(longitude != 0) {
-                if(raio != null) {
+        if (latitude != 0) {
+            if (longitude != 0) {
+                if (raio != null) {
                     ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
                     connRaio.execute(String.format("%s", latitude), String.format("%s", longitude), raio);
                 }
@@ -241,7 +241,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         outState.putString(STATUS_LOCALIZACAO, msgLocalizacao);
         outState.putInt(STATUS_ID_CIDADE, idCidade);
         outState.putInt(STATUS_ID_ESTADO, idEstado);
-        outState.putDouble(STATUS_LATITUDE,latitude);
+        outState.putDouble(STATUS_LATITUDE, latitude);
         outState.putDouble(STATUS_LONGITUDE, longitude);
     }
 
@@ -251,8 +251,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         msgLocalizacao = inState.getString(STATUS_LOCALIZACAO);
         idCidade = inState.getInt(STATUS_ID_CIDADE);
         idEstado = inState.getInt(STATUS_ID_ESTADO);
-        latitude= inState.getDouble(STATUS_LATITUDE);
-        longitude= inState.getDouble(STATUS_LONGITUDE);
+        latitude = inState.getDouble(STATUS_LATITUDE);
+        longitude = inState.getDouble(STATUS_LONGITUDE);
     }
 
     @Override
@@ -377,7 +377,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             startActivity(new Intent(getApplicationContext(), AlteraDadosConsumidor.class));
             finish();
 
-        } else if (id == R.id.menu_notificações) {
+        } else if (id == R.id.menu_notificacoes) {
             startActivity(new Intent(getApplicationContext(), Notificacoes.class));
             finish();
 
@@ -397,7 +397,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
             }
 
         } else if (id == R.id.menu_ajuda) {
-            startActivity(new Intent(getApplicationContext(), DuvidasFrequentes.class));
+            startActivity(new Intent(getApplicationContext(), CentralAtendmento.class));
             finish();
 
         } else if (id == R.id.menu_idiomas) {
@@ -574,7 +574,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 listas.removeAllViews();
                 raio = txtRaio.getText().toString();
                 ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
-                connRaio.execute(String.format("%s", latitude), String.format("%s",longitude),raio);
+                connRaio.execute(String.format("%s", latitude), String.format("%s", longitude), raio);
 
 
             }
@@ -787,10 +787,12 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         listaSuper.notifyDataSetChanged();*/
 
     }
+
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

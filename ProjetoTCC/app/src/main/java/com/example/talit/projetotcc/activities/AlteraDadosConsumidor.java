@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.connectionAPI.AlteraSenha;
 import com.example.talit.projetotcc.connectionAPI.AlterarDadosUsuario;
+import com.example.talit.projetotcc.connectionAPI.EnderecoConsumidor;
 import com.example.talit.projetotcc.connectionAPI.ListarDadosUsuario;
 import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
@@ -66,7 +68,10 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
     private String idUser;
     private String tpUser;
     public static ProgressBar pbAlteraSenha;
-
+    public static ProgressBar pbAltEnd;
+    public static RelativeLayout noEnd;
+    public static RecyclerView recEnds;
+    private TextView endDescr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +99,13 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
         btnSenha = (Button)findViewById(R.id.btn_altera_senhas);
         txtSenha = (TextView)findViewById(R.id.txt_senhas);
         relativeSenhas = (RelativeLayout)findViewById(R.id.senhas_usuario);
+        noEnd = (RelativeLayout)findViewById(R.id.rl_nolist);
         pbAlteraSenha = (ProgressBar)findViewById(R.id.pb_senhas);
+        pbAltEnd = (ProgressBar)findViewById(R.id.pb_altera_end);
+        recEnds  = (RecyclerView)findViewById(R.id.lv_ends);
+        endDescr = (TextView)findViewById(R.id.txt_desc_end);
         pbAlteraSenha.setVisibility(View.INVISIBLE);
+        pbAltEnd.setVisibility(View.INVISIBLE);
         /*dbConn = new DbConn(this);
         dbConn.selectConsumidor();
         edtUsuario.setText(dbConn.selectConsumidor().getUsuario());
@@ -270,6 +280,13 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
                 AlteraSenha connSenha = new AlteraSenha();
                 connSenha.execute(idUser,tpUser,edtNovaSenha.getText().toString(),edtConfirSenha.getText().toString());
 
+            }
+        });
+        endDescr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EnderecoConsumidor endConn = new EnderecoConsumidor();
+                endConn.execute(idUser,tpUser);
             }
         });
 

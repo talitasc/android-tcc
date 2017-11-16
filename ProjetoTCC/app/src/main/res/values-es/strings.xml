@@ -78,6 +78,7 @@
     <string name="et_nome_funcionario">Nombre del empleado</string>
 
     <!-- Strings dos botões -->
+
     <string name="btn_entrar">Entrar</string>
     <string name="btn_esqueceu_senha">Esqueceu su contraseña?</string>
     <string name="btn_face">Entrar com Facebook</string>
@@ -87,7 +88,7 @@
     <string name="bt_alterar_senha">Alterar</string>
     <string name="btn_alt_cadastro">Alterar</string>
     <string name="bt_pessoa_fisica">para mi casa</string>
-    <string name="btn_começar">Empezar ahora</string>
+    <string name="btn_comecar">Empezar ahora</string>
     <string name="bt_supermercado">Tienda</string>
     <string name="btn_restaurante">Restaurante</string>
     <string name="bt_ong">ONG</string>
@@ -197,8 +198,8 @@ incumpliendo el artículo 18 de la Ley nº 8.078 de 11 de septiembre de 1990 del
     <string name="txt_notificacoes_status_desc">Notificar cuando hay cambios en el estado de sus pedidos.</string>
     <string name="txt_notificacoes_favoritos">Productos favorables</string>
     <string name="txt_notificacoes_favorito_desc">Notificar cuando un producto favorito esté disponible por los establecimientos.</string>
-    <string name="txt_notificacoes_promoções">Ofertas y ofertas</string>
-    <string name="txt_notificacoes_pomoções_desc">Recibir correos electrónicos y notificaciones de promociones de los establecimientos cercanos.</string>
+    <string name="txt_notificacoes_promocoes">Ofertas y ofertas</string>
+    <string name="txt_notificacoes_pomocoes_desc">Recibir correos electrónicos y notificaciones de promociones de los establecimientos cercanos.</string>
     <string name="txt_configurar_notificacoes">Configurar notificaciones</string>
 
     <!-- Strings de dúvidas frequentes -->
@@ -244,7 +245,7 @@ incumpliendo el artículo 18 de la Ley nº 8.078 de 11 de septiembre de 1990 del
     <string name="txt_duvida_quatorze">¿Cuántos elementos del mismo producto puedo comprar?</string>
     <string name="txt_duvida_quatorze_solucao">La cantidad de artículos que se pueden comprar depende de la cantidad de artículos disponibles por la tienda.</string>
     <string name="txt_duvida_quinze">¿No recibí la confirmación de la solicitud por el establecimiento, como prosigo?</string>
-    <string name="txt_duvida_quinze_solução">Si no recibe la notificación sobre el estado de su solicitud en un plazo de 4 días, póngase en contacto con nuestro soporte a través del correo electrónico o el teléfono suministrados al final de la página.</string>
+    <string name="txt_duvida_quinze_solucao">Si no recibe la notificación sobre el estado de su solicitud en un plazo de 4 días, póngase en contacto con nuestro soporte a través del correo electrónico o el teléfono suministrados al final de la página.</string>
     <string name="txt_solicia_pj">Introduzca los datos de su empresa:</string>
     <string name="txt_produto_desc">Producto</string>
     <string name="teste_base64"> teste</string>

@@ -13,6 +13,8 @@ public class Endereco  {
     private String cep;
     private String cidade_descricao;
     private String estado_sigla;
+    private String endereco_id;
+
 
     public Endereco(String rua, String numero, String bairro, String complemento, String cep,String cidade_descricao, String estado_sigla ) {
         this.rua = rua;
@@ -22,6 +24,25 @@ public class Endereco  {
         this.cep = cep;
         this.cidade_descricao = cidade_descricao;
         this.estado_sigla = estado_sigla;
+    }
+
+    public Endereco(String rua, String numero, String bairro, String complemento, String cep, String cidade_descricao, String estado_sigla, String endereco_id) {
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.cep = cep;
+        this.cidade_descricao = cidade_descricao;
+        this.estado_sigla = estado_sigla;
+        this.endereco_id = endereco_id;
+    }
+
+    public String getEndereco_id() {
+        return endereco_id;
+    }
+
+    public void setEndereco_id(String endereco_id) {
+        this.endereco_id = endereco_id;
     }
 
     public String getRua() {

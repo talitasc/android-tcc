@@ -199,7 +199,7 @@ public class CarrinhoAdapter extends BaseAdapter {
         private ImageButton btnDiminui;
     }
 
-    public void mostarOpções() {
+    public void mostarOpcoes() {
 
         LayoutInflater inflater = LayoutInflater.from(c);
         final View alertLayout = inflater.inflate(R.layout.custom_alert_dialog_edit_carrinho, null);

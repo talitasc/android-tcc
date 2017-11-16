@@ -31,7 +31,7 @@ public class ListarEstados extends AppCompatActivity implements Estados.Listener
         context = this;
         act = this;
         listas = (ListView) findViewById(R.id.listarLocais);
-        pbLocais = (ProgressBar) findViewById(R.id.pb_localizaçao);
+        pbLocais = (ProgressBar) findViewById(R.id.pb_localizacao);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
         getSupportActionBar().setTitle(getString(R.string.select_estado));

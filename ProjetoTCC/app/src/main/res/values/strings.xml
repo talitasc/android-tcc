@@ -84,7 +84,7 @@
     <string name="bt_alterar_senha">Alterar</string>
     <string name="btn_alt_cadastro">Alterar</string>
     <string name="bt_pessoa_fisica">Para a minha casa</string>
-    <string name="btn_começar">Começar Agora</string>
+    <string name="btn_comecar">Começar Agora</string>
     <string name="bt_supermercado">Supermercado</string>
     <string name="btn_restaurante">Restaurante</string>
     <string name="bt_ong">ONG</string>
@@ -194,8 +194,8 @@
     <string name="txt_notificacoes_status_desc">Notificar quando houver alteração no status dos seus pedidos.</string>
     <string name="txt_notificacoes_favoritos">Produtos favoritados</string>
     <string name="txt_notificacoes_favorito_desc">Notificar quando um produto favorito estiver disponivel pelos estabelecimentos.</string>
-    <string name="txt_notificacoes_promoções">Promoções e ofertas</string>
-    <string name="txt_notificacoes_pomoções_desc">Recebere-mails e notificações de promoções dos estabelecimentos próximos.</string>
+    <string name="txt_notificacoes_promocoes">Promoções e ofertas</string>
+    <string name="txt_notificacoes_pomocoes_desc">Recebere-mails e notificações de promoções dos estabelecimentos próximos.</string>
     <string name="txt_configurar_notificacoes">Configurar Notificações</string>
 
     <!-- Strings de dúvidas frequentes -->
@@ -231,7 +231,7 @@
     <string name="txt_duvida_quatorze">Quantos itens do mesmo produto posso comprar?</string>
     <string name="txt_duvida_quatorze_solucao">A quantidade de itens que podem ser comprados depende da quantidade de itens disponibilizados pela loja.</string>
     <string name="txt_duvida_quinze">Não recebi confirmação do pedido pelo estabelecimento, como prossigo?</string>
-    <string name="txt_duvida_quinze_solução">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
+    <string name="txt_duvida_quinze_solucao">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
     <string name="txt_solicia_pj">Insira os dados de sua empresa:</string>
     <string name="txt_escolha_idioma">Escolha um dos idiomas:</string>
     <string name="txt_escolha_portugues">Português Brasil</string>
@@ -344,4 +344,23 @@
     <string name="txt_campos_vazios_desc">Insira seus dados para realizar o login.</string>
     <string name="txt_dados_invalidos">Dados inválidos!</string>
     <string name="txt_dados_invalidos_desc">Verifique se seus dados foram digitados corretamente.</string>
+    <string name="enter_message">Enter message</string>
+    <string name="chat_smarket">Atendente Smarket</string>
+    <string name="chat_eu">Eu</string>
+    <string name="_11_40">11:50</string>
+    <string name="chat_bot_title">Em que podemos ajudar?</string>
+    <string name="chat_digite">Digite sua dúvida....</string>
+    <string name="central_smarket">Fale com o Smarket</string>
+    <string name="central_subtitulo">Olá! Bem-vindo a nossa Central de Atendimento. Escolha uma das opções para podermos te ajudar:</string>
+    <string name="centra_fale">Fale com a gente </string>
+    <string name="centra_fale_phone">Telefone: </string>
+    <string name="centra_fale_email">E-mail para contato:</string>
+    <string name="centra_fale_face">Pagina no facebook:</string>
+    <string name="centra_fale_pergunta">Perguntas Frequentes</string>
+    <string name="centra_fale_chat">Suporte chat</string>
+    <string name="menu_Central">Fale com o Smarket</string>
+    <string name="centra_fale_naoresl">Não conseguir resolver seu problema? ou tem sugestões? entre em contato conosco!</string>
+    <string name="no_end">Nenhum endereço cadastrado</string>
+    <string name="alt_end">Endereços cadastrados</string>
+    <string name="alt_end_desc">Veja seus endereços cadastrados, você pode alterá-los ou cadastrar novos. Toque para ver mais ></string>
 </resources>

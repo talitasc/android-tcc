@@ -212,7 +212,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         tools:ignore="RtlHardcoded,SmallSp"
-                        android:text="@string/txt_notificacoes_promoções" />
+                        android:text="@string/txt_notificacoes_promocoes" />
 
                     <TextView
                         android:id="@+id/txt_promocoes_desc"
@@ -224,7 +224,7 @@
                         android:textAllCaps="false"
                         android:textSize="14sp"
                         tools:ignore="RtlHardcoded,SmallSp"
-                        android:text="@string/txt_notificacoes_pomoções_desc" />
+                        android:text="@string/txt_notificacoes_pomocoes_desc" />
 
 
                     <CheckBox

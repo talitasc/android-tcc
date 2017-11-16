@@ -192,7 +192,7 @@
         </RelativeLayout>
 
         <ProgressBar
-            android:id="@+id/pb_localizaçao"
+            android:id="@+id/pb_localizacao"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

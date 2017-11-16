@@ -24,9 +24,9 @@ public class DbCore extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        //db.execSQL("drop table consumidor;");
-        //db.execSQL("drop table sacola");
-        //db.execSQL("drop table searchview");
+        db.execSQL("drop table consumidor;");
+        db.execSQL("drop table sacola");
+        db.execSQL("drop table searchview");
         onCreate(db);
     }
 }

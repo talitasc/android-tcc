@@ -88,7 +88,7 @@
     <string name="bt_alterar_senha">Alterar</string>
     <string name="btn_alt_cadastro">Alterar</string>
     <string name="bt_pessoa_fisica">para mi casa</string>
-    <string name="btn_começar">Empezar ahora</string>
+    <string name="btn_comecar">Empezar ahora</string>
     <string name="bt_supermercado">Tienda</string>
     <string name="btn_restaurante">Restaurante</string>
     <string name="bt_ong">ONG</string>
@@ -198,13 +198,14 @@ descumprindo o Artigo 18 da Lei nº 8.078 de 11 de Setembro de 1990 do Código d
     <string name="txt_notificacoes_status_desc">Notificar quando houver alteração no status dos seus pedidos.</string>
     <string name="txt_notificacoes_favoritos">Produtos favoritados</string>
     <string name="txt_notificacoes_favorito_desc">Notificar quando um produto favorito estiver disponivel pelos estabelecimentos.</string>
-    <string name="txt_notificacoes_promoções">Promoções e ofertas</string>
-    <string name="txt_notificacoes_pomoções_desc">Recebere-mails e notificações de promoções dos estabelecimentos próximos.</string>
+    <string name="txt_notificacoes_promocoes">Promoções e ofertas</string>
+    <string name="txt_notificacoes_pomocoes_desc">Recebere-mails e notificações de promoções dos estabelecimentos próximos.</string>
     <string name="txt_configurar_notificacoes">Configurar Notificações</string>
 
     <!-- Strings de dúvidas frequentes -->
 
     <string name="txt_duvida_um">Como posso alterar meus dados?</string>
+    <string name="txt_notificacoes_pomocoes_descs">Notificações</string>
     <string name="txt_duvida_um_solucao">Para atualizar seus dados cadastrados, basta selecionar a opção "'Configurações'" no menu lateral e escolher "'Meus dados'".</string>
     <string name="txt_duvida_dois">Como posso alterar e-mail de contato?</string>
     <string name="txt_duvida_dois_solucao">Seu e-mail é um dos principais meios de comunicação entre você e o Smarket, por isso é importante que sempre o mantenha atualizado.
@@ -235,6 +236,6 @@ descumprindo o Artigo 18 da Lei nº 8.078 de 11 de Setembro de 1990 do Código d
     <string name="txt_duvida_quatorze">Quantos itens do mesmo produto posso comprar?</string>
     <string name="txt_duvida_quatorze_solucao">A quantidade de itens que podem ser comprados depende da quantidade de itens disponibilizados pela loja.</string>
     <string name="txt_duvida_quinze">Não recebi confirmação do pedido pelo estabelecimento, como prossigo?</string>
-    <string name="txt_duvida_quinze_solução">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
+    <string name="txt_duvida_quinze_solucao">Caso não receba a noticação sobre o status do seu pedido dentro de 4 dias, entre em contato com nosso suporte através do e-mail ou telefone fornecidos no final da página.</string>
     <string name="txt_solicia_pj">Insira os dados de sua empresa:</string>
 </resources>

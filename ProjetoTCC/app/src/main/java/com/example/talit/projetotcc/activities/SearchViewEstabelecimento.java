@@ -113,7 +113,7 @@ public class SearchViewEstabelecimento extends AppCompatActivity {
         return true;
     }
 
-    public void promptSpeechInput() {
+    public void promptSpeechInput() {//
 
         Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);

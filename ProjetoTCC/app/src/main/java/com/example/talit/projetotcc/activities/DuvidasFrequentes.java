@@ -99,7 +99,7 @@ public class DuvidasFrequentes extends AppCompatActivity {
         qtdItens.add(getString(R.string.txt_duvida_quatorze_solucao));
 
         List<String> semPedido = new ArrayList<>();
-        semPedido.add(getString(R.string.txt_duvida_quinze_solução));
+        semPedido.add(getString(R.string.txt_duvida_quinze_solucao));
 
         listaHash.put(listaDados.get(0),alterarDados);
         listaHash.put(listaDados.get(1),alterarEmail);
@@ -120,7 +120,7 @@ public class DuvidasFrequentes extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(DuvidasFrequentes.this, PaginalnicialConsumidor.class);
+        Intent intent = new Intent(DuvidasFrequentes.this, CentralAtendmento.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
         finish();

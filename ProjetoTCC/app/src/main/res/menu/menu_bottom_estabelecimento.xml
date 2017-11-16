@@ -27,7 +27,7 @@
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/action_avaliações"
+        android:id="@+id/action_avaliacoes"
         android:icon="@drawable/ic_favorite_border_black_24dp"
         android:title= "@string/tab_avaliacao_estabelecimento"
         app:showAsAction="ifRoom"

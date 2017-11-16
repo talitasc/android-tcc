@@ -18,7 +18,7 @@
             android:title="@string/menu_favoritos" />
 
         <item
-            android:id="@+id/menu_minhas_avaliações"
+            android:id="@+id/menu_minhas_avaliacoes"
             android:title="@string/menu_minhas_ava" />
 
         <item
@@ -40,16 +40,12 @@
                 android:title="@string/menu_item_sobre" />
 
             <item
-                android:id="@+id/menu_suporte"
-                android:title="@string/menu_suporte" />
-
-            <item
-                android:id="@+id/menu_notificações"
+                android:id="@+id/menu_notificacoes"
                 android:title="@string/menu_notificacoes" />
 
             <item
                 android:id="@+id/menu_ajuda"
-                android:title="@string/menu_ajuda" />
+                android:title="@string/menu_Central" />
 
             <item
                 android:id="@+id/menu_idiomas"

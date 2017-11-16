@@ -7,11 +7,11 @@ package com.example.talit.projetotcc.logicalView;
 public class Email implements Cloneable{
 
     private int idEmail;
-    private String descrição;
+    private String descricao;
 
-    public Email(int idEmail, String descrição){
+    public Email(int idEmail, String descricao){
         this.idEmail = idEmail;
-        this.descrição = descrição;
+        this.descricao = descricao;
 
     }
     public Email(Email copia){
@@ -19,7 +19,7 @@ public class Email implements Cloneable{
        try {
 
            this.idEmail = copia.idEmail;
-           this.descrição = copia.descrição;
+           this.descricao = copia.descricao;
 
        }catch (Exception e){
             e.printStackTrace();
@@ -44,12 +44,12 @@ public class Email implements Cloneable{
         this.idEmail = idEmail;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
 }

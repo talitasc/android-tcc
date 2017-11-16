@@ -12,7 +12,7 @@ import com.example.talit.projetotcc.R;
 public class Notificacoes extends AppCompatActivity {
 
     private CheckBox checkTodos;
-    private CheckBox notificações;
+    private CheckBox notificacoes;
     private CheckBox promocoes;
     private CheckBox favoritos;
 
@@ -21,7 +21,7 @@ public class Notificacoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_notificacoes);
         checkTodos = (CheckBox) findViewById(R.id.checkSmarket);
-        notificações = (CheckBox) findViewById(R.id.checkNot);
+        notificacoes = (CheckBox) findViewById(R.id.checkNot);
         promocoes = (CheckBox) findViewById(R.id.checkNotFavorito);
         favoritos = (CheckBox) findViewById(R.id.checkPromo);
 
@@ -33,11 +33,11 @@ public class Notificacoes extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(checkTodos.isChecked()){
-                    notificações.setChecked(true);
+                    notificacoes.setChecked(true);
                     promocoes.setChecked(true);
                     favoritos.setChecked(true);
                 }else{
-                    notificações.setChecked(false);
+                    notificacoes.setChecked(false);
                     promocoes.setChecked(false);
                     favoritos.setChecked(false);
                 }

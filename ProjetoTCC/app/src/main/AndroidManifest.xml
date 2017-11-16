@@ -135,12 +135,12 @@
         <activity
             android:name=".activities.SobreLoja"
             android:label="@string/title_activity_sobre_loja"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SearchViewEstabelecimento"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.ChatBot" />
+        <activity android:name=".activities.CentralAtendmento"></activity>
     </application>
 
 </manifest>

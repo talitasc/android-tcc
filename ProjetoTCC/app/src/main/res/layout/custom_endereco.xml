@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/rua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_rua"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/numero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_numero"
+        android:layout_below="@+id/rua"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/bairro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_bairro"
+        android:layout_below="@+id/rua"
+        android:layout_toEndOf="@+id/numero"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp"/>
+
+    <TextView
+        android:id="@+id/cep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_cep"
+        android:layout_below="@+id/bairro"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/cidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_cidade"
+        android:layout_below="@+id/cep"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/sigla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_estado"
+        android:layout_below="@+id/bairro"
+        android:layout_toEndOf="@+id/cidade"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/idEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="idestab"
+        android:layout_below="@+id/cidade"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
+
+</RelativeLayout>

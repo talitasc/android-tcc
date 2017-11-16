@@ -102,7 +102,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
         searchViewLayout = (CoordinatorLayout) findViewById(R.id.coordInicio);
         coordDetalhes = (CoordinatorLayout)findViewById(R.id.coordDetalhes);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
+        pb = (ProgressBar) findViewById(R.id.pb_localizacao);
         btnCarrinho = (FloatingActionButton) findViewById(R.id.btn_carrinho);
         txtCount = (TextView) findViewById(R.id.notificacao);
         no_categoria = (RelativeLayout) findViewById(R.id.rl_no_catgeorias);
@@ -112,7 +112,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
         searchView = (SearchView) findViewById(R.id.search_view);
         txtBusca = (TextView) findViewById(R.id.txt_busca);
         smarketPoints = (RelativeLayout)findViewById(R.id.rl_smarket);
-        pb = (ProgressBar) findViewById(R.id.pb_localizaçao);
+        pb = (ProgressBar) findViewById(R.id.pb_localizacao);
 
         pbCateg.setVisibility(View.INVISIBLE);
         coordDetalhes.setVisibility(View.GONE);
@@ -248,7 +248,7 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
                     replaceFragment(new BrindesEstabelecimento());
                     return true;
 
-                case R.id.action_avaliações:
+                case R.id.action_avaliacoes:
                     searchViewLayout.setVisibility(View.GONE);
                     coordDetalhes.setVisibility(View.GONE);
                     startActivity(new Intent(PaginaInicialEstabelecimentos.this,SobreLoja.class));
