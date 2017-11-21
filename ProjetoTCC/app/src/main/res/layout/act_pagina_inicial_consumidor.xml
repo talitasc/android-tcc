@@ -42,13 +42,14 @@
                     android:id="@+id/search_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/imageButton2"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/borda_search_view"
                     android:icon="@android:drawable/ic_menu_search"
                     app:queryHint="Type something..."
                     app:theme="@style/SearchViewStyle" />
 
-                <ImageButton
+               <!-- <ImageButton
                     android:id="@+id/imageButton2"
                     style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
                     android:layout_width="wrap_content"
@@ -56,7 +57,7 @@
                     android:layout_alignParentEnd="true"
                     android:tint="@android:color/white"
                     app:srcCompat="@drawable/ic_tune_black_24dp"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription" />-->
 
                 <TextView
                     android:id="@+id/txt_busca"
@@ -64,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="13dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="55dp"
                     android:textColor="#acacac"
                     android:text="@string/txt_buscar"
                     android:textSize="16sp"

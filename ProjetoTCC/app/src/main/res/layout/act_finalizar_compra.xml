@@ -40,22 +40,89 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
+                        android:id="@+id/im_valor_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="05dp"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/money"
+                        tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/txt_valor_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/im_valor_total"
+                        android:maxLines="3"
+                        android:padding="12dp"
+                        android:text="@string/txt_valor_total"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <View
+                        android:id="@+id/divi_04"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/txt_valor_total"
+                        android:layout_margin="4dp"
+                        android:background="#ACACAC" />
+
+                    <TextView
+                        android:id="@+id/txt_valor_total_compra"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/divi_04"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginStart="05dp"
+                        android:layout_marginTop="10dp"
+                        android:hint="@string/txt_valor_total_compra"
+                        android:inputType="text"
+                        android:maxLength="14"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:ignore="RtlHardcoded,TextViewEdits"
+                        tools:targetApi="m" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="#FFF"
+                app:cardCornerRadius="03dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="3dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
                         android:id="@+id/im_credenciais"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="05dp"
                         android:layout_marginTop="13dp"
-                        android:tint="@color/bg_screen2"
                         android:src="@drawable/ic_account_box_black_24dp"
+                        android:tint="@color/bg_screen2"
                         tools:ignore="ContentDescription,VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/txt_dados"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/im_credenciais"
                         android:maxLines="3"
                         android:padding="12dp"
-                        android:layout_toEndOf="@+id/im_credenciais"
                         android:text="@string/dados_pessoais"
                         android:textSize="18dp"
                         android:textStyle="bold"
@@ -73,15 +140,15 @@
                         android:id="@+id/ed_cpf"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_below="@+id/divi"
                         android:layout_marginBottom="05dp"
                         android:layout_marginLeft="05dp"
                         android:layout_marginStart="05dp"
                         android:layout_marginTop="10dp"
-                        android:layout_below="@+id/divi"
                         android:background="@drawable/bordas_editext_cinza"
                         android:hint="@string/dados_pessoais_cpf"
                         android:inputType="numberDecimal"
-                        android:maxLength="14"
+                        android:maxLength="11"
                         android:padding="12dp"
                         android:textAllCaps="false"
                         android:textSize="14sp"
@@ -112,8 +179,8 @@
                         android:layout_height="25dp"
                         android:layout_marginStart="05dp"
                         android:layout_marginTop="10dp"
-                        android:tint="@color/bg_screen2"
                         android:src="@drawable/delivery"
+                        android:tint="@color/bg_screen2"
                         tools:ignore="ContentDescription,VectorDrawableCompat" />
 
                     <TextView
@@ -383,109 +450,100 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@+id/rd_frete"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         tools:ignore="UselessLeaf">
 
-                        <EditText
-                            android:id="@+id/ed_cep"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_marginBottom="05dp"
-                            android:layout_marginLeft="05dp"
-                            android:layout_marginStart="05dp"
+                        <TextView
+                            android:id="@+id/txt_end_ent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/bordas_editext_cinza"
-                            android:hint="@string/ret_ceo"
-                            android:inputType="numberDecimal"
-                            android:maxLength="8"
-                            android:padding="12dp"
-                            android:textAllCaps="false"
-                            android:textSize="14sp"
-                            tools:ignore="RtlHardcoded"
-                            tools:targetApi="m" />
+                            android:maxLines="3"
+                            android:padding="08dp"
+                            android:text="@string/ret_end_entrega"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
 
                         <Button
-                            android:id="@+id/btn_consultar"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/btn_buscar_cep"
+                            android:layout_width="165dp"
                             android:layout_height="36dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="17dp"
-                            android:layout_toEndOf="@+id/ed_cep"
+                            android:layout_below="@+id/txt_end_ent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="02dp"
+                            android:layout_marginStart="05dp"
+                            android:layout_marginTop="05dp"
                             android:background="@drawable/borda_search_view"
                             android:backgroundTint="@color/coresProvisoriasum"
-                            android:text="@string/ret_consul"
+                            android:text="@string/ret_por_cep"
                             android:textAllCaps="false"
                             android:textColor="#ffff"
                             tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
 
-                        <TextView
-                            android:id="@+id/txt_valor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="02dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_toEndOf="@+id/btn_consultar"
+                        <Button
+                            android:id="@+id/btn_meu_end"
+                            android:layout_width="175dp"
+                            android:layout_height="36dp"
+                            android:layout_below="@+id/txt_end_ent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="05dp"
+                            android:layout_marginTop="05dp"
+                            android:layout_toEndOf="@+id/btn_buscar_cep"
+                            android:background="@drawable/borda_search_view"
+                            android:backgroundTint="@color/coresProvisoriasum"
+                            android:text="@string/ret_meu_end"
                             android:textAllCaps="false"
-                            android:textSize="13sp"
-                            tools:ignore="RelativeOverlap,SmallSp"
-                            tools:text="@string/ret_vl_frete" />
+                            android:textColor="#ffff"
+                            tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
 
                         <RelativeLayout
                             android:id="@+id/end_por_cep"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/ed_cep"
+                            android:layout_below="@id/btn_buscar_cep"
                             android:visibility="gone">
 
-                            <TextView
-                                android:id="@+id/txt_end_ent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:maxLines="3"
-                                android:padding="08dp"
-                                android:text="@string/ret_end_entrega"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
-                                tools:ignore="SpUsage" />
 
-                            <Button
-                                android:id="@+id/btn_buscar_cep"
-                                android:layout_width="165dp"
-                                android:layout_height="36dp"
-                                android:layout_below="@+id/txt_end_ent"
-                                android:layout_marginEnd="02dp"
+                            <EditText
+                                android:id="@+id/ed_cep"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:layout_marginBottom="05dp"
+                                android:layout_marginLeft="05dp"
                                 android:layout_marginStart="05dp"
-                                android:layout_marginTop="05dp"
-                                android:background="@drawable/borda_search_view"
-                                android:backgroundTint="@color/coresProvisoriasum"
-                                android:text="@string/ret_por_cep"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/bordas_editext_cinza"
+                                android:hint="@string/ret_ceo"
+                                android:inputType="numberDecimal"
+                                android:maxLength="8"
+                                android:padding="12dp"
                                 android:textAllCaps="false"
-                                android:textColor="#ffff"
-                                tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded"
+                                tools:targetApi="m" />
 
                             <Button
-                                android:id="@+id/btn_meu_end"
-                                android:layout_width="175dp"
+                                android:id="@+id/btn_consultar"
+                                android:layout_width="wrap_content"
                                 android:layout_height="36dp"
-                                android:layout_below="@+id/txt_end_ent"
-                                android:layout_marginEnd="05dp"
-                                android:layout_marginTop="05dp"
-                                android:layout_toEndOf="@+id/btn_buscar_cep"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="17dp"
+                                android:layout_toEndOf="@+id/ed_cep"
                                 android:background="@drawable/borda_search_view"
                                 android:backgroundTint="@color/coresProvisoriasum"
-                                android:text="@string/ret_meu_end"
+                                android:text="@string/ret_consul"
                                 android:textAllCaps="false"
                                 android:textColor="#ffff"
                                 tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
-
 
                             <TextView
                                 android:id="@+id/txt_valida_busca"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/btn_buscar_cep"
+                                android:layout_below="@+id/btn_consultar"
                                 android:layout_marginEnd="05dp"
                                 android:layout_marginStart="08dp"
                                 android:layout_marginTop="05dp"
@@ -592,8 +650,72 @@
                                 tools:ignore="RtlHardcoded"
                                 tools:targetApi="m" />
 
+                            <TextView
+                                android:id="@+id/txt_valor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ed_numero"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginEnd="02dp"
+                                android:layout_marginTop="20dp"
+                                android:textAllCaps="false"
+                                android:textSize="13sp"
+                                tools:ignore="RelativeOverlap,SmallSp"
+                                tools:text="@string/ret_vl_frete" />
+
                         </RelativeLayout>
 
+                        <RelativeLayout
+                            android:id="@+id/id_enderecos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_below="@id/btn_buscar_cep"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                            <RelativeLayout
+                                android:id="@+id/lis_endereco"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/lv_ends"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:divider="@null"
+                                    android:gravity="center"
+                                    android:stretchMode="columnWidth" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_noende"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible"
+                                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+                                <TextView
+                                    android:id="@+id/tv_nolist"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginTop="10dp"
+                                    android:drawableTint="#ACACAC"
+                                    android:drawableTop="@drawable/ic_location_on_black_24dp"
+                                    android:gravity="center"
+                                    android:text="@string/no_end"
+                                    android:textColor="#ACACAC"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,UnusedAttribute" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
 
                     </RelativeLayout>
 
@@ -629,9 +751,9 @@
                         android:id="@+id/txt_form_pagamento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/money"
                         android:maxLines="3"
                         android:padding="12dp"
-                        android:layout_toEndOf="@+id/money"
                         android:text="@string/pag_titulo"
                         android:textSize="18dp"
                         android:textStyle="bold"
@@ -675,9 +797,9 @@
                     <RelativeLayout
                         android:id="@+id/dinheiro"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_below="@+id/rd_nota"
-                        android:visibility="gone"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/txt_pag_dinheiro"
@@ -695,13 +817,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/txt_pag_dinheiro"
-                            android:padding="05dp"
-                            android:textColor="#ACACAC"
-                            android:textAllCaps="false"
-                            android:textSize="14sp"
-                            tools:ignore="SmallSp"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/pag_dinheiro" />
+                            android:padding="05dp"
+                            android:text="@string/pag_dinheiro"
+                            android:textAllCaps="false"
+                            android:textColor="#ACACAC"
+                            android:textSize="14sp"
+                            tools:ignore="SmallSp" />
 
 
                     </RelativeLayout>
@@ -797,7 +919,8 @@
                                 android:id="@+id/spinMes"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:layout_marginTop="10dp" />
+                                android:layout_marginTop="10dp"
+                                tools:ignore="TooManyViews" />
 
                         </RelativeLayout>
 

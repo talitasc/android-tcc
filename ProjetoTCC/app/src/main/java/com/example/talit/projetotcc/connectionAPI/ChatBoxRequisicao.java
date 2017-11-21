@@ -80,6 +80,7 @@ public class ChatBoxRequisicao extends AsyncTask<String, String, String> {
                 Log.i("rua", api_result.getString("resposta"));
                 ChatBot.msg.add(new Message(api_result.getString("resposta"),"CHAT"));
                 ChatBot.mMessageAdapter.notifyDataSetChanged();
+                ChatBot.mMessageRecycler.smoothScrollToPosition(ChatBot.mMessageAdapter.getItemCount()-1);
             }
         } catch (Exception e) {
             e.printStackTrace();

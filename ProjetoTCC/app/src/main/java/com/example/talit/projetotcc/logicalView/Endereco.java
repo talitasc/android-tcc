@@ -13,9 +13,22 @@ public class Endereco  {
     private String cep;
     private String cidade_descricao;
     private String estado_sigla;
-    private String endereco_id;
+    private int endereco_id;
+    private int cidade_id;
+    private int estado_id;
 
-
+    public Endereco(int endereco_id,String rua,String numero, String complemento,String bairro,String cep, String sigla, String cidade, int idCidade, int estado_id){
+        this.endereco_id = endereco_id;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.estado_sigla = sigla;
+        this.cidade_descricao = cidade;
+        this.cidade_id = idCidade;
+        this.estado_id = estado_id;
+    }
     public Endereco(String rua, String numero, String bairro, String complemento, String cep,String cidade_descricao, String estado_sigla ) {
         this.rua = rua;
         this.numero = numero;
@@ -26,7 +39,7 @@ public class Endereco  {
         this.estado_sigla = estado_sigla;
     }
 
-    public Endereco(String rua, String numero, String bairro, String complemento, String cep, String cidade_descricao, String estado_sigla, String endereco_id) {
+    public Endereco(String rua, String numero, String bairro, String complemento, String cep, String cidade_descricao, String estado_sigla, int endereco_id) {
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -37,11 +50,27 @@ public class Endereco  {
         this.endereco_id = endereco_id;
     }
 
-    public String getEndereco_id() {
+    public int getEstado_id() {
+        return estado_id;
+    }
+
+    public void setEstado_id(int estado_id) {
+        this.estado_id = estado_id;
+    }
+
+    public int getCidade_id() {
+        return cidade_id;
+    }
+
+    public void setCidade_id(int cidade_id) {
+        this.cidade_id = cidade_id;
+    }
+
+    public int getEndereco_id() {
         return endereco_id;
     }
 
-    public void setEndereco_id(String endereco_id) {
+    public void setEndereco_id(int endereco_id) {
         this.endereco_id = endereco_id;
     }
 
@@ -100,4 +129,6 @@ public class Endereco  {
     public void setEstado_sigla(String estado_sigla) {
         this.estado_sigla = estado_sigla;
     }
+
+
 }

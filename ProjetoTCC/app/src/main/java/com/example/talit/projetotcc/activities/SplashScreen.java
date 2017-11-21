@@ -43,7 +43,6 @@ public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
         super.onResume();
         SharedPreferences prefs = getSharedPreferences(NOME_PREFERENCE, MODE_PRIVATE);
         lingua = prefs.getString("lingua", null);

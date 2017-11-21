@@ -23,20 +23,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/im_logo_supermercado"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginStart="11dp"
             fresco:placeholderImage="@drawable/mercado"
-            fresco:roundAsCircle="true"
             fresco:failureImage="@drawable/logo_super"
-            android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/txt_nome_super"
-            android:layout_width="183sp"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/im_logo_supermercado"
             android:layout_marginStart="08dp"
@@ -77,33 +75,31 @@
             tools:textSize="08sp"/>
 
 
-        <ImageView
-            android:id="@+id/im_avaliacao"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="05dp"
-            android:layout_toEndOf="@+id/im_logo_supermercado"
-            android:layout_below="@+id/txt_cidade_estab"
-            android:layout_marginTop="05dp"
-            android:tint="#FFCC66"
-            app:srcCompat="@drawable/ic_star_black_24dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
+        <RatingBar
+            android:id="@+id/ratingBarEstab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating=".1"
+            style="?android:attr/ratingBarStyleSmall"
+            tools:ignore="RtlHardcoded"
+            android:layout_below="@+id/im_local"
+            android:layout_alignStart="@+id/txt_nome_super" />
 
         <TextView
             android:id="@+id/txt_avaliacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="05dp"
-            android:layout_toEndOf="@+id/im_avaliacao"
-            android:layout_below="@+id/txt_cidade_estab"
-            android:layout_marginTop="02dp"
+            android:layout_toEndOf="@+id/ratingBarEstab"
+            android:layout_below="@+id/im_local"
             android:text="4,6"
             android:textColor="#FFCC66"
             android:textStyle="bold"
             tools:textSize="08sp"
             tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
-        <ImageButton
+       <!-- <ImageButton
             android:id="@+id/btn_frete"
             android:layout_width="30sp"
             android:layout_height="30sp"
@@ -113,7 +109,7 @@
             app:srcCompat="@drawable/ic_local_shipping_black_24dp"
             android:background="@drawable/bt_botoes_aux"
             tools:ignore="ContentDescription,VectorDrawableCompat"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true" />-->
 
     </RelativeLayout>
 

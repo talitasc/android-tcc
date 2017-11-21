@@ -61,12 +61,13 @@ public class ChatBot extends AppCompatActivity {
         mMessageRecycler.setAdapter(mMessageAdapter);
 
 
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 msg.add(new Message(edtMsg.getText().toString(),"USUARIO"));
                 ChatBot.mMessageAdapter.notifyDataSetChanged();
+                mMessageRecycler.smoothScrollToPosition(mMessageAdapter.getItemCount()-1);
+
                 ChatBoxRequisicao conn = new ChatBoxRequisicao(null);
                 conn.execute(edtMsg.getText().toString().replace("^","").replace("~","").replace("´","").replace(".","").replace(",","").replace(" ","%20").replace("ç","c"));
                 edtMsg.setText(null);

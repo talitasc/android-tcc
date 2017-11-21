@@ -87,7 +87,6 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
     private TextView txtBusca;
     private RelativeLayout smarketPoints;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,12 +134,12 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
             getSupportActionBar().setTitle("Estabelecimento");
         }
 
-        if(dbconn.totalItensCarrinho() > 0){
+        /*if(dbconn.totalItensCarrinho() > 0){
             txtCount.setVisibility(View.VISIBLE);
             txtCount.setText(dbconn.totalItensCarrinho()+"");
         }else{
             txtCount.setVisibility(View.INVISIBLE);
-        }
+        }*/
 
         replaceFragment(new TabDestaques());
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

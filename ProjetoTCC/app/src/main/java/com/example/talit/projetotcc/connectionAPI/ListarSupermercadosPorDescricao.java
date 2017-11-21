@@ -128,7 +128,9 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                             end.getRua(), end.getNumero(),
                             end.getBairro(), end.getComplemento(),
                             end.getCep(),end.getCidade_descricao(),end.getEstado_sigla(),
-                            tel.getIdTf(), tel.getDdd(), tel.getNumeroTelefone());
+                            tel.getIdTf(), tel.getDdd(), tel.getNumeroTelefone(),
+                            dados_result.getString("estabelecimento_logo"),dados_result.getString("media_nota"),
+                            dados_result.getString("estabelecimento_banner"));
                     listareEst.add(estabelecimentos);
                 }
 

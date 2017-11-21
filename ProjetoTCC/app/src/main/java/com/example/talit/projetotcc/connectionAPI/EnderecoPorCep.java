@@ -2,6 +2,7 @@ package com.example.talit.projetotcc.connectionAPI;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by talit on 04/11/2017.
  */
@@ -28,6 +31,8 @@ import java.net.URL;
 public class EnderecoPorCep extends AsyncTask<String, String, String> {
 
     private Listener mListener;
+    public static final String ID_ESTABELECIMENTO = "ID";
+    public static String idEstab;
 
     public interface Listener {
 
@@ -83,6 +88,11 @@ public class EnderecoPorCep extends AsyncTask<String, String, String> {
                     FinalizarCompra.txtErroEndereco.setText("");
                     FinalizarCompra.getValues(cep.getLogradouro(), cep.getLocalidade(),
                             cep.getUf(), cep.getBairro());
+
+                    SharedPreferences prefs = FinalizarCompra.act.getSharedPreferences(ID_ESTABELECIMENTO, MODE_PRIVATE);
+                    idEstab = prefs.getString("idEstab", null);
+                    Frete connFrete = new Frete();
+                    connFrete.execute(idEstab,cep.getLocalidade());
                 }
             } else {
                 FinalizarCompra.pbAguardar.setVisibility(View.INVISIBLE);

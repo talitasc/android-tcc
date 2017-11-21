@@ -1,0 +1,168 @@
+package com.example.talit.projetotcc.logicalView;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
+import android.util.Log;
+
+import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.activities.AlteraDadosConsumidor;
+import com.example.talit.projetotcc.activities.CadastroConsumidor;
+import com.example.talit.projetotcc.activities.Carrinho;
+import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.connectionAPI.DeleteCarrinho;
+import com.example.talit.projetotcc.connectionAPI.ListarCarrinho;
+import com.example.talit.projetotcc.sqlight.DbConn;
+import com.example.talit.projetotcc.utils.Validacoes;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+/**
+ * Created by talit on 20/11/2017.
+ */
+
+public class DeletaItenCarrinho extends AsyncTask<String, String, String> {
+
+
+    private String carrinho_id;
+    private String lote_id;
+    private DbConn dbconn;
+    @Override
+    protected String doInBackground(String... n) {
+
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/carrinho/excluirProdutoCarrinho";
+        carrinho_id = n[0];
+        lote_id = n[1];
+
+        HttpURLConnection urlConnection;
+        String requestBody;
+
+        try {
+            URL url = new URL(api_url);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.setRequestProperty("Accept-Encoding", "application/json");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("carrinho_id", carrinho_id);
+            jsonObject.accumulate("lote_id", lote_id);
+            String json = jsonObject.toString();
+            OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+            writer.write(json);
+            writer.flush();
+            writer.close();
+            outputStream.close();
+
+            InputStream inputStream;
+            // get stream
+            if (urlConnection.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+                inputStream = urlConnection.getInputStream();
+            } else {
+                inputStream = urlConnection.getErrorStream();
+            }
+            // parse stream
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String temp, response = "";
+            while ((temp = bufferedReader.readLine()) != null) {
+                response += temp;
+                Log.i("teste_api", response);
+
+            }
+            return response;
+
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+
+        //dbconn = new DbConn(DetalhesProdutos.c);
+        try {
+            JSONObject api_result = new JSONObject(result);
+            String response = api_result.getString("response");
+            JSONObject status = new JSONObject(response);
+            Log.i("Começo do Response", response);
+            String status_user = status.getString("status");
+            String descricao = status.getString("descricao");
+            Log.i("Status", status_user);
+
+            if (status_user.equalsIgnoreCase("true")) {
+                if (descricao.equals("Produto removido do carrinho com sucesso!")) {
+                    //String dados = status.getString("objeto");
+                    //dbconn.insertSacola(35, Integer.parseInt(DetalhesProdutos.strIdProd),
+                            //DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")), Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),DetalhesProdutos.strUmed,Integer.parseInt(DetalhesProdutos.strQuantidade), DetalhesProdutos.strImagem,DetalhesProdutos.strQtd);
+                    ListarCarrinho listar = new ListarCarrinho();
+                    listar.execute(carrinho_id);
+                    Carrinho.listas.deferNotifyDataSetChanged();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Carrinho.context);
+                    builder.setTitle(R.string.txt_alterados);
+                    builder.setMessage(R.string.excluir_item);
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
+
+                }
+            }else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(Carrinho.context);
+                builder.setTitle(R.string.erro_titulo);
+                builder.setMessage(R.string.erro_carrinho);
+                builder.setPositiveButton(R.string.positive_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                    }
+                });
+                builder.setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                    }
+                });
+                builder.show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertDialog.Builder builder = new AlertDialog.Builder(Carrinho.context);
+            builder.setTitle("Erro");
+            builder.setMessage("Ocorreu um erro...");
+            builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.dismiss();
+
+                }
+            });
+            builder.setCancelable(false);
+            builder.show();
+
+        }
+
+    }
+}

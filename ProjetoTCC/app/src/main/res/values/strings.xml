@@ -23,7 +23,7 @@
     <string name="ed_cnpj">CNPJ</string>
     <string name="ed_incricao_municipal">Inscrição municipal</string>
     <string name="ed_rua">Rua</string>
-    <string name="ed_complemento">Comple.</string>
+    <string name="ed_complemento">Complemento</string>
     <string name="ed_numero">Numero</string>
     <string name="ed_bairro">Bairro</string>
     <string name="ed_cidade">Cidade</string>
@@ -81,6 +81,7 @@
     <string name="btn_login">Entrar</string>
     <string name="btn_cadastrar">Não possui um cadastro? Comece agora!</string>
     <string name="btn_cadastro">Cadastrar</string>
+    <string name="btn_cadastro_end">Cadastrar novo endereço</string>
     <string name="bt_alterar_senha">Alterar</string>
     <string name="btn_alt_cadastro">Alterar</string>
     <string name="bt_pessoa_fisica">Para a minha casa</string>
@@ -363,4 +364,19 @@
     <string name="no_end">Nenhum endereço cadastrado</string>
     <string name="alt_end">Endereços cadastrados</string>
     <string name="alt_end_desc">Veja seus endereços cadastrados, você pode alterá-los ou cadastrar novos. Toque para ver mais ></string>
+    <string name="buscar_cep">Buscar endereço</string>
+    <string name="endereco_alterado">Endereço cadastrado com sucesso</string>
+    <string name="endereco_alterar">Altere seu endereço</string>
+    <string name="endereco_alterado_sucesso">Endereço alterado com sucesso!</string>
+    <string name="delete_carrinho">Carrinho deletado com sucesso! Agora você pode realizar outra compra :)</string>
+    <string name="pedido_registrado">Pedido Registrado com sucesso! Você pode acompanhar o status do seu pedido na sua area inicial em "Minhas compras"</string>
+    <string name="excluir_item">Item excluido com sucesso!</string>
+    <string name="txt_valor_total_compra">Valor total da compra</string>
+    <string name="txt_valor_total">Valor total</string>
+    <string name="txt_avisos">Aviso!</string>
+    <string name="txt_aviso_desc">Para prosseguir com o pagamento por favor selecionas as opções necessárias.</string>
+    <string name="txt_numero_pedido">Numero do pedido</string>
+    <string name="txt_valor_pedido">Valor do pedido</string>
+    <string name="txt_data_pedido">data</string>
+    <string name="txt_status_pedido">status pedido</string>
 </resources>

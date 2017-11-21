@@ -37,10 +37,10 @@
                 <ImageView
                     android:id="@+id/im_logo_produto"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="05dp"
-                    app:srcCompat="@drawable/logo_super"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <TextView

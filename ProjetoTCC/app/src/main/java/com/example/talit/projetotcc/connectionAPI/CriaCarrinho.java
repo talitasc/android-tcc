@@ -12,9 +12,12 @@ import com.example.talit.projetotcc.activities.CadastroConsumidor;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
 import com.example.talit.projetotcc.activities.LoginCliente;
 import com.example.talit.projetotcc.activities.LoginPessoaJuridica;
+import com.example.talit.projetotcc.logicalView.CarrinhoItens;
+import com.example.talit.projetotcc.logicalView.Sacola;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.example.talit.projetotcc.utils.Validacoes;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +31,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by talit on 20/10/2017.
@@ -93,6 +97,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
             } else {
                 inputStream = urlConnection.getErrorStream();
             }
+            //urlConnection.disconnect();
             // parse stream
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String temp, response = "";
@@ -111,6 +116,7 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
+
         }
         return null;
     }
@@ -122,46 +128,41 @@ public class CriaCarrinho extends AsyncTask<String, String, String> {
         try {
             JSONObject api_result = new JSONObject(result);
             String response = api_result.getString("response");
-            JSONObject status = new JSONObject(response);
-            Log.i("Começo do Response", response);
-            String status_user = status.getString("status");
-            String descricao = status.getString("descricao");
-            Log.i("Status", status_user);
-            if (status_user.equalsIgnoreCase("true")) {
-                if (descricao.equals("Carrinho inicializado com sucesso!")) {
 
-                    String dados = status.getString("objeto");
-                    JSONObject dados_result = new JSONObject(dados);
+            JSONObject status = new JSONObject(response);
+            Log.i("Response", response);
+
+            String status_est = status.getString("status");
+            String descricao = status.getString("descricao");
+            String objeto = status.getString("objeto");
+            Log.i("Status", status_est);
+
+            if (status_est.equals("true")) {
+                if (descricao.equals("Carrinho inicializado com sucesso!")) {
+                    JSONObject dadosobjeto = new JSONObject(objeto);
+                    JSONArray carrinho = dadosobjeto.getJSONArray("carrinho");
+
+                    CarrinhoItens car = null;
+                    for (int j = 0; j< carrinho.length(); ++j){
+                        JSONObject car_result = carrinho.getJSONObject(j);
+                        car = new CarrinhoItens(car_result.getString("carrinho_id"));
+                    }
+                    int idCarrinho = Integer.parseInt(car.getCarrinho_id());
+                    dbconn.insertSacola(idCarrinho, Integer.parseInt(DetalhesProdutos.strIdProd),
+                            DetalhesProdutos.strnomeProd.trim(), DetalhesProdutos.strMarca.trim(),
+                            Double.parseDouble(DetalhesProdutos.strPreco.replace("R$ ", "")),
+                            Double.parseDouble(DetalhesProdutos.strPreco.replace("R$ ", "")),
+                            "g",Integer.parseInt(DetalhesProdutos.strQuantidade),
+                            DetalhesProdutos.strImagem,DetalhesProdutos.strQtd.trim());
+
                     Validacoes.showSnackBar(DetalhesProdutos.c,DetalhesProdutos.cord,DetalhesProdutos.act.getResources().getString(R.string.prod_add));
-                    dbconn.insertSacola(dados_result.getInt("carrinho_id"), Integer.parseInt(DetalhesProdutos.strIdProd),
-                            DetalhesProdutos.strnomeProd, DetalhesProdutos.strMarca, Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
-                            Double.parseDouble(DetalhesProdutos.strPreco.replace("R$", "")),
-                            DetalhesProdutos.strUmed,Integer.parseInt(DetalhesProdutos.strQuantidade), DetalhesProdutos.strImagem,
-                            DetalhesProdutos.strQtd);
 
                 }
             }else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(DetalhesProdutos.c);
-                builder.setTitle(R.string.erro_titulo);
-                builder.setMessage(R.string.erro_carrinho);
-
-                builder.setPositiveButton(R.string.positive_button, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        DeleteCarrinho connDel = new DeleteCarrinho(null);
-                        connDel.execute();
-
-                    }
-                });
-                builder.setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-
-                    }
-                });
-                builder.show();
+                String idUser = dbconn.selectConsumidor().getIdCons()+"";
+                String tpUser = dbconn.selectConsumidor().getTpAcesso()+"";
+                VerificaCarrinho connVerifica = new VerificaCarrinho();
+                connVerifica.execute(idUser,tpUser);
             }
 
         } catch (Exception e) {

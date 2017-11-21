@@ -35,7 +35,11 @@ public class DbConn {
         valor.put("tp_acesso", tpAcesso);
         db.insert("consumidor", null, valor);
     }
-
+    public void insertIdSacola(int idSacola){
+        ContentValues valor = new ContentValues();
+        valor.put("id_pod", idSacola);
+        db.insert("sacola", null, valor);
+    }
     public void insertSacola(int id_prod,int lote_id,String nomeProd,String marca, double preco, double preco_un,String un_med ,int qtd, String imagem, String qtdLote) {
         ContentValues valor = new ContentValues();
         valor.put("id_pod", id_prod);
@@ -65,6 +69,24 @@ public class DbConn {
                     cursor.getString(2),
                     cursor.getInt(3),
                     cursor.getInt(4));
+        }
+        return null;
+    }
+    public Sacola selectDadosSacola() {
+
+        Cursor cursor = db.query(true, "sacola", null, null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            return new Sacola(cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getDouble(4),
+                    cursor.getDouble(5),
+                    cursor.getString(6),
+                    cursor.getInt(7),
+                    cursor.getString(8),
+                    cursor.getString(9));
         }
         return null;
     }
@@ -213,6 +235,10 @@ public class DbConn {
 
     public void deleteCarrinhoId(int codigo){
         db.delete("sacola","id_pod  ="+ codigo,null);
+    }
+
+    public void deleteCarrinhoNome(String nome){
+        db.delete("sacola","nomeProd  ="+ nome,null);
     }
 
     public void deleteBusca(int id){

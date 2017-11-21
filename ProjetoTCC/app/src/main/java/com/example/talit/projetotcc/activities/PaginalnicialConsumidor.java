@@ -134,7 +134,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         listas = (RecyclerView) findViewById(R.id.lv_supermercado);
         no_list = (RelativeLayout) findViewById(R.id.rl_nolist);
         searchView = (SearchView) findViewById(R.id.search_view);
-        imFiltro = (ImageButton) findViewById(R.id.imageButton2);
+        //imFiltro = (ImageButton) findViewById(R.id.imageButton2);
         pb = (ProgressBar) findViewById(R.id.pb_localizacao);
         rlLocal = (RelativeLayout) findViewById(R.id.id_local);
         txtBusca = (TextView) findViewById(R.id.txt_busca);
@@ -155,6 +155,7 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listas.setLayoutManager(llm);
 
+
         if (idEstado != 0) {
             if (idCidade != 0) {
                 ListarSupermercadosPorDescricao conn = new ListarSupermercadosPorDescricao(null);
@@ -162,13 +163,21 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 conn.execute("109", "26");
             }
         }
+
+        try{
+
         if (latitude != 0) {
             if (longitude != 0) {
                 if (raio != null) {
                     ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
-                    connRaio.execute(String.format("%s", latitude), String.format("%s", longitude), raio);
+                    connRaio.execute("-22.9044507", "-47.2393871", "100");
                 }
             }
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+            ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
+            connRaio.execute(String.format("%s", latitude), String.format("%s", longitude), raio);
         }
         at = new ActionBarDrawerToggle(this, dl, R.string.menu_item_um, R.string.menu_item_dois);
         dl.addDrawerListener(at);
@@ -217,12 +226,12 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
 
             }
         });
-        imFiltro.setOnClickListener(new View.OnClickListener() {
+        /*imFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 filtroInicial();
             }
-        });
+        });*/
 
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,8 +399,14 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
                 dbconn.deleteHistorico();
                 startActivity(new Intent(getApplicationContext(), WelcomeScreen.class));
                 finish();
+
             } else {
                 dbconn.deleteConsumidor();
+                dbconn.deleteHistorico();
+                if (dbconn.totalItensCarrinho() > 0) {
+                    dbconn.deleteSacola();
+                }
+
                 startActivity(new Intent(getApplicationContext(), WelcomeScreen.class));
                 finish();
             }

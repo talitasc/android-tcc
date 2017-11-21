@@ -110,22 +110,29 @@ public class TabDestaques extends Fragment implements LotePorCategoria.Listener 
         SharedPreferences prefs = activity.getSharedPreferences(ID_ESTABELECIMENTO, MODE_PRIVATE);
         idEstab = prefs.getString("idEstab", null);
 
-        if (idCateg != null) {
-            LotePorCategoria connProd = new LotePorCategoria(null);
-            connProd.execute(idCateg);
-            Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
+        try {
+            if (idCateg != null) {
+                LotePorCategoria connProd = new LotePorCategoria(null);
+                connProd.execute(idCateg);
+                Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
 
-        }else if(idMarca != null){
-            LotePorMarca connMarca = new LotePorMarca(null);
-            connMarca.execute(idMarca);
-        }else if(idSubCateg != null){
-            LotePorSubcategoria connSub = new LotePorSubcategoria(null);
-            connSub.execute(idSubCateg);
-        }else{
+            } else if (idMarca != null) {
+                LotePorMarca connMarca = new LotePorMarca(null);
+                connMarca.execute(idMarca);
+            } else if (idSubCateg != null) {
+                LotePorSubcategoria connSub = new LotePorSubcategoria(null);
+                connSub.execute(idSubCateg);
+            } else {
+                LotePorEstabelecimento connEstab = new LotePorEstabelecimento(null);
+                connEstab.execute(idEstab);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
             LotePorEstabelecimento connEstab = new LotePorEstabelecimento(null);
-            connEstab.execute(idEstab);
+            connEstab.execute("3");
+            Log.i("IDeSTAB", idEstab);
         }
-        Log.i("IDeSTAB", idEstab);
+
         /*imFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

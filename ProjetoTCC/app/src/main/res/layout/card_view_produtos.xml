@@ -19,13 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/im_logo_produto"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            fresco:failureImage="@drawable/logo_super"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
         <ImageButton

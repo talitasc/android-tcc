@@ -16,6 +16,24 @@ public class Sacola {
     private int quantidade;
     private String imgBase64;
     private String qtdLote;
+    private String valorCarrinho;
+    private String idCarriho;
+
+
+    public Sacola(int idProduto, int lote_id, String descrProduto, String marca, double preco, double preco_un, String und_med, int quantidade, String imgBase64, String qtdLote, String valorCarrinho, String idCarrinho) {
+        this.idProduto = idProduto;
+        this.lote_id = lote_id;
+        this.descrProduto = descrProduto;
+        this.marca = marca;
+        this.preco = preco;
+        this.preco_un = preco_un;
+        this.und_med = und_med;
+        this.quantidade = quantidade;
+        this.imgBase64 = imgBase64;
+        this.qtdLote = qtdLote;
+        this.valorCarrinho = valorCarrinho;
+        this.idCarriho = idCarrinho;
+    }
 
     public Sacola(int idProduto, int lote_id, String descrProduto, String marca, double preco, double preco_un, String und_med, int quantidade, String imgBase64, String qtdLote) {
         this.idProduto = idProduto;
@@ -28,6 +46,22 @@ public class Sacola {
         this.quantidade = quantidade;
         this.imgBase64 = imgBase64;
         this.qtdLote = qtdLote;
+    }
+
+    public String getValorCarrinho() {
+        return valorCarrinho;
+    }
+
+    public void setValorCarrinho(String valorCarrinho) {
+        this.valorCarrinho = valorCarrinho;
+    }
+
+    public String getIdCarriho() {
+        return idCarriho;
+    }
+
+    public void setIdCarriho(String idCarriho) {
+        this.idCarriho = idCarriho;
     }
 
     public int getLote_id() {

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="01dp"
@@ -19,7 +20,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/users"
@@ -34,9 +35,9 @@
                 android:id="@+id/txt_end_alt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/users"
                 android:maxLines="3"
                 android:padding="12dp"
-                android:layout_toEndOf="@+id/users"
                 android:text="@string/alt_end"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -63,58 +64,303 @@
                 android:textColor="#ACACAC"
                 tools:ignore="HardcodedText" />
 
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/dados_endereco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardView"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/id_enderecos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:visibility="gone">
+
             <RelativeLayout
-                android:id="@+id/dados_usuario"
+                android:id="@+id/lis_endereco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_users"
-                android:visibility="visible">
+                android:visibility="gone"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lv_ends"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content"
                     android:divider="@null"
                     android:gravity="center"
                     android:stretchMode="columnWidth"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                   />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_noende"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+                <TextView
+                    android:id="@+id/tv_nolist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:drawableTint="#ACACAC"
+                    android:drawableTop="@drawable/ic_location_on_black_24dp"
+                    android:gravity="center"
+                    android:text="@string/no_end"
+                    android:textColor="#ACACAC"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,UnusedAttribute" />
 
             </RelativeLayout>
 
         </RelativeLayout>
 
+
         <RelativeLayout
-            android:id="@+id/rl_nolist"
+            android:id="@+id/calc_frete"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#EDEFF0"
-            android:visibility="invisible"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_enderecos"
+            android:visibility="visible"
+            tools:ignore="UselessLeaf">
 
-
-            <TextView
-                android:id="@+id/tv_nolist"
+            <Button
+                android:id="@+id/btn_altera_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="@string/no_end"
-                android:textColor="#ACACAC"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="05dp"
+                android:layout_marginEnd="05dp"
+                android:layout_marginBottom="05dp"
+                android:background="@color/coresProvisoriasum"
+                android:text="@string/btn_cadastro_end"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_altera_end"
+                android:visibility="gone"
+                android:id="@+id/new_end">
+
+                <EditText
+                    android:id="@+id/ed_cep"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="05dp"
+                    android:layout_marginLeft="05dp"
+                    android:layout_marginStart="05dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bordas_editext_cinza"
+                    android:hint="@string/ret_ceo"
+                    android:inputType="numberDecimal"
+                    android:maxLength="8"
+                    android:padding="12dp"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    tools:ignore="RtlHardcoded"
+                    tools:targetApi="m" />
+
+                <Button
+                    android:id="@+id/btn_consultar"
+                    android:layout_width="150dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_toEndOf="@+id/ed_cep"
+                    android:background="@drawable/borda_search_view"
+                    android:backgroundTint="@color/coresProvisoriasum"
+                    android:text="@string/buscar_cep"
+                    android:textAllCaps="false"
+                    android:textColor="#ffff"
+                    tools:ignore="ContentDescription,HardcodedText,UnusedAttribute,VectorDrawableCompat" />
+
+                <RelativeLayout
+                    android:id="@+id/end_por_cep"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/btn_consultar"
+                    android:visibility="visible">
+
+
+                    <TextView
+                        android:id="@+id/txt_valida_busca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="05dp"
+                        android:layout_marginStart="08dp"
+                        android:layout_marginTop="05dp"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="15sp"
+                        tools:ignore="RelativeOverlap,SmallSp"
+                        tools:text="@string/ret_valida_busca" />
+
+                    <EditText
+                        android:id="@+id/ed_rua"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/txt_valida_busca"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="04dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ret_end"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <EditText
+                        android:id="@+id/ed_localidade"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/ed_rua"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ret_localidade"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <EditText
+                        android:id="@+id/ed_uf"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/ed_rua"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:layout_toEndOf="@+id/ed_localidade"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ret_uf"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <EditText
+                        android:id="@+id/ed_bairro"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/ed_localidade"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ret_bairro"
+                        android:inputType="textPersonName"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <EditText
+                        android:id="@+id/ed_numero"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/ed_localidade"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:layout_toEndOf="@+id/ed_bairro"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ret_numero"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+
+                    <EditText
+                        android:id="@+id/ed_complemento"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/ed_bairro"
+                        android:layout_marginBottom="05dp"
+                        android:layout_marginLeft="05dp"
+                        android:layout_marginRight="05dp"
+                        android:layout_marginTop="05dp"
+                        android:background="@drawable/bordas_editext_cinza"
+                        android:hint="@string/ed_complemento"
+                        android:inputType="textAutoComplete"
+                        android:padding="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        tools:ignore="RtlHardcoded"
+                        tools:targetApi="m" />
+
+                    <Button
+                        android:id="@+id/btn_cadastrarNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ed_complemento"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="05dp"
+                        android:layout_marginEnd="05dp"
+                        android:layout_marginBottom="05dp"
+                        android:background="@color/coresProvisoriasum"
+                        android:text="@string/btn_cadastro"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        tools:ignore="ObsoleteLayoutParam" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <ProgressBar
-            android:id="@+id/pb_altera_end"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+    </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/pb_altera_end_cep"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

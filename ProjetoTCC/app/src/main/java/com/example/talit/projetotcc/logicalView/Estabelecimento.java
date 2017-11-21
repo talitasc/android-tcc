@@ -28,6 +28,9 @@ public class Estabelecimento implements Cloneable {
     private String email;
     private String cidade;
     private String estado_sigla;
+    private String imagem;
+    private String nota;
+    private String banner;
 
     public Estabelecimento(){
         this.id= 0;
@@ -45,7 +48,7 @@ public class Estabelecimento implements Cloneable {
         this.email = email;
     }
 
-    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String email,String rua, String numero, String bairro, String complemento, String cep,String cidade,String sigla,String tpTel, String dd, String telefone) {
+    public Estabelecimento(int id, String cnpj, String razao_social, String nome_fantasia, String inscricao_estadual, String inscricao_municipal, String estab_vendedor, String tipo_estab_desc, String email,String rua, String numero, String bairro, String complemento, String cep,String cidade,String sigla,String tpTel, String dd, String telefone,String imagem, String nota, String banner) {
         this.id = id;
         this.cnpj = cnpj;
         this.razao_social = razao_social;
@@ -65,8 +68,10 @@ public class Estabelecimento implements Cloneable {
         this.tpTel = tpTel;
         this.dd = dd;
         this.telefone = telefone;
+        this.imagem = imagem;
+        this.nota = nota;
+        this.banner = banner;
     }
-
 
     public int getId() {
         return id;
@@ -218,6 +223,30 @@ public class Estabelecimento implements Cloneable {
 
     public void setEstado_sigla(String estado_sigla) {
         this.estado_sigla = estado_sigla;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
     }
 }
 

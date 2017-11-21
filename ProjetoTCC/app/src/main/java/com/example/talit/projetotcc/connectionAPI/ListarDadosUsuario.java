@@ -87,6 +87,8 @@ public class ListarDadosUsuario extends AsyncTask<String, String, String> {
             if (status_user.equals("true")) {
                 String dados = desc.getString("objeto");
                 JSONObject dados_result = new JSONObject(dados);
+                AlteraDadosConsumidor.relativeDados.setVisibility(View.VISIBLE);
+                AlteraDadosConsumidor.pbAlteraDados.setVisibility(View.INVISIBLE);
                 AlteraDadosConsumidor.setDados(dados_result.getString("consumidor_nome"),dados_result.getString("consumidor_sobrenome"),dados_result.getString("telefone_ddd"),dados_result.getString("telefone_numero"),dados_result.getString("tipo_telefone_id"));
 
             } else  {

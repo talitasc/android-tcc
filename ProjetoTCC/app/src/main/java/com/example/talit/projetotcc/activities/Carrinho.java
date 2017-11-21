@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.adapters.CarrinhoAdapter;
 
+import com.example.talit.projetotcc.connectionAPI.DeleteAllItensCarrinho;
+import com.example.talit.projetotcc.connectionAPI.ListarCarrinho;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.example.talit.projetotcc.logicalView.Sacola;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -34,13 +37,14 @@ public class Carrinho extends AppCompatActivity {
     public static ListView listas;
     public static Context context;
     public static Activity act;
-    public static ProgressBar pbLocais;
+    public static ProgressBar pbCarrinho;
     private DbConn dbconn;
     public static RelativeLayout no_list;
     public static CardView cardFinal;
     public static Button btnFinal;
     public static TextView txtValorTotal;
     public static TextView txtQtd;
+
 
 
     @Override
@@ -58,11 +62,33 @@ public class Carrinho extends AppCompatActivity {
         btnFinal = (Button)findViewById(R.id.btn_adiconar_carrinho);
         txtValorTotal = (TextView) findViewById(R.id.txtValorTotalDouble);
         txtQtd = (TextView) findViewById(R.id.txtQtd);
-
+        pbCarrinho=(ProgressBar)findViewById(R.id.pb_carrinho);
+        pbCarrinho.setVisibility(View.INVISIBLE);
 
         dbconn = new DbConn(this);
 
-       Intent it = getIntent();
+        btnFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Carrinho.this, FinalizarCompra.class));
+                finish();
+            }
+        });
+
+        listas.deferNotifyDataSetChanged();
+        if (dbconn.totalItensCarrinho() > 0) {
+            pbCarrinho.setVisibility(View.VISIBLE);
+            String idCar = dbconn.selectDadosSacola().getIdProduto()+"";
+            ListarCarrinho connListar = new ListarCarrinho();
+            connListar.execute(idCar);
+        }else{
+            if(listas.getCount() == 0){
+                no_list.setVisibility(View.VISIBLE);
+                cardFinal.setVisibility(View.INVISIBLE);
+                btnFinal.setVisibility(View.INVISIBLE);
+            }
+        }
+       /*Intent it = getIntent();
         String id_del = "";
        if (it.getStringExtra("NOME_DEL") != null) {
            id_del = it.getStringExtra("NOME_DEL");
@@ -83,20 +109,7 @@ public class Carrinho extends AppCompatActivity {
             //txtQtd.setText(""+ dbconn.totalItensCarrinho());
             //int count = dbconn.totalItensCarrinho();
             //Toast.makeText(getBaseContext(),"itens" + count, Toast.LENGTH_SHORT).show();
-        }
-        if(listas.getCount() == 0){
-            no_list.setVisibility(View.VISIBLE);
-            cardFinal.setVisibility(View.INVISIBLE);
-            btnFinal.setVisibility(View.INVISIBLE);
-        }
-        btnFinal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Carrinho.this, FinalizarCompra.class));
-                finish();
-            }
-        });
-
+        }*/
     }
 
     @Override
@@ -117,9 +130,11 @@ public class Carrinho extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.menu_excluir){
-            dbconn.deleteSacola();
-            CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
-            listas.setAdapter(carAdapter);
+            String idCar = dbconn.selectDadosSacola().getIdProduto()+"";
+            DeleteAllItensCarrinho connDelAll = new DeleteAllItensCarrinho(null);
+            connDelAll.execute(idCar);
+            //CarrinhoAdapter carAdapter = new CarrinhoAdapter(Carrinho.this, Carrinho.this, dbconn.selectProutos());
+            //listas.setAdapter(carAdapter);
             listas.deferNotifyDataSetChanged();
             no_list.setVisibility(View.VISIBLE);
             cardFinal.setVisibility(View.INVISIBLE);

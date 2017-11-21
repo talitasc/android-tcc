@@ -5,13 +5,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +32,13 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.connectionAPI.AlteraSenha;
 import com.example.talit.projetotcc.connectionAPI.AlterarDadosUsuario;
+import com.example.talit.projetotcc.connectionAPI.CadastrarEndereco;
+import com.example.talit.projetotcc.connectionAPI.CidadeId;
 import com.example.talit.projetotcc.connectionAPI.EnderecoConsumidor;
+import com.example.talit.projetotcc.connectionAPI.EnderecoPorCep;
+import com.example.talit.projetotcc.connectionAPI.EnderecoPorCepNew;
+import com.example.talit.projetotcc.connectionAPI.EstadoId;
+import com.example.talit.projetotcc.connectionAPI.ListaSupermercadoPoRaio;
 import com.example.talit.projetotcc.connectionAPI.ListarDadosUsuario;
 import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
@@ -65,13 +76,35 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
     private String tpTele;
     private TextView txtSenha;
     private RelativeLayout relativeSenhas;
-    private String idUser;
-    private String tpUser;
+    public static RelativeLayout relativeEndereco;
+    private static String idUser;
+    private static String tpUser;
     public static ProgressBar pbAlteraSenha;
     public static ProgressBar pbAltEnd;
     public static RelativeLayout noEnd;
     public static RecyclerView recEnds;
     private TextView endDescr;
+    private static EditText edtNomeRua;
+    private static EditText edtLocalidade;
+    private static EditText edtUf;
+    private static EditText edtBairro;
+    private static EditText edtNumero;
+    private static EditText edtNumerocartão;
+    private static EditText edtCodigoSeg;
+    private static EditText edtImpresso;
+    private static EditText edtCep;
+    public static ProgressBar pbEndereco;
+    public static TextView txtErroEndereco;
+    private Button btnBuscaEnd;
+    public static String idEstado = "1";
+    private Button btnCadastrarEnd;
+    private static EditText edtComplemento;
+    public static RelativeLayout relativeListEnds;
+    public static RelativeLayout relativeNovoEndereco;
+    private Button btnNewEndereco;
+    private TextView txtIdCidade;
+    private TextView txtIdEstado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,25 +125,33 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
         pbAlteraDados.setVisibility(View.INVISIBLE);
         alteraDados=(Button)findViewById(R.id.btn_altera_dados);
         txtTpTel = (TextView)findViewById(R.id.txttpTel);
-        //edtEmail = (EditText) findViewById(R.id.id_emailcons_alt);
-        //edtUsuario = (EditText) findViewById(R.id.id_usuario_alt);
         edtNovaSenha = (EditText) findViewById(R.id.id_nv_senha_alt);
         edtConfirSenha = (EditText) findViewById(R.id.nv_confisenha_alt);
         btnSenha = (Button)findViewById(R.id.btn_altera_senhas);
         txtSenha = (TextView)findViewById(R.id.txt_senhas);
         relativeSenhas = (RelativeLayout)findViewById(R.id.senhas_usuario);
-        noEnd = (RelativeLayout)findViewById(R.id.rl_nolist);
+        noEnd = (RelativeLayout)findViewById(R.id.rl_noende);
         pbAlteraSenha = (ProgressBar)findViewById(R.id.pb_senhas);
-        pbAltEnd = (ProgressBar)findViewById(R.id.pb_altera_end);
         recEnds  = (RecyclerView)findViewById(R.id.lv_ends);
         endDescr = (TextView)findViewById(R.id.txt_desc_end);
+        relativeEndereco = (RelativeLayout)findViewById(R.id.id_enderecos);
+        edtNomeRua = (EditText) findViewById(R.id.ed_rua);
+        edtLocalidade = (EditText) findViewById(R.id.ed_localidade);
+        edtUf = (EditText) findViewById(R.id.ed_uf);
+        edtBairro = (EditText) findViewById(R.id.ed_bairro);
+        edtNumero = (EditText) findViewById(R.id.ed_numero);
+        edtCep = (EditText) findViewById(R.id.ed_cep);
+        pbEndereco = (ProgressBar)findViewById(R.id.pb_altera_end_cep);
+        pbEndereco.setVisibility(View.INVISIBLE);
         pbAlteraSenha.setVisibility(View.INVISIBLE);
-        pbAltEnd.setVisibility(View.INVISIBLE);
-        /*dbConn = new DbConn(this);
-        dbConn.selectConsumidor();
-        edtUsuario.setText(dbConn.selectConsumidor().getUsuario());
-        senhaAntiga = dbConn.selectConsumidor().getSenha();
-        edtUsuario.setEnabled(false);*/
+        txtErroEndereco = (TextView)findViewById(R.id.txt_valida_busca);
+        btnBuscaEnd = (Button) findViewById(R.id.btn_consultar);
+        btnCadastrarEnd = (Button)findViewById(R.id.btn_cadastrarNew);
+        edtComplemento = (EditText)findViewById(R.id.ed_complemento);
+        relativeListEnds = (RelativeLayout)findViewById(R.id.lis_endereco);
+        relativeNovoEndereco = (RelativeLayout)findViewById(R.id.new_end);
+        btnNewEndereco = (Button)findViewById(R.id.btn_altera_end);
+
         dbConn = new DbConn(AlteraDadosConsumidor.this);
         tpTel = new String[]{"Telefone", "Celular"};
         adp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tpTel);
@@ -119,6 +160,7 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
 
         idUser = dbConn.selectConsumidor().getIdCons()+"";
         tpUser = dbConn.selectConsumidor().getTpAcesso()+"";
+
 
         esTel = "";
         smp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -219,7 +261,6 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
         txtDetalhesDados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                relativeDados.setVisibility(View.VISIBLE);
                 ListarDadosUsuario connListar = new ListarDadosUsuario();
                 connListar.execute(idUser,tpUser);
 
@@ -282,6 +323,10 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
 
             }
         });
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recEnds.setLayoutManager(layoutManager);
+
         endDescr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -289,7 +334,39 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
                 endConn.execute(idUser,tpUser);
             }
         });
-
+        btnBuscaEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!edtCep.getText().toString().isEmpty()) {
+                    EnderecoPorCepNew connNew = new EnderecoPorCepNew(null);
+                    connNew.execute(edtCep.getText().toString());
+                    txtErroEndereco.setText("");
+                }else{
+                    txtErroEndereco.setText(R.string.ret_cep_vazio);
+                }
+            }
+        });
+        btnCadastrarEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EstadoId connEStId = new EstadoId();
+                connEStId.execute(edtUf.getText().toString());
+                CidadeId connCidId = new CidadeId();
+                connCidId.execute(edtLocalidade.getText().toString(),edtUf.getText().toString());
+            }
+        });
+        btnNewEndereco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                relativeNovoEndereco.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+    public static final void cadastrarEndereco(String idEstado,String idCidade){
+        CadastrarEndereco connEndnew = new CadastrarEndereco();
+        connEndnew.execute(edtNomeRua.getText().toString(),edtNumero.getText().toString(),
+                edtComplemento.getText().toString(),edtBairro.getText().toString(),edtCep.getText().toString(),
+                idEstado,idCidade,idUser,tpUser);
 
     }
     public static final void setDados(String nome, String sobrenome, String dd,String numeroTel, String idTpTel){
@@ -297,6 +374,12 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
         edtSobrenome.setText(sobrenome);
         edtTel.setText(dd+numeroTel);
         txtTpTel.setText(idTpTel);
+    }
+    public static final void setEnderecoPorCep(String rua, String localidade, String uf, String bairro){
+        edtNomeRua.setText(rua);
+        edtLocalidade.setText(localidade);
+        edtUf.setText(uf);
+        edtBairro.setText(bairro);
     }
 
     @Override

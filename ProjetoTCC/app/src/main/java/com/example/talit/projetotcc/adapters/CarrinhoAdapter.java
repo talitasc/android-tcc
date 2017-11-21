@@ -22,11 +22,14 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.Carrinho;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
+import com.example.talit.projetotcc.logicalView.DeletaItenCarrinho;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.example.talit.projetotcc.logicalView.Sacola;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -96,10 +99,26 @@ public class CarrinhoAdapter extends BaseAdapter {
         holder.txtPrecoUni.setText(String.format("R$ %s", produtos.getPreco()));
         holder.txtUmed.setText(produtos.getUnd_med());
         holder.txtQtdAum.setText(String.format("%d", produtos.getQuantidade()));
-       // holder.imagem.setImageBitmap(convert(produtos.getImgBase64()));
-        //holder.imagem.setBackgroundResource(produtos.getIdImagem());
 
-        final int qtdLote =Integer.parseInt(dbconn.selectIdProduto(produtos.getIdProduto()).getQtdLote());
+        try {
+            holder.imagem.setImageBitmap(convert(produtos.getImgBase64()));
+
+        }catch (Exception e){
+            e.printStackTrace();
+            holder.imagem.setBackgroundResource(R.drawable.errorcategoria);
+        }
+
+        try {
+            NumberFormat formatter = new DecimalFormat("###,###,##0.00");
+            Carrinho.txtValorTotal.setText(String.format("R$ %s", formatter.format(Double.parseDouble(produtos.getValorCarrinho()))));
+        }catch (Exception e){
+            e.printStackTrace();
+            Carrinho.txtValorTotal.setText(String.format("R$ %s", produtos.getValorCarrinho()));
+        }
+
+        Carrinho.txtQtd.setText(prods.size()+"");
+
+        //final int qtdLote =Integer.parseInt(dbconn.selectIdProduto(produtos.getIdProduto()).getQtdLote());
 
         holder.btnDiminui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +142,8 @@ public class CarrinhoAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 int qtdCampo = Integer.parseInt(holder.txtUnidade.getText().toString());
-                if(qtdCampo <= qtdLote){
+                //if(qtd <= qtdLote)
+                if(qtdCampo <= 20){
                     qtdCampo = qtdCampo+1;
                     holder.txtQtdAum.setText(String.format("%d", qtdCampo));
                     holder.txtUnidade.setText(String.format("%d", qtdCampo));
@@ -138,8 +158,12 @@ public class CarrinhoAdapter extends BaseAdapter {
         holder.btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String idCar = dbconn.selectDadosSacola().getIdProduto()+"";
+                DeletaItenCarrinho connDelete = new DeletaItenCarrinho();
+                connDelete.execute(idCar,produtos.getLote_id()+"");
+                //dbconn.deleteCarrinhoNome(produtos.getDescrProduto());
 
-                LayoutInflater inflater = LayoutInflater.from(c);
+               /*LayoutInflater inflater = LayoutInflater.from(c);
                 final View alertLayout = inflater.inflate(R.layout.custom_alert_dialog_edit_carrinho, null);
                 final Button excluir = (Button) alertLayout.findViewById(R.id.btn_excluir);
                 final Button editar = (Button) alertLayout.findViewById(R.id.btn_editar);
@@ -177,7 +201,7 @@ public class CarrinhoAdapter extends BaseAdapter {
 
                         dialogo.dismiss();
                     }
-                });
+                });*/
 
             }
         });

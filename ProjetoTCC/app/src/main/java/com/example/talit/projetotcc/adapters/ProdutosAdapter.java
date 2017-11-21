@@ -43,7 +43,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         private TextView txtNome;
         private TextView txtMarca;
         private TextView txtPreco;
-        private SimpleDraweeView imagem;
+        private ImageView imagem;
         private Button btnAdicionar;
         private TextView txtData;
         private View view;
@@ -53,7 +53,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
             txtNome = (TextView)v.findViewById(R.id.txtNomeProduto);
             txtMarca = (TextView)v.findViewById(R.id.txt_marca_prod);
             txtPreco = (TextView)v.findViewById(R.id.txt_preco);
-            imagem = (SimpleDraweeView)v.findViewById(R.id.im_logo_produto);
+            imagem = (ImageView)v.findViewById(R.id.im_logo_produto);
             txtData= (TextView)v.findViewById(R.id.txt_prazo_validade);
             btnAdicionar = (Button)v.findViewById(R.id.btn_adicionar);
             //codRef = (TextView) v.findViewById(R.id.txt_codRef);
@@ -81,13 +81,20 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
     @Override
     public void onBindViewHolder(final ProdutosViewHolder holder, int position) {
     final Produtos produtos = prod.get(position);
-        holder.imagem.setImageBitmap(convert(produtos.getImbase64()));
+
         holder.txtNome.setText(produtos.getDescricao());
         holder.txtMarca.setText(produtos.getMarcaDescricao());
         holder.txtPreco.setText("R$ "+ produtos.getLote_preco());
 
         dbconn = new DbConn(PaginaInicialEstabelecimentos.act);
 
+        try{
+            holder.imagem.setImageBitmap(convert(produtos.getImbase64()));
+
+        }catch (Exception e){
+            e.printStackTrace();
+            holder.imagem.setImageResource(R.drawable.errorcategoria);
+        }
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date data = formato.parse(produtos.getLote_data_vencimento());

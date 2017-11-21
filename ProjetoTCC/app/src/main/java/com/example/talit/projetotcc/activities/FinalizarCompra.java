@@ -9,6 +9,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -29,12 +31,14 @@ import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.connectionAPI.EnderecoPorCep;
+import com.example.talit.projetotcc.connectionAPI.EnderecosFinalizarCompra;
+import com.example.talit.projetotcc.connectionAPI.GerarPedido;
 import com.example.talit.projetotcc.connectionAPI.ListaSupermercadoPoRaio;
 import com.example.talit.projetotcc.logicalView.Cep;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.google.android.gms.vision.text.Text;
 
-public class FinalizarCompra extends AppCompatActivity {
+public class FinalizarCompra extends AppCompatActivity implements  GerarPedido.Listener{
 
     private Spinner spMes;
     private ArrayAdapter<String> adp;
@@ -42,11 +46,12 @@ public class FinalizarCompra extends AppCompatActivity {
     private Spinner spAno;
     private ArrayAdapter<String> adpAno;
     private String[] strAno;
-    private Activity act;
-    private Context context;
+    public static Activity act;
+    public static Context context;
     private Button btnCep;
     private Button btnBuscaEnd;
     private Button btnPagar;
+    private Button btnMeuEnd;
     public static RelativeLayout relatEndereco;
     public static RelativeLayout relativeFrete;
     public static RelativeLayout relativeDelivery;
@@ -65,7 +70,7 @@ public class FinalizarCompra extends AppCompatActivity {
     private RadioButton rdButtonDelivery;
     private RadioButton rdDinheiro;
     private RadioButton rdCartao;
-    private TextView txtValor;
+    public static TextView txtValor;
     public static TextView txtRua;
     public static TextView txtNumero;
     public static TextView txtBairro;
@@ -85,8 +90,14 @@ public class FinalizarCompra extends AppCompatActivity {
     public boolean houveDelivery;
     public boolean houveDinheiro;
     private DbConn dbConn;
-
-
+    public static RecyclerView recEnderecos;
+    public static RelativeLayout relativeMeusEnds;
+    private static String idUser;
+    private static String tpUser;
+    public static RelativeLayout noEnd;
+    public static String tpEntrega = "ENTREGA";
+    public static String idEstabelecimento = "ESTABELECIMENTO";
+    public static String tpPagamento= "PAGAMENTO";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,9 +139,12 @@ public class FinalizarCompra extends AppCompatActivity {
         txtUf = (TextView) findViewById(R.id.txt_sigla);
         txtCidade = (TextView) findViewById(R.id.txt_cidade);
         btnPagar = (Button) findViewById(R.id.btn_pagar);
-
+        btnMeuEnd = (Button)findViewById(R.id.btn_meu_end);
         pbAguardar = (ProgressBar) findViewById(R.id.pb_aguardar);
         pbAguardar.setVisibility(View.INVISIBLE);
+        relativeMeusEnds = (RelativeLayout)findViewById(R.id.id_enderecos);
+        recEnderecos = (RecyclerView)findViewById(R.id.lv_ends);
+        noEnd = (RelativeLayout)findViewById(R.id.rl_noende);
         dbConn = new DbConn(FinalizarCompra.this);
 
         txtRua.setText(strRua+",");
@@ -140,7 +154,10 @@ public class FinalizarCompra extends AppCompatActivity {
         txtUf.setText(strUf);
         txtCidade.setText(strCidade+",");
 
-        strMes = new String[]{"Mês","01","02","03","04","05","06","07","08","09","10","11","12"};
+        idUser = dbConn.selectConsumidor().getIdCons()+"";
+        tpUser = dbConn.selectConsumidor().getTpAcesso()+"";
+
+        strMes = new String[]{"Mes","01","02","03","04","05","06","07","08","09","10","11","12"};
         adp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, strMes);
         adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spMes.setAdapter(adp);
@@ -157,6 +174,7 @@ public class FinalizarCompra extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 relativeFrete.setVisibility(View.VISIBLE);
                 relativeDelivery.setVisibility(View.GONE);
+                tpEntrega = "1";
                 rdButtonDelivery.setChecked(false);
             }
         });
@@ -165,6 +183,7 @@ public class FinalizarCompra extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 relativeFrete.setVisibility(View.GONE);
                 relativeDelivery.setVisibility(View.VISIBLE);
+                tpEntrega = "2";
                 rdButtonFrete.setChecked(false);
 
             }
@@ -174,6 +193,7 @@ public class FinalizarCompra extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 relativePagamento.setVisibility(View.GONE);
                 relativeDinheiro.setVisibility(View.VISIBLE);
+                tpPagamento ="3";
                 rdCartao.setChecked(false);
             }
         });
@@ -182,10 +202,23 @@ public class FinalizarCompra extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 relativePagamento.setVisibility(View.VISIBLE);
                 relativeDinheiro.setVisibility(View.GONE);
+                tpPagamento= "4";
                 rdDinheiro.setChecked(false);
             }
         });
         btnCep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!edtCep.getText().toString().isEmpty()) {
+                    EnderecoPorCep conn = new EnderecoPorCep(null);
+                    conn.execute(edtCep.getText().toString());
+                    txtErroEndereco.setText("");
+                }else{
+                    txtErroEndereco.setText(R.string.ret_cep_vazio);
+                }
+            }
+        });
+       /* btnCep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 txtErroEndereco.setText("");
@@ -199,8 +232,8 @@ public class FinalizarCompra extends AppCompatActivity {
                     txtValor.setText(R.string.ret_cep_vazio);
                 }
             }
-        });
-        txtValor.addTextChangedListener(new TextWatcher() {
+        });*/
+       /* txtValor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -223,17 +256,30 @@ public class FinalizarCompra extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
         btnBuscaEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!edtCep.getText().toString().isEmpty()) {
+                relativeMeusEnds.setVisibility(View.GONE);
+                relatEndereco.setVisibility(View.VISIBLE);
+                /*if(!edtCep.getText().toString().isEmpty()) {
                     EnderecoPorCep conn = new EnderecoPorCep(null);
                     conn.execute(edtCep.getText().toString());
                     txtErroEndereco.setText("");
                 }else{
                     txtErroEndereco.setText(R.string.ret_cep_vazio);
-                }
+                }*/
+            }
+        });
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recEnderecos.setLayoutManager(layoutManager);
+        btnMeuEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                relativeMeusEnds.setVisibility(View.VISIBLE);
+                EnderecosFinalizarCompra connEndFinal = new EnderecosFinalizarCompra();
+                connEndFinal.execute(idUser,tpUser);
             }
         });
         btnPagar.setOnClickListener(new View.OnClickListener() {
@@ -264,7 +310,20 @@ public class FinalizarCompra extends AppCompatActivity {
                 }else{
                     houveDelivery = false;
                 }
-                pedidoGerado();
+
+                if(!tpEntrega.equals("ENTREGA") && !idEstabelecimento.equals("ESTABELECIMENTO") && !tpPagamento.equals("PAGAMENTO")){
+                    GerarPedido connGerar = new GerarPedido(FinalizarCompra.this);
+                    connGerar.execute(dbConn.selectDadosSacola().getIdProduto()+"",tpEntrega,"60","3.00",tpPagamento);
+
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FinalizarCompra.context);
+                    builder.setTitle(R.string.txt_enviado_erro);
+                    builder.setMessage(R.string.txt_aviso_desc);
+                    builder.setPositiveButton("Ok", null);
+                    builder.setCancelable(false);
+                    builder.show();
+                }
+
             }
 
         });
@@ -275,7 +334,9 @@ public class FinalizarCompra extends AppCompatActivity {
         edtUf.setText(uf);
         edtBairro.setText(bairro);
     }
-
+    public static final void setFrete(String frete){
+        txtErroEndereco.setText(frete);
+    }
     public void pedidoGerado() {
 
         LayoutInflater inflater = getLayoutInflater();
@@ -320,5 +381,19 @@ public class FinalizarCompra extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(FinalizarCompra.this, Carrinho.class));
         finish();
+    }
+
+    @Override
+    public void onLoaded(String string) {
+
+        if (string.equalsIgnoreCase("finalizado")) {
+            pbAguardar.setVisibility(View.VISIBLE);
+            FinalizarCompra.act.startActivity(new Intent(FinalizarCompra.this, PaginaInicialEstabelecimentos.class));
+            finish();
+        } else {
+            pbAguardar.setVisibility(View.INVISIBLE);
+        }
+
+
     }
 }

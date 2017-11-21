@@ -83,24 +83,25 @@ public class EnderecoConsumidor extends AsyncTask<String, String, String> {
             Log.i("Status", status_est);
 
             if (status_est.equals("true")) {
-                AlteraDadosConsumidor.noEnd.setVisibility(View.INVISIBLE);
+                AlteraDadosConsumidor.relativeEndereco.setVisibility(View.VISIBLE);
+                AlteraDadosConsumidor.relativeListEnds.setVisibility(View.VISIBLE);
+
                 JSONArray dados = status.getJSONArray("objeto");
                 ArrayList<Endereco> listareEst = new ArrayList<>();
 
                 for (int i = 0; i < dados.length(); ++i) {
                     JSONObject dados_result = dados.getJSONObject(i);
 
-                    Endereco end = new Endereco(dados_result.getString("endereco_id"),
+                    Endereco end = new Endereco(dados_result.getInt("endereco_id"),
                             dados_result.getString("endereco_rua"), dados_result.getString("endereco_numero"),
                             dados_result.getString("endereco_complemento"), dados_result.getString("endereco_bairro"),
                             dados_result.getString("endereco_cep"), dados_result.getString("estado_sigla"),
-                            dados_result.getString("cidade_descricao"));
+                            dados_result.getString("cidade_descricao"),dados_result.getInt("endereco_id"),dados_result.getInt("cidade_id"));
                     listareEst.add(end);
                 }
-
                 if (listareEst.size() > 0) {
                     Log.i("array", listareEst.toString());
-                    AlteraDadosConsumidor.pbAltEnd.setVisibility(View.INVISIBLE);
+                    //AlteraDadosConsumidor.pbAltEnd.setVisibility(View.INVISIBLE);
                     AlteraDadosConsumidor.recEnds.setAdapter(null);
                     EnderecoAdapter enderecoAdapter = new EnderecoAdapter(AlteraDadosConsumidor.act, AlteraDadosConsumidor.context, listareEst);
                     AlteraDadosConsumidor.recEnds.setAdapter(enderecoAdapter);
@@ -110,7 +111,7 @@ public class EnderecoConsumidor extends AsyncTask<String, String, String> {
                     AlteraDadosConsumidor.noEnd.setVisibility(View.VISIBLE);
                 }
 
-            } else if (descricao.equals("Nenhum estabelecimentos encontrado!")) {
+            } else if (descricao.equals("Nenhum endereço encontrado para este consumidor!")) {
                 AlteraDadosConsumidor.noEnd.setVisibility(View.VISIBLE);
                 AlteraDadosConsumidor.pbAltEnd.setVisibility(View.INVISIBLE);
                 AlteraDadosConsumidor.recEnds.setAdapter(null);
@@ -122,3 +123,4 @@ public class EnderecoConsumidor extends AsyncTask<String, String, String> {
         }
     }
 }
+

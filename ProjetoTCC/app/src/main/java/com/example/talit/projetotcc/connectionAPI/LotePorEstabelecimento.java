@@ -48,11 +48,9 @@ public class LotePorEstabelecimento extends AsyncTask<String, String, String> {
 
         String response = "";
 
-        HttpURLConnection urlConnection;
-
-
         try {
 
+            HttpURLConnection urlConnection;
             URL url = new URL(api_url);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.facebook.drawee.view.DraweeView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
+import com.google.android.gms.vision.text.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -44,14 +46,18 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     public static class ListarSupermercadoViewHolder extends RecyclerView.ViewHolder {
         private TextView nome_supermercado;
         private TextView nome_cidade;
-        private SimpleDraweeView imLogo;
+        private ImageView imLogo;
+        private RatingBar ratingBar;
+        private TextView mediaNota;
         private View view;
 
         public ListarSupermercadoViewHolder(View v) {
             super(v);
             nome_supermercado = (TextView) v.findViewById(R.id.txt_nome_super);
             nome_cidade = (TextView) v.findViewById(R.id.txt_cidade_estab);
-            imLogo = (SimpleDraweeView) v.findViewById(R.id.im_logo_supermercado);
+            imLogo = (ImageView) v.findViewById(R.id.im_logo_supermercado);
+            ratingBar = (RatingBar) v.findViewById(R.id.ratingBarEstab);
+            mediaNota = (TextView) v.findViewById(R.id.txt_avaliacao);
             view = v;
         }
     }
@@ -77,11 +83,37 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
     }
 
     @Override
-    public void onBindViewHolder(final ListarSupermercadoViewHolder holder, int position) {
+    public void onBindViewHolder(ListarSupermercadoViewHolder holder, int position) {
+
         final Estabelecimento listaSuper = listaSupermercado.get(position);
         holder.nome_supermercado.setText(listaSuper.getNome_fantasia());
         holder.nome_cidade.setText(listaSuper.getCidade());
-        //holder.imLogo.setImageBitmap(convert(act.getResources().getString(R.string.teste_base64)));
+
+        try{
+            holder.ratingBar.setRating(Float.parseFloat(listaSuper.getNota()));
+        }catch(Exception e){
+            e.printStackTrace();
+            holder.ratingBar.setRating(4);
+        }
+
+        try{
+            if(listaSuper.getNota() != null && !listaSuper.getNota().equals("null")) {
+                holder.mediaNota.setText(listaSuper.getNota());
+            }else{
+                holder.mediaNota.setText("4");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            holder.mediaNota.setText("4");
+        }
+
+
+        try {
+            holder.imLogo.setImageBitmap(convert(listaSuper.getImagem()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            holder.imLogo.setImageResource(R.drawable.mercado);
+        }
 
         //holder.nome_cidade.setText(listaSuper.getCidade());
         holder.view.setOnClickListener(new View.OnClickListener() {
@@ -105,13 +137,20 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                         listaSuper.getEstado_sigla(),
                         listaSuper.getTpTel(),
                         listaSuper.getDd(),
-                        listaSuper.getTelefone());
+                        listaSuper.getTelefone(), "ajustar", "ajsutar", "ajustar");
                 //Toast.makeText(act, estabelecimento.getNomeFantasia(), Toast.LENGTH_SHORT).show();
                 PaginaInicialEstabelecimentos.nomeEstab = estabelecimento.getNome_fantasia();
 
-                SharedPreferences.Editor editor = act.getSharedPreferences("ID", MODE_PRIVATE).edit();
-                editor.putString("idEstab", String.format("%d", estabelecimento.getId()));
-                editor.commit();
+                try {
+                    SharedPreferences.Editor editor = act.getSharedPreferences("ID", MODE_PRIVATE).edit();
+                    editor.putString("idEstab", String.format("%d", estabelecimento.getId()));
+                    editor.commit();
+                }catch(Exception e){
+                    e.printStackTrace();
+                    SharedPreferences.Editor editor = act.getSharedPreferences("ID", MODE_PRIVATE).edit();
+                    editor.putString("idEstab", "3");
+                    editor.commit();
+                }
 
                 DetalhesEstab.strNomeFantasia = estabelecimento.getNome_fantasia();
                 DetalhesEstab.strRua = estabelecimento.getRua();
@@ -126,7 +165,7 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                 DetalhesEstab.strIdEstab = String.format("%d", estabelecimento.getId());
                 FinalizarCompra.strRua = estabelecimento.getRua();
                 FinalizarCompra.strBairro = estabelecimento.getBairro();
-                FinalizarCompra.strNumero = estabelecimento.getNumero()+"";
+                FinalizarCompra.strNumero = estabelecimento.getNumero() + "";
                 FinalizarCompra.strUf = estabelecimento.getEstado_sigla();
                 FinalizarCompra.strCep = estabelecimento.getCep();
                 FinalizarCompra.strCidade = estabelecimento.getCidade();

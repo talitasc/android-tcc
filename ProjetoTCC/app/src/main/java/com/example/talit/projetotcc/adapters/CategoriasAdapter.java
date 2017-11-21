@@ -44,13 +44,13 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Ca
 
     public static class CategoriasAdapterHolder extends RecyclerView.ViewHolder  {
         TextView nomeCategoria;
-        SimpleDraweeView imCategorias;
+        ImageView imCategorias;
         private View view;
 
         public CategoriasAdapterHolder(View v) {
             super(v);
             nomeCategoria = (TextView)v.findViewById(R.id.txtNomeCategoria);
-            imCategorias = (SimpleDraweeView) v.findViewById(R.id.img_categorias);
+            imCategorias = (ImageView) v.findViewById(R.id.img_categorias);
             view = v;
         }
     }
@@ -74,7 +74,14 @@ public class CategoriasAdapter extends RecyclerView.Adapter<CategoriasAdapter.Ca
     public void onBindViewHolder(CategoriasAdapterHolder holder, int position) {
         final CategoriasProdutos categs = categProd.get(position);
         holder.nomeCategoria.setText(categs.getDescricaoCategoria());
-        holder.imCategorias.setImageBitmap(convert(categs.getImagem64()));
+
+        try{
+            holder.imCategorias.setImageBitmap(convert(categs.getImagem64()));
+        }catch (Exception e){
+            e.printStackTrace();
+            holder.imCategorias.setImageResource(R.drawable.errorcategoria);
+        }
+
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

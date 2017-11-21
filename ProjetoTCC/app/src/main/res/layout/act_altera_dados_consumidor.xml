@@ -23,6 +23,8 @@
 
             <include layout="@layout/content_alterar_dados" />
             <include layout="@layout/content_alterar_senha" />
+            <include layout="@layout/content_alterar_endereco" />
+
         </LinearLayout>
 
     </ScrollView>

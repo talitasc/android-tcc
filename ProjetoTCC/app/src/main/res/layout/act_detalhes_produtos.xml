@@ -25,13 +25,12 @@
             app:expandedTitleTextAppearance="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <com.facebook.drawee.view.SimpleDraweeView
+            <ImageView
                 android:id="@+id/id_logo_produto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                fresco:failureImage="@drawable/logo_super"
                 tools:ignore="ContentDescription" />
 
             <android.support.v7.widget.Toolbar

@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.activities.AlteraDadosConsumidor;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
 
 import org.json.JSONObject;
@@ -103,6 +104,17 @@ public class DeleteCarrinho extends AsyncTask<String, String, String> {
             if (status_user.equalsIgnoreCase("true")) {
                 if (descricao.equals("Carrinho deletado com sucesso!")) {
                     //listener.onLoaded("true");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DetalhesProdutos.c);
+                    builder.setTitle(R.string.txt_alterados);
+                    builder.setMessage(R.string.delete_carrinho);
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
                 }
 
             }
