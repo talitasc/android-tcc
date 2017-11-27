@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.utils.LocaleLanguage;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_splash_screen);
+        Fresco.initialize(this);
         //MultiDex.install(this);
         Thread timerThread = new Thread() {
             public void run() {

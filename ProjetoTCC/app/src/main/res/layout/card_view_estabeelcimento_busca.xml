@@ -28,16 +28,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.facebook.drawee.view.SimpleDraweeView
+            <ImageView
                 android:id="@+id/im_logo_supermercado"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignTop="@+id/txt_nome_super"
                 android:layout_marginStart="11dp"
-                fresco:failureImage="@drawable/logo_super"
-                fresco:placeholderImage="@drawable/mercado"
-                fresco:roundAsCircle="true" />
+                android:contentDescription=""
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/txt_nome_super"
@@ -108,38 +107,16 @@
                 tools:ignore="HardcodedText,RtlHardcoded,SmallSp"
                 tools:textSize="08sp" />
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/txt_avaliacao"
-                android:layout_margin="25dp"
-                android:background="#DCDCDC" />
-
-            <TextView
-                android:id="@+id/txt_ir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/ir_para_loja"
-                android:textColor="#DCDCDC"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,RtlHardcoded,SmallSp"
-                tools:textSize="08sp"
-                android:layout_alignTop="@+id/divider"
-                android:layout_marginTop="07dp"
-                android:layout_alignBottom="@+id/im_logo_supermercado"
-                android:layout_centerHorizontal="true" />
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="20dp"
                 android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/txt_cidade_estab"
                 android:tint="#ACACAC"
                 app:srcCompat="@mipmap/ic_progress"
                 tools:ignore="ContentDescription"
-                android:layout_alignTop="@+id/divider"
-                android:layout_toEndOf="@+id/txt_ir" />
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 

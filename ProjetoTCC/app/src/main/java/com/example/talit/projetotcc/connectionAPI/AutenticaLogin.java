@@ -143,7 +143,7 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                         listener.onLoaded("false");
                     }
                 }
-            } else if(descricao.equals("Senha inválida!")) {
+            } else if(descricao.contains("Senha")) {
                 LoginCliente.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
                 builder.setTitle("");
@@ -154,7 +154,7 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                 if (listener != null) {
                     listener.onLoaded("false");
                 }
-            }else if(descricao.equals("Usuario não encontrato!")){
+            }else if(descricao.contains("encontrato")){
                 LoginCliente.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
                 builder.setTitle("");
@@ -165,7 +165,7 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                 if (listener != null) {
                     listener.onLoaded("false");
                 }
-            }else if(descricao.equals("Requisição invalida!")){
+            }else if(descricao.contains("invalida")){
                 LoginCliente.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginCliente.context);
                 builder.setTitle("");
@@ -177,7 +177,6 @@ public class AutenticaLogin extends AsyncTask<String, String, String> {
                     listener.onLoaded("false");
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             LoginCliente.pb.setVisibility(View.INVISIBLE);

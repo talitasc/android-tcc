@@ -417,6 +417,9 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
 
         } else if (id == R.id.menu_idiomas) {
             escolherIdiomas();
+        }else if(id == R.id.menu_historico_compras){
+            startActivity(new Intent(getApplicationContext(), Pedidos.class));
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

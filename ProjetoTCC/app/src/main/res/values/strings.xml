@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--chave de identificação  do app cadastrado na pagina do facebook-->
     <string name="facebook_app_id">460634367628229</string>
@@ -375,8 +376,14 @@
     <string name="txt_valor_total">Valor total</string>
     <string name="txt_avisos">Aviso!</string>
     <string name="txt_aviso_desc">Para prosseguir com o pagamento por favor selecionas as opções necessárias.</string>
-    <string name="txt_numero_pedido">Numero do pedido</string>
+    <string name="txt_numero_pedido">Numero do pedido:</string>
     <string name="txt_valor_pedido">Valor do pedido</string>
-    <string name="txt_data_pedido">data</string>
-    <string name="txt_status_pedido">status pedido</string>
+    <string name="txt_data_pedido">Data: </string>
+    <string name="txt_status_pedido">Status pedido: </string>
+    <string name="txt_sem_pedido">Não há pedidos registrados :(</string>
+    <string name="txt_sseus_pedido">Seus pedidos</string>
+    <string name="txt_avalie">Avalie sua compra:</string>
+    <string name="txt_enciar">Enviar</string>
+    <string name="txt_comentario">Escreva um comentario</string>
+    <string name="txt_avaliacao_Enviada">Avaliacao enviada!</string>
 </resources>

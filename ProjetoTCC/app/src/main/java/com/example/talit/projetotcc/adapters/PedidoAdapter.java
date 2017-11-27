@@ -3,6 +3,7 @@ package com.example.talit.projetotcc.adapters;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -15,19 +16,27 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.AlteraDadosConsumidor;
+import com.example.talit.projetotcc.activities.Carrinho;
+import com.example.talit.projetotcc.activities.Pedidos;
 import com.example.talit.projetotcc.connectionAPI.AlteraEndereco;
+import com.example.talit.projetotcc.connectionAPI.Avaliar;
 import com.example.talit.projetotcc.logicalView.Endereco;
 import com.example.talit.projetotcc.logicalView.Pedido;
+import com.example.talit.projetotcc.sqlight.DbConn;
 
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.talit.projetotcc.activities.AlteraDadosConsumidor.idEstado;
 
 /**
  * Created by talit on 21/11/2017.
@@ -42,6 +51,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
         private TextView data;
         private TextView status;
         private ImageView imageView;
+        private TextView idEstabelecimento;
         private View view;
 
         public PedidoAdapterViewHolder(View v) {
@@ -51,6 +61,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
             data = (TextView) v.findViewById(R.id.data_pedido);
             status = (TextView) v.findViewById(R.id.status);
             imageView = (ImageView) v.findViewById(R.id.im_edt);
+            idEstabelecimento = (TextView)v.findViewById(R.id.idEstab);
             view = v;
         }
     }
@@ -60,6 +71,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
     private View v;
     private List<Pedido> listaSupermercado;
     private LayoutInflater inflater;
+    private DbConn dbconn;
+
 
     public PedidoAdapter(Activity act, Context c, List<Pedido> listaSupermercado) {
         this.act = act;
@@ -80,24 +93,27 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
 
 
         final Pedido listaSuper = listaSupermercado.get(position);
-        holder.numero.setText(listaSuper.getPedido_id());
-        holder.valor.setText(listaSuper.getPedido_valor());
-        holder.status.setText(listaSuper.getStatus_pedido_descricao());
 
+        dbconn = new DbConn(Pedidos.act);
+        holder.numero.setText("Numero do pedido: "+listaSuper.getPedido_id());
+        holder.valor.setText("R$" + listaSuper.getPedido_valor());
+        holder.status.setText("Status do pedido: " +listaSuper.getStatus_pedido_descricao());
+        holder.idEstabelecimento.setText(listaSuper.getEstabelecimento_id());
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date data = formato.parse(listaSuper.getPedido_data());
             formato.applyPattern("dd/MM/yyyy");
-            holder.data.setText(formato.format(data).replace("-", "/"));
+            holder.data.setText("Data do pedido: " + formato.format(data).replace("-", "/"));
         } catch (ParseException e) {
             e.printStackTrace();
             holder.data.setText("21/11/2017");
         }
         try {
-            if (Integer.parseInt(listaSuper.getPedido_status_id()) == 6){
+            if (Integer.parseInt(listaSuper.getPedido_status_id()) != 6){
                 holder.imageView.setVisibility(View.VISIBLE);
             }else{
                 holder.imageView.setVisibility(View.INVISIBLE);
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -106,7 +122,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                enviarAvaliacao(listaSuper.getEstabelecimento_id()+"");
             }
         });
 
@@ -142,46 +158,32 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 
-    public void editarEndereco(String rua, String numero, String bairro, String cep, String cidade, String sigla, final String idEnd, final String idCidade, final String idEstado, String complemento) {
+    public void enviarAvaliacao(final String idEstab) {
 
         LayoutInflater inflater = act.getLayoutInflater();
-        final View alertLayout = inflater.inflate(R.layout.custom_alert_dialog_edit_endereco, null);
-        final Button btnAlterar = (Button) alertLayout.findViewById(R.id.btn_alterar);
+        final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_avaliacao, null);
+        final Button btnEnviar = (Button) alertLayout.findViewById(R.id.btn_alterar);
         final EditText edtRua = (EditText) alertLayout.findViewById(R.id.ed_rua);
-        final EditText edtLocalidade = (EditText) alertLayout.findViewById(R.id.ed_localidade);
-        final EditText edtCep = (EditText) alertLayout.findViewById(R.id.ed_cep);
-        final EditText edtUf = (EditText) alertLayout.findViewById(R.id.ed_uf);
-        final EditText edtBairro = (EditText) alertLayout.findViewById(R.id.ed_bairro);
-        final EditText edtNumero = (EditText) alertLayout.findViewById(R.id.ed_numero);
-        final EditText edtComplemento = (EditText) alertLayout.findViewById(R.id.ed_complemento);
+        final EditText edtComentario = (EditText) alertLayout.findViewById(R.id.ed_comentario);
+        final RatingBar ratingBar = (RatingBar)alertLayout.findViewById(R.id.ratingBar2);
         final Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
 
-        edtRua.setText(rua);
-        edtLocalidade.setText(cidade);
-        edtCep.setText(cep);
-        edtUf.setText(sigla);
-        edtBairro.setText(bairro);
-        edtNumero.setText(numero);
-        edtComplemento.setText(complemento);
-
-        AlertDialog.Builder alerta = new AlertDialog.Builder(AlteraDadosConsumidor.act);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(Pedidos.act);
         alerta.setView(alertLayout);
         alerta.setCancelable(false);
         final AlertDialog dialogo = alerta.create();
         dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogo.show();
-        btnAlterar.setOnClickListener(new View.OnClickListener() {
+
+        final String idUser = dbconn.selectConsumidor().getIdCons()+"";
+        final String tpUser = dbconn.selectConsumidor().getTpAcesso()+"";
+
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialogo.dismiss();
-                AlteraEndereco conn = new AlteraEndereco();
-                conn.execute(idEnd, edtRua.getText().toString(), edtNumero.getText().toString(),
-                        edtComplemento.getText().toString(), edtBairro.getText().toString(),
-                        edtCep.getText().toString(), idCidade, idEstado);
-
-                //ListaSupermercadoPoRaio connRaio = new ListaSupermercadoPoRaio(null);
-                //connRaio.execute(String.format("%s", latitude), String.format("%s", longitude), raio);
-
+                Avaliar connAva = new Avaliar();
+                connAva.execute(idUser,tpUser,idEstab,String.valueOf(ratingBar.getRating()),edtComentario.getText().toString());
 
             }
         });

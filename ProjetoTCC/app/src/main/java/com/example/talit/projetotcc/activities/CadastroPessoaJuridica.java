@@ -15,9 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.talit.projetotcc.R;
-import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.mascaras.MascaraCnpJ;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
+import com.example.talit.projetotcc.utils.Validacoes;
+
+
 
 public class CadastroPessoaJuridica extends AppCompatActivity {
 

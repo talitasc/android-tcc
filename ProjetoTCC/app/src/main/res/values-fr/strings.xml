@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pref_locale">fr</string>
 
-    <string name="pref_locale">es</string>
+    <!-- clé d'identification de l'application enregistrée sur la page facebook -->
+        <string name = "facebook_app_id"> 460634367628229 </string>
+        <string name = "fb_login_protocol_scheme"> fb460634367628229 </string>
 
-    <!--chave de identificação  do app cadastrado na pagina do facebook-->
-    <string name="facebook_app_id">460634367628229</string>
-    <string name="fb_login_protocol_scheme">fb460634367628229</string>
-
-
-        <!-- Strings nombre de la aplicación -->
+        <!-- Nom de l'application Strings -->
         <string name = "app_name"> SmarketAPP </string>
 
-    <!-- Strings edittext -->
+         <!-- Strings edittext -->
     <string name="email_cliente">E-mail</string>
     <string name="senha_cliente">Senha</string>
     <string name="edt_sobrenome"> Sobrenome</string>

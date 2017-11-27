@@ -7,10 +7,12 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
@@ -36,14 +38,16 @@ public class FulltextEstabelecimentoAdapter extends RecyclerView.Adapter<Fulltex
     public static class FulltextEstabelecimentoViewHolder extends RecyclerView.ViewHolder {
         private TextView nome_supermercado;
         private TextView nome_cidade;
-        private SimpleDraweeView imLogo;
+        private ImageView imLogo;
+        private TextView nota;
         private View view;
 
         public FulltextEstabelecimentoViewHolder(View v) {
             super(v);
             nome_supermercado = (TextView) v.findViewById(R.id.txt_nome_super);
             nome_cidade = (TextView) v.findViewById(R.id.txt_cidade_estab);
-            imLogo = (SimpleDraweeView) v.findViewById(R.id.im_logo_supermercado);
+            imLogo = (ImageView) v.findViewById(R.id.im_logo_supermercado);
+            nota = (TextView)v.findViewById(R.id.txt_avaliacao);
             view = v;
         }
     }
@@ -87,6 +91,24 @@ public class FulltextEstabelecimentoAdapter extends RecyclerView.Adapter<Fulltex
                 act.finishActivity(0);
             }
         });
+
+        try {
+            holder.imLogo.setImageBitmap(convert(listaSuper.getImage64()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            holder.imLogo.setImageResource(R.drawable.mercado);
+        }
+
+        try{
+            if(listaSuper.getNota() != null && !listaSuper.getNota().equals("null")) {
+                holder.nota.setText(listaSuper.getNota());
+            }else{
+                holder.nota.setText("4");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            holder.nota.setText("4");
+        }
 
     }
 

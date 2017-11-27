@@ -16,11 +16,39 @@
         android:stretchMode="columnWidth"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+
+    <RelativeLayout
+        android:id="@+id/rl_noende"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <TextView
+            android:id="@+id/tv_nolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:drawableTint="#ACACAC"
+            android:gravity="center"
+            android:text="@string/txt_sem_pedido"
+            android:textColor="#ACACAC"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,UnusedAttribute" />
+
+    </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/pb_pedidos"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp" />
+
+
 
 </RelativeLayout>

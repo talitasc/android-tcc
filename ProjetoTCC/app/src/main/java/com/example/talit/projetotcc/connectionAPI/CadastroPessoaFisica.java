@@ -172,6 +172,20 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
                 });
                 builder.setCancelable(false);
                 builder.show();
+            } else {
+                CadastroConsumidor.pb.setVisibility(View.INVISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
+                builder.setTitle("");
+                builder.setMessage("usuario ja cadastrado!");
+                builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        listener.onLoaded("true");
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
             }
 
         } catch (Exception e) {

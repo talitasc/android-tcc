@@ -40,8 +40,8 @@ import com.example.talit.projetotcc.connectionAPI.EnderecoPorCepNew;
 import com.example.talit.projetotcc.connectionAPI.EstadoId;
 import com.example.talit.projetotcc.connectionAPI.ListaSupermercadoPoRaio;
 import com.example.talit.projetotcc.connectionAPI.ListarDadosUsuario;
-import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.mascaras.MascaraTelefone;
+import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.google.android.gms.vision.text.Text;
 

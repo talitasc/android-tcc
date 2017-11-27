@@ -77,14 +77,14 @@ public class VerificaCarrinho extends AsyncTask<String, String, String> {
             JSONObject api_result = new JSONObject(result);
             String response = api_result.getString("response");
             JSONObject status = new JSONObject(response);
-            Log.i("Começo do Response", response);
+            Log.i("Response", response);
             String status_user = status.getString("status");
             String descricao = status.getString("descricao");
             Log.i("Status", status_user);
 
             if (status_user.equalsIgnoreCase("true")) {
 
-                if (!descricao.equals("Carrinho não encontrado!")) {
+                if (!descricao.equals("Carrinho nÃ£oo encontrado!")) {
                     JSONArray dados = status.getJSONArray("objeto");
                     //JSONArray dados_result = new JSONObject(dados);
 

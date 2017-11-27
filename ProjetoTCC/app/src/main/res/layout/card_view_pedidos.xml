@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
-                android:layout_marginTop="05dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/txt_numero_pedido"
                 android:textStyle="bold" />
 
@@ -59,27 +59,29 @@
                 android:layout_below="@+id/data_pedido"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/txt_status_pedido"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/im_edt"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginEnd="06dp"
                 android:layout_marginTop="05dp"
                 android:layout_alignParentEnd="true"
-                android:tint="#ACACAC"
+                android:tint="#FFCC66"
                 app:srcCompat="@drawable/ic_thumb_up_black_24dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/idEnd"
+                android:id="@+id/idEstab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cidade"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
                 android:text="idestab"
                 android:textStyle="bold"
                 android:visibility="invisible"

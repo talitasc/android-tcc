@@ -310,10 +310,10 @@ public class FinalizarCompra extends AppCompatActivity implements  GerarPedido.L
                 }else{
                     houveDelivery = false;
                 }
-
+                idEstabelecimento ="60";
                 if(!tpEntrega.equals("ENTREGA") && !idEstabelecimento.equals("ESTABELECIMENTO") && !tpPagamento.equals("PAGAMENTO")){
                     GerarPedido connGerar = new GerarPedido(FinalizarCompra.this);
-                    connGerar.execute(dbConn.selectDadosSacola().getIdProduto()+"",tpEntrega,"60","3.00",tpPagamento);
+                    connGerar.execute(dbConn.selectDadosSacola().getIdProduto()+"",tpEntrega,idEstabelecimento,"3.00",tpPagamento);
 
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(FinalizarCompra.context);

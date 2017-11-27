@@ -20,6 +20,7 @@ public class SobreLoja extends AppCompatActivity {
     private ViewPager view;
     private TabLayout tab;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

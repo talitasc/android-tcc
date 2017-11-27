@@ -213,7 +213,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                             pb.setVisibility(View.VISIBLE);
                             Log.d("Objeto",object.toString());
                             LoginComFacebook conn = new LoginComFacebook(LoginCliente.this);
-                            //conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
+                            conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
                             Toast.makeText(getApplicationContext(), "ver", Toast.LENGTH_LONG).show();
 
                         }catch (Exception e){

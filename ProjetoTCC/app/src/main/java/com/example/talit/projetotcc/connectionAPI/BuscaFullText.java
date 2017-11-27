@@ -126,7 +126,7 @@ public class BuscaFullText extends AsyncTask<String, String, String> {
                     JSONObject estab_result = new JSONObject(lote);
 
                     EstabelecimentoFullText estabFull  = new EstabelecimentoFullText(estab_result.getInt("estabelecimento_id"),
-                            estab_result.getString("estabelecimento_cnpj"),estab_result.getString("estabelecimento_nome_fantasia"),"capinas");
+                            estab_result.getString("estabelecimento_cnpj"),estab_result.getString("estabelecimento_nome_fantasia"),"campinas",estab_result.getString("estabelecimento_logo"), estab_result.getString("estabelecimento_nota"));
                         estabs.add(estabFull);
                 }
                 if (estabs.size() > 0) {

@@ -25,7 +25,7 @@
              app:popupTheme="@style/AppTheme.PopupOverlay"
              app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
-        <RelativeLayout
+       <!-- <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:fitsSystemWindows="true"
@@ -45,7 +45,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tablayout"
@@ -58,7 +58,7 @@
 
         </android.support.design.widget.TabLayout>
 
-    </android.support.design.widget.AppBarLayout>
+   </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

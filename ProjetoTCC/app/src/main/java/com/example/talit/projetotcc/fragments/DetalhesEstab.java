@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
@@ -17,16 +18,16 @@ import com.example.talit.projetotcc.R;
 
 public class DetalhesEstab extends Fragment {
 
-    private TextView nomeFantasia;
-    private TextView rua;
-    private TextView numero;
-    private TextView bairro;
-    private TextView cep;
-    private TextView cidade;
-    private TextView sigla;
-    private TextView ddd;
-    private TextView telefone;
-    private TextView email;
+    public static TextView nomeFantasia;
+    public static TextView rua;
+    public static TextView numero;
+    public static TextView bairro;
+    public static TextView cep;
+    public static TextView cidade;
+    public static TextView sigla;
+    public static TextView ddd;
+    public static TextView telefone;
+    public static TextView email;
     public static String strNomeFantasia;
     public static String strRua;
     public static String strNumero;
@@ -38,6 +39,7 @@ public class DetalhesEstab extends Fragment {
     public static String strTelefone;
     public static String strEmail;
     public static String strIdEstab;
+    public static ProgressBar progressBar;
 
     public DetalhesEstab() {
     }
@@ -65,6 +67,20 @@ public class DetalhesEstab extends Fragment {
         telefone = (TextView)view.findViewById(R.id.txt_telefone);
         email = (TextView)view.findViewById(R.id.txt_email);
 
+        /*nomeFantasia.setText(strNomeFantasia);
+        rua.setText(strRua);
+        numero.setText(strNumero);
+        bairro.setText(strbairro);
+        cep.setText(strCep);
+        cidade.setText(strCidade);
+        sigla.setText(strSigla);
+        ddd.setText(strDdd);
+        telefone.setText(strTelefone);
+        email.setText(strEmail);*/
+
+        return view;
+    }
+    public static final void preencheDados(String strNomeFantasia,String strRua,String strNumero,String strbairro, String strCep,String strCidade,String strSigla,String strDdd, String strTelefone, String strEmail){
         nomeFantasia.setText(strNomeFantasia);
         rua.setText(strRua);
         numero.setText(strNumero);
@@ -75,7 +91,5 @@ public class DetalhesEstab extends Fragment {
         ddd.setText(strDdd);
         telefone.setText(strTelefone);
         email.setText(strEmail);
-
-        return view;
     }
 }
