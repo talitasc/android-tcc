@@ -88,12 +88,12 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 if (TextUtils.isEmpty(charSequence)) {
-                    edtNomeFunc.setError("Campo Obrigatório");
+                    edtNomeFunc.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtNomeFunc);
                     haNome = true;
 
                 } else if (charSequence.length() > 150) {
-                    edtNomeFunc.setError("Campo Obrigatório");
+                    edtNomeFunc.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtNomeFunc);
                     haNome = true;
                 }else{
@@ -121,12 +121,12 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
             @Override
             public void afterTextChanged(Editable s) {
                 if (TextUtils.isEmpty(s.toString().trim())) {
-                    edtSobrenome.setError("Campo Obrigatório");
+                    edtSobrenome.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtSobrenome);
                     haSobrenome = true;
 
                 } else if (s.length() > 150) {
-                    edtSobrenome.setError("Campo Obrigatório");
+                    edtSobrenome.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtSobrenome);
                     haSobrenome = true;
                 }else{
@@ -144,12 +144,12 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 if (TextUtils.isEmpty(edtCpf.getText().toString())) {
-                    edtCpf.setError("Campo Obrigatório");
+                    edtCpf.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtCpf);
                     haCpf = true;
 
                 } else if (edtCpf.length() != 14) {
-                    edtCpf.setError("CPF Inválido");
+                    edtCpf.setError("CPF Invalido");
                     Validacoes.requestFocus(edtCpf);
                     haCpf = true;
                 } else {
@@ -174,12 +174,12 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 if (TextUtils.isEmpty(charSequence.toString().trim())) {
-                    edtUsuario.setError("Campo Obrigatório");
+                    edtUsuario.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtUsuario);
                     haUsuario = true;
 
                 } else if (charSequence.length() > 150) {
-                    edtUsuario.setError("Campo Obrigatório");
+                    edtUsuario.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtUsuario);
                     haUsuario = true;
                 } else if (!Validacoes.validaEmail(charSequence.toString().trim())) {
@@ -207,7 +207,7 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
             public void onTextChanged(CharSequence chars, int i, int i1, int i2) {
 
                 if (TextUtils.isEmpty(edtSenha.toString().trim())) {
-                    edtSenha.setError("Campo Obrigatório");
+                    edtSenha.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtSenha);
                     haSenha = true;
 
@@ -237,7 +237,7 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 if (TextUtils.isEmpty(edtConfirmarSenha.getText().toString())) {
-                    edtConfirmarSenha.setError("Campo Obrigatório");
+                    edtConfirmarSenha.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtConfirmarSenha);
                     haConfirSenha = true;
 
@@ -248,7 +248,7 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
 
                 } else if (!edtConfirmarSenha.getText().toString().equals(edtSenha.getText().toString())) {
 
-                    edtConfirmarSenha.setError("As senhas devem ser idênticas");
+                    edtConfirmarSenha.setError("As senhas devem ser identicas");
                     Validacoes.requestFocus(edtConfirmarSenha);
                     haConfirSenha = true;
                 } else {
@@ -298,10 +298,10 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
                             edtUsuario.getText().toString(), edtSenha.getText().toString());
 
                 } else {
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
-                    builder.setTitle("Erro ao tentar conexão!!");
-                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.this.context);
+                    builder.setTitle(R.string.validacao_login_cinco);
+                    builder.setMessage(R.string.validacao_login_seis);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -312,10 +312,10 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
                 }
 
             } else {
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.this);
-                builder.setTitle("Campos vázios");
-                builder.setMessage("Insira seus dados para realizar o login.");
-                builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.this.context);
+                builder.setTitle(R.string.validacao_login_um);
+                builder.setMessage(R.string.validacao_login_dois);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -326,10 +326,10 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
 
             }
         }else{
-            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.this);
-            builder.setTitle("Dados inválidos!");
-            builder.setMessage("Verifique se seus dados foram digitados corretamente.");
-            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.this.context);
+            builder.setTitle(R.string.validacao_login_tres);
+            builder.setMessage(R.string.validacao_login_quatro);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -344,7 +344,7 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.this);
         builder.setTitle("");
-        builder.setMessage("Você tem Certeza que deseja cancelar esta operação? Ao confirmar seus dados serão perdidos.");
+        builder.setMessage(R.string.validacao_login_quinze);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -354,7 +354,7 @@ public class CadastroPessoaJuridicaDois extends AppCompatActivity implements Est
                 finish();
             }
         });
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

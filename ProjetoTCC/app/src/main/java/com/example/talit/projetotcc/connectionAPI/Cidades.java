@@ -93,17 +93,25 @@ public class Cidades extends AsyncTask<String, String, String> {
             JSONObject api_result = new JSONObject(result);
             ListarCidades.pbLocais.setVisibility(View.INVISIBLE);
             JSONArray dados = api_result.getJSONArray("cidades");
-            ArrayList<Cidade> cidades = new ArrayList<>();
+            //ArrayList<Cidade> cidades = new ArrayList<>();
 
             for (int i = 0; i < dados.length(); ++i) {
                 JSONObject dados_result = dados.getJSONObject(i);
                 Cidade cidade = new Cidade(dados_result.getInt("cidade_id"),
                         dados_result.getInt("estado_id"),
                         dados_result.getString("cidade_descricao"));
-                cidades.add(cidade);
+                //cidades.add(cidade);
+                ListarCidades.cids.add(cidade);
+
+
             }
-            final CidadeAdapter cidadeAdapter = new CidadeAdapter(ListarCidades.act,ListarCidades.context,cidades);
-            ListarCidades.listas.setAdapter(cidadeAdapter);
+
+            ListarCidades.cidadeAdapter = new CidadeAdapter(ListarCidades.act,ListarCidades.context,ListarCidades.cids);
+            ListarCidades.listas.setAdapter(ListarCidades.cidadeAdapter);
+            ListarCidades.cidadeAdapter.notifyDataSetChanged();
+
+            /*final CidadeAdapter cidadeAdapter = new CidadeAdapter(ListarCidades.act,ListarCidades.context,ListarCidades.cids);
+            ListarCidades.listas.setAdapter(cidadeAdapter);*/
 
         } catch (JSONException e) {
             e.printStackTrace();

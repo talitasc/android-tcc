@@ -16,6 +16,7 @@ import com.example.talit.projetotcc.activities.ListarCidades;
 import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
 import com.example.talit.projetotcc.logicalView.Cidade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,7 +78,7 @@ public class CidadeAdapter extends BaseAdapter {
                 Cidade cid = new Cidade(cidades.get(i).getIdCidade(),
                                         cidades.get(i).getIdEstado(),
                                         cidades.get(i).getDescricaoCidade());
-                PaginalnicialConsumidor.msgLocalizacao = cid.getDescricaoCidade() + " ● " + estado;
+                PaginalnicialConsumidor.msgLocalizacao = cid.getDescricaoCidade() + "-" + estado;
                 PaginalnicialConsumidor.idEstado = cid.getIdEstado();
                 PaginalnicialConsumidor.idCidade = cid.getIdCidade();
                 act.startActivity(new Intent(act,PaginalnicialConsumidor.class));
@@ -94,5 +95,11 @@ public class CidadeAdapter extends BaseAdapter {
     }
     private class ViewHolder {
         TextView descricaoLocal;
+    }
+    public void setFilter(ArrayList<Cidade> filtro){
+        cidades = new ArrayList<>();
+        cidades.addAll(filtro);
+        notifyDataSetChanged();
+
     }
 }

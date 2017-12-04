@@ -56,6 +56,7 @@ import com.example.talit.projetotcc.connectionAPI.ListaSupermercadoPoRaio;
 import com.example.talit.projetotcc.connectionAPI.ListarSupermercadosPorDescricao;
 import com.example.talit.projetotcc.domain.MessageEB;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
+import com.example.talit.projetotcc.logicalView.ProdutosFavoritos;
 import com.example.talit.projetotcc.service.LocationIntentService;
 import com.example.talit.projetotcc.sqlight.DbConn;
 import com.example.talit.projetotcc.utils.LocaleLanguage;
@@ -68,6 +69,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -117,6 +119,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
     public static String raio;
     public static String avaliacao;
     public static String informacoes;
+    public static ArrayList<Estabelecimento> listareEst = new ArrayList<>();
+    public static   ListaSupermercadosAdapter listarSupmermercadoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,14 +159,20 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listas.setLayoutManager(llm);
 
+        //listarSupmermercadoAdapter = new ListaSupermercadosAdapter(PaginalnicialConsumidor.this, PaginalnicialConsumidor.this, listareEst);
+        //listas.setAdapter(listarSupmermercadoAdapter);
+        //listarSupmermercadoAdapter.notifyDataSetChanged();
+
 
         if (idEstado != 0) {
             if (idCidade != 0) {
                 ListarSupermercadosPorDescricao conn = new ListarSupermercadosPorDescricao(null);
-                //conn.execute(idEstado+"",idCidade+"");
-                conn.execute("109", "26");
+                conn.execute(idCidade+"",idEstado+"");
+                //conn.execute("3556206", "26");
             }
         }
+
+
 
         try{
 
@@ -380,7 +390,8 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         int id = item.getItemId();
 
         if (id == R.id.menu_sobre) {
-
+            startActivity(new Intent(getApplicationContext(), SobreSmarket.class));
+            finish();
 
         } else if (id == R.id.menu_meus_dados) {
             startActivity(new Intent(getApplicationContext(), AlteraDadosConsumidor.class));
@@ -420,6 +431,11 @@ public class PaginalnicialConsumidor extends AppCompatActivity implements Listar
         }else if(id == R.id.menu_historico_compras){
             startActivity(new Intent(getApplicationContext(), Pedidos.class));
             finish();
+
+        }else if(id == R.id.menu_prod_favoritos){
+            startActivity(new Intent(getApplicationContext(), ProdutosFavoritados.class));
+            finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

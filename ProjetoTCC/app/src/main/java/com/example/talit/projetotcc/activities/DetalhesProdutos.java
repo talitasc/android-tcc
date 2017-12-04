@@ -76,6 +76,8 @@ public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinh
     public static Context c;
     public static ProgressBar pb;
     public static Activity act;
+    public static final String ID_ESTABELECIMENTO = "ID";
+    public static String idEstab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,10 @@ public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinh
         pb.setVisibility(View.INVISIBLE);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         //getSupportActionBar().setHomeButtonEnabled(true);
+
+        SharedPreferences prefs = act.getSharedPreferences(ID_ESTABELECIMENTO, MODE_PRIVATE);
+        idEstab = prefs.getString("idEstab", null);
+
 
         dbconn = new DbConn(this);
         if (getIntent().hasExtra("nomeProduto") && getIntent().hasExtra("img") &&
@@ -172,7 +178,7 @@ public class DetalhesProdutos extends AppCompatActivity implements DeleteCarrinh
                     CriaCarrinho connCria = new CriaCarrinho(null);
                     connCria.execute(String.format("%d", dbconn.selectConsumidor().getIdCons()),
                             String.format("%d", dbconn.selectConsumidor().getTpAcesso()),
-                            DetalhesEstab.strIdEstab,
+                            idEstab,
                             strIdProd,
                             strQuantidade);
 

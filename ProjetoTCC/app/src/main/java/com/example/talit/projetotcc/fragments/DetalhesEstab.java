@@ -1,6 +1,8 @@
 package com.example.talit.projetotcc.fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.connectionAPI.EstabelecimentoPorId;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class DetalhesEstab extends Fragment {
@@ -40,6 +45,9 @@ public class DetalhesEstab extends Fragment {
     public static String strEmail;
     public static String strIdEstab;
     public static ProgressBar progressBar;
+    public static final String ID_ESTABELECIMENTO = "ID";
+    public static String idEstab;
+    public static Activity activity;
 
     public DetalhesEstab() {
     }
@@ -55,7 +63,7 @@ public class DetalhesEstab extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.card_view_apresentacao_estabelecimento, container, false);
-
+        activity = getActivity();
         nomeFantasia = (TextView)view.findViewById(R.id.txt_nome_supermercado);
         rua = (TextView)view.findViewById(R.id.txt_rua);
         numero = (TextView)view.findViewById(R.id.txt_numero);
@@ -66,6 +74,14 @@ public class DetalhesEstab extends Fragment {
         ddd = (TextView)view.findViewById(R.id.txt_ddd);
         telefone = (TextView)view.findViewById(R.id.txt_telefone);
         email = (TextView)view.findViewById(R.id.txt_email);
+        progressBar = (ProgressBar)view.findViewById(R.id.pb_estabelecimento);
+        progressBar.setVisibility(View.INVISIBLE);
+
+        SharedPreferences prefs = activity.getSharedPreferences(ID_ESTABELECIMENTO, MODE_PRIVATE);
+        idEstab = prefs.getString("idEstab", null);
+
+        EstabelecimentoPorId connEstab = new EstabelecimentoPorId(null);
+        connEstab.execute(idEstab);
 
         /*nomeFantasia.setText(strNomeFantasia);
         rua.setText(strRua);

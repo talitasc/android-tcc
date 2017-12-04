@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.LoginCliente;
 import com.example.talit.projetotcc.activities.LoginPessoaJuridica;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -138,7 +139,7 @@ public class AutenticaPj extends AsyncTask<String, String, String> {
                     LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                     builder.setTitle("Ative sua conta");
-                    builder.setMessage("É necessário ativar sua conta com o link enviado em seu e-mail");
+                    builder.setMessage(R.string.validacao_login_treze);
                     builder.setPositiveButton("Fechar", null);
                     builder.setCancelable(false);
                     builder.show();
@@ -146,7 +147,7 @@ public class AutenticaPj extends AsyncTask<String, String, String> {
                         listener.onLoaded("false");
                     }
                 }
-            } else if(descricao.equals("Senha inválida!")) {
+            } else if(descricao.contains("Senha")) {
                 LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                 builder.setTitle("");
@@ -157,22 +158,22 @@ public class AutenticaPj extends AsyncTask<String, String, String> {
                 if (listener != null) {
                     listener.onLoaded("false");
                 }
-            }else if(descricao.equals("Usuario não encontrato!")){
+            }else if(descricao.contains("encontrato")){
                 LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                 builder.setTitle("");
-                builder.setMessage("E-mail não cadastrado");
+                builder.setMessage(R.string.validacao_login_onze);
                 builder.setPositiveButton("Fechar", null);
                 builder.setCancelable(false);
                 builder.show();
                 if (listener != null) {
                     listener.onLoaded("false");
                 }
-            }else if(descricao.equals("Requisição invalida!")){
+            }else if(descricao.contains("invalida")){
                 LoginPessoaJuridica.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginPessoaJuridica.context);
                 builder.setTitle("");
-                builder.setMessage("Dados não cadastrados!");
+                builder.setMessage(R.string.validacao_login_doze);
                 builder.setPositiveButton("Fechar", null);
                 builder.setCancelable(false);
                 builder.show();

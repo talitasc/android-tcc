@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.connectionAPI.ListarPedidoBpb;
 import com.example.talit.projetotcc.connectionAPI.ListarPedidos;
 import com.example.talit.projetotcc.logicalView.Pedido;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -50,8 +51,13 @@ public class Pedidos extends AppCompatActivity {
         idUser = dbConn.selectConsumidor().getIdCons() + "";
         tpUser = dbConn.selectConsumidor().getTpAcesso() + "";
 
-        ListarPedidos connListar = new ListarPedidos();
-        connListar.execute(idUser, tpUser);
+        if(tpUser.equals("2")) {
+            ListarPedidos connListar = new ListarPedidos();
+            connListar.execute(idUser, tpUser);
+        }else{
+            ListarPedidoBpb connBp = new ListarPedidoBpb();
+            connBp.execute(idUser);
+        }
 
     }
 

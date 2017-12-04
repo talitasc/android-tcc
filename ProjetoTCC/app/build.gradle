@@ -14,7 +14,7 @@ android {
 
         aaptOptions.cruncherEnabled = false
         aaptOptions.useNewCruncher = false
-        compileOptions.encoding = 'ISO-8859-1'
+        compileOptions.encoding = 'windows-1252'
         multiDexEnabled true
     }
     buildTypes {
@@ -24,7 +24,7 @@ android {
 
         }
     }
-    compileOptions.encoding = 'ISO-8859-1'
+
 }
 android {
     signingConfigs {

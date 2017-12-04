@@ -70,7 +70,7 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (TextUtils.isEmpty(s)) {
-                    edtNomeFantasia.setError("Campo Obrigatório");
+                    edtNomeFantasia.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtNomeFantasia);
                     haNf = true;
 
@@ -100,12 +100,12 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(s)) {
-                    edtRazaoSocial.setError("Campo Obrigatório");
+                    edtRazaoSocial.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtRazaoSocial);
                     haRs = true;
 
                 } else if (s.length() > 150) {
-                    edtRazaoSocial.setError("Campo Obrigatório");
+                    edtRazaoSocial.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtRazaoSocial);
                     haRs = true;
                 }else{
@@ -126,13 +126,13 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(edtTelefone.getText().toString())) {
-                    edtTelefone.setError("Campo Obrigatório");
+                    edtTelefone.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtTelefone);
                     haIe = true;
 
 
                 } else if (edtTelefone.getText().toString().length()!= 13) {
-                    edtTelefone.setError("Telefone inválido");
+                    edtTelefone.setError("Telefone invalido");
                     Validacoes.requestFocus(edtTelefone);
                     haIe = true;
 
@@ -158,12 +158,12 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
 
                 strCnpj = edtCnpj.getText().toString();
                 if (TextUtils.isEmpty(s)) {
-                    edtCnpj.setError("Campo Obrigatório");
+                    edtCnpj.setError("Campo Obrigatorio");
                     Validacoes.requestFocus(edtCnpj);
                     haCnpj = true;
 
                 }else if(strCnpj.length() != 18){
-                    edtCnpj.setError("CNPJ inválido");
+                    edtCnpj.setError("CNPJ invalido");
                     Validacoes.requestFocus(edtCnpj);
                     haCnpj = true;
 
@@ -218,9 +218,9 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
 
             } else {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridica.this);
-                builder.setTitle("Campos vázios");
-                builder.setMessage("Insira seus dados para realizar o login.");
-                builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.validacao_login_um);
+                builder.setMessage(R.string.validacao_login_dois);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -232,9 +232,9 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
             }
         }else{
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridica.this);
-            builder.setTitle("Dados inválidos!");
-            builder.setMessage("Verifique se seus dados foram digitados corretamente.");
-            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+            builder.setTitle(R.string.validacao_login_tres);
+            builder.setMessage(R.string.validacao_login_quatro);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -250,7 +250,7 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridica.this);
         builder.setTitle("");
-        builder.setMessage("Você tem Certeza que deseja cancelar esta operação? Ao confirmar seus dados serão perdidos.");
+        builder.setMessage(R.string.validacao_login_quinze);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -260,7 +260,7 @@ public class CadastroPessoaJuridica extends AppCompatActivity {
                 finish();
             }
         });
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

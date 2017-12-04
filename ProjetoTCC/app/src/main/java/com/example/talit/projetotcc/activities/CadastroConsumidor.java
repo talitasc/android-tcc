@@ -215,7 +215,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                     if (TextUtils.isEmpty(edtSenha.getText().toString())) {
-                        edtSenha.setError("A senha é necessária");
+                        edtSenha.setError("A senha e necessária");
                         Validacoes.requestFocus(edtSenha);
                         haSenha = true;
 
@@ -244,7 +244,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                     if (TextUtils.isEmpty(edtConfirSenha.getText().toString())) {
-                        edtConfirSenha.setError("Campo Obrigatório");
+                        edtConfirSenha.setError("Campo Obrigatorio");
                         Validacoes.requestFocus(edtConfirSenha);
                         haConfirmarsenha = true;
 
@@ -255,7 +255,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
 
                     } else if (!edtConfirSenha.getText().toString().equals(edtSenha.getText().toString())) {
 
-                        edtConfirSenha.setError("As senhas devem ser idênticas");
+                        edtConfirSenha.setError("As senhas devem ser identicas");
                         Validacoes.requestFocus(edtConfirSenha);
                         haConfirmarsenha = true;
                     } else {
@@ -374,7 +374,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
                                 builder.setTitle("");
-                                builder.setMessage("Aceite os termo santes de prosseguir.");
+                                builder.setMessage("Aceite os termos antes de prosseguir.");
                                 builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -393,7 +393,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                         public void onClick(View v) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
                             builder.setTitle("");
-                            builder.setMessage("Certeza que deseja cancelar esta operação?");
+                            builder.setMessage(R.string.validacao_login_quatorze);
                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -404,7 +404,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                                     finish();
                                 }
                             });
-                            builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            builder.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
@@ -418,10 +418,10 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
 
                 } else {
 
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
-                    builder.setTitle("Erro ao tentar conexão!!");
-                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroConsumidor.this.context);
+                    builder.setTitle(R.string.validacao_login_cinco);
+                    builder.setMessage(R.string.validacao_login_seis);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -432,10 +432,10 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
                 }
 
             } else {
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroConsumidor.this);
-                builder.setTitle("Campos vázios");
-                builder.setMessage("Insira seus dados para realizar o login.");
-                builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroConsumidor.this.context);
+                builder.setTitle(R.string.validacao_login_um);
+                builder.setMessage(R.string.validacao_login_dois);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -447,9 +447,9 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
             }
         }else{
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroConsumidor.this.context);
-            builder.setTitle("Dados inválidos!");
-            builder.setMessage("Verifique se seus dados foram digitados corretamente.");
-            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+            builder.setTitle(R.string.validacao_login_tres);
+            builder.setMessage(R.string.validacao_login_quatro);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -466,7 +466,7 @@ public class CadastroConsumidor extends AppCompatActivity implements CadastroPes
 
         AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.this);
         builder.setTitle("");
-        builder.setMessage("Você tem Certeza que deseja cancelar esta operação? Ao confirmar seus dados serão perdidos.");
+        builder.setMessage(R.string.validacao_login_quinze);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -104,6 +104,7 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
     private Button btnNewEndereco;
     private TextView txtIdCidade;
     private TextView txtIdEstado;
+    private EditText edtSenhaAntiga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +152,7 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
         relativeListEnds = (RelativeLayout)findViewById(R.id.lis_endereco);
         relativeNovoEndereco = (RelativeLayout)findViewById(R.id.new_end);
         btnNewEndereco = (Button)findViewById(R.id.btn_altera_end);
+        edtSenhaAntiga = (EditText)findViewById(R.id.id_antiga_senha);
 
         dbConn = new DbConn(AlteraDadosConsumidor.this);
         tpTel = new String[]{"Telefone", "Celular"};
@@ -318,8 +320,23 @@ public class AlteraDadosConsumidor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pbAlteraSenha.setVisibility(View.VISIBLE);
-                AlteraSenha connSenha = new AlteraSenha();
-                connSenha.execute(idUser,tpUser,edtNovaSenha.getText().toString(),edtConfirSenha.getText().toString());
+
+                if(!TextUtils.isEmpty(edtNovaSenha.getText().toString()) && !TextUtils.isEmpty(edtConfirSenha.getText().toString()) &&! TextUtils.isEmpty(edtSenhaAntiga.getText().toString())) {
+                    AlteraSenha connSenha = new AlteraSenha();
+                    connSenha.execute(idUser, tpUser, edtNovaSenha.getText().toString(), edtSenhaAntiga.getText().toString());
+                }else{
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AlteraDadosConsumidor.this.context);
+                    builder.setTitle(R.string.txt_dados_invalidos);
+                    builder.setMessage(R.string.txt_dados_invalidos_desc);
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.show();
+                }
 
             }
         });

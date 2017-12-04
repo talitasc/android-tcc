@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_dialog"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:ignore="UselessParent"
+        android:id="@+id/linearLayout2">
+
+        <RelativeLayout
+            android:id="@+id/formas_pagamento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            tools:ignore="UselessParent">
+
+
+            <TextView
+                android:id="@+id/txt_end_alt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:padding="12dp"
+                android:gravity="center"
+                android:text="@string/formas_pagamento"
+                android:background="@color/coresProvisoriasum"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                tools:ignore="SpUsage" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lv_pagamento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_end_alt"
+                android:layout_marginTop="03dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:stretchMode="columnWidth"
+                tools:ignore="UnknownIdInLayout" />
+
+            <ProgressBar
+                android:id="@+id/pb_pagamento"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rec_categ"
+                android:layout_marginTop="20dp"
+                tools:ignore="UnknownIdInLayout" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_dialog_close"
+        android:text="X"
+        android:textColor="#ffff"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+</RelativeLayout>

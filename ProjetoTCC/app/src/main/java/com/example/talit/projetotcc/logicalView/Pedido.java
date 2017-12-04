@@ -12,14 +12,24 @@ public class Pedido {
     private String pedido_data;
     private String pedido_status_id;
     private String status_pedido_descricao;
+    private String estabelecimento_nome_fantasia;
 
-    public Pedido(String pedido_id, String estabelecimento_id, String pedido_valor, String pedido_data, String pedido_status_id, String status_pedido_descricao) {
+    public Pedido(String pedido_id, String estabelecimento_id, String pedido_valor, String pedido_data, String pedido_status_id, String status_pedido_descricao, String estabelecimento_nome_fantasia) {
         this.pedido_id = pedido_id;
         this.estabelecimento_id = estabelecimento_id;
         this.pedido_valor = pedido_valor;
         this.pedido_data = pedido_data;
         this.pedido_status_id = pedido_status_id;
         this.status_pedido_descricao = status_pedido_descricao;
+        this.estabelecimento_nome_fantasia = estabelecimento_nome_fantasia;
+    }
+
+    public String getEstabelecimento_nome_fantasia() {
+        return estabelecimento_nome_fantasia;
+    }
+
+    public void setEstabelecimento_nome_fantasia(String estabelecimento_nome_fantasia) {
+        this.estabelecimento_nome_fantasia = estabelecimento_nome_fantasia;
     }
 
     public String getPedido_id() {

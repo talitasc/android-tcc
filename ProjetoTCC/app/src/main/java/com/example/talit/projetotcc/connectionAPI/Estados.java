@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.talit.projetotcc.activities.ListarCidades;
 import com.example.talit.projetotcc.activities.ListarEstados;
 import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
+import com.example.talit.projetotcc.adapters.CidadeAdapter;
 import com.example.talit.projetotcc.adapters.EstadoAdapter;
 import com.example.talit.projetotcc.logicalView.Cidade;
 import com.example.talit.projetotcc.logicalView.Estado;
@@ -97,7 +98,7 @@ public class Estados extends AsyncTask<String, String, String> {
             JSONObject api_result = new JSONObject(result);
             ListarEstados.pbLocais.setVisibility(View.INVISIBLE);
             JSONArray dados = api_result.getJSONArray("estados");
-            ArrayList<Estado> estados = new ArrayList<>();
+            //ArrayList<Estado> estados = new ArrayList<>();
 
             for (int i = 0; i < dados.length(); ++i) {
                 JSONObject dados_result = dados.getJSONObject(i);
@@ -105,10 +106,15 @@ public class Estados extends AsyncTask<String, String, String> {
                         dados_result.getString("estado_sigla"),
                         dados_result.getString("estado_descricao"));
 
-                estados.add(estado);
+                //estados.add(estado);
+                ListarEstados.ests.add(estado);
             }
-            estadoAdapter = new EstadoAdapter(ListarEstados.act, ListarEstados.context, estados);
-            ListarEstados.listas.setAdapter(estadoAdapter);
+
+            ListarEstados.estadoAdapter = new EstadoAdapter(ListarEstados.act,ListarEstados.context,ListarEstados.ests);
+            ListarEstados.listas.setAdapter(ListarEstados.estadoAdapter);
+            ListarEstados.estadoAdapter.notifyDataSetChanged();
+            /*estadoAdapter = new EstadoAdapter(ListarEstados.act, ListarEstados.context, estados);
+            ListarEstados.listas.setAdapter(estadoAdapter);*/
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -13,8 +13,10 @@ import android.widget.TextView;
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.ListarCidades;
 import com.example.talit.projetotcc.activities.ListarEstados;
+import com.example.talit.projetotcc.logicalView.Cidade;
 import com.example.talit.projetotcc.logicalView.Estado;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,5 +90,11 @@ public class EstadoAdapter extends BaseAdapter {
         TextView descricaoLocal;
     }
 
+    public void setFilter(ArrayList<Estado> filtro){
+        estados = new ArrayList<>();
+        estados.addAll(filtro);
+        notifyDataSetChanged();
+
+    }
 }
 

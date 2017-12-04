@@ -463,4 +463,12 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/pb_estabelecimento"
+        style="?android:attr/progressBarStyleLarge" />
+
 </android.support.design.widget.CoordinatorLayout>

@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -342,14 +343,18 @@ public class PaginaInicialEstabelecimentos extends AppCompatActivity implements 
         dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogo.show();
 
-        /*Marcas connMarca= new Marcas(null);
-        connMarca.execute();*/
+        Marcas connMarca= new Marcas(null);
+        connMarca.execute();
 
        /* Subcategorias connSub = new Subcategorias(null);
         connSub.execute();*/
 
-        LinearLayoutManager layoutManagerMarca = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        recMarca.setLayoutManager(layoutManagerMarca);
+        /*LinearLayoutManager layoutManagerMarca = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recMarca.setLayoutManager(layoutManagerMarca);*/
+
+        StaggeredGridLayoutManager llm = new StaggeredGridLayoutManager(3, 1);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recMarca.setLayoutManager(llm);
 
         LinearLayoutManager layoutManagerSub = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recSubcategorias.setLayoutManager(layoutManagerSub);

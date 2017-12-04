@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.CadastroConsumidor;
 import com.example.talit.projetotcc.activities.LoginCliente;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -141,11 +142,11 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
             String descricao = status.getString("descricao");
             Log.i("Status", status_user);
             if (status_user.equalsIgnoreCase("true")) {
-                if (descricao.equals("Consumidor cadastrado com sucesso!")) {
+                if (descricao.contains("sucesso!")) {
                     CadastroConsumidor.pb.setVisibility(View.VISIBLE);
                     AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
                     builder.setTitle("Conta registrada");
-                    builder.setMessage("CadastroPessoaFisica realizado, confirme o acesso via e-mail");
+                    builder.setMessage(R.string.validacao_login_dezesseis);
                     builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -158,7 +159,7 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
                     builder.show();
                 }
 
-            } else if(descricao.equals("Acesso webservice negado!")) {
+            } else if(descricao.contains("webservice")) {
                 CadastroConsumidor.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
                 builder.setTitle("");
@@ -172,7 +173,7 @@ public class CadastroPessoaFisica extends AsyncTask<String, String, String> {
                 });
                 builder.setCancelable(false);
                 builder.show();
-            } else {
+            } else if(descricao.contains("cadastrado")) {
                 CadastroConsumidor.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroConsumidor.context);
                 builder.setTitle("");

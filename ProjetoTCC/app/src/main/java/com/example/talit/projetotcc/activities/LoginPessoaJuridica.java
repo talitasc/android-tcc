@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.connectionAPI.LoginComFacebook;
+import com.example.talit.projetotcc.connectionAPI.RecuperarSenha;
+import com.example.talit.projetotcc.connectionAPI.RecuperarSenhaPJ;
 import com.example.talit.projetotcc.utils.Validacoes;
 import com.example.talit.projetotcc.connectionAPI.AutenticaPj;
 
@@ -39,7 +41,8 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
     private boolean haConfirmSenha;
     public static ProgressBar pb;
     public static Context context;
-
+    public static ProgressBar pbRecuperar;
+    public static AlertDialog dialogo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,10 +140,10 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
 
                         } else {
 
-                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
-                            builder.setTitle("Erro ao tentar conexão!!");
-                            builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this.context);
+                            builder.setTitle(R.string.validacao_login_cinco);
+                            builder.setMessage(R.string.validacao_login_seis);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
@@ -150,10 +153,10 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                             builder.show();
                         }
                     }
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
-                    builder.setTitle("Campos vázios");
-                    builder.setMessage("Inserira seus dados para realizar o login.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this.context);
+                    builder.setTitle(R.string.validacao_login_um);
+                    builder.setMessage(R.string.validacao_login_dois);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -163,10 +166,10 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                     builder.show();
 
                 }else{
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
-                    builder.setTitle("Dados inválidos!");
-                    builder.setMessage("Verifique se seus dados foram digitados corretamente.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this.context);
+                    builder.setTitle(R.string.validacao_login_tres);
+                    builder.setMessage(R.string.validacao_login_quatro);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -186,10 +189,10 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
 
                 } else {
 
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
-                    builder.setTitle("Erro ao tentar conexão!!");
-                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this.context);
+                    builder.setTitle(R.string.validacao_login_cinco);
+                    builder.setMessage(R.string.validacao_login_seis);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -208,10 +211,12 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
         Button btnEnviar = (Button) alertLayout.findViewById(R.id.btn_enviar);
         Button btnCancelar = (Button) alertLayout.findViewById(R.id.btn_cancelar);
         final EditText edtEmail = (EditText) alertLayout.findViewById(R.id.ed_email);
+        pbRecuperar = (ProgressBar)alertLayout.findViewById(R.id.ps_recuperar);
+        pbRecuperar.setVisibility(View.INVISIBLE);
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setView(alertLayout);
         alerta.setCancelable(false);
-        final AlertDialog dialogo = alerta.create();
+        dialogo = alerta.create();
         dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogo.show();
         btnEnviar.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +235,9 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                     Validacoes.requestFocus(edtEmail);
                     edtEmail.setText("");
                 } else {
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
+                    RecuperarSenhaPJ connRec = new RecuperarSenhaPJ();
+                    connRec.execute(edtEmail.getText().toString());
+                   /* android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
                     builder.setTitle("E-mail enviado!");
                     builder.setMessage("Sua nova senha foi enviada via e-mail.Verifique sua caixa de entrada.");
                     builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
@@ -241,7 +248,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
                         }
                     });
                     builder.setCancelable(false);
-                    builder.show();
+                    builder.show();*/
                 }
             }
         });
@@ -250,16 +257,15 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginPessoaJuridica.this);
                 builder.setTitle("");
-                builder.setMessage("Certeza que deseja cancelar esta operação?");
+                builder.setMessage(R.string.validacao_login_quatorze);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        //startActivity(new Intent(LoginPessoaJuridica.this, LoginCliente.class));
+                        startActivity(new Intent(LoginPessoaJuridica.this, LoginPessoaJuridica.class));
                         dialog.dismiss();
                         dialogo.dismiss();
-
-                        //finish();
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -274,6 +280,7 @@ public class LoginPessoaJuridica extends AppCompatActivity implements AutenticaP
         });
 
     }
+
 
     public void alterarSenha(final int id_cons) {
 

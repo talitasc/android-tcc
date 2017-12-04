@@ -118,7 +118,8 @@ public class LotePorEstabelecimento extends AsyncTask<String, String, String> {
                             lote_result.getString("lote_data_vencimento"),
                             lote_result.getString("lote_preco"),
                             lote_result.getString("lote_obs"),
-                            lote_result.getString("lote_quantidade"));
+                            lote_result.getString("lote_quantidade"),
+                            dados_result.getString("produto_favorito"));
                     prods.add(prod);
                 }
                 if (prods.size() > 0) {

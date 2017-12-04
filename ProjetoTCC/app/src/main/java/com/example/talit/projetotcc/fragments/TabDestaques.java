@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.example.talit.projetotcc.R;
+import com.example.talit.projetotcc.activities.AlteraDadosConsumidor;
 import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
 import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
 import com.example.talit.projetotcc.activities.ProdutosEstabelecimento;
@@ -85,6 +86,9 @@ public class TabDestaques extends Fragment implements LotePorCategoria.Listener 
     public static AlertDialog dialogo;
     public static final String ID_ESTABELECIMENTO = "ID";
     public static String idEstab;
+    private DbConn dbConn;
+    private static String idUser;
+    private static String tpUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,13 +111,17 @@ public class TabDestaques extends Fragment implements LotePorCategoria.Listener 
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recProdutos.setLayoutManager(llm);
 
+        dbConn = new DbConn(getActivity());
+        idUser = dbConn.selectConsumidor().getIdCons()+"";
+        tpUser = dbConn.selectConsumidor().getTpAcesso()+"";
+
         SharedPreferences prefs = activity.getSharedPreferences(ID_ESTABELECIMENTO, MODE_PRIVATE);
         idEstab = prefs.getString("idEstab", null);
 
         try {
             if (idCateg != null) {
                 LotePorCategoria connProd = new LotePorCategoria(null);
-                connProd.execute(idCateg);
+                connProd.execute(idCateg,idUser,tpUser);
                 Toast.makeText(activity, "click", Toast.LENGTH_SHORT).show();
 
             } else if (idMarca != null) {

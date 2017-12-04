@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.Carrinho;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
 import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
+import com.example.talit.projetotcc.connectionAPI.FavoritarProdutos;
 import com.example.talit.projetotcc.fragments.TabDestaques;
 import com.example.talit.projetotcc.logicalView.Produtos;
 import com.example.talit.projetotcc.sqlight.DbConn;
@@ -46,6 +48,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         private ImageView imagem;
         private Button btnAdicionar;
         private TextView txtData;
+        private ImageButton imgFavoritar;
         private View view;
 
         public ProdutosViewHolder(View v) {
@@ -56,6 +59,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
             imagem = (ImageView)v.findViewById(R.id.im_logo_produto);
             txtData= (TextView)v.findViewById(R.id.txt_prazo_validade);
             btnAdicionar = (Button)v.findViewById(R.id.btn_adicionar);
+            imgFavoritar = (ImageButton)v.findViewById(R.id.btn_gostei);
             //codRef = (TextView) v.findViewById(R.id.txt_codRef);
             view = v;
         }
@@ -65,6 +69,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
     private View v;
     private Activity act;
     private Context c;
+    private String idUser;
+    private String tpUser;
 
     public ProdutosAdapter(List<Produtos> produtos, Activity act, Context c){
         this.prod = produtos;
@@ -87,6 +93,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
         holder.txtPreco.setText("R$ "+ produtos.getLote_preco());
 
         dbconn = new DbConn(PaginaInicialEstabelecimentos.act);
+        idUser = dbconn.selectConsumidor().getIdCons()+"";
+        tpUser = dbconn.selectConsumidor().getTpAcesso()+"";
 
         try{
             holder.imagem.setImageBitmap(convert(produtos.getImbase64()));
@@ -133,6 +141,20 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
                 act.finish();
             }
         });
+        holder.imgFavoritar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FavoritarProdutos connFavoritar = new FavoritarProdutos(null);
+                connFavoritar.execute(idUser,tpUser,produtos.getIdProduto()+"","1");
+            }
+        });
+        if(!produtos.getProduto_favorito().equals(null)) {
+            if (produtos.getProduto_favorito().equals("1")) {
+                holder.imgFavoritar.setImageResource(R.drawable.ic_favorite_black_24dp);
+            } else {
+                holder.imgFavoritar.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            }
+        }
     }
 
     @Override

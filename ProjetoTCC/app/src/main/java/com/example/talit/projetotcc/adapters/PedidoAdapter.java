@@ -52,6 +52,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
         private TextView status;
         private ImageView imageView;
         private TextView idEstabelecimento;
+        private ImageView imgStatus;
+        private TextView txtEstabelecimento;
         private View view;
 
         public PedidoAdapterViewHolder(View v) {
@@ -62,6 +64,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
             status = (TextView) v.findViewById(R.id.status);
             imageView = (ImageView) v.findViewById(R.id.im_edt);
             idEstabelecimento = (TextView)v.findViewById(R.id.idEstab);
+            imgStatus = (ImageView)v.findViewById(R.id.im_status);
+            txtEstabelecimento = (TextView)v.findViewById(R.id.estabelecimento);
             view = v;
         }
     }
@@ -99,6 +103,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
         holder.valor.setText("R$" + listaSuper.getPedido_valor());
         holder.status.setText("Status do pedido: " +listaSuper.getStatus_pedido_descricao());
         holder.idEstabelecimento.setText(listaSuper.getEstabelecimento_id());
+        holder.txtEstabelecimento.setText(listaSuper.getEstabelecimento_nome_fantasia());
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date data = formato.parse(listaSuper.getPedido_data());
@@ -125,6 +130,25 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoAdap
                 enviarAvaliacao(listaSuper.getEstabelecimento_id()+"");
             }
         });
+        if(listaSuper.getPedido_status_id().equals("1")){
+            holder.imgStatus.setImageResource(R.drawable.ic_pag_pendente);
+        }
+        if(listaSuper.getPedido_status_id().equals("2")){
+            holder.imgStatus.setImageResource(R.drawable.ic_pag_concluido);
+        }
+        if(listaSuper.getPedido_status_id().equals("3")){
+            holder.imgStatus.setImageResource(R.drawable.ic_separacao);
+        }
+        if(listaSuper.getPedido_status_id().equals("4")){
+            holder.imgStatus.setImageResource(R.drawable.ic_delivery_ped);
+        }
+        if(listaSuper.getPedido_status_id().equals("5")){
+            holder.imgStatus.setImageResource(R.drawable.ic_para_envio);
+        }
+        if(listaSuper.getPedido_status_id().equals("6")){
+            holder.imgStatus.setImageResource(R.drawable.ic_completo);
+        }
+
 
     }
 

@@ -108,9 +108,9 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
 
                     JSONObject end_result = new JSONObject(endereco);
                     Endereco end = new Endereco(end_result.getString("endereco_rua"),
-                                end_result.getString("endereco_numero"), end_result.getString("endereco_bairro"),
-                                end_result.getString("endereco_complemento"), end_result.getString("endereco_cep"),
-                                end_result.getString("cidade_descricao"), end_result.getString("estado_sigla"));
+                            end_result.getString("endereco_numero"), end_result.getString("endereco_bairro"),
+                            end_result.getString("endereco_complemento"), end_result.getString("endereco_cep"),
+                            end_result.getString("cidade_descricao"), end_result.getString("estado_sigla"));
 
 
                     JSONObject tel_result = new JSONObject(telefone);
@@ -132,6 +132,7 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                             dados_result.getString("estabelecimento_logo"),dados_result.getString("media_nota"),
                             dados_result.getString("estabelecimento_banner"));
                     listareEst.add(estabelecimentos);
+
                 }
 
                 if (listareEst.size() > 0) {
@@ -145,7 +146,7 @@ public class ListarSupermercadosPorDescricao extends AsyncTask<String, String, S
                     PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
                 }
 
-            } else if (descricao.equals("Nenhum estabelecimentos encontrado!")) {
+            } else if (descricao.contains("Nenhum")) {
                 PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
                 PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                 PaginalnicialConsumidor.listas.setAdapter(null);

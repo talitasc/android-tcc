@@ -1,18 +1,27 @@
 package com.example.talit.projetotcc.adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +30,10 @@ import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.DetalhesProdutos;
 import com.example.talit.projetotcc.activities.FinalizarCompra;
 import com.example.talit.projetotcc.activities.PaginaInicialEstabelecimentos;
+import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
+import com.example.talit.projetotcc.activities.Pedidos;
+import com.example.talit.projetotcc.connectionAPI.Avaliar;
+import com.example.talit.projetotcc.connectionAPI.FormasPagamento;
 import com.example.talit.projetotcc.fragments.DetalhesEstab;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -47,6 +60,7 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
         private TextView nome_supermercado;
         private TextView nome_cidade;
         private ImageView imLogo;
+        private ImageButton imPgamento;
         private RatingBar ratingBar;
         private TextView mediaNota;
         private View view;
@@ -58,15 +72,18 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
             imLogo = (ImageView) v.findViewById(R.id.im_logo_supermercado);
             ratingBar = (RatingBar) v.findViewById(R.id.ratingBarEstab);
             mediaNota = (TextView) v.findViewById(R.id.txt_avaliacao);
+            imPgamento = (ImageButton)v.findViewById(R.id.btn_frete);
             view = v;
         }
     }
 
-    private Activity act;
-    private Context c;
+    public static Activity act;
+    public static Context c;
     private View v;
     private List<Estabelecimento> listaSupermercado;
     private LayoutInflater inflater;
+    public static  RecyclerView recPagamento;
+    public static ProgressBar progressBar;
 
     public ListaSupermercadosAdapter(Activity act, Context c, List<Estabelecimento> listaSupermercado) {
         this.act = act;
@@ -174,7 +191,12 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
                 act.finishActivity(0);
             }
         });
-
+        holder.imPgamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                formasDePagamento(listaSuper.getId()+"");
+            }
+        });
     }
 
     @Override
@@ -207,4 +229,35 @@ public class ListaSupermercadosAdapter extends RecyclerView.Adapter<ListaSuperme
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 
+    public void formasDePagamento(String idEstab) {
+
+        LayoutInflater inflater = act.getLayoutInflater();
+        final View alertLayout = inflater.inflate(R.layout.custom_alerta_dialog_formas_pagamento, null);
+        final Button cancelar = (Button) alertLayout.findViewById(R.id.cancelar);
+        recPagamento = (RecyclerView)alertLayout.findViewById(R.id.lv_pagamento);
+        progressBar = (ProgressBar)alertLayout.findViewById(R.id.pb_pagamento);
+
+        recPagamento.setHasFixedSize(true);
+        StaggeredGridLayoutManager llm = new StaggeredGridLayoutManager(1, 1);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recPagamento.setLayoutManager(llm);
+
+        FormasPagamento connFormas = new FormasPagamento(null);
+        connFormas.execute(idEstab);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(PaginalnicialConsumidor.act);
+        alerta.setView(alertLayout);
+        alerta.setCancelable(false);
+        final AlertDialog dialogo = alerta.create();
+        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogo.show();
+
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogo.dismiss();
+            }
+
+        });
+    }
 }

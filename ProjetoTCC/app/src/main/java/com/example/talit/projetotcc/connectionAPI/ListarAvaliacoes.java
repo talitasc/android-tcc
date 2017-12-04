@@ -122,7 +122,7 @@ public class ListarAvaliacoes extends AsyncTask<String, String, String> {
                     TabAvaliacoes.relNoAva.setVisibility(View.VISIBLE);
                 }
 
-            } else if (descricao.equals("Nenhuma avaliação encontrada para esse estabelecimento!")) {
+            } else if (descricao.contains("Nenhuma")) {
                 TabAvaliacoes.pbAvaliacoes.setVisibility(View.INVISIBLE);
                 TabAvaliacoes.recAva.setAdapter(null);
                 TabAvaliacoes.relNoAva.setVisibility(View.VISIBLE);

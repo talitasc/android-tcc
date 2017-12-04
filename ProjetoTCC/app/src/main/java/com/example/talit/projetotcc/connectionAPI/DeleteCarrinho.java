@@ -40,7 +40,6 @@ public class DeleteCarrinho extends AsyncTask<String, String, String> {
         this.listener = listener;
 
     }
-
     @Override
     protected String doInBackground(String... n) {
 
@@ -89,6 +88,7 @@ public class DeleteCarrinho extends AsyncTask<String, String, String> {
 
         return null;
     }
+
 
     @Override
     protected void onPostExecute(String result) {

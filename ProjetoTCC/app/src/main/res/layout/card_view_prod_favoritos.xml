@@ -1,0 +1,136 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="01dp"
+    android:padding="03dp"
+    app:cardBackgroundColor="#FFF"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    app:cardMaxElevation="5dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/im_logo_produto"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="17dp"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/txtNomeProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/im_logo_produto"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+            tools:text="@string/txt_nome_produto" />
+
+        <TextView
+            android:id="@+id/txtMarca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNomeProduto"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="05dp"
+            android:layout_toEndOf="@+id/im_logo_produto"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+            tools:text="@string/marca_produto" />
+
+        <TextView
+            android:id="@+id/txtCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtMarca"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="05dp"
+            android:layout_toEndOf="@+id/im_logo_produto"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+            tools:text="@string/tab_categorias_estabelcimento" />
+
+        <TextView
+            android:id="@+id/txtLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCategoria"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="05dp"
+            android:layout_toEndOf="@+id/im_logo_produto"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded"
+            tools:text="@string/tab_lojas" />
+
+        <ImageButton
+            android:id="@+id/btn_desvaforitar"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:background="@drawable/bt_botoes_aux"
+            android:tint="#f06252"
+            app:srcCompat="@drawable/ic_favorite_black_24dp"
+            tools:ignore="ContentDescription"
+            android:layout_alignBottom="@+id/txtNomeProduto"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="05dp"
+            android:layout_marginTop="05dp"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/notificacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+
+        <ImageView
+            android:id="@+id/notificacao"
+            android:layout_width="115dp"
+            android:layout_height="160dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:rotation="-90"
+            android:src="@drawable/notificacao_item"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:rotation="-45"
+            android:text="@string/disponibilidade_produto"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

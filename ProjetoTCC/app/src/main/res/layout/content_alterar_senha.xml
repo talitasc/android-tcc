@@ -90,10 +90,28 @@
                     android:background="#ACACAC" />
 
                 <EditText
-                    android:id="@+id/id_nv_senha_alt"
+                    android:id="@+id/id_antiga_senha"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_below="@+id/divider_dois"
+                    android:layout_marginBottom="05dp"
+                    android:layout_marginLeft="05dp"
+                    android:layout_marginRight="05dp"
+                    android:layout_marginTop="05dp"
+                    android:background="@drawable/bordas_editext_cinza"
+                    android:hint="@string/antiga_senha"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    tools:ignore="RtlHardcoded"
+                    tools:targetApi="m" />
+
+                <EditText
+                    android:id="@+id/id_nv_senha_alt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/id_antiga_senha"
                     android:layout_marginBottom="05dp"
                     android:layout_marginLeft="05dp"
                     android:layout_marginRight="05dp"

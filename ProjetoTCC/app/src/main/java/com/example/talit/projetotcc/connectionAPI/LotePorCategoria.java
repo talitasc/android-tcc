@@ -49,8 +49,8 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
 
-        String api_url = "http://www.mlprojetos.com/webservice/index.php/produto/getLoteByCategoria/" + params[0] + "/";
-
+        String api_url = "http://www.mlprojetos.com/webservice/index.php/produto/getLoteByCategoria/" + params[0] + "/" + params[1] + "/" + params[2] ;
+        //String api_url = "http://www.mlprojetos.com/webservice/index.php/produto/getLoteByCategoria/" + params[0];
         String response = "";
 
         HttpURLConnection urlConnection;
@@ -125,8 +125,10 @@ public class LotePorCategoria extends AsyncTask<String, String, String> {
                             lote_result.getString("lote_data_vencimento"),
                             lote_result.getString("lote_preco"),
                             lote_result.getString("lote_obs"),
-                            lote_result.getString("lote_quantidade"));
+                            lote_result.getString("lote_quantidade"),
+                            dados_result.getString("produto_favorito"));
                     prods.add(prod);
+                    //dados_result.getString("produto_favorito")
                 }
                 if (prods.size() > 0) {
                     Log.i("array", prods.toString());

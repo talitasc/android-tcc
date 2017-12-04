@@ -1,10 +1,12 @@
 package com.example.talit.projetotcc.connectionAPI;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
 import com.example.talit.projetotcc.activities.PaginalnicialConsumidor;
+import com.example.talit.projetotcc.activities.ProdutosFavoritados;
 import com.example.talit.projetotcc.adapters.ListaSupermercadosAdapter;
 import com.example.talit.projetotcc.logicalView.Endereco;
 import com.example.talit.projetotcc.logicalView.Estabelecimento;
@@ -133,18 +135,22 @@ public class ListaSupermercadoPoRaio extends AsyncTask<String, String, String> {
                 }
 
                 if (listareEst.size() > 0) {
-                    Log.i("array", listareEst.toString());
+                    Log.i("array", PaginalnicialConsumidor.listareEst.toString());
                     PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                     PaginalnicialConsumidor.listas.setAdapter(null);
-                    ListaSupermercadosAdapter listarSupmermercadoAdapter = new ListaSupermercadosAdapter(PaginalnicialConsumidor.act, PaginalnicialConsumidor.context, listareEst);
+
+                    /*PaginalnicialConsumidor.act.startActivity(new Intent(PaginalnicialConsumidor.act, PaginalnicialConsumidor.class));
+                    PaginalnicialConsumidor.act.finishActivity(0);*/
+
+                    ListaSupermercadosAdapter listarSupmermercadoAdapter = new ListaSupermercadosAdapter(PaginalnicialConsumidor.act, PaginalnicialConsumidor.context,listareEst);
                     PaginalnicialConsumidor.listas.setAdapter(listarSupmermercadoAdapter);
                     listarSupmermercadoAdapter.notifyDataSetChanged();
-                    //TabBuscar.listas.deferNotifyDataSetChanged();
+
                 } else {
                     PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
                 }
 
-            } else if (descricao.equals("Nenhum estabelecimentos encontrado!")) {
+            } else if (descricao.contains("Nenhum")) {
                 PaginalnicialConsumidor.no_list.setVisibility(View.VISIBLE);
                 PaginalnicialConsumidor.pb.setVisibility(View.INVISIBLE);
                 PaginalnicialConsumidor.listas.setAdapter(null);

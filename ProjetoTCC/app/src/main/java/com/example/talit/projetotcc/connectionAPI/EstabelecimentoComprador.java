@@ -6,9 +6,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.example.talit.projetotcc.R;
 import com.example.talit.projetotcc.activities.CadastroConsumidor;
 import com.example.talit.projetotcc.activities.CadastroPessoaJuridica;
 import com.example.talit.projetotcc.activities.CadastroPessoaJuridicaDois;
+import com.example.talit.projetotcc.activities.LoginCliente;
 import com.example.talit.projetotcc.sqlight.DbConn;
 
 import org.json.JSONException;
@@ -146,7 +148,7 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
             String descricao = status.getString("descricao");
             Log.i("Status", status_user);
             if (status_user.equalsIgnoreCase("true")) {
-                if (descricao.equals("Estabelecimento cadastrado com sucesso!")) {
+                if (descricao.contains("sucesso")) {
                     CadastroPessoaJuridicaDois.pb.setVisibility(View.INVISIBLE);
                     AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
                     builder.setTitle("Dados Registrados");
@@ -162,16 +164,30 @@ public class EstabelecimentoComprador extends AsyncTask<String, String, String> 
                     builder.setCancelable(false);
                     builder.show();
                 }
-            }else{
+            }else if(descricao.contains("Estabelecimento")){
                 CadastroPessoaJuridicaDois.pb.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
-                builder.setTitle("Erro");
-                builder.setMessage("Dados inválidos!");
+                builder.setTitle("");
+                builder.setMessage("usuario ja cadastrado!");
                 builder.setPositiveButton("Fechar",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         listener.onLoaded("true");
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
+
+            }else{
+                CadastroPessoaJuridicaDois.pb.setVisibility(View.INVISIBLE);
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CadastroPessoaJuridicaDois.context);
+                builder.setTitle(R.string.validacao_login_tres);
+                builder.setMessage(R.string.validacao_login_quatro);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
                 });
                 builder.setCancelable(false);

@@ -154,9 +154,9 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
                         }else{
                             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this.context);
-                            builder.setTitle("Campos vázios");
-                            builder.setMessage("Inserira seus dados para realizar o login.");
-                            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                            builder.setTitle(R.string.validacao_login_um);
+                            builder.setMessage(R.string.validacao_login_dois);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
@@ -167,9 +167,9 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                         }
                     }else{
                         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this.context);
-                        builder.setTitle("Dados inválidos!");
-                        builder.setMessage("Verifique se seus dados foram digitados corretamente.");
-                        builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        builder.setTitle(R.string.validacao_login_tres);
+                        builder.setMessage(R.string.validacao_login_quatro);
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -181,9 +181,9 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
 
                 } else {
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this.context);
-                    builder.setTitle("Erro ao tentar conexão!!");
-                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
-                    builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    builder.setTitle(R.string.validacao_login_cinco);
+                    builder.setMessage(R.string.validacao_login_seis);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -214,13 +214,13 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                             Log.d("Objeto",object.toString());
                             LoginComFacebook conn = new LoginComFacebook(LoginCliente.this);
                             conn.execute(object.getString("email"),"1",object.getString("first_name"),object.getString("last_name"));
-                            Toast.makeText(getApplicationContext(), "ver", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "ver", Toast.LENGTH_LONG).show();
 
                         }catch (Exception e){
                             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
-                            builder.setTitle("Erro ao tentar conexão com facebook!!");
-                            builder.setMessage("Verifique as permissões dos dados do seu perfil e tente novamente.");
-                            builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                            builder.setTitle(R.string.validacao_login_sete);
+                            builder.setMessage(R.string.validacao_login_oito);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
@@ -272,8 +272,8 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                 } else {
 
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.context);
-                    builder.setTitle("Erro ao tentar conexão!!");
-                    builder.setMessage("Verifique se há conexão com a internet em seu aparelho e tente novamente.");
+                    builder.setTitle(R.string.validacao_login_nove);
+                    builder.setMessage(R.string.validacao_login_dez);
                     builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -411,7 +411,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(LoginCliente.this);
                 builder.setTitle("");
-                builder.setMessage("Certeza que deseja cancelar esta operação?");
+                builder.setMessage(R.string.validacao_login_quatorze);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -422,7 +422,7 @@ public class LoginCliente extends AppCompatActivity implements AutenticaLogin.Li
                         finish();
                     }
                 });
-                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

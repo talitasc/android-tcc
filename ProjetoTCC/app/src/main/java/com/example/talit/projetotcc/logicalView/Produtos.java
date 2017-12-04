@@ -23,6 +23,7 @@ public class Produtos {
     private String lote_preco;
     private String lote_obs;
     private String lote_quantidade;
+    private String produto_favorito;
 
 
     public Produtos(int idProduto, String descricao, String imbase64, String marcaDescricao, String categoria_descr, int quantidade, String unidade_medida_sigla, String sub_categoria_string, int idLote, String lote_data_fabricacao, String lote_data_vencimento, String lote_preco, String lote_obs, String lote_quantidade) {
@@ -57,6 +58,32 @@ public class Produtos {
         this.lote_preco = lote_preco;
         this.lote_obs = lote_obs;
         this.lote_quantidade = lote_quantidade;
+    }
+
+    public Produtos(int idProduto, String descricao, String imbase64, String nomeFantasia, String marcaDescricao, String categoria_descr, int quantidade, String unidade_medida_sigla, String sub_categoria_string, int idLote, String lote_data_fabricacao, String lote_data_vencimento, String lote_preco, String lote_obs, String lote_quantidade,String produto_favorito) {
+        this.idProduto = idProduto;
+        this.descricao = descricao;
+        this.imbase64 = imbase64;
+        this.nomeFantasia = nomeFantasia;
+        this.marcaDescricao = marcaDescricao;
+        this.categoria_descr = categoria_descr;
+        this.quantidade = quantidade;
+        this.unidade_medida_sigla = unidade_medida_sigla;
+        this.sub_categoria_string = sub_categoria_string;
+        this.idLote = idLote;
+        this.lote_data_fabricacao = lote_data_fabricacao;
+        this.lote_data_vencimento = lote_data_vencimento;
+        this.lote_preco = lote_preco;
+        this.lote_obs = lote_obs;
+        this.lote_quantidade = lote_quantidade;
+        this.produto_favorito = produto_favorito;
+    }
+    public String getProduto_favorito() {
+        return produto_favorito;
+    }
+
+    public void setProduto_favorito(String produto_favorito) {
+        this.produto_favorito = produto_favorito;
     }
 
     public int getIdProduto() {

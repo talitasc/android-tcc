@@ -19,14 +19,30 @@
         app:contentPaddingBottom="03dp">
 
         <RelativeLayout
+            android:layout_width="83dp"
+            android:layout_height="match_parent"
+            android:background="#D7D6D6">
+
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/im_status"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="17dp"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <TextView
                 android:id="@+id/numeroPedido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
+                android:layout_toEndOf="@+id/im_status"
                 android:layout_marginTop="10dp"
                 android:text="@string/txt_numero_pedido"
                 android:textStyle="bold" />
@@ -37,9 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/numeroPedido"
                 android:layout_marginStart="23dp"
+                android:layout_toEndOf="@+id/im_status"
                 android:layout_marginTop="11dp"
+                android:textSize="10sp"
                 android:text="@string/txt_valor_pedido"
-                android:textStyle="bold" />
+                android:textStyle="normal"
+                tools:ignore="SmallSp" />
 
 
             <TextView
@@ -47,10 +66,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/valorPedido"
+                android:layout_toEndOf="@+id/im_status"
                 android:layout_marginStart="23dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="05dp"
+                android:textSize="10sp"
                 android:text="@string/txt_data_pedido"
-                android:textStyle="bold" />
+                android:textStyle="normal"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:id="@+id/status"
@@ -58,19 +80,34 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/data_pedido"
                 android:layout_marginStart="23dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="05dp"
+                android:layout_toEndOf="@+id/im_status"
+                android:textSize="10sp"
                 android:text="@string/txt_status_pedido"
-                android:textStyle="bold" />
+                android:textStyle="normal"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/estabelecimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/status"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="05dp"
+                android:layout_toEndOf="@+id/im_status"
+                android:layout_marginBottom="10dp"
+                android:textSize="10sp"
+                android:text="@string/txt_estabelecimento"
+                android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/im_edt"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_marginEnd="06dp"
                 android:layout_marginTop="05dp"
                 android:layout_alignParentEnd="true"
-                android:tint="#FFCC66"
+                android:tint="#02243b"
                 app:srcCompat="@drawable/ic_thumb_up_black_24dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -86,6 +123,8 @@
                 android:textStyle="bold"
                 android:visibility="invisible"
                 tools:ignore="HardcodedText,UnknownIdInLayout" />
+
+
 
             <TextView
                 android:layout_width="wrap_content"

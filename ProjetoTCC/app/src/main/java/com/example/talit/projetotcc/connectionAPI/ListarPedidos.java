@@ -96,7 +96,8 @@ public class ListarPedidos extends AsyncTask<String, String, String> {
 
                     pedido = new Pedido(lote_result.getString("pedido_id"),lote_result.getString("estabelecimento_id"),
                             lote_result.getString("pedido_valor"),lote_result.getString("pedido_data"),
-                            lote_result.getString("pedido_status_id"),lote_result.getString("status_pedido_descricao"));
+                            lote_result.getString("pedido_status_id"),lote_result.getString("status_pedido_descricao"),
+                            lote_result.getString("estabelecimento_nome_fantasia"));
                     pedidos.add(pedido);
                 }
 
